@@ -1,1 +1,1 @@
-var PathAPI = "https://ods.org.mx/API/";
+var PathAPI = "https://ods.org.mx/v2/API/";
