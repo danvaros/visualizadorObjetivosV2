@@ -1,0 +1,3103 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Objetivos de Desarrollo Sostenible</title>
+  <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/tooltipster.bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css"
+  />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,800,300,600italic,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/fakeLoader.css">
+  <link rel="stylesheet" href="css/home.css">
+  <!-- Load c3.css -->
+  <link href="lib/c3.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/section-scroll.css">
+  <link rel="stylesheet" type="text/css" href="lib/bigfoot/bigfoot-number.css">
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="lib/iealert.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="lib/iealert/style.css" />
+  <script type="text/javascript" src="lib/fakeLoader.min.js"></script>
+  <script type="text/javascript" src="tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <script src='image.js'></script>
+
+  <script src='config.js'></script>
+  <script src='funcionesApi.js'></script>
+  <span id="loader">
+    <p style="color:#333; padding-top: 100px; ">Cargando<br>información</p>
+  </span>
+  <style media="screen">
+
+  a.selected {
+    background-color:#1F75CC;
+    color:white;
+    z-index:100;
+    right:0;
+    bottom:15%;
+    position:absolute;
+  }
+   #contact{
+     position: absolute;
+      right: 0;
+      bottom: 15%;
+      background:#EFD331;
+      color:#ffffff;
+      padding:5px 10px;
+      text-decoration:none;
+      z-index: 99;
+   }
+
+   #contact img{
+     padding: 8px;
+     max-width: 64px;
+   }
+
+  .disclaimer {
+    background-color:#FFFFFF;
+    cursor:default;
+    display:none;
+    margin-top: 0px;
+    text-align:left;
+    width:394px;
+    z-index:50;
+    padding: 15px 25px;
+    right:84px;
+    bottom:15%;
+    position:absolute;
+    z-index: 99999;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 3px;
+    padding-left: 15px;
+    text-indent: -15px;
+  }
+
+
+  .disclaimer p, .disclaimer.div {
+    margin: 8px 0;
+    padding-bottom: 8px;
+    font-family:'Helvetica';
+    font-weight:300;
+    text-align:justify;
+  }
+
+  .disclaimer h1{
+    font-size:30px;
+    font-family:'Helvetica';
+    font-weight:800;
+  }
+
+
+
+    #loader {
+      display: block;
+      background: rgba(62, 60, 60, 0.6);
+      color: white;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10000;
+    }
+
+    #loader p {
+      display: block;
+      font-size: 40px;
+      position: absolute;
+      top: -70px;
+      /* left: 0; */
+      bottom: 0;
+      right: 15px;
+      color: #fff !important /*margin: auto;*/;
+      text-align: right;
+    }
+
+     #loader p #tex{
+      width: 300px;
+    }
+  </style>
+
+  <style>
+    #map {
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    #map_compara {
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    .info,
+    .info-explora {
+      padding: 6px 8px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      border-radius: 5px;
+    }
+
+    .info2-explora,
+    .info2 {
+      padding: 6px 8px;
+      font: 10px/16px Arial, Helvetica, sans-serif;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 0 0 5px 5px;
+      margin-top: 0 !important;
+      width: 291px;
+    }
+
+    .infos,
+    .infos-explora {
+      padding: 6px 7.5px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 5px 5px 0 0;
+      width: 291px;
+    }
+
+    .info h4,
+    .info-explora h4 {
+      margin: 0 0 5px;
+      color: #777;
+    }
+
+    .legend {
+      text-align: left;
+      line-height: 18px;
+      color: #555;
+    }
+
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 4.0pc;
+      opacity: 1;
+    }
+
+    .c3-ygrids line {
+      stroke-dasharray: 1;
+      stroke: #dedbdb;
+    }
+
+    .c3-xgrid-focus line {
+      stroke: #dedbdb;
+    }
+
+    g .leaflet-interactive {
+      stroke-dasharray: 0 !important;
+    }
+
+    .highlighted {
+      fill: rgb(226, 204, 6);
+    }
+
+    .bullets-container{
+      top:50%;
+    }
+
+    @media only screen and (max-width: 1555px) {
+        .bullets-container{
+          display: none;
+        }
+}
+@media only screen and (max-width:460px){
+        a.selected {
+          background-color:#1F75CC;
+          color:white;
+          z-index:100;
+          right:0;
+          bottom:15%;
+          position:absolute;
+        }
+         #contact{
+           position: absolute;
+            right: 0;
+            bottom: 15%;
+            background:#EFD331;
+            color:#ffffff;
+            padding:5px 10px;
+            text-decoration:none;
+            z-index: 99999;
+         }
+
+         #contact img{
+           padding: 8px;
+           max-width: 35px;
+         }
+
+        .disclaimer {
+          background-color:#FFFFFF;
+          cursor:default;
+          display:none;
+          margin-top: 0px;
+          text-align:left;
+          width:70%;
+          z-index:50;
+          padding: 15px 25px;
+          right:55px;
+          bottom:15%;
+          position:absolute;
+          z-index: 99999;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 3px;
+          padding-left: 15px;
+          text-indent: -15px;
+        }
+
+
+        .disclaimer p, .disclaimer.div {
+          margin: 8px 0;
+          padding-bottom: 8px;
+          font-family:'Helvetica';
+          font-weight:300;
+          text-align:justify;
+        }
+
+        .disclaimer h1{
+          font-size:20px;
+          font-family:'Helvetica';
+          font-weight:800;
+        }
+
+
+
+    }
+
+    .bigfoot-footnote__container, .bigfoot-footnote__wrapper, .bigfoot-footnote__content
+    {
+      margin: 0 !important;
+    }
+
+    aside[data-footnote-identifier="2"]
+    {
+      width: 600px;
+      height: 400px;
+      text-align: left;
+    }
+    aside[data-footnote-identifier="2"] > .bigfoot-footnote__wrapper, .bigfoot-footnote__content
+    {
+      max-height: 400px;
+      width: 600px;
+      height: 400px;
+      text-align: left;
+    }
+
+    aside[data-footnote-identifier="4"]
+    {
+      width: 600px;
+      height: 400px;
+      text-align: left;
+    }
+    aside[data-footnote-identifier="4"] > .bigfoot-footnote__wrapper, .bigfoot-footnote__content
+    {
+      max-height: 400px;
+      width: 600px;
+      height: 400px;
+      text-align: left;
+    }
+
+    aside[data-footnote-identifier="5"]
+    {
+      width: 600px;
+      height: 400px;
+      text-align: left;
+    }
+    aside[data-footnote-identifier="5"] > .bigfoot-footnote__wrapper, .bigfoot-footnote__content
+    {
+      max-height: 400px;
+      width: 600px;
+      height: 400px;
+      text-align: left;
+    }
+
+    aside[data-footnote-identifier="1"]
+    {
+      width: 400px;
+      height: 100px;
+      text-align: left;
+    }
+    aside[data-footnote-identifier="1"]   .bigfoot-footnote__content, .bigfoot-footnote__wrapper
+    {
+      max-height: 100px;
+      width: 400px;
+      height: 100px;
+      text-align: center;
+    }
+
+    aside[data-footnote-identifier="1"]   .bigfoot-footnote__content
+    {
+      color: black !important;
+    }
+
+    button[data-footnote-identifier="1"]
+    {
+      background-color: white;
+      color: black;
+    }
+
+    aside[data-footnote-identifier="3"]
+    {
+      width: 400px;
+      height: 120px;
+      text-align: left;
+    }
+
+    aside[data-footnote-identifier="3"]   .bigfoot-footnote__content, .bigfoot-footnote__wrapper
+    {
+      max-height: 120px;
+      width: 400px;
+      height: 120px;
+      text-align: center;
+    }
+
+    #obje_tool > a
+    {
+      color: white !important;
+    }
+
+
+  </style>
+
+  <style media="screen">
+    svg g.c3-chart-line g.c3-circles-Estados-Unidos-Mexicanos circle {
+      fill: #f00 !important;
+    }
+
+    #datosNacional {
+      display: none;
+    }
+
+    .infoPadre {
+      width: 276px;
+    }
+
+    .cuadrosSocial li {
+      display: inline;
+    }
+
+    .cuadrosSocial li a {
+      border: 1px solid #ccc;
+      padding: 10px;
+      transition: all 1.0s ease;
+      width: 40px;
+    }
+
+    .cuadrosSocial li a:hover {
+      background-color: #ccc;
+    }
+
+    .select-dropdown {
+      padding-left: 10px !important;
+    }
+
+    .select-wrapper span.caret {
+      padding-right: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .espacio_seccion {
+      height: 40px;
+    }
+
+    .promedios {
+      font-size: 40px !important;
+      font-weight: 200;
+    }
+
+    .topColor {
+      color: #3ebcef;
+    }
+
+    .section-bullets li a:before {
+      background-color: #00aeef;
+    }
+
+    .section-bullets li:hover {
+      background-color: #eee;
+    }
+
+    .section-bullets .active a {
+      color: #fff;
+    }
+
+    .section-bullets .active a:after {
+      background-color: #FFF;
+    }
+
+    .line_pro {
+      border-bottom: #F44336;
+      border: solid 1px #F44336;
+      margin: 10px;
+      max-width: 32%;
+    }
+
+    .active_anio {
+      background-color: #15b5f0;
+      color: white;
+    }
+
+    .inactive_anio {
+      background-color: white;
+      color: #15b5f0;
+    }
+
+    button:focus {
+    outline: none;
+      background-color: transparent;
+    }
+
+.tooltipped2{
+  max-width: 300px;
+  opacity: 0.7;
+}
+  </style>
+
+
+</head>
+
+<body>
+  <!-- <span id="loader" style="display:none"><p><img src="img/logorueda.gif" alt="Cargando..."></p></span> -->
+  <div class="full">
+    <div class="header">
+      <div class="imagen">
+        <div class="fondo">
+          <nav class="trans sin_sombra">
+            <div class="nav-wrapper">
+              <!-- <ul id="nav-mobile2" class="right hide-on-med-and-down">
+                <li><a id="esp" class="t_sm" href="#!">ESP</a></li>
+                <span class="claro left">/</span>
+                <li><a id="ing" class="t_sm" href="#!">ENG</a></li>
+              </ul> -->
+            </div>
+          </nav>
+          <div class="head_cont">
+            <div class="row center-align">
+              <div class="col s4 offset-s4">
+                 <img class="logo" src="img/ods_logo_home.png" alt="" />
+                <!-- <img src="img/icono_header.svg" alt="Objetivos de Desarrollo Sostenible" />-->
+              </div>
+              <div class="col s12">
+                <a class="waves-effect waves-light btn color white-text sin_sombra marg t_sm" href="acerca.html">ACERCA DE</a>
+              </div>
+              <!-- <div class="col s6 right-align pad_r">
+                <a href="https://www.gob.mx" target="_blank"><img class="logo1" src="img/logoPR.png" alt="" /></a>
+              </div>
+              <div class="col s6 left-align pad_l">
+                <a href="http://www.inegi.org.mx" target="_blank"><img class="logo2" src="img/logoINEGI.png" alt="" /></a>
+              </div> -->
+              <div class="col s12 pad_r">
+                <a href="https://www.gob.mx" target="_blank"><img class="logo1" src="img/logoPR.png" alt=""></a>
+                <a href="http://www.inegi.org.mx" target="_blank"><img class="logo2" src="img/logoINEGI.png" alt=""></a>
+              </div>
+              <!-- <div class="raton">
+                <div class='icon-scroll'></div>
+              </div> -->
+              <!--
+              <div class="col s12 marg_top">
+                <a class="claro t_sm modal-trigger" href="#modal1">VER VIDEO</a>
+              </div>
+                <div id="modal1" class="modal">
+				    <div class="modal-content">
+				      <div class="video-container">
+				        <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
+				      </div>
+				    </div>
+				</div>
+-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <nav id="normal">
+        <div class=" container nav-wrapper" style="margin-top:0px;">
+          <a href="index.html" id="imago" class="brand-logo">
+            <!-- <img src="img/logo.png" alt="" /> -->
+            <img src="img/icono_header.svg" alt="" />
+          </a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down nav_stick nab">
+            <li class="tam t_sm"><a href="objetivos.html">Indicadores</a></li>
+
+             <li class="tam t_sm"><a href="estados.html" style="line-height: 21px; padding-top: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;Indicadores con<br>desglose geográfico</a></li>
+
+            <!-- <li class="tam t_sm"><a href="como_vamos.html">¿C&oacute;mo vamos?</a></li> -->
+            <li class="tam t_sm"><a href="explora.html">Explora</a></li>
+            <!-- <li class="tam t_sm"><a href="compara.html">Compara</a></li>  -->
+            <li class="tamps">
+              <a id="buscar"><img src="img/search.png" alt="" /></a>
+              <input id="cam_bus" type="text" name="buscar" style="display: none; background-color: rgba(0, 0, 0, 0.4); background-position: 95% 50%; background-repeat: no-repeat;border-bottom: 0 none; border-radius: 8px;color: #ffffff !important;padding: 0 10px;height:35px;"
+                onfocusout="esconder()" />
+            </li>
+            <li class="tamps">
+              <a id="busca" href="calendario.html"><img data-position="bottom" data-tooltip="Ir al calendario de actualizaciones" class="tooltipped" src="img/calendario.png" alt="" /></a>
+            </li>
+            <li class="tamps">
+              <a id="busca" href="descarga.html"><img data-position="bottom" data-tooltip="Ir a la página de descargas masivas" class=" tooltipped" src="img/descarga.png"
+                  alt="" /></a>
+            </li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="objetivos.html">Indicadores</a></li>
+            <!-- <li><a href="estados.html">Indicadores por unidad geográfica</a></li>
+            <li><a href="como_vamos.html">¿C&oacute;mo vamos?</a></li>  -->
+            <li><a href="explora.html">Explora</a></li>
+            <!-- <li><a href="compara.html">Compara</a></li>  -->
+        <!--     <li class="tamps">
+          <a id="buscar"><img src="img/search.png" alt="" /></a>
+          <input id="cam_bus" type="text" name="buscar" style="display: none; background-color: rgba(0, 0, 0, 0.4); background-position: 95% 50%; background-repeat: no-repeat;border-bottom: 0 none; border-radius: 8px;color: #ffffff !important;padding: 0 10px;height:35px;"
+            onfocusout="esconder()" />
+        </li> -->
+          <!--   <li class="tamps">
+            <a id="calendario.html">Calendario</a>
+          </li> -->
+            <li class="tamps">
+            <a id="busca" href="descarga.html"><img data-position="bottom" data-tooltip="Ir a la página de descargas masivas" class=" tooltipped" src="img/descarga.png"
+                alt="" /></a>
+          </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- <div class="tooltip_templates">
+        <span id="tooltip_content">
+          <div class="width:400px; height:100px;">
+            <p>Naciones Unidas (2016). Informe de los Objetivos de Desarrollo Sostenible. Nueva York: Naciones Unidas. Consultado el 5 de abril en sitio oficial: <a href="https://unstats.un.org/sdgs/report/2016/">https://unstats.un.org/sdgs/report/2016/</a></p>
+          </div>
+        </span>
+    </div> -->
+    <div id="abrir1" class="modal">
+      <div class="modal-content">
+        <div>
+<a style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;" href="http://www.un.org/sustainabledevelopment/es/la-agenda-de-desarrollo-sostenible"><b>Los 17 Objetivos de Desarrollo Sostenible</b></a> (ODS) con las 169 metas tienen un alcance más amplio y van más allá que los Objetivos de Desarrollo del Milenio (ODM) al abordar las causas fundamentales de la pobreza y la necesidad universal de lograr un desarrollo a favor de todas las personas. Los objetivos abarcan las tres dimensiones del desarrollo sostenible: el crecimiento económico, la inclusión social y la protección del medio ambiente. Sobre la base del éxito y el impulso de los ODM, los nuevos objetivos mundiales abarcan más con la pretensión de afrontar las desigualdades, el crecimiento económico, el acceso a un trabajo decente, las ciudades y los asentamientos humanos, la industrialización, los océanos, los ecosistemas, la energía, el cambio climático, el consumo y la producción sostenibles, la paz y la justicia.<br><br>
+Los nuevos objetivos son de aplicación universal para todos los países, mientras que los ODM únicamente estaban dirigidos a los países en desarrollo. Un elemento fundamental de los ODS es la gran atención que prestan a los medios de aplicación —la movilización de recursos financieros—, el desarrollo de la capacidad y la tecnología, los datos y las instituciones. Los nuevos objetivos reconocen que es esencial luchar contra el cambio climático a fin de lograr el desarrollo sostenible y la erradicación de la pobreza.<br><br>
+<b>Cómo se aplican los ODS, según Naciones Unidas (2017):</b>
+<br><br>
+La Agenda de Acción Addis Abeba, que fue el resultado de la Tercera Conferencia Internacional sobre la Financiación para el Desarrollo, preveía políticas y medidas concretas para apoyar la aplicación de la nueva agenda.
+El cumplimiento y el éxito de la agenda se basarán en las políticas, planes y programas de desarrollo sostenible de los países y estarán dirigidos por estos. Los Objetivos de Desarrollo Sostenible (ODS) actuarán como una brújula a la hora de armonizar los planes nacionales con los compromisos mundiales de los países.<br><br>
+Las estrategias de desarrollo sostenible asumidas como propias por los países e impulsadas por ellos requerirán estrategias de financiación y movilización de recursos.<br><br>
+Se espera que todas las partes interesadas, a saber, los gobiernos, la sociedad civil y el sector privado, entre otros, contribuyan a la consecución de la nueva agenda.<br><br>
+Se necesita una alianza mundial revitalizada para apoyar las iniciativas nacionales. Así se reconoce en la Agenda 2030.
+Igualmente, se reconoce que las alianzas entre múltiples interesados son un componente importante de toda estrategia que pretenda movilizar a todas las partes interesadas en torno a la nueva agenda.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" id="cerrar1" class="btn" style="color:black !important; border-color:black;">Cerrar</button> -->
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row scrollable-section" data-section-title="Conoce los indicadores">
+        <div class="col s12 m9 l9">
+        <!-- <a href="objetivos.html"> -->
+          <div class="card-panel id posicion">
+            <h5 class="white-text t_normal">Objetivos</h5>
+            <div id="obje_tool" class="white-text texto-abajo describe t_sm" style="text-decoration:none; color:white !important;">
+              El 1º de enero de 2016 entró en vigor la <a href="http://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/" style="border-bottom: 1px dotted white;">Agenda 2030</a> para el Desarrollo Sostenible. El plan de acción está basado en 17 Objetivos de Desarrollo Sostenible (ODS) que abordan los urgentes desafíos globales en el curso de los próximos quince años.
+Esta agenda asegurará el progreso social y económico sostenible en todo el mundo,   y está construida  con base en  los Objetivos de Desarrollo del Milenio.  No solamente busca erradicar la pobreza extrema, sino integrar y equilibrar las tres dimensiones del desarrollo sostenible —económico, social y ambiental— en una visión global e integral.
+Los objetivos son de aplicación universal. “Todas las naciones deberán aplicar los ODS en sus políticas y planes nacionales, si es que queremos alcanzarlos.” <a class="tooltipped2" data-tooltip="<div style='max-width:300px;opacity:0.6;'>Naciones Unidas (2016). Informe de los Objetivos de Desarrollo Sostenible. Nueva York: Naciones Unidas. Consultado el 5 de abril en sitio oficial: https://unstats.un.org/sdgs/report/2016/.</div>">(BAN Ki-moon citado en Naciones Unidas, 2016; pp. 2)</a>.
+
+
+
+
+              <!-- El 1º de enero de 2016 entró en vigor la <a href="http://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/" style="border-bottom: 1px dotted white;">Agenda 2030</a> para el Desarrollo Sostenible. El plan de acción está basado en 17 Objetivos de Desarrollo Sostenible (ODS) que abordan los urgentes desafíos globales en el curso de los próximos quince años.
+
+              Esta agenda asegurará el progreso social y económico sostenible en todo el mundo. Busca erradicar la pobreza extrema e integrar y equilibrar las tres dimensiones del desarrollo sostenible —económico, social y ambiental— en una visión global e integral. -->
+<!-- <sup id="tol_html" data-position="bottom" data-tooltip='Naciones Unidas (2016). Informe de los Objetivos de Desarrollo Sostenible. Nueva York: Naciones Unidas. Consultado el 5 de abril en sitio oficial: <a href="https://unstats.un.org/sdgs/report/2016/">https://unstats.un.org/sdgs/report/2016/</a>' class="tooltipped">1</sup> -->
+                <!-- <sup id="fnref:1" data-footnote-style="numeric">
+                    <a href="#fn:1" rel="footnote">1</a>
+                </sup> -->
+                <!-- <span class="tooltip" data-tooltip-content="#tooltip_content"><sup>1</sup></span> -->
+        </div>
+          </div>
+          <!-- <div class="footnotes">
+            <ol>
+              <li class="footnote" id="fn:1">
+                  <p>Naciones Unidas (2016). Informe de los Objetivos de Desarrollo Sostenible. Nueva York: Naciones Unidas. Consultado el 5 de abril en sitio oficial: <a href="https://unstats.un.org/sdgs/report/2016/">https://unstats.un.org/sdgs/report/2016/</a></p>
+              </li>
+            </ol>
+          </div> -->
+        </div>
+        <div class="col s12 m3 l3">
+        <a href="objetivos.html?objetivoId=1">
+          <div class="card-panel id_1 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">1</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-01.png" alt="" />
+              </div>
+            </div>
+            <h5 class="white-text titulo t_normal">Fin de la pobreza</h5>
+            <span class="white-text descrip texto-abajo t_sm">Poner fin a la pobreza en todas sus formas y en todo el mundo.
+              </span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=2">
+          <div class="card-panel id_2 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">2</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-02.png" alt="" />
+              </div>
+            </div>
+            <h5 class="white-text titulo t_normal">Hambre Cero</h5>
+            <span class="white-text descrip texto-abajo t_sm">Poner fin al hambre, lograr la seguridad alimentaria y la mejora de la nutrición y promover la agricultura sostenible.
+              </span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=3">
+          <div class="card-panel id_3 tres posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">3</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-03.png" alt="" />
+              </div>
+            </div>
+            <h5 class="white-text titulo t_normal">Salud y Bienestar</h5>
+            <span class="white-text descrip texto-abajo t_sm">Garantizar una vida sana y promover el bienestar de todos a todas las edades.
+              </span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=4">
+          <div class="card-panel id_4 cuatro posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">4</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-04.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Educación de calidad</h5>
+            <span class="white-text descrip texto-abajo t_sm">Garantizar una educación inclusiva y equitativa de calidad y promover oportunidades de aprendizaje permanente para todos.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=5">
+          <div class="card-panel id_5 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">5</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-05.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Igualdad de género</h5>
+            <span class="white-text descrip texto-abajo t_sm">Lograr la igualdad de género y empoderar a todas las mujeres y las niñas.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=6">
+          <div class="card-panel id_6 seis posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">6</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-06.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Agua limpia y saneamiento</h5>
+            <span class="white-text descrip texto-abajo t_sm">Garantizar la disponibilidad y la gestión sostenible del agua y el saneamiento para todos.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=7">
+          <div class="card-panel id_7 siete posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">7</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-07.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Energía asequible y no contaminante</h5>
+            <span class="white-text descrip texto-abajo t_sm">Garantizar el acceso a una energía asequible, fiable, sostenible y moderna para todos.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=8">
+          <div class="card-panel id_8 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">8</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-08.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Trabajo decente y crecimiento económico</h5>
+            <span class="white-text descrip texto-abajo t_sm">Promover el crecimiento económico sostenido, inclusivo y sostenible, el empleo pleno y productivo y el trabajo decente para todos.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=9">
+          <div class="card-panel id_9 nueve posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">9</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-09.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Industria, innovación e infraestructura</h5>
+            <span class="white-text descrip texto-abajo t_sm">Construir infraestructuras resilientes, promover la industrialización inclusiva y sostenible y fomentar la innovación.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=10">
+          <div class="card-panel id_10 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">10</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-10.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Reducción de las desigualdades</h5>
+            <span class="white-text descrip texto-abajo t_sm">Reducir la desigualdad en los países y entre ellos.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=11">
+          <div class="card-panel id_11 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">11</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-11.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Ciudades y comunidades sostenibles</h5>
+            <span class="white-text descrip texto-abajo t_sm">Lograr que las ciudades y los asentamientos humanos sean inclusivos, seguros, resilientes y sostenibles.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=12">
+          <div class="card-panel id_12 doce posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">12</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-12.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Producción y consumo responsables</h5>
+            <span class="white-text descrip texto-abajo t_sm">Garantizar modalidades de consumo y producción sostenibles.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=13">
+          <div class="card-panel id_13 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">13</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-13.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Acción por el clima</h5>
+            <span class="white-text descrip texto-abajo t_sm">Adoptar medidas urgentes para combatir el cambio climático y sus efectos.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=14">
+          <div class="card-panel id_14 catorce posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">14</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-14.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Vida submarina</h5>
+            <span class="white-text descrip texto-abajo t_sm">Conservar y utilizar sosteniblemente los océanos, los mares y los recursos marinos para el desarrollo sostenible.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=15">
+          <div class="card-panel id_15 quince posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">15</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-15.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Vida y ecosistemas terrestres</h5>
+            <span class="white-text descrip texto-abajo t_sm">Proteger, restablecer y promover el uso sostenible de los ecosistemas terrestres, gestionar sosteniblemente los bosques, luchar contra la desertificación, detener e invertir la degradación de las tierras y detener la pérdida de biodiversidad.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=16">
+          <div class="card-panel id_16 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">16</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-16.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Paz, justicia e instituciones solidas</h5>
+            <span class="white-text descrip texto-abajo t_sm">Promover sociedades pacíficas e inclusivas para el desarrollo sostenible, facilitar el acceso a la justicia para todos y construir a todos los niveles instituciones eficaces e inclusivas que rindan cuentas.</span>
+          </div>
+        </a>
+        </div>
+        <div class="col s12 m6 l3">
+        <a href="objetivos.html?objetivoId=17">
+          <div class="card-panel id_17 posicion">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="white-text t_normal">17</h5>
+              </div>
+              <div class="col s6 right-align">
+                <img class="icono" src="img/ods-17.png" alt="" />
+              </div>
+            </div>
+            <h5 class="titulo white-text t_normal">Alianzas para lograr los objetivos</h5>
+            <span class="white-text descrip texto-abajo t_sm">Fortalecer los medios de implementación y revitalizar la Alianza Mundial para el Desarrollo Sostenible.</span>
+          </div>
+        </a>
+        </div>
+      </div>
+
+
+<!--
+ <div class="row scrollable-section" data-section-title="Desglose geográfico" style="padding-top: 25px;">
+
+          <h3 class="fuerte t_principal">Indicadores con desglose geográfico</h3>
+          <li class="divider"></li>
+          <br>
+
+      <div class="row">
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+			      	<img src="img/edos/aguascalientes.png" alt="" />
+			      </div>
+			      <div class="col l10 m9">
+			      	<h6>Aguascalientes</h6>
+			      </div>
+
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		     <a href="estado_ejemplo.html">
+			     <div class="col l2 m3">
+			     <img src="img/edos/bajacalifornia.png" alt="" />
+			     </div>
+			      <div class="col l10 m9">
+		      <h6>Baja California</h6>
+		      </div>
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/bajacaliforniasur.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Baja California Sur</h6>
+		      </div>
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/campeche.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Campeche</h6>
+		      </div>
+		      </a>
+	      </div>
+      </div>
+
+      <div class="row">
+
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/chiapas.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Chiapas</h6>
+		      </div>
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/chihuahua.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Chihuahua</h6>
+		      </div>
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/ciudaddemexico.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Ciudad de México</h6>
+		      </div>
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/coahuila.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Coahuila</h6>
+		      </div>
+		      </a>
+	      </div>
+      </div>
+      <div class="row">
+
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/colima.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Colima</h6>
+		      </div>
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/durango.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Durango</h6>
+		      </div>
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/estadodemexico.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Estado de México</h6>
+		      </div>
+		      </a>
+	      </div>
+	      <div class="col l3 m3 s12 btn-edo">
+		      <a href="estado_ejemplo.html">
+			      <div class="col l2 m3">
+		      <img src="img/edos/guanajuato.png" alt="" />
+		      </div>
+			      <div class="col l10 m9">
+		      <h6>Guanajuato</h6>
+		      </div>
+		      </a>
+	      </div>
+      </div>
+            <div class="row">
+
+
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/guerrero.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Guerrero</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/hidalgo.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Hidalgo</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/jalisco.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Jalisco</h6>
+          </div>
+          </a>
+        </div>
+
+        <div class="col l3 m3 s12 btn-edo">
+         <a href="estado_ejemplo.html">
+           <div class="col l2 m3">
+          <img src="img/edos/michoacan.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+         <h6>Michoacán</h6>
+         </div>
+         </a>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/morelos.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Morelos</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/nayarit.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Nayarit</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/nuevoleon.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Nuevo León</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/oaxaca.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Oaxaca</h6>
+          </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/puebla.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Puebla</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/queretaro.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Querétaro</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/quintanaroo.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Quintana Roo</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/sanluispotosi.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>San Luis Potosí</h6>
+          </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/sinaloa.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Sinaloa</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/sonora.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Sonora</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/tabasco.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Tabasco</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/tamaulipas.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Tamaulipas</h6>
+          </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/tlaxcala.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Tlaxcala</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+         <a href="estado_ejemplo.html">
+           <div class="col l2 m3">
+          <img src="img/edos/veracruz.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+         <h6>Veracruz</h6>
+         </div>
+         </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+          <a href="estado_ejemplo.html">
+            <div class="col l2 m3">
+          <img src="img/edos/yucatan.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+          <h6>Yucatán</h6>
+          </div>
+          </a>
+        </div>
+        <div class="col l3 m3 s12 btn-edo">
+         <a href="estado_ejemplo.html">
+           <div class="col l2 m3">
+          <img src="img/edos/zacatecas.png" alt="" />
+          </div>
+            <div class="col l10 m9">
+         <h6>Zacatecas</h6>
+         </div>
+         </a>
+        </div>
+      </div>
+
+
+      <div class="row">
+
+
+	  <a class="waves-effect waves-light btn color right claro t_sm sin_sombra marg_top" href="estados.html">Indicadores con desglose geográfico</a>
+                </div>
+</div> -->
+<style>
+
+  .btn-edo{
+	text-align: left;
+  /* background: #F6F6F6; */
+	color:#0A254F;
+}
+
+.btn-edo div{
+  padding:15px 20px !important;
+  background: #F6F6F6;
+
+}
+.btn-edo div:first-child{
+border-top-left-radius: 15px;
+border-bottom-left-radius: 15px;
+}
+
+.btn-edo div:last-child{
+border-top-right-radius: 15px;
+border-bottom-right-radius: 15px;
+
+}
+
+.btn-edo img{
+  vertical-align: middle;
+  margin-right: 15px;
+  max-height: 30px;
+  max-width: 30px;
+  height: 30px;
+}
+
+
+</style>
+
+
+
+<!--
+      <div class="row scrollable-section" data-section-title="Conoce cómo vamos">
+        <div class="col s12">
+          <h3 class="fuerte t_principal">C&Oacute;MO VAMOS</h3>
+          <li class="divider"></li>
+          <p class="t_sm gris">
+            Esta sección permite visualizar el avance de los indicadores de los cuales se dispone información para 11 de 17 objetivos
+            de la Agenda 2030 para el Desarrollo Sostenible.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s1 center-align">
+          <p class="t_sm gris">OBJETIVO</p>
+        </div>
+        <div class="col s11">
+          <p class="t_sm gris" style="margin-left: 2%">INDICADORES Y METAS</p>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_1">
+          <img data-position="top" data-tooltip="Fin de la pobreza" class="padd responsive-img tooltipped" src="img/ods-01.png" alt=""
+          />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_1">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_2">
+          <img data-position="top" data-tooltip="Hambre Cero" class="padd responsive-img tooltipped" src="img/ods-02.png" alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_2">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_3">
+          <img data-position="top" data-tooltip="Salud y bienestar" class="padd responsive-img tooltipped" src="img/ods-03.png" alt=""
+          />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_3">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_4">
+          <img data-position="top" data-tooltip="Educación de calidad" class="padd responsive-img tooltipped" src="img/ods-04.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_4">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_5">
+          <img data-position="top" data-tooltip="Igualdad de genero" class="padd responsive-img tooltipped" src="img/ods-05.png" alt=""
+          />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_5">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_6">
+          <img data-position="top" data-tooltip="Agua limpia y saneamiento" class="padd responsive-img tooltipped" src="img/ods-06.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_6">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_7">
+          <img data-position="top" data-tooltip="Energía asequible y no contaminante" class="padd responsive-img tooltipped" src="img/ods-07.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_7">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_8">
+          <img data-position="top" data-tooltip="Trabajo decente y crecimiento económico" class="padd responsive-img tooltipped" src="img/ods-08.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_8">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_9">
+          <img data-position="top" data-tooltip="Industria, innovación e infraestructura" class="padd responsive-img tooltipped" src="img/ods-09.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_9">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_10">
+          <img data-position="top" data-tooltip="Redución de las desigualdades" class="padd responsive-img tooltipped" src="img/ods-10.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_10">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_11">
+          <img data-position="top" data-tooltip="Ciudades y comunidades sostenibles" class="padd responsive-img tooltipped" src="img/ods-11.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_11">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_12">
+          <img data-position="top" data-tooltip="Producción y consumo responsables" class="padd responsive-img tooltipped" src="img/ods-12.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_12">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_13">
+          <img data-position="top" data-tooltip="Acción por el clima" class="padd responsive-img tooltipped" src="img/ods-13.png" alt=""
+          />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_13">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_14">
+          <img data-position="top" data-tooltip="Vida submarina" class="padd responsive-img tooltipped" src="img/ods-14.png" alt=""
+          />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_14">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_15">
+          <img data-position="top" data-tooltip="Vida y ecosistemas terrestres" class="padd responsive-img tooltipped" src="img/ods-15.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_15">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_16">
+          <img data-position="top" data-tooltip="Paz, justicia e instituciones solidas" class="padd responsive-img tooltipped" src="img/ods-16.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_16">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="row wm_bottom">
+        <div class="col s1 id_17">
+          <img data-position="top" data-tooltip="Alianzas para lograr los objetivos" class="padd responsive-img tooltipped" src="img/ods-17.png"
+            alt="" />
+        </div>
+        <div class="col s11 borde_a padd_a">
+          <table>
+            <thead>
+              <tr id="obj_17">
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #34bb7e"> Meta cumplida
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_1">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #E1F5FE"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_2">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+        <br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+        <br><br>
+        </span>
+          <div class="chip">
+            <img style="background: #B3E5FC"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_3">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #81D4FA"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_4">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #4FC3F7"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_5">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #29B6F6"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_6">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #03A9F4"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_7">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #039BE5"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_8">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #0288D1"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_9">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #0277BD"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_10">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #01579B"> Meta en proceso
+          </div>
+        </div>
+      </div>
+
+
+      <div class="tooltip_templates">
+        <div id="tooltip_content_m">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #F2CB02"> Meta en proceso
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_templates">
+        <div id="tooltip_content_f">
+          <span><strong>Meta 1 Reducir a la mitad, entre 1990 y 2015, el<br>porcentaje de personas cuyos ingresos sean inferiores a<br>1.25 dolares por dia</strong>
+				<br><br>1.3 Proporcion del consumo nacional que<br>corresponde al quintil mas pobre de la poblacion
+				<br><br>
+				</span>
+          <div class="chip">
+            <img style="background: #e80000"> Meta no cumplida
+          </div>
+        </div>
+      </div> -->
+
+      <div class="row scrollable-section" data-section-title="Explora los datos">
+        <div class="col s12">
+          <h3 class="fuerte t_principal">EXPLORA</h3>
+          <li class="divider"></li>
+          <div class="cuadro_titulo"></div>
+
+            <div id="map"></div>
+            <div class="pie_cuadro2"></div>
+            <!-- <div id="map"></div> -->
+            <!-- <div id="chart2"></div> -->
+            <!-- <div><img style="margin-left: 35px;" width="147" height="25" src="img/promedio.png"></div> -->
+            <!-- 	            <img src="img/graficaexplora.png" alt="" style="width:100%;"/></div> -->
+            <a class="waves-effect waves-light btn color right claro t_sm sin_sombra marg_top" href="explora.html">Ir a explora</a>
+          </div>
+        </div>
+
+
+
+
+<style>
+.cuadro_titulo{
+    background-color: #fff;
+    padding: 20px 20px 20px 0px;
+    color: #083362;
+}
+
+.cuadro_titulo p{
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0px;
+}
+
+.cuadro_titulo span{
+      font-size: 14px;
+    font-weight: 300;
+}
+
+.cuadro_titulo .divider {
+    background-color: #fff;
+}
+
+.pie_cuadro2{
+  background-color: #fff;
+  color: #083362;
+  padding: 20px;
+}
+.pie_cuadro2 div{
+  margin-top:6px;
+  font-weight: 100;
+  font-size: initial;
+}
+</style>
+
+
+        <!--
+          <div class="row">
+          <div class="col s12">
+            <h3 class="fuerte t_principal">COMPARA</h3>
+            <li class="divider"></li>
+            <p class="t_sm gris">
+              Porcentaje de aguas residuales tratadas
+            </p>
+            <div id="map_compara">
+          <div class="leaflet-top leaflet-right" style="top:139px;">
+            <div id="colrs" class="info2 legend leaflet-control hide">
+              <table id="legend-colors">
+                <tbody>
+                  <tr>
+                    <td class="legend-breaks legend-breaks-b-0">74.4 - 117.2</td>
+                    <td class="legend-color legend-color-00 tooltipped" data-container="body" onmouseover="highlightFromLegend('cA3')" onmouseout="clearHighlight();" style="background-color: #64acbe;" data-position="top" data-tooltip="9.2 - 16.1 / 74.4 - 117.2"></td>
+                    <td class="legend-color legend-color-01 tooltipped" data-container="body" onmouseover="highlightFromLegend('cB3')" onmouseout="clearHighlight();" style="background-color: #627f8c;" data-position="top" data-tooltip="16.1 - 21.2 / 74.4 - 117.2"></td>
+                    <td class="legend-color legend-color-02 tooltipped" data-container="body" onmouseover="highlightFromLegend('cC3')" onmouseout="clearHighlight();" style="background-color: #574249;" data-position="top" data-tooltip="21.2 - 33.5 / 74.4 - 117.2"></td>
+                  </tr>
+                  <tr>
+                    <td class="legend-breaks legend-breaks-b-1">39.6 - 74.4</td>
+                    <td class="legend-color legend-color-10 tooltipped" data-container="body" onmouseover="highlightFromLegend('cA2')" onmouseout="clearHighlight();" style="background-color: #b0d5df;" data-position="top" data-tooltip="9.2 - 16.1 / 39.6 - 74.4"></td>
+                    <td class="legend-color legend-color-11 tooltipped" data-container="body" onmouseover="highlightFromLegend('cB2')" onmouseout="clearHighlight();" style="background-color: #ad9ea5;" data-position="top" data-tooltip="16.1 - 21.2 / 39.6 - 74.4"></td>
+                    <td class="legend-color legend-color-12 tooltipped" data-container="body" onmouseover="highlightFromLegend('cC2')" onmouseout="clearHighlight();" style="background-color: #985356;" data-position="top" data-tooltip="21.2 - 33.5 / 39.6 - 74.4"></td>
+                  </tr>
+                  <tr>
+                    <td class="legend-breaks legend-breaks-b-2">2.6 - 39.6</td>
+                    <td class="legend-color legend-color-20 tooltipped" data-container="body" onmouseover="highlightFromLegend('cA1')" onmouseout="clearHighlight();" style="background-color: #e8e8e8;" data-position="top" data-tooltip="9.2 - 16.1 / 2.6 - 39.6"></td>
+                    <td class="legend-color legend-color-21 tooltipped" data-container="body" onmouseover="highlightFromLegend('cB1')" onmouseout="clearHighlight();" style="background-color: #e4acac;" data-position="top" data-tooltip="16.1 - 21.2 / 2.6 - 39.6"></td>
+                    <td class="legend-color legend-color-22 tooltipped" data-container="body" onmouseover="highlightFromLegend('cC1')" onmouseout="clearHighlight();" style="background-color: #c85a5a;" data-position="top" data-tooltip="21.2 - 33.5/ 2.6 - 39.6"></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td class="legend-breaks legend-breaks-0">9.2 - 16.1</td>
+                    <td class="legend-breaks legend-breaks-1">16.1 - 21.2</td>
+                    <td class="legend-breaks legend-breaks-2">21.2 - 33.5</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <a class="waves-effect waves-light btn color right claro t_sm sin_sombra marg_top">IR A COMPARA</a>
+                  </div>
+                </div>
+                -->
+
+
+
+ </div>
+
+    <div class="container">
+        <div class="row scrollable-section" data-section-title="Información relacionada">
+          <div class="row">
+            <div class="col s12">
+              <h3 class="fuerte t_principal">Información relacionada</h3>
+              <li class="divider"></li>
+            </div>
+            <div class="col l6 m12 s12">
+              <div class="caja-cafe" style="">
+                <p style="color: #9c9c9c; margin: 0px 0px 10px 7px;">Acerca de los ODS</p>
+                <div class="">
+                  <a id="" class="" href="ods.html">
+                    <!-- <sup id="modal1">1</sup> -->
+                    <!-- <span data-position="right" data-tooltip='<div style="width:700px; height:610px; text-align:left;">●	Los 17 Objetivos de Desarrollo Sostenible (ODS) con las 169 metas tienen un alcance más amplio y van más allá que los Objetivos de Desarrollo del Milenio (ODM) al abordar las causas fundamentales de la pobreza y la necesidad universal de lograr un desarrollo a favor de todas las personas. Los objetivos abarcan las tres dimensiones del desarrollo sostenible: el crecimiento económico, la inclusión social y la protección del medio ambiente.<br>
+●	Sobre la base del éxito y el impulso de los ODM, los nuevos objetivos mundiales abarcan más con la pretensión de afrontar las desigualdades, el crecimiento económico, el acceso a un trabajo decente, las ciudades y los asentamientos humanos, la industrialización, los océanos, los ecosistemas, la energía, el cambio climático, el consumo y la producción sostenibles, la paz y la justicia.<br>
+●	Los nuevos objetivos son de aplicación universal para todos los países, mientras que los ODM únicamente estaban dirigidos a los países en desarrollo.<br>
+●	Un elemento fundamental de los ODS es la gran atención que prestan a los medios de aplicación —la movilización de recursos financieros—, el desarrollo de la capacidad y la tecnología, los datos y las instituciones.<br>
+●	Los nuevos objetivos reconocen que es esencial luchar contra el cambio climático a fin de lograr el desarrollo sostenible y la erradicación de la pobreza.<br>
+<br>
+<b style="text-align:center;">Cómo se aplican los ODS, según Naciones Unidas (2017):</b><br>
+<br>
+●	La Agenda de Acción Addis Abeba, que fue el resultado de la Tercera Conferencia Internacional sobre la Financiación para el Desarrollo, preveía políticas y medidas concretas para apoyar la aplicación de la nueva agenda.<br>
+●	El cumplimiento y el éxito de la agenda se basarán en las políticas, planes y programas de desarrollo sostenible de los países y estarán dirigidos por estos. Los Objetivos de Desarrollo Sostenible (ODS) actuarán como una brújula a la hora de armonizar los planes nacionales con los compromisos mundiales de los países.<br>
+●	Las estrategias de desarrollo sostenible asumidas como propias por los países e impulsadas por ellos requerirán estrategias de financiación y movilización de recursos.<br>
+●	Se espera que todas las partes interesadas, a saber, los gobiernos, la sociedad civil y el sector privado, entre otros, contribuyan a la consecución de la nueva agenda.<br>
+●	Se necesita una alianza mundial revitalizada para apoyar las iniciativas nacionales. Así se reconoce en la Agenda 2030.<br>
+●	Igualmente, se reconoce que las alianzas entre múltiples interesados son un componente importante de toda estrategia que pretenda movilizar a todas las partes interesadas en torno a la nueva agenda.</div>' class="tooltipped"> -->
+¿En qué se diferencian los Objetivos de Desarrollo Sostenible (ODS) de los Objetivos de Desarrollo del Milenio (ODM)?
+<!-- </span> -->
+                    <!-- <sup data-position="bottom" data-tooltip="Naciones Unidas (2017): Objetivos de Desarrollo Sostenible: 17 objetivos para transformar nuestro mundo. Nueva York: Naciones Unidas. Consultado el 5 de abril en sitio oficial: <a href='http://www.un.org/sustainabledevelopment/es/la-agenda-de-desarrollo-sostenible/'>http://www.un.org/sustainabledevelopment/es/la-agenda-de-desarrollo-sostenible/.</a>" class="tooltipped" >1</sup> -->
+                    <!-- <sup id="fnref:2" data-footnote-style="numeric">
+                        <a class="bigfoot_abajo" data-footnote-style="numeric" id="fnref:2" href="#fn:2" rel="footnote2">1</a>
+                    </sup>
+                    <sup id="fnref:5" data-footnote-style="numeric">
+                        <a class="bigfoot_abajo" data-footnote-style="numeric" id="fnref:5" href="#fn:5" rel="footnote5">1</a>
+                    </sup> -->
+                   </a>
+                </div>
+                <div class="">
+                  <a  id="modal2" class="modal-trigger" href="#abrir2">
+                    Documentos relevantes
+                  </a>
+                </div>
+                <div class="">
+                  <a href="http://www.un.org/es/comun/docs/?symbol=A/RES/70/1">Resolución ONU de adopción Agenda 2030</a>
+                </div>
+                <div class="">
+                  <a href="informes.html">Informes de América Latina y el Caribe</a>
+                </div>
+                <div class="">
+                  <a href="https://www.youtube.com/watch?v=e91hUoijbmk">Video: ODS mejoran la vida de todos alrededor del planeta</a>
+                </div>
+                <div class="">
+                  <div class="">
+                    <a href="#"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="footnotes ">
+              <ol>
+                <li class="footnote5" id="fn:5">
+                  Naciones Unidas (2017): Objetivos de Desarrollo Sostenible: 17 objetivos para transformar nuestro mundo. Nueva York: Naciones Unidas. Consultado el 5 de abril en sitio oficial: <a href='http://www.un.org/sustainabledevelopment/es/la-agenda-de-desarrollo-sostenible/'>http://www.un.org/sustainabledevelopment/es/la-agenda-de-desarrollo-sostenible/.</a>
+                </li>
+              </ol>
+            </div> -->
+            <!-- <div class="footnotes bigfoot_abajo">
+              <ol>
+                <li class="footnote2 bigfoot_abajo" id="fn:2">
+                  <div>●	Los 17 Objetivos de Desarrollo Sostenible (ODS) con las 169 metas tienen un alcance más amplio y van más allá que los Objetivos de Desarrollo del Milenio (ODM) al abordar las causas fundamentales de la pobreza y la necesidad universal de lograr un desarrollo a favor de todas las personas. Los objetivos abarcan las tres dimensiones del desarrollo sostenible: el crecimiento económico, la inclusión social y la protección del medio ambiente.<br>
+●	Sobre la base del éxito y el impulso de los ODM, los nuevos objetivos mundiales abarcan más con la pretensión de afrontar las desigualdades, el crecimiento económico, el acceso a un trabajo decente, las ciudades y los asentamientos humanos, la industrialización, los océanos, los ecosistemas, la energía, el cambio climático, el consumo y la producción sostenibles, la paz y la justicia.<br>
+●	Los nuevos objetivos son de aplicación universal para todos los países, mientras que los ODM únicamente estaban dirigidos a los países en desarrollo.<br>
+●	Un elemento fundamental de los ODS es la gran atención que prestan a los medios de aplicación —la movilización de recursos financieros—, el desarrollo de la capacidad y la tecnología, los datos y las instituciones.<br>
+●	Los nuevos objetivos reconocen que es esencial luchar contra el cambio climático a fin de lograr el desarrollo sostenible y la erradicación de la pobreza.<br>
+<br>
+<b style="text-align:center;">Cómo se aplican los ODS, según Naciones Unidas (2017):</b><br>
+<br>
+●	La Agenda de Acción Addis Abeba, que fue el resultado de la Tercera Conferencia Internacional sobre la Financiación para el Desarrollo, preveía políticas y medidas concretas para apoyar la aplicación de la nueva agenda.<br>
+●	El cumplimiento y el éxito de la agenda se basarán en las políticas, planes y programas de desarrollo sostenible de los países y estarán dirigidos por estos. Los Objetivos de Desarrollo Sostenible (ODS) actuarán como una brújula a la hora de armonizar los planes nacionales con los compromisos mundiales de los países.<br>
+●	Las estrategias de desarrollo sostenible asumidas como propias por los países e impulsadas por ellos requerirán estrategias de financiación y movilización de recursos.<br>
+●	Se espera que todas las partes interesadas, a saber, los gobiernos, la sociedad civil y el sector privado, entre otros, contribuyan a la consecución de la nueva agenda.<br>
+●	Se necesita una alianza mundial revitalizada para apoyar las iniciativas nacionales. Así se reconoce en la Agenda 2030.<br>
+●	Igualmente, se reconoce que las alianzas entre múltiples interesados son un componente importante de toda estrategia que pretenda movilizar a todas las partes interesadas en torno a la nueva agenda.</div>
+                </li>
+              </ol>
+            </div> -->
+            <div class="col l6 m12 s12 ">
+              <div class="caja-cafe">
+                <p style="color: #9c9c9c; margin:0px 0px 10px 7px;">Los ODS en México</p>
+                <div class="">
+                  <a id="" class="" href="papel-mexico-agenda.html">
+<!-- <span data-position="left" data-tooltip='<div style="width:700px; height:1000px; text-align:left">México ha sido un actor activo en la definición de la nueva Agenda de Desarrollo post-2015, participando en 2013 y 2014 en las consultas y negociaciones realizadas en el Grupo de Trabajo Abierto de la Asamblea General sobre los Objetivos de Desarrollo Sostenible (GTA-ODS), el cual generó un informe final que contiene la propuesta de ODS y que por acuerdo de la Asamblea General de Naciones Unidas será la base principal para integrar la nueva Agenda de Desarrollo (ONU México, 2017).<br><br>
+Algunas actividades notables del país durante este proceso en 2014 fueron las siguientes (ONU México, 2017)<br><sup>1</sup>:
+●	Organizó una consulta regional de la cual surgió la Declaración de Guadalajara, la cual destaca la necesidad de que los grupos vulnerables sean considerados de forma transversal en políticas públicas. Estas conclusiones fueron presentadas ante el Grupo de Alto Nivel de Personas Eminentes sobre la Agenda para el Desarrollo Post-2015.<br>
+●	Realizó tres talleres internacionales sobre el concepto de desarrollo social y económico, inclusión y la importancia de la medición del progreso en la Nueva Agenda de Desarrollo, donde se compartieron opiniones sobre los retos del desarrollo incluyente, se intercambiaron experiencias sobre cómo integrar los objetivos de la Nueva Agenda y se discutió la medición de las nuevas metas bajo el enfoque de inclusión social y económica.<br>
+●	Patrocinó la consulta temática sobre energía, en conjunto con los gobiernos de Tanzania y Noruega.<br>
+●	Escaló compromisos durante consultas regionales y foros en materia de igualdad de género y derechos de las mujeres.
+<br>
+<br>
+En México se ha decidido que la Oficina de la Presidencia de la República tenga el liderazgo para la implementación de la Agenda 2030, para así lograr un compromiso de Estado que permee en todos los niveles de gobierno. Respecto a los gobiernos estatales y municipales, se ha identificado dos espacios de deliberación de acuerdos para impulsar el desarrollo local y promover transformaciones institucionales, estas son: la Conferencia Nacional de Gobernadores (CONAGO) y la Conferencia Nacional de Municipios de México (CONAMM). Por su parte, el Poder Legislativo creó un mecanismo parlamentario para el fortalecimiento del cumplimiento de la Agenda 2030. Durante el proceso de negociación de los ODS y la agenda se logró establecer un diálogo constructivo con las organizaciones de la sociedad civil involucradas en el proceso: contribuyeron a la posición de nuestro país a nivel internacional, además de que algunos de sus miembros asistieron como parte de la Delegación de México en las negociaciones de la Agenda 2030. La participación del sector privado es fundamental, para ello la AMEXCID estableció la Alianza por la Sostenibilidad, como plataforma de diálogo y acción que incluye a 80 empresas mexicanas y multinacionales operando en México, para intercambiar información sobre la integración de los ODS en los modelos de negocio y diseñar proyectos de cooperación internacional alrededor de la Agenda 2030, entre otras acciones. <br><br>
+<b style="text-align:center;">¿Qué es el desarrollo sostenible?</b><br><br>
+
+La Agenda 2030 para el Desarrollo Sostenible es un plan de acción mundial en favor de las personas, el planeta y la prosperidad. Busca fortalecer la paz universal y la erradicación de la pobreza en todas sus formas y dimensiones, incluida la pobreza extrema, hacer realidad los derechos humanos en todas las personas y alcanzar la igualdad entre los géneros y el empoderamiento de todas las mujeres y niñas, para avanzar así hacia el desarrollo sostenible.<br>
+El desarrollo sostenible, según Naciones Unidas (2017), es el desarrollo capaz de satisfacer las necesidades del presente sin comprometer la capacidad de las futuras generaciones para satisfacer sus propias necesidades. Este desarrollo exige esfuerzos concertados para construir un futuro inclusivo, sostenible y resiliente para las personas y el planeta. Es fundamental armonizar tres elementos básicos, a saber, el crecimiento económico, la inclusión social y la protección del medio ambiente. Estos elementos están interrelacionados y son todos esenciales para el bienestar de las personas y las sociedades.<br>
+La erradicación de la pobreza en todas sus formas y dimensiones es una condición indispensable para lograr el desarrollo sostenible. A tal fin, debe promoverse un crecimiento económico sostenible, inclusivo y equitativo, creando mayores oportunidades para todos, reduciendo las desigualdades, mejorando los niveles de vida básicos, fomentando el desarrollo social equitativo e inclusivo y promoviendo la ordenación integrada y sostenible de los recursos naturales y los ecosistemas<sup>2</sup>.</div>
+' class="tooltipped"> -->
+                    El papel de México en la Agenda 2030
+                    <!-- <sup id="fnref:3" data-footnote-style="numeric">
+                        <a  data-footnote-style="numeric" id="fnref:3" href="#fn:3" rel="footnote3">1</a>
+                    </sup> -->
+                  </span>
+                  </a>
+                </div>
+                <div class="">
+                  <a href=" http://200.23.8.225/odm/Doctos/AcuerdoCrea.pdf">Acuerdo de creación</a>
+                </div>
+                <!-- <div class="footnotes">
+                  <ol>
+                    <li class="footnote3" id="fn:3">
+                      <div>México ha sido un actor activo en la definición de la nueva Agenda de Desarrollo post-2015, participando en 2013 y 2014 en las consultas y negociaciones realizadas en el Grupo de Trabajo Abierto de la Asamblea General sobre los Objetivos de Desarrollo Sostenible (GTA-ODS), el cual generó un informe final que contiene la propuesta de ODS y que por acuerdo de la Asamblea General de Naciones Unidas será la base principal para integrar la nueva Agenda de Desarrollo (ONU México, 2017).<br><br>
+    Algunas actividades notables del país durante este proceso en 2014 fueron las siguientes (ONU México, 2017)
+    <sup>1</sup>:<br>
+    ●	Organizó una consulta regional de la cual surgió la Declaración de Guadalajara, la cual destaca la necesidad de que los grupos vulnerables sean considerados de forma transversal en políticas públicas. Estas conclusiones fueron presentadas ante el Grupo de Alto Nivel de Personas Eminentes sobre la Agenda para el Desarrollo Post-2015.<br>
+    ●	Realizó tres talleres internacionales sobre el concepto de desarrollo social y económico, inclusión y la importancia de la medición del progreso en la Nueva Agenda de Desarrollo, donde se compartieron opiniones sobre los retos del desarrollo incluyente, se intercambiaron experiencias sobre cómo integrar los objetivos de la Nueva Agenda y se discutió la medición de las nuevas metas bajo el enfoque de inclusión social y económica.<br>
+    ●	Patrocinó la consulta temática sobre energía, en conjunto con los gobiernos de Tanzania y Noruega.<br>
+    ●	Escaló compromisos durante consultas regionales y foros en materia de igualdad de género y derechos de las mujeres.
+    <br>
+    <br>
+    En México se ha decidido que la Oficina de la Presidencia de la República tenga el liderazgo para la implementación de la Agenda 2030, para así lograr un compromiso de Estado que permee en todos los niveles de gobierno. Respecto a los gobiernos estatales y municipales, se ha identificado dos espacios de deliberación de acuerdos para impulsar el desarrollo local y promover transformaciones institucionales, estas son: la Conferencia Nacional de Gobernadores (CONAGO) y la Conferencia Nacional de Municipios de México (CONAMM). Por su parte, el Poder Legislativo creó un mecanismo parlamentario para el fortalecimiento del cumplimiento de la Agenda 2030. Durante el proceso de negociación de los ODS y la agenda se logró establecer un diálogo constructivo con las organizaciones de la sociedad civil involucradas en el proceso: contribuyeron a la posición de nuestro país a nivel internacional, además de que algunos de sus miembros asistieron como parte de la Delegación de México en las negociaciones de la Agenda 2030. La participación del sector privado es fundamental, para ello la AMEXCID estableció la Alianza por la Sostenibilidad, como plataforma de diálogo y acción que incluye a 80 empresas mexicanas y multinacionales operando en México, para intercambiar información sobre la integración de los ODS en los modelos de negocio y diseñar proyectos de cooperación internacional alrededor de la Agenda 2030, entre otras acciones. <br><br>
+    <b style="text-align:center;">¿Qué es el desarrollo sostenible?</b><br><br>
+
+    La Agenda 2030 para el Desarrollo Sostenible es un plan de acción mundial en favor de las personas, el planeta y la prosperidad. Busca fortalecer la paz universal y la erradicación de la pobreza en todas sus formas y dimensiones, incluida la pobreza extrema, hacer realidad los derechos humanos en todas las personas y alcanzar la igualdad entre los géneros y el empoderamiento de todas las mujeres y niñas, para avanzar así hacia el desarrollo sostenible.<br>
+    El desarrollo sostenible, según Naciones Unidas (2017), es el desarrollo capaz de satisfacer las necesidades del presente sin comprometer la capacidad de las futuras generaciones para satisfacer sus propias necesidades. Este desarrollo exige esfuerzos concertados para construir un futuro inclusivo, sostenible y resiliente para las personas y el planeta. Es fundamental armonizar tres elementos básicos, a saber, el crecimiento económico, la inclusión social y la protección del medio ambiente. Estos elementos están interrelacionados y son todos esenciales para el bienestar de las personas y las sociedades.<br>
+    La erradicación de la pobreza en todas sus formas y dimensiones es una condición indispensable para lograr el desarrollo sostenible. A tal fin, debe promoverse un crecimiento económico sostenible, inclusivo y equitativo, creando mayores oportunidades para todos, reduciendo las desigualdades, mejorando los niveles de vida básicos, fomentando el desarrollo social equitativo e inclusivo y promoviendo la ordenación integrada y sostenible de los recursos naturales y los ecosistemas<sup>2</sup>.
+<br>
+<br>
+  <span style="font-size:10px;"><sup>1</sup> ONU-México (2017). Objetivos de Desarrollo Sostenible. México: ONU. Consultado el 5 de abril de 2017: <a href="http://www.onu.org.mx/agenda-2030/objetivos-del-desarrollo-sostenible/">http://www.onu.org.mx/agenda-2030/objetivos-del-desarrollo-sostenible/</a></span>
+<br>
+<br>
+    <span style="font-size:10px;"><sup>2</sup> Naciones Unidas (2017): Objetivos de Desarrollo Sostenible: 17 objetivos para transformar nuestro mundo. Nueva York: Naciones Unidas. Consultado el 5 de abril en sitio oficial: <a href="http://www.un.org/sustainabledevelopment/es/la-agenda-de-desarrollo-sostenible/">http://www.un.org/sustainabledevelopment/es/la-agenda-de-desarrollo-sostenible/</a>.</span>
+</div>
+                    </li>
+                  </ol>
+                </div> -->
+                <!-- <div class="footnotes">
+                  <ol>
+                    <li class="footnote4" id="fn:4">
+                      ONU-México (2017). Objetivos de Desarrollo Sostenible. México: ONU. Consultado el 5 de abril de 2017: <a href="http://www.onu.org.mx/agenda-2030/objetivos-del-desarrollo-sostenible/">http://www.onu.org.mx/agenda-2030/objetivos-del-desarrollo-sostenible/</a>
+                    </li>
+                  </ol>
+                </div> -->
+                <!-- <div class="">
+                  <a href="#">Comparativo indicadores globales ONU vs indicadores en México</a>
+                </div> -->
+                <div class="">
+                  <a id="" class="" target="_blank" href="PT2016-2018.pdf">
+                    <!-- <span data-position="left" data-tooltip='<div style="width:700px; height:500px; text-align:left;"><b>Programa de Trabajo 2016-2018</b> (se debe incorporar un vínculo sobre el texto “Programa de Trabajo 2016-2018” que descargue el documento completo del Programa de Trabajo, en formato PDF, el cual se adjunta)<br><br>
+El 6 de noviembre de 2015, la Junta de Gobierno del Instituto Nacional de Estadística y Geografía aprobó (acuerdo 8ª/V/2015) la modificación del acuerdo de creación del Comité Técnico Especializado del Sistema de Información de los Objetivos de Desarrollo del Milenio (CTESIODM), para convertirlo en el Comité Técnico Especializado de los Objetivos de Desarrollo Sostenible (CTEODS), cuyo objetivo es coordinar los trabajos de carácter conceptual, metodológico y operativo que, en el marco del Sistema Nacional de Información Estadística y Geográfica, permitan generar y actualizar periódicamente los indicadores a partir de los cuales se diseñen y evalúen políticas públicas para el cumplimiento de los Objetivos de Desarrollo Sostenible (ODS) correspondientes a la Agenda 2030 para el Desarrollo Sostenible promovida por la Organización de las Naciones Unidas (ONU).
+<br><br>
+<b style="text-align:center !important;">Incorporación de los ODS a los marcos nacionales</b><br><br>
+El Estado mexicano es responsable de la rectoría del desarrollo nacional, el cual debe ser integral y sustentable, a fin de fortalecer la soberanía nacional y el régimen político democrático; así lo mandata el artículo 25 de la Constitución Política de los Estados Unidos Mexicanos; dicho artículo también sirve de base al sistema nacional de planeación democrática, el cual deriva en el Plan Nacional de Desarrollo (PND), que es presentado por el titular del Poder Ejecutivo Federal sexenalmente.<br>
+El PND, es elaborado por el Poder Ejecutivo Federal con el objetivo de marcar el rumbo del país cada sexenio, con el fin de lograr el bienestar común, fin primigenio del Estado. La elaboración del mismo toma en cuenta diferentes factores, tales como dinámica poblacional, los recursos naturales y, las necesidades sociales, económicas y políticas del país; de igual forma se toman en cuenta para su elaboración los acuerdos suscritos por México con la comunidad internacional y las políticas de la agenda global producto de foros y reuniones de análisis y trabajo respecto a los retos mundiales.</div>
+' class="tooltipped"> -->
+Comité Técnico Especializado de los ODS y Unidades del Estado responsables
+<!-- <span> -->
+  <!-- <sup id="fnref:4" data-footnote-style="numeric">
+      <a  data-footnote-style="numeric" id="fnref:4" href="#fn:4" rel="footnote4">1</a>
+  </sup> -->
+</a>
+                </div>
+              </div>
+            </div>
+
+
+            <style media="screen">
+              .caja-cafe {
+                background-color: #f6f6f6;
+                margin: 25px;
+                padding: 30px;
+                min-height: 375px;
+                width:100%;
+              }
+
+              .caja-cafe div {
+                margin: 1px;
+                padding:10px 5px;
+              }
+
+              .caja-cafe a {
+                color: #142a4f;
+              }
+
+              aside[data-footnote-identifier="3"]  a
+              {
+                color: #039be5 ;
+              }
+            </style>
+
+          </div>
+        </div>
+
+        <div id="abrir4" class="modal">
+          <div class="modal-content">
+            <div>
+              Programa de Trabajo 2016-2018<br>
+        El 6 de noviembre de 2015, la Junta de Gobierno del Instituto Nacional de Estadística y Geografía aprobó (acuerdo 8ª/V/2015) la modificación del acuerdo de creación del Comité Técnico Especializado del Sistema de Información de los Objetivos de Desarrollo del Milenio (CTESIODM), para convertirlo en el Comité Técnico Especializado de los Objetivos de Desarrollo Sostenible (CTEODS), cuyo objetivo es coordinar los trabajos de carácter conceptual, metodológico y operativo que, en el marco del Sistema Nacional de Información Estadística y Geográfica, permitan generar y actualizar periódicamente los indicadores a partir de los cuales se diseñen y evalúen políticas públicas para el cumplimiento de los Objetivos de Desarrollo Sostenible (ODS) correspondientes a la Agenda 2030 para el Desarrollo Sostenible promovida por la Organización de las Naciones Unidas (ONU).
+            </div>
+          </div>
+          <div class="modal-footer" style="width:90%;">
+            <!-- <button type="button" id="cerrar4" class="btn" style="color:black !important; border-color:black;">Cerrar</button> -->
+          </div>
+        </div>
+
+        <div id="abrir3" class="modal">
+          <div class="modal-content">
+            <div>
+              México ha sido un actor activo en la definición de la nueva Agenda de Desarrollo post-2015, participando en 2013 y 2014 en las consultas y negociaciones realizadas en el Grupo de Trabajo Abierto de la Asamblea General sobre los Objetivos de Desarrollo Sostenible (GTA-ODS), el cual generó un informe final que contiene la propuesta de ODS y que por acuerdo de la Asamblea General de Naciones Unidas será la base principal para integrar la nueva <a href="http://www.onu.org.mx/agenda-2030/objetivos-del-desarrollo-sostenible/" style="color:#00AEEF;text-decoration: underline; text-decoration-color: #00AEEF;">Agenda de Desarrollo.</a>
+              <br><br>
+Algunas actividades notables del país durante este proceso en 2014 fueron las siguientes:<br>
+Organizó una consulta regional de la cual surgió la Declaración de Guadalajara, la cual destaca la necesidad de que los grupos vulnerables sean considerados de forma transversal en políticas públicas. Estas conclusiones fueron presentadas ante el Grupo de Alto Nivel de Personas Eminentes sobre la Agenda para el Desarrollo Post-2015.
+<br><br>
+Realizó tres talleres internacionales sobre el concepto de desarrollo social y económico, inclusión y la importancia de la medición del progreso en la Nueva Agenda de Desarrollo, donde se compartieron opiniones sobre los retos del desarrollo incluyente, se intercambiaron experiencias sobre cómo integrar los objetivos de la Nueva Agenda y se discutió la medición de las nuevas metas bajo el enfoque de inclusión social y económica.<br>
+Patrocinó la consulta temática sobre energía, en conjunto con los gobiernos de Tanzania y Noruega.<br>
+Escaló compromisos durante consultas regionales y foros en materia de igualdad de género y derechos de las mujeres.
+<br>
+<br>
+En México se ha decidido que la Oficina de la Presidencia de la República tenga el liderazgo para la implementación de la Agenda 2030, para así lograr un compromiso de Estado que permee en todos los niveles de gobierno. Respecto a los gobiernos estatales y municipales, se ha identificado dos espacios de deliberación de acuerdos para impulsar el desarrollo local y promover transformaciones institucionales, estas son: la Conferencia Nacional de Gobernadores (CONAGO) y la Conferencia Nacional de Municipios de México (CONAMM). Por su parte, el Poder Legislativo creó un mecanismo parlamentario para el fortalecimiento del cumplimiento de la Agenda 2030. Durante el proceso de negociación de los ODS y la agenda se logró establecer un diálogo constructivo con las organizaciones de la sociedad civil involucradas en el proceso: contribuyeron a la posición de nuestro país a nivel internacional, además de que algunos de sus miembros asistieron como parte de la Delegación de México en las negociaciones de la Agenda 2030. La participación del sector privado es fundamental, para ello la AMEXCID estableció la Alianza por la Sostenibilidad, como plataforma de diálogo y acción que incluye a 80 empresas mexicanas y multinacionales operando en México, para intercambiar información sobre la integración de los ODS en los modelos de negocio y diseñar proyectos de cooperación internacional alrededor de la Agenda 2030, entre otras acciones.
+            </div>
+          </div>
+          <div class="modal-footer" style="width:90%;">
+            <!-- <button type="button" id="cerrar3" class="btn" style="color:black !important; border-color:black;">Cerrar</button> -->
+          </div>
+        </div>
+
+
+        <div id="abrir2" class="modal">
+          <div class="modal-content">
+            <div>
+              Resolución aprobada por la Asamblea General el 25 de septiembre de 2015, 70/1. Transformar nuestro mundo: la Agenda 2030 para el Desarrollo Sostenible, A/RES/70/1
+              <a href="https://documents-dds-ny.un.org/doc/UNDOC/GEN/N15/291/93/PDF/N1529193.pdf?OpenElement" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">Descarga</a>
+        <br>
+        <br>
+              Una Agenda de Acción para el Desarrollo Sostenible: Informe para el Secretario General de Naciones Unidas
+              <a href="http://unsdsn.org/wp-content/uploads/2014/02/Una-Agenda-de-Acción-para-el-Desarrollo-Sostenible.pdf" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+        <br>
+        <br>
+              La Alimentación y la Agricultura: Claves para la ejecución de la Agenda 2030 para el Desarrollo Sostenible
+              <a href="http://www.fao.org/3/a-i5499s.pdf" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+        <br>
+        <br>
+              Hacia una nueva gobernanza de los recursos naturales en América Latina y el Caribe
+              <a href="http://repositorio.cepal.org/bitstream/handle/11362/40157/S1600308_es.pdf?sequence=1" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+            <br>
+              Una nueva alianza mundial: erradicar la pobreza y transformar las economías a través del desarrollo sostenible: Informe del Grupo de Alto Nivel de Personas Eminentes sobre la Agenda de Desarrollo Post-2015
+              <a href="http://www.un.org/es/sg/pdf/hlp_report_post2015_sg.pdf" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+            <br>
+            <br>
+              Implementación de la agenda de desarrollo después de 2015: oportunidades a nivel nacional y local
+              <a href="https://www.google.com.mx/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjv1O2B47_TAhXs54MKHV95Aq8QFggjMAA&url=http%3A%2F%2Fwww.undp.org%2Fcontent%2Fdam%2Fundp%2Flibrary%2FMDG%2FPost2015-SDG%2FDelivering%2520the%2520Post-2015%2520Development%2520Agenda_Spanish_web.pdf%3Fdownload&usg=AFQjCNEBRToCyf5JZrS8Teki1FaZHOd99g&sig2=kc78yerPqg4bTHIRZdO1zQ" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+            <br>
+            <br>
+              El imperativo de la igualdad: Por un desarrollo sostenible en América Latina y el Caribe
+              <a href="http://www.cepal.org/es/publicaciones/40120-imperativo-la-igualdad-un-desarrollo-sostenible-america-latina-caribe" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+        <br>
+        <br>
+              Progresos en los Objetivos de Desarrollo Sostenible Informe del Secretario General, 3 de junio de 2016, E/2016/75
+              <a href="https://documents-dds-ny.un.org/doc/UNDOC/GEN/N16/159/65/PDF/N1615965.pdf?OpenElement" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+          </a>
+          <br>
+          <br>
+              Informe del Grupo Interinstitucional y de Expertos sobre los Indicadores de los Objetivos de Desarrollo Sostenible, 29 de febrero de 2016, E/CN.3/2016/2/Rev.1
+              <a href="http://www.un.org/ga/search/view_doc.asp?symbol=E/CN.3/2016/2/Rev.1&referer=https://www.google.com.mx/&Lang=S" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+        <br>
+        <br>
+              Informe del Grupo de Trabajo Abierto de la Asamblea General sobre los Objetivos de Desarrollo Sostenible, 12 de agosto de 2014,
+              <a href="http://www.un.org/ga/search/view_doc.asp?symbol=A/68/970&referer=/english/&Lang=S" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+            <br>
+            <br>
+              México en las negociaciones multilaterales sobre la agenda de desarrollo para después de 2015
+              <a href="https://revistadigital.sre.gob.mx/images/stories/numeros/n103/dondischgomez.pdf" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+            <br>
+            <br>
+              Un objetivo transformador e independiente para lograr la igualdad de género, los derechos y el empoderamiento de las mujeres: imperativos y componentes claves
+              <a href="http://www.unwomen.org/es/what-we-do/~/media/1BC05D2A7F7A4EF49E88F9FF05BE7002.ashx" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+            <br>
+            <br>
+              Inicia la Conversación Global: Puntos de vista para una nueva agenda de desarrollo
+              <a href="http://www.undp.org/content/dam/undp/library/MDG/spanish/PNUD%20Inicia%20la%20conversación%20global%20Post2015%20Spanish%20Julio%202013.pdf" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+            <br>
+            <br>
+              Resumen Ejecutivo del Reporte de la Revisión Nacional del Cumplimiento de la Agenda 2030 en México
+              <a href="https://sustainabledevelopment.un.org/content/documents/10180mexico2.pdf" style="color:#00AEEF; text-decoration:underline; text-decoration-color:#00AEEF;">
+                Descarga
+            </a>
+            </div>
+          </div>
+          <div class="modal-footer" style="width:90%;">
+            <!-- <button type="button" id="cerrar2" class="btn" style="color:black !important; border-color:black;">Cerrar</button> -->
+          </div>
+        </div>
+        <!--   <div class="col s12">
+            <h3 class="fuerte t_principal">Información relacionada</h3>
+            <li class="divider"></li>
+            <br>
+            <br>
+            <div class="row">
+              <div class="col s2">
+                <img src="img/InfMex2015.png" alt="" style="width:100%;"/>
+              </div>
+              <div class="col s2">
+                <p class="t_sm gris">
+                  <b>Los objetivos de<br>Desarrollo del Milenio<br>en México</b><br> Informe de Avances 2015<br><br><a href="#">Español</a>
+                </p>
+              </div>
+              <div class="col s2">
+                <img src="img/InfMex2015.png" alt="" style="width:100%;"/>
+              </div>
+              <div class="col s2">
+                <p class="t_sm gris">
+                  <b>Los objetivos de<br>Desarrollo del Milenio<br>en México</b><br> Informe de Avances 2015<br><br><a href="#">Español</a>
+                </p>
+              </div>
+              <div class="col s2">
+                <img src="img/InfMex2015.png" alt="" style="width:100%;"/>
+              </div>
+              <div class="col s2">
+                <p class="t_sm gris">
+                  <b>Los objetivos de<br>Desarrollo del Milenio<br>en México</b><br> Informe de Avances 2015<br><br><a href="#">Español</a>
+                </p>
+              </div>
+            </div>
+            <a class="waves-effect waves-light btn color right claro t_sm sin_sombra marg_top">IR A RECURSOS</a>
+          </div> -->
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <footer class="page-footer id">
+    <div class="container">
+      <div class="row" id="fot">
+        <div class="col l3 s12">
+          <a href="home.html"><img src="img/logo_footer.svg" alt="" style="width: 60%;"/></a>
+          <br>
+          <br>
+          <div class="" style="display:inline;">
+       <!--      <a href="https://www.facebook.com" style="margin-right: 12%;"><img src="img/fill2.png" alt="" style="width:3%;" /></a>
+            <a href="https://twitter.com" style="margin-right: 12%;"><img src="img/fill1.png" alt="" style="width:7%;" /></a>
+            <a href="#"><img src="img/fill3.png" alt="" style="width:7%;" /></a> -->
+          </div>
+        </div>
+        <div class="col l3 s12">
+          <ul class="fuerte">
+            <li><a class="fuerte t_sm" href="objetivos.html">Indicadores</a></li>
+            <!-- <li><a class="fuerte t_sm" href="estados.html">Indicadores con desglose geográfico</a></li>
+            <li><a class="fuerte t_sm" href="como_vamos.html">¿C&oacute;mo vamos?</a></li> -->
+            <li><a class="fuerte t_sm" href="explora.html">Explora</a></li>
+
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <ul class="fuerte">
+            <!-- <li><a class="fuerte t_sm" href="compara.html">Compara</a></li> -->
+            <li><a class="fuerte t_sm" href="calendario.html">Calendario de actualizaciones</a></li>
+            <li><a class="fuerte t_sm" href="descarga.html">Descarga masiva</a></li>
+            <li><a class="fuerte t_sm" href="acerca.html">Acerca de</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12" style="display:inline;">
+          <a href="https://www.gob.mx" target="_blank"><img src="img/logoPR.png" alt="" style="width: 45%; margin-right: 15%;" /></a>
+          <a href="http://www.inegi.org.mx" target="_blank"><img src="img/logoINEGI.png" alt="" style="width:25%;" /></a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="footer-copyright light-blue">
+    </div> -->
+  </footer>
+
+  <div class="disclaimer pop">
+    <h1>Aviso</h1>
+    <p>Esta es una versión beta de la Plataforma oficial para el seguimiento de los indicadores de los Objetivos de Desarrollo Sostenible. El INEGI y el Gobierno de la República trabajan para actualizar la información constantemente.</p>
+</div>
+
+<a href="#" id="contact"> <img src="img/informacion.png" alt="" /> </a>
+
+
+  <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+  <!-- <script type="text/javascript" src="entidad.json"></script> -->
+  <script type="text/javascript" src="entidad2.json"></script>
+  <script type="text/javascript" src="nacion.json"></script>
+  <!-- <script type="text/javascript" src="entidadCompara.json"></script> -->
+  <!-- <script type="text/javascript" src="variable.js"></script> -->
+
+  <!-- Load d3.js and c3.js -->
+  <script src="lib/d3.v3.min.js" charset="utf-8"></script>
+  <script src="lib/c3.min.js"></script>
+  <script src="classybrew/build/classybrew.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script> -->
+  <script type="text/javascript" src="lib/jquery.section-scroll.js"></script>
+  <!-- <script src="lib/bigfoot/bigfoot.min.js"></script> -->
+  <script type="text/javascript">
+    var titulo_des_graf="Razón de Mortalidad Materna";
+
+// var img = ['fondo1.jpg','fondo2.jpg','fondo3.jpg'];
+//     // function rotarImagen(){
+//        setTimeout(function(){
+//
+//         var rand = img[Math.floor(Math.random() * img.length)];
+//
+// console.log(rand);
+//         $('.imagen').css("background-image","url('img/"+rand+"') !important");
+//
+// console.log($('.imagen').css("background-image","url('img/"+rand+"') !important"));
+//
+//        }, 3000);
+    // }
+    //
+    // rotarImagen();
+
+
+    // llamamos a la funcion que genera la variable que alimenta el mapa
+    //se llama fuera del documento por que queremos que se ejecute antes de mostrar el docuemento
+    var estados = [];
+    var atributos;
+    var numero = getRandomInt(0,9);
+    var res = numero % 2;
+    console.log('-------------------random --------------');
+    console.log(res);
+    console.log(numero);
+    if(res == 0){
+      estados = getIndicadorSer(27,89);
+      atributos = getAtributos(27);
+    }else{
+      estados = getIndicadorSer(26,87);
+      atributos = getAtributos(26);
+    }
+
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    //  $("#modal1").on('click',function(){
+    // //  .hover(
+    //     //  function() {
+    //        console.log("hover...");
+    //       //  $('#abrir1').modal(
+    //       //    {
+    //       //      dismissible: true,
+    //       //      opacity: .5, // Opacity of modal background
+    //       //      inDuration: 300, // Transition in duration
+    //       //      outDuration: 200,
+    //       //    }
+    //       //  );
+    //        $('#abrir1').openModal('open');
+    //     //  }
+    //     //  function () {
+    //     //     $('#abrir1').modal('close');
+    //     //  }
+    //  });
+    //
+    //  $("#cerrar1").on('click',function(){
+    //        $('#abrir1').closeModal('close');
+    //  });
+    //
+    //  $("#modal2").on('click',function(){
+    //  //.hover(
+    //     //  function() {
+    //        $('#abrir2').openModal('open');
+    //     //  }
+    //  });
+    //  $("#cerrar2").on('click',function(){
+    //        $('#abrir2').closeModal('close');
+    //  });
+    //
+    //  $("#modal3").on('click',function(){
+    // //  .hover(
+    //     //  function() {
+    //        $('#abrir3').openModal('open');
+    //     //  }
+    //  });
+    //  $("#cerrar3").on('click',function(){
+    //        $('#abrir3').closeModal('close');
+    //  });
+    //
+    //  $("#modal4").on('click',function(){
+    // //  .hover(
+    //     //  function() {
+    //        $('#abrir4').openModal('open');
+    //     //  }
+    //  });
+    //  $("#cerrar4").on('click',function(){
+    //        $('#abrir4').closeModal('close');
+    //  });
+
+    // $("#modal1").on('click',function(){
+    //       console.log("hover...");
+    //       $('#abrir').modal('open');
+    // });
+
+    // docuemento general
+    $(document).ready(function () {
+
+      $('#cam_bus').keypress(function(e) {
+          if(e.which == 13) {
+            buscar($('#cam_bus').val());
+          }
+      });
+
+      var img = ['fondo1.jpg','fondo2.jpg','fondo3.jpg'];
+          // function rotarImagen(){
+             setTimeout(function(){
+
+              var rand = img[Math.floor(Math.random() * img.length)];
+      console.log(rand);
+              $('.imagen').attr({style: "background-image:url('img/"+rand+"') !important;"});
+              //console.log($('.imagen').css("background-image","url('img/"+rand+"') !important"));
+    }, 3000);
+
+    $("body").iealert({
+      support: "ie9",
+      title: "Actualiza tu navegador",
+      text: "Esta plataforma funciona de forma adecuada si es consultada en alguno de los siguientes navegadores: Chrome, Edge, Firefox o Safari"
+    });
+
+
+
+      $(".button-collapse").sideNav();
+      $('body').sectionScroll(); // Easy Peasy Lemon Squeezy
+      $('.bullets-container').hide(); //oculta los bullets para que no se vean en la parte del header
+      $('.modal-trigger').leanModal();
+      // $('.modal').modal(
+      //   {
+      //     dismissible: true,
+      //     opacity: .5, // Opacity of modal background
+      //     inDuration: 300, // Transition in duration
+      //     outDuration: 200,
+      //   }
+      // );
+      // var bigfoot = $.bigfoot(
+      //         {
+      //             positionContent:true,
+      //             deleteOnUnhover: false,
+      //             preventPageScroll: true,
+      //             hoverDelay: 250,
+      //             activateOnHover:true,
+      //              anchorPattern: /(fn|footnote|note)[:\-_\d]/gi
+      //             //allowMultipleFN:true
+      //         }
+      //       );
+      $('.tooltipped').tooltip(
+        {
+          delay: 500,
+          tooltip: 'some text',
+          html: true
+        }
+      );
+
+      $('.tooltipped2').tooltip(
+        {
+          delay: 500,
+          tooltip: 'some text',
+          html: true
+        }
+      );
+
+      // var atributos = getAtributos(27);
+
+      var titulo   =  '<h4>'+ atributos.DescripInd_des  +'</h4>' +
+                      '<li class="divider"></li> ' +
+                      '<p> '+ atributos.CobTemporal_ser +' </p>' +
+                      '<span> '+ atributos.Descrip_uni +'</span>';
+
+      titulo_des_graf=atributos.DescripInd_des;
+      console.log(titulo_des_graf);
+
+      var pie  =((atributos.Descrip_not != null || atributos.Descrip_not != "") ? '':'<div><strong>Nota:</strong> '+ atributos.Descrip_not)+
+                ' <div><strong>Fuente:</strong> '+ atributos.Descrip_fue +' </div>'+
+                ' <div><strong>Fecha de actualización:</strong> '+ atributos.FecProxAct_cal +'</div>'+
+                ' </div>';
+
+      $('.pie_cuadro2').html(pie);
+      $('.cuadro_titulo').html(titulo);
+      $('#loader').delay(2000).fadeOut("slow");
+    });
+
+                            var lupa = false;
+
+                            function esconder() {
+                              console.log("focusout");
+                              $('#cam_bus').hide();
+                              $('#buscar').show();
+                              lupa = false;
+                            }
+
+                            window.onload = function () {
+
+                              $('#buscar').click(function () {
+                                if (lupa) {
+                                  $('#cam_bus').hide();
+                                  lupa = false;
+                                } else {
+                                  $('#cam_bus').show();
+                                  $('#buscar').hide();
+                                  document.getElementById("cam_bus").focus();
+                                  lupa = true;
+                                }
+                              });
+
+                              var idioma = navigator.language || navigator.userLanguage;
+                              console.log("The language is: " + idioma);
+
+                              var ln = x = window.navigator.language || navigator.browserLanguage;
+                              console.log(ln);
+                              if (ln == 'en') {
+                                console.log('en');
+                              } else if (ln == 'es' || ln == 'es-419') {
+                                console.log('es');
+                              } else {
+                                console.log('diferente');
+                              }
+                            }
+  </script>
+
+  <script>
+                            function gen(props) {
+                              console.log("0000001111111111",props);
+                              var chart = c3.generate({
+                                bindto: '.info',
+                                padding: {
+                                  top: 10,
+                                  left: 30,
+                                  right: 10
+                                },
+                                data: {
+                                  x: 'Entidad',
+                                  columns: [
+                                    ['Entidad', '2016-01-01', '2015-01-01', '2014-01-01', '2013-01-01', '2012-01-01', '2011-01-01', '2010-01-01', '2009-01-01', '2008-01-01', '2007-01-01', '2006-01-01', '2005-01-01', '2004-01-01', '2003-01-01', '2002-01-01', '2001-01-01', '2000-01-01', '1999-01-01', '1998-01-01', '1997-01-01', '1996-01-01', '1995-01-01', '1994-01-01', '1993-01-01', '1992-01-01', '1991-01-01', '1990-01-01'],
+                                    props,
+                                    busqueda_mexico(),
+                                  ]
+                                },
+                                tooltip: {
+                                  format: {
+                                      value: function(value) {
+                                          return d3.format(",.2f")(value)
+                                      }
+                                  }
+                                },
+                                axis: {
+                                  x: {
+                                    type: 'timeseries',
+                                    tick: {
+                                      rotate: -90,
+                                      format: function (x) { return x.getFullYear(); }
+                                    },
+                                    height: 35,
+                                  },
+                                  y: {
+                                    tick: {
+                                      format: d3.format(".0f")
+                                    }
+                                  }
+                                },
+                                color: {
+                                  pattern: ['#00AEEF', 'rgba(255,0,0,0.8)']
+                                },
+                                size: {
+                                  width: 260,
+                                  height: 200
+                                },
+                                legend: {
+                                  show: false
+                                },
+                                grid: {
+                                  x: {
+                                    show: false
+                                  },
+                                  y: {
+                                    show: true
+                                  }
+                                }
+
+                              });
+                            }
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    var estados2 = [
+      ['x', '2009-01-01', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01'],
+      ['Aguascalientes', '122.24', '104.54', '120.4', '122.8', '110.4'],
+      ['Baja California', '93.05', '108.39', '92.3', '86.6', '86.8'],
+      ['Baja California Sur', '54.22', '53.06', '57', '64.8', '68.6'],
+      ['Campeche', '4.76', '4.78', '6.6', '5.8', '4.5'],
+      ['Chiapas', '15.8', '20.36', '16.6', '18.9', '18.5'],
+      ['Chihuahua', '64.18', '68.05', '68.1', '72.8', '74.4'],
+      ['Coahuila', '46.07', '48.3', '45.1', '46.4', '45.2'],
+      ['Colima', '43.64', '51', '51.7', '52.1', '59.6'],
+      ['Distrito Federal', '14.22', '14.82', '14.8', '13.9', '13.6'],
+      ['Durango', '57.85', '59.15', '61.8', '65', '60.6'],
+      ['Guanajuato', '46.08', '45.38', '46.6', '50.2', '59'],
+      ['Guerrero', '47.93', '60.49', '56.4', '57.6', '74.2'],
+      ['Hidalgo', '9.66', '12', '12', '6.8', '5.4'],
+      ['Jalisco', '23.37', '25.75', '35.5', '46.3', '51.9'],
+      ['México', '20.04', '23.64', '24.8', '28', '28.4'],
+      ['Michoacán', '26.06', '26.59', '26.4', '27.3', '32.1'],
+      ['Morelos', '18.82', '18.79', '25.4', '26.4', '23.5'],
+      ['Nayarit', '65.34', '72.86', '72.9', '83.4', '104.1'],
+      ['Nuevo León', '118.42', '112.14', '108.3', '109.5', '117.2'],
+      ['Oaxaca', '27.4', '28.18', '27.6', '28.4', '33.3'],
+      ['Puebla', '35.49', '36.59', '46.1', '43', '53.9'],
+      ['Querétaro', '22.65', '41.51', '41.3', '42.3', '45.5'],
+      ['Quintana Roo', '60.49', '57.37', '61.5', '55.6', '55.6'],
+      ['San Luis Potosí­', '47.74', '48.66', '47.7', '49.1', '53.2'],
+      ['Sinaloa', '61.82', '66.08', '68.8', '71.6', '68'],
+      ['Sonora', '31.65', '31.76', '32', '34.9', '34.6'],
+      ['Tabasco', '18.31', '19.93', '19.9', '20.7', '25.3'],
+      ['Tamaulipas', '53.87', '59.85', '73.4', '75.6', '71.8'],
+      ['Tlaxcala', '53.49', '54.42', '49.1', '48.4', '43.1'],
+      ['Veracruz', '25.73', '28.14', '32.7', '34.9', '39.6'],
+      ['Yucatán', '1.63', '2.65', '2.1', '2.1', '2.6'],
+      ['Zacatecas', '13.79', '18.81', '21.4', '23.1', '35.5'],
+    ];
+
+
+    function busqueda_estado(cadena) {
+      console.log("super log",cadena,estados);
+      for (var i = 0; i < estados.length; i++) {
+        if (estados[i][0] == cadena) {
+          console.log(cadena,estados[i][1],i);
+          return parseFloat(estados[i][1]);
+        }
+      }
+    }
+
+    function busqueda_indice(cadena) {
+      for (var i = 0; i < estados.length; i++) {
+        if (estados[i][0] == cadena) {
+          return parseFloat(i);
+        }
+      }
+    }
+
+    function busqueda_mexico() {
+      var arrray=[];
+      for (var i = 0; i < estados.length; i++) {
+        if (estados[i][0] == "Estados Unidos Mexicanos") {
+          for(var j=0;j< estados[i].length;j++)
+          {
+            arrray.push(estados[i][j])
+          }
+        }
+      }
+      return arrray;
+    }
+
+    function busqueda_estado_posicion(cadena, posicion) {
+      for (var i = 0; i < estados.length; i++) {
+        if (estados[i][0] == cadena) {
+          console.log(cadena);
+          return parseFloat(estados[i][posicion]);
+        }
+      }
+    }
+
+    function busqueda_anio(cadena) {
+      for (var i = 0; i < estados[0].length; i++) {
+        if (estados[0][i] == cadena) {
+          console.log(estados[0][i]);
+          return i;
+        }
+      }
+    }
+
+    //variable de mapa
+    var img;
+    var data_url;
+    var locked = false;
+    var map = L.map('map',
+      {
+        scrollWheelZoom: false,
+        maxZoom: 14,
+        minZomm: 5,
+        //zoomControl:false,
+        //dragging: false
+      }).setView([24.8, -100], 5);
+
+    //implementacion de mapa estandar y ubicacion haci como zoom
+    //     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+    L.tileLayer('http://{s}.google.com/vt/?hl=es&x={x}&y={y}&z={z}&s={s}&apistyle=s.t%3A5|p.l%3A53%2Cs.t%3A1314|p.v%3Aoff%2Cp.s%3A-100%2Cs.t%3A3|p.v%3Aon%2Cs.t%3A2|p.v%3Aoff%2Cs.t%3A4|p.v%3Aoff%2Cs.t%3A3|s.e%3Ag.f|p.w%3A1|p.l%3A100%2Cs.t%3A18|p.v%3Aoff%2Cs.t%3A49|s.e%3Ag.s|p.v%3Aon|p.s%3A-19|p.l%3A24%2Cs.t%3A50|s.e%3Ag.s|p.v%3Aon|p.l%3A15&style=47,37', {
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+      maxZoom: 14,
+      minZomm: 5,
+      attribution: '&copy <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> &copy <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+      id: 'mapbox.light',
+    }).addTo(map);
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+      map.dragging.disable();
+    }
+
+    // control that shows state info on hover
+    var info = L.control();
+    info.onAdd = function (map) {
+      this._div = L.DomUtil.create('div', 'infos hide');
+      this.update();
+      return this._div;
+    };
+
+
+
+
+    info.update = function (props) {
+      //this._div = L.DomUtil.create('div', 'infos');
+      $('.infos').removeClass('hide');
+      $('.info2').removeClass('hide');
+      if (props != undefined) {
+        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado(props.nom_ent).toFixed(2)/*props.density*/ + '</b><p style="position: absolute; bottom: 57%; left: 35%; font-size: 15px;">'+titulo_des_graf+'</p></div></div><div class="info"></div>';
+        console.log("aca ---> ",estados[busqueda_indice(props.nom_ent)]);
+        // gen(estados[props.cve]);
+        gen(estados[busqueda_indice(props.nom_ent)]);
+        console.log("busqueda",busqueda_mexico());
+        console.log("--->>>>>>>",titulo_des_graf);
+        console.log("props",props);
+      }
+      /*
+              this._div.innerHTML = '<div><h4>Aguas tratadas</h4>' +  (props ?
+                '<b>' + props.nom_ent + '</b><br />' + props.density + '% avance</div>'
+                : 'Situate sobre un estado')+'<div class="info"></div>';
+                if(props != undefined)
+            {
+
+            }
+      */
+    };
+
+    info.addTo(map);
+    // get color depending on population density value
+    // function getColor(d) {
+    // 	return d > 1000 ? '#800026' :
+    // 	       d > 500  ? '#BD0026' :
+    // 	       d > 200  ? '#E31A1C' :
+    // 	       d > 100  ? '#FC4E2A' :
+    // 	       d > 50   ? '#FD8D3C' :
+    // 	       d > 20   ? '#FEB24C' :
+    // 	       d > 10   ? '#FED976' :
+    // 	                  '#FFEDA0';
+    // }
+
+    function getColor(d) {
+      return d > 100 ? '#004b67' :
+        d > 50 ? '#007dab' :
+          d > 20 ? '#01baff' :
+            '#45ccff';
+    }
+
+    function getColoR(number) {
+      return brew.getColorInRange(number);
+    }
+
+    function style(feature) {
+      var res = String(getColoR(busqueda_estado(feature.properties.nom_ent))).split(",");
+      console.log(res, 'hhhh', "c" + res[1]);
+      //console.log("hola->",res[1]);
+      return {
+        weight: 0.5,
+        opacity: 1,
+        color: '#000',
+        dashArray: '1',
+        fillOpacity: 1,
+        // fillColor: getColoR(feature.properties.density),
+        fillColor: getColoR(busqueda_estado(feature.properties.nom_ent)),
+        className: "c" + res[1]
+      };
+    }
+
+    function highlightFeature(e) {
+      if (locked == false) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 2,
+          color: '#ccc',
+          dashArray: '',
+          fillOpacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+          layer.bringToFront();
+        }
+        console.log("over",layer.feature.properties);
+        info.update(layer.feature.properties);
+      }
+    }
+    var geojson;
+    function resetHighlight(e) {
+      /*
+             if(locked == false)
+             {
+      */
+      geojson.resetStyle(e.target);
+      info.update();
+      // 	 	 }
+    }
+    function zoomToFeature(e) {
+      map.fitBounds(e.target.getBounds());
+    }
+    function onEachFeature(feature, layer) {
+      layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        mousedown: function (e) {
+          if (locked == true) {
+            locked = false;
+            (function ($) {
+              $(".info2").css("border", "none");
+              $(".infos").css("border", "none");
+            } (jQuery));
+          }
+          else {
+            locked = true;
+            (function ($) {
+              //	$(".info2").css("border","5px solid #00cc99");
+              $(".info2").css("border-bottom", "5px solid rgb(107, 174, 214)");
+              $(".info2").css("border-left", "5px solid rgb(107, 174, 214)");
+              $(".info2").css("border-right", "5px solid rgb(107, 174, 214)");
+              $(".infos").css("border-top", "5px solid rgb(107, 174, 214)");
+              $(".infos").css("border-left", "5px solid rgb(107, 174, 214)");
+              $(".infos").css("border-right", "5px solid rgb(107, 174, 214)");
+              //								$(".infos").css("border","5px solid #00cc99");
+            } (jQuery));
+          }
+          // 			resetHighlight(e);
+        },
+        //          click: zoomToFeature
+      });
+    }
+
+    function highlightFromLegend(e) {
+      //console.log(e);
+      (function ($) {
+        $("svg path." + e).addClass("highlighted");
+        var r = $("svg path." + e);
+        for (var i = 0; i < r.length; i++) {
+          r[i].classList.add("highlighted");
+          //console.log(r[i]);
+        }
+        //console.log($("svg path."+e));
+      } (jQuery));
+    }
+
+    function clearHighlight() {
+      (function ($) {
+
+        $("path").removeClass("highlighted");
+        var r = $("path");
+        for (var i = 0; i < r.length; i++) {
+          r[i].classList.remove("highlighted");
+        }
+        //console.log(r);
+      } (jQuery));
+    }
+
+    var brew = new classyBrew();
+    var values = [];
+    var values2 = [];
+    for (var i = 0; i < statesData.features.length; i++) {
+      console.log(statesData.features[i].properties.nom_ent);
+      if (statesData.features[i].properties.nom_ent == null) continue;
+      values.push(busqueda_estado(statesData.features[i].properties.nom_ent));
+      // if (statesData.features[i].properties.density == null) continue;
+      // values2.push(statesData.features[i].properties.density);
+    }
+
+    console.log(values, values2);
+    brew.setSeries(values);
+    brew.setNumClasses(4);
+    brew.setColorCode("Blues");
+    brew.classify('jenks');
+    /*
+          geojson = L.geoJson(statesData, {
+            style: style,
+            onEachFeature: onEachFeature
+          }).addTo(map);
+    */
+
+    /*
+        geojson = L.geoJson(municipio, {
+            style: style,
+            onEachFeature: onEachFeature
+          }).addTo(map);
+
+        geojson = L.geoJson(entidad, {
+            style: style,
+            onEachFeature: onEachFeature
+          }).addTo(map);
+    */
+
+    geojson = L.geoJson(statesData, {
+      style: style,
+      onEachFeature: onEachFeature
+    }).addTo(map);
+
+    /*
+          geojson = L.geoJson(nacion, {
+            style: style,
+            onEachFeature: onEachFeature
+          }).addTo(map);
+    */
+
+    map.attributionControl.addAttribution('');
+    var legend = L.control();
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'info2 legend hide'),
+        grades = brew.getBreaks(),//[0, 20, 50, 100],
+        labels = [],
+        from, to;
+      for (var i = 0; i < grades.length - 1; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+        var res = String(getColoR(from)).split(",");
+        console.log(from, from + 1, res, grades);
+        labels.push(
+          '<div style="float:left; text-align: center;"><i class="leyenda" onmouseover="highlightFromLegend(\'c' + res[1] + '\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoR(from) + '"></i><br>' +
+          from.toFixed(2) + (to.toFixed(2) ? '&ndash;' + to.toFixed(2) : '+') + '</div>');
+      }
+      div.innerHTML = labels.join('');
+      return div;
+    };
+    legend.addTo(map);
+
+
+
+
+    $(document).ready(function () {
+      for (var j = 1; j < 18; j++) {
+        var id = '#obj_' + j;
+        for (var i = 0; i < 30; i++) {
+          var r = Math.floor((Math.random() * 10) + 1);
+          if (r == 1) {
+            $(id).append('<th class="id_m1 tooltip" data-tooltip-content="#tooltip_content_1"></th>');
+          }
+          if (r == 2) {
+            $(id).append('<th class="id_m2 tooltip" data-tooltip-content="#tooltip_content_2"></th>');
+          }
+          if (r == 3) {
+            $(id).append('<th class="id_m3 tooltip" data-tooltip-content="#tooltip_content_3"></th>');
+          }
+          if (r == 4) {
+            $(id).append('<th class="id_m4 tooltip" data-tooltip-content="#tooltip_content_4"></th>');
+          }
+          if (r == 5) {
+            $(id).append('<th class="id_m5 tooltip" data-tooltip-content="#tooltip_content_5"></th>');
+          }
+          if (r == 6) {
+            $(id).append('<th class="id_m6 tooltip" data-tooltip-content="#tooltip_content_6"></th>');
+          }
+          if (r == 7) {
+            $(id).append('<th class="id_m7 tooltip" data-tooltip-content="#tooltip_content_7"></th>');
+          }
+          if (r == 8) {
+            $(id).append('<th class="id_m8 tooltip" data-tooltip-content="#tooltip_content_8"></th>');
+          }
+          if (r == 9) {
+            $(id).append('<th class="id_m9 tooltip" data-tooltip-content="#tooltip_content_9"></th>');
+          }
+          if (r == 10) {
+            $(id).append('<th class="id_m10 tooltip" data-tooltip-content="#tooltip_content_10"></th>');
+          }
+        }
+      }
+
+
+      var stickyNavTop = $('#normal').offset().top;
+      var bandera = true;
+
+      var stickyNav = function () {
+        var scrollTop = $(window).scrollTop();
+        if (scrollTop > stickyNavTop) {
+
+          if (bandera) {
+
+
+            console.log("entro");
+           $('.bullets-container').hide();
+            $('#normal').addClass('sticky');
+
+            //               $('#imago').css("display", "");
+
+            if (navigator.userAgent.indexOf("Firefox") != -1) {
+              $("#imago img").animate({
+                width: "85px;"
+              }, 1500);
+            }
+            else {
+              $("#imago img").animate({
+                width: "85px;"
+              }, 1500);
+            }
+
+            $('#normal').find('ul').each(function () {
+              $(this).removeClass('nab');
+            });
+            $("#nav-mobile").animate({
+
+              width: "80%"
+            }, 1500);
+
+            $('#normal').find('li').each(function () {
+              $(this).removeClass('tamp');
+            });
+
+            //               $('#normal').removeClass('hide');
+
+            bandera = false;
+          }
+        }
+        else {
+          if (!bandera) {
+
+            $("#imago img").animate({
+
+              width: "77px"
+            }, 1500);
+
+            $("#nav-mobile").animate({
+
+              width: "80%"
+            }, 1500);
+
+
+
+            // 	  	$('#imago').css("display", "none");
+
+            console.log("entro arriba ");
+            $('.bullets-container').hide();
+
+            $('#normal').removeClass('sticky');
+
+            $('#normal').find('ul').each(function () {
+              $(this).addClass('nab');
+            });
+
+            $('#normal').find('li').each(function () {
+              $(this).addClass('tamp');
+            });
+
+            //               $('#normal').addClass('hide');
+
+            bandera = true;
+          }
+        }
+      };
+      stickyNav();
+      $(window).scroll(function () {
+        stickyNav();
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+
+      var touch = 'ontouchstart' in document.documentElement
+            || navigator.maxTouchPoints > 0
+            || navigator.msMaxTouchPoints > 0;
+
+      if (touch) { // remove all :hover stylesheets
+          try { // prevent exception on browsers not supporting DOM styleSheets properly
+              for (var si in document.styleSheets) {
+                  var styleSheet = document.styleSheets[si];
+                  if (!styleSheet.rules) continue;
+
+                  for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+                      if (!styleSheet.rules[ri].selectorText) continue;
+
+                      if (styleSheet.rules[ri].selectorText.match(':hover')) {
+                          styleSheet.deleteRule(ri);
+                      }
+                  }
+              }
+          } catch (ex) {}
+      }
+
+
+      $('.tooltip').tooltipster({
+        contentCloning: true,
+        animation: 'fade',
+        delay: 200,
+        theme: 'tooltipster-light',
+        trigger: 'hover',
+        interactive:true
+      });
+
+
+      $(window).scroll(function () {
+        console.log($(window).scrollTop());
+        console.log($(document).height());
+        console.log($(window).height());
+      });
+
+      function deselect(e) {
+        $('.pop').slideFadeToggle(function() {
+          e.removeClass('selected');
+        });
+      }
+
+
+      if(!!('ontouchstart' in window)){//check for touch device
+        $('#contact').unbind('click mouseenter mouseleave'); //use off if you used on, to unbind usual listeners
+        $('#contact').on('click',function(){
+          //slide down code
+          $(this).addClass('selected');
+          $('.pop').slideFadeToggle();
+          });
+      }
+
+       $("#contact").hover(
+        function() {
+          if($(this).hasClass('selected')) {
+            deselect($(this));
+          } else {
+            $(this).addClass('selected');
+            $('.pop').slideFadeToggle();
+          }
+          return false;
+        }, function() {
+          deselect($('#contact'));
+          return false;
+        }
+      );
+
+
+      $.fn.slideFadeToggle = function(easing, callback) {
+        return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+      };
+
+    });
+
+
+  function buscar(busqueda){
+    window.location.replace("busqueda.html?busqueda=" + busqueda);
+  }
+
+  </script>
+</body>
+
+</html>

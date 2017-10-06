@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Objetivos de Desarrollo Sostenible</title>
+    <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/tooltipster.bundle.min.css" />
+	  <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,800,300,600italic,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/home.css">
+
+  	<!-- Load c3.css -->
+  	<link href="lib/c3.css" rel="stylesheet" type="text/css">
+<!--     <link rel="stylesheet" type="text/css" href="css/section-scroll.css"> -->
+
+<style media="screen">
+  .infoPadre{
+    width: 276px;
+}
+
+  .cuadrosSocial li {
+    display: inline;
+}
+
+.cuadrosSocial li a{
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: all 1.0s ease;
+  width: 40px;
+}
+
+
+.cuadrosSocial li a:hover {
+  background-color: #ccc;
+
+}
+
+.select-dropdown{
+  padding-left: 10px !important;
+}
+
+
+.select-wrapper span.caret{
+  padding-right: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.espacio_seccion{
+  height: 40px;
+}
+
+.leaflet-right
+{
+  width: 295px;
+}
+
+.infos
+{
+  box-shadow: 0 0 0 0 !important;
+}
+
+td
+{
+  padding: 3px !important;
+}
+.section-bullets li a:before {
+    background-color: #00aeef;
+}
+.section-bullets li:hover {
+    background-color: #eee;
+
+}
+.section-bullets .active a {
+  color: #fff;
+}
+ .section-bullets .active a:after {
+    background-color: #FFF;
+}
+
+.btn-edo{
+	padding:15px 20px !important;
+	vertical-align: middle;
+	text-align: left;
+	background: #F6F6F6;
+	color:#0A254F;
+}
+.btn-edo a{
+	padding:15px 20px !important;
+	vertical-align: middle;
+	text-align: left;
+	background: #F6F6F6;
+	color:#0A254F;
+}
+
+.btn-edo img{
+	vertical-align: middle;
+	margin-right: 15px;
+	max-height: 30px;
+	max-width: 30px;
+}
+
+.alto_col{
+  height: 120px;
+}
+
+.sin_borde_der{
+  border-right-width:0px !important;
+}
+
+.sin_borde_izq{
+border-left-width: 0px !important;
+}
+
+.sin_borde_arri{
+border-top-width: 0px !important;
+}
+
+.sin_borde_abajo{
+border-bottom-width: 0px !important;
+}
+
+
+.foot_er{
+  background-color: #d8ae2b;
+  height: 50px;
+  color: #fff;
+}
+
+
+.circle {
+    /* height: 30px !important;
+    width: 30px !important; */
+    max-width: 30px;
+    max-height: 30px:
+    border-radius: 0px !important;
+}
+
+.select-dropdown li img{
+  width: auto !important;
+  height: auto !important;
+}
+
+ #loader {
+      display: block;
+      background: rgba(62, 60, 60, 0.6);
+      color: white;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10000;
+    }
+
+  #loader p {
+      display: block;
+      font-size: 40px;
+      position: absolute;
+      top: -70px;
+      /* left: 0; */
+      bottom: 0;
+      right: 15px;
+      color: #fff !important /*margin: auto;*/;
+      text-align: right;
+    }
+
+     #loader p #tex{
+      width: 300px;
+    }
+</style>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="image.js"></script>
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/rgbcolor.js"></script>
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/StackBlur.js"></script>
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/canvg.js"></script>
+
+<!--     <script type="text/javascript" src="lib/jquery.section-scroll.js"></script> -->
+
+  </head>
+  <span id="loader">
+    <p style="color:#333; padding-top: 100px; ">Cargando<br>información</p>
+  </span>
+  <body>
+    <!-- menu -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class=" container nav-wrapper" style="margin-top:0px;">
+          <a href="index.html" class="brand-logo"><img src="img/icono_header.svg" alt="" /></a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down nav_sticky">
+            <li class="tam t_sm"><a class="t_sm" href="objetivos.html">Indicadores</a></li>
+             <li class="tam t_sm"><a href="estados.html" style="line-height: 21px; padding-top: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;Indicadores con<br>desglose geográfico</a></li>
+            <!--
+            <li class="tam t_sm"><a class="t_sm" href="como_vamos.html">¿C&oacute;mo vamos?</a></li> -->
+            <li class="tam t_sm"><a class="t_sm" href="explora.html">Explora</a></li>
+            <!-- <li class="tam t_sm"><a class="t_sm" href="compara.html">Compara</a></li> -->
+            <li class="tamps">
+              <a id="buscar"><img src="img/search.png" alt="" /></a>
+              <input id="cam_bus" type="text" name="buscar" style="display: none; background-color: rgba(0, 0, 0, 0.4); background-position: 95% 50%; background-repeat: no-repeat;border-bottom: 0 none; border-radius: 8px;color: #ffffff !important;padding: 0 0px;height:35px;" onfocusout="esconder()"/>
+            </li>
+            <li class="tamps">
+              <a id="busca" href="calendario.html"><img data-position="bottom" data-tooltip="Ir al calendario de actualizaciones" class="tooltipped" src="img/calendario.png"
+                  alt="" /></a>
+            </li>
+            <!-- <li class="tamps">
+              <a id="busca" href="exportacion.html"><img data-position="bottom" data-tooltip="Ir a la página de descargas masivas" class=" tooltipped" src="img/descarga.png"
+                  alt="" /></a>
+            </li> -->
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+          <li><a href="index.html">Inicio</a></li>
+            <li><a href="objetivos.html">Indicadores</a></li>
+           <!--  <li><a href="estados.html">Indicadores por unidad geográfica</a></li> -->
+           <!--  <li><a href="como_vamos.html">¿C&oacute;mo vamos?</a></li> -->
+            <li><a href="explora.html">Explora</a></li>
+            <!-- <li><a href="compara.html">Compara</a></li> -->
+           <!--  <li class="tamps">
+             <a id="busca" href="calendario.html">Calendario</a>
+           </li> -->
+          </ul>
+        </div>
+      </nav>
+    </div>
+<!-- menu -->
+    <div class="container">
+      <div class="row scrollable-section" data-section-title="Menú de selección">
+        <div class="col s12">
+          <h3 class="fuerte t_principal">Resultados de la busqueda</h3>
+          <li class="divider"></li>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s11 l4">
+          <div class="col s3">
+            <p>Estado</p>
+          </div>
+          <div class="col s9 caja_s">
+            <select class="icons" id="estado">
+              <option value="01" data-icon="img/edos/aguascalientes.png" class="left circle">Aguascalientes</option>
+              <option value="02" data-icon="img/edos/bajacalifornia.png" class="left circle">Baja California</option>
+              <option value="03" data-icon="img/edos/bajacaliforniasur.png" class="left circle">Baja California Sur</option>
+              <option value="04" data-icon="img/edos/campeche.png" class="left circle">Campeche</option>
+              <option value="05" data-icon="img/edos/coahuila.png" class="left circle">Coahuila de Zaragoza</option>
+              <option value="06" data-icon="img/edos/colima.png" class="left circle">Colima</option>
+              <option value="07" data-icon="img/edos/chiapas.png" class="left circle">Chiapas</option>
+              <option value="08" data-icon="img/edos/chihuahua.png" class="left circle">Chihuahua</option>
+              <option value="09" data-icon="img/edos/ciudaddemexico.png" class="left circle">Ciudad de México</option>
+              <option value="10" data-icon="img/edos/durango.png" class="left circle">Durango</option>
+              <option value="11" data-icon="img/edos/guanajuato.png" class="left circle">Guanajuato</option>
+              <option value="12" data-icon="img/edos/guerrero.png" class="left circle">Guerrero</option>
+              <option value="13" data-icon="img/edos/hidalgo.png" class="left circle">Hidalgo</option>
+              <option value="14" data-icon="img/edos/jalisco.png" class="left circle">Jalisco</option>
+              <option value="15" data-icon="img/edos/estadodemexico.png" class="left circle">México</option>
+              <option value="16" data-icon="img/edos/michoacan.png" class="left circle">Michoacán de Ocampo</option>
+              <option value="17" data-icon="img/edos/morelos.png" class="left circle">Morelos</option>
+              <option value="18" data-icon="img/edos/nayarit.png" class="left circle">Nayarit</option>
+              <option value="19" data-icon="img/edos/nuevoleon.png" class="left circle">Nuevo León</option>
+              <option value="20" data-icon="img/edos/oaxaca.png" class="left circle">Oaxaca</option>
+              <option value="21" data-icon="img/edos/puebla.png" class="left circle">Puebla</option>
+              <option value="22" data-icon="img/edos/queretaro.png" class="left circle">Querétaro</option>
+              <option value="23" data-icon="img/edos/quintanaroo.png" class="left circle">Quintana Roo</option>
+              <option value="24" data-icon="img/edos/sanluispotosi.png" class="left circle">San Luis Potosí</option>
+              <option value="25" data-icon="img/edos/sinaloa.png" class="left circle">Sinaloa</option>
+              <option value="26" data-icon="img/edos/sonora.png" class="left circle">Sonora</option>
+              <option value="27" data-icon="img/edos/tabasco.png" class="left circle">Tabasco</option>
+              <option value="28" data-icon="img/edos/tamaulipas.png" class="left circle">Tamaulipas</option>
+              <option value="29" data-icon="img/edos/tlaxcala.png" class="left circle">Tlaxcala</option>
+              <option value="30" data-icon="img/edos/veracruz.png" class="left circle">Veracruz de Ignacio de la Llave</option>
+              <option value="31" data-icon="img/edos/yucatan.png" class="left circle">Yucatán</option>
+              <option value="32" data-icon="img/edos/zacatecas.png" class="left circle">Zacatecas</option>
+            </select>
+          </div>
+        </div>
+ <!--        <div class="col s11 l4 offset-l1">
+            <div class="col s3">
+            <p>Municipio</p>
+            </div>
+            <div class="col s9 caja_s">
+              <select id="municipio">
+                <option value="0" disabled selected>Selecciona</option>
+                <option value="1" class="left circle">Municipio 1</option>
+                <option value="2" class="left circle">Municipio 2</option>
+                <option value="3" class="left circle">Municipio 3</option>
+              </select>
+            </div>
+          </div> -->
+      </div>
+
+<!--       <div class="row region">
+         <div class="col s11 l4">
+              <div class="col s3">
+              <p>Región</p>
+              </div>
+              <div class="col s9 caja_s">
+                <select>
+                  <option value="" disabled selected>Selecciona</option>
+                  <option value="" class="left circle">Región 1</option>
+                  <option value="" class="left circle">Región 2</option>
+                  <option value="" class="left circle">Región 3</option>
+                </select>
+              </div>
+            </div>
+             <div class="col s11 l4 offset-l1">
+              <div class="col s3">
+              <p>Ciudad</p>
+              </div>
+              <div class="col s9 caja_s">
+                <select>
+                  <option value="" disabled selected>Selecciona</option>
+                  <option value="" class="left circle">Ciudad 1</option>
+                  <option value="" class="left circle">Ciudad 2</option>
+                  <option value="" class="left circle">Ciudad 3</option>
+                </select>
+              </div>
+            </div>
+        </div> -->
+
+      <style media="screen">
+        .tabla{
+          border: solid 1px #ccc;
+        }
+
+        .tabla .col {
+          border: solid 1px #ccc;
+        }
+
+        .tabla .titu{
+          background-color: #d90a38;
+          height: 50px;
+          color: #fff;
+        }
+
+        .tabla .subti{
+          background-color: #f6f6f6;
+          height: 40px;
+          color: #6c6c6c;
+        }
+
+        table, th, td {
+          border: 1px solid black;
+        }
+
+      </style>
+
+ <!--      <div class="row tabla">
+        <div class="col l4 sin_borde_arri  sin_borde_izq">
+          Indicadores
+        </div>
+        <div class="col l3 sin_borde_arri  sin_borde_izq">
+            Estados Unidos Mexicanos
+        </div>
+        <div class="col l3 sin_borde_arri  sin_borde_izq">
+              Aguascalientes
+        </div>
+        <div class="col l2 sin_borde_arri  sin_borde_izq sin_borde_der">
+            Meta de México
+        </div>
+
+
+          <div class="col s1 offset-l4 sin_borde_arri ">
+            Línea base
+          </div>
+          <div class="col s2 sin_borde_arri  sin_borde_izq">
+            Dato más recinete
+          </div>
+          <div class="col s1 sin_borde_arri  sin_borde_izq">
+            Línea base
+          </div>
+          <div class="col s2 sin_borde_arri  sin_borde_izq">
+            Dato mas recinete
+          </div>
+
+          <div class="col s2 sin_borde_arri  sin_borde_izq sin_borde_der">
+              Dato mas recinete
+          </div>
+
+
+        <div class="col s12 titu valign-wrapper sin_borde_arri  sin_borde_izq">
+          <span class="noObj">1</span> - <span class="tituloObj">Fin de la pobreza</span>
+        </div>
+
+        <div class="col l1 subti sin_borde_der center-align">
+          <p class="center-align">1.A.</p>
+        </div>
+        <div class="col l11 subti sin_borde_izq">
+          <p>Reducir a la mitad, entre 1990 y 2015, el porcentaje de personas cuyos ingresos sean inferiores a 1.25 dólares por día</p>
+        </div>
+
+        <div class="col l1 alto_col sin_borde_der center-align">
+          <p class="center-align">1.1.</p>
+        </div>
+        <div class="col l3 valign-wrapper alto_col sin_borde_izq">
+          <p>Proporción de la poblacion con ingresos per cápita inferiores a 1.25 dólares diarios (Paridad de Poder de Compra respecto al dólar)-Lista oficial de la ONU Nacional y desglose por entidad federativa.</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">9.3<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">3.7<br>(2014)</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">ND<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">2.4<br>(2014)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">Meta nacional 2015:<br>
+          4.6</p>
+        </div>
+
+
+        <div class="col l1 subti sin_borde_der center-align">
+          <p class="center-align">1.B.</p>
+        </div>
+        <div class="col l11 subti sin_borde_izq">
+          <p>Lograr empleo pleno y productivo, y trabajo decente para todos, incluyenfo mujeres y jóvenes</p>
+        </div>
+
+        <div class="col l1 alto_col sin_borde_der center-align">
+          <p class="center-align">1.5.</p>
+        </div>
+        <div class="col l3 valign-wrapper alto_col sin_borde_izq">
+          <p>Relación entre ocupación y población en edad de trabajar - Lista oficial de la ONU Nacional y desglose por entidad federativa</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">9.3<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">3.7<br>(2014)</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">ND<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">2.4<br>(2014)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">Meta nacional 2015:<br>
+          4.6</p>
+        </div>
+        <div class="col l1 alto_col sin_borde_der center-align">
+          <p class="center-align">1.7.</p>
+        </div>
+        <div class="col l3 valign-wrapper alto_col sin_borde_izq">
+          <p>Proporción de trabajadores por cuenta propia y los no remunerados - Reformulación Nacional y desglose por entidad federativa</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">9.3<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">3.7<br>(2014)</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">ND<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">2.4<br>(2014)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">Meta nacional 2015:<br>
+          4.6</p>
+        </div>
+        <div class="col l1 alto_col sin_borde_der center-align">
+          <p class="center-align">MMM<br>1.5.</p>
+        </div>
+        <div class="col l3 valign-wrapper alto_col sin_borde_izq">
+          <p>Tasa de desocupación de jóvenes - Metas Más allá del Milenio (MMM) Nacional y desglose por entidad federativa</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">9.3<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">3.7<br>(2014)</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">ND<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">2.4<br>(2014)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">Meta nacional 2015:<br>
+          4.6</p>
+        </div>
+
+
+        <div class="col l1 subti sin_borde_der center-align">
+          <p class="center-align">1.B.</p>
+        </div>
+        <div class="col l11 subti sin_borde_izq">
+          <p>Reducir a la mitad la proporción de personas en pobreza alimentaria entre 1990 y 2015</p>
+        </div>
+
+        <div class="col l1 alto_col sin_borde_der center-align">
+          <p class="center-align">MMM<br>1.1.</p>
+        </div>
+        <div class="col l3 valign-wrapper alto_col sin_borde_izq">
+          <p>Proporción de la poblacion que habita en hogares en pobreza alimentaria - Metas Más allá del Milenio (MMM) Nacional y desglose por entidad federativa.</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">9.3<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">3.7<br>(2014)</p>
+        </div>
+        <div class="col l1 alto_col center-align">
+          <p class="valign">ND<br>(1989)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">2.4<br>(2014)</p>
+        </div>
+        <div class="col l2 alto_col center-align">
+          <p class="valign">Meta nacional 2015:<br>
+          4.6</p>
+        </div>
+        <div class="col l12 foot_er valign-wrapper">
+          1 - Lograr la enseñanza primaria universal
+        </div>
+
+      </div> -->
+    </div>
+
+    <div id="ejemplo"></div>
+<!-- footer -->
+    <footer class="page-footer id">
+      <div class="container">
+        <div class="row" id="fot">
+          <div class="col l3 s12">
+            <a href="home.html"><img src="img/ods_logo_home2.png" alt="" /></a>
+            <br>
+            <br>
+            <!-- <div class="" style="display:inline;">
+              <a href="https://www.facebook.com" style="margin-right: 12%;"><img src="img/fill2.png" alt="" style="width:3%;"/></a>
+              <a href="https://twitter.com" style="margin-right: 12%;"><img src="img/fill1.png" alt="" style="width:7%;"/></a>
+              <a href="#"><img src="img/fill3.png" alt="" style="width:7%;"/></a>
+            </div> -->
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+              <li><a class="fuerte t_sm" href="objetivos.html">Indicadores</a></li>
+              <li><a class="fuerte t_sm" href="estados.html">Indicadores con desglose geográfico</a></li>
+              <!-- <li><a class="fuerte t_sm" href="como_vamos.html">¿Cómo vamos?</a></li> -->
+              <li><a class="fuerte t_sm" href="explora.html">Explora</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+              <!-- <li><a class="fuerte t_sm" href="compara.html">Compara</a></li> -->
+            <li><a class="fuerte t_sm" href="calendario.html">Calendario de actualizaciones</a></li>
+            <!-- <li><a class="fuerte t_sm" href="exportacion.html">Exportación masiva</a></li> -->
+            <li><a class="fuerte t_sm" href="acerca.html">Acerca de</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12" style="display:inline;">
+            <a href="https://www.gob.mx" target="_blank"><img src="img/logoPR.png" alt="" style="width: 45%; margin-right: 15%;"/></a>
+            <a href="http://www.inegi.org.mx" target="_blank"><img src="img/logoINEGI.png" alt="" style="width:25%;"/></a>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="footer-copyright light-blue">
+      </div> -->
+    </footer>
+<!-- footer -->
+<script src='config.js'></script>
+<script type="text/javascript">
+  var coloresEstados = ['#D90A38','#D8AE2B','#299E32','#BD052D','#E23429','#56BCE3','#F2CB02','#9D063D','#E86A26','#D4015E','#F0A612','#B99319','#2D7D3B','#4B95CF','#37B72F','#336198','#2B3E63'];
+  var lupa = false;
+  var estado = getParameterByName('estad');
+  var label  = getParameterByName('label');
+
+  $(document).ready(function() {
+     $('#cam_bus').keypress(function(e) {
+        if(e.which == 13) {
+          buscar($('#cam_bus').val());
+        }
+    });
+
+    $('#buscar').click(function () {
+      if(lupa) {
+        $('#cam_bus').hide();
+        lupa = false;
+      } else {
+        $('#cam_bus').show();
+        $('#buscar').hide();
+        document.getElementById("cam_bus").focus();
+        lupa = true;
+      }
+    });
+
+    $('#estado > option[value="'+ estado +'"]').attr('selected', 'selected');
+    $('select').material_select();
+
+    //hacemos la primera llamada
+    OMITabla(estado, label);
+    //llamada al cambiar el select
+    $('#estado').change(function(){
+      OMITabla($('#estado').val(), $('#estado option:selected').text());
+    });
+  });
+
+  //funcion para crear la tabla de resultado
+  function OMITabla(claveCobertura,label){
+    $('#loader').show();
+    var url = PathAPI + 'Tematica/PorCobertura';
+    var parametros =  {'PIdioma':'ES', 'PCveCob':claveCobertura}
+    //stringEstados[claveCobertura]
+    var dataItems =  '<div class="container">'+
+    '<table>'+
+        '<tr>'+
+          '<td colspan="2" rowspan="2" style="text-align: center;vertical-align: middle;">Indicadores</td>'+
+          '<td colspan="2" style="text-align: center;vertical-align: middle;">Estados Unidos Mexicanos</td>'+
+          '<td colspan="2" style="text-align: center;vertical-align: middle;"> '+ label +'</td>'+
+          '<td style="text-align: center;vertical-align: middle;" rowspan="2">Meta de México</td>'+
+        '</tr>'+
+        '<tr>'+
+          '<td style="text-align: center;vertical-align: middle;">Línea base</td>'+
+          '<td style="text-align: center;vertical-align: middle;">Dato más reciente</td>'+
+          '<td style="text-align: center;vertical-align: middle;">Línea base</td>'+
+          '<td style="text-align: center;vertical-align: middle;">Dato más reciente</td>'+
+        '</tr>';
+
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: parametros,
+        success: function( data, textStatus, jqxhr ) {
+          console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            color = coloresEstados[(data[i].Codigo_des.substring(0, 1))-1];
+            dataItems += '<tr>'+
+              '<td colspan="7" style="background-color: '+ color +'; color: white;">'+ data[i].Codigo_des +' '+ data[i].Descrip_des +'</td>'+
+            '</tr>';
+            for (var j = 0; j < data[i].Meta.length; j++) {
+              dataItems += '<tr>'+
+              '<td style="text-align: center;vertical-align: middle;">'+data[i].Meta[j].Codigo_des+'</td>'+
+                '<td colspan="6">'+data[i].Meta[j].Descrip_des+'</td>'+
+                '</tr>';
+
+              for (var k = 0; k < data[i].Meta[j].Indicador.length; k++) {
+                var indicador = data[i].Meta[j].Indicador[k].ClaveInd_arb;
+                var claveSerie = getClaveSerie(indicador);
+                console.log(claveSerie);
+
+                console.log('++++++++++++++++++++++++++ valores ++++++++++++++');
+                console.log('indicador: '+indicador+' '+'serie: '+claveSerie+' '+'cobertura: '+claveCobertura);
+                var estadoRecienteN   = getMasReciente(indicador,claveSerie,'00');
+                var estadoReciente    = getMasReciente(indicador,claveSerie,claveCobertura);
+
+                dataItems +=  '<tr>'+
+                  '<td style="text-align: center;vertical-align: middle;">'+ data[i].Meta[j].Indicador[k].Codigo_des +'</td>'+
+                  '<td>'+ data[i].Meta[j].Indicador[k].Descrip_des +'</td>'+
+                  '<td style="text-align: center;vertical-align: middle;">ND</td>'+
+                  '<td style="text-align: center;vertical-align: middle;">'+ estadoRecienteN +'</td>'+
+                  '<td style="text-align: center;vertical-align: middle;">ND</td>'+
+                  '<td style="text-align: center;vertical-align: middle;">'+ estadoReciente +'</td>'+
+                  '<td style="text-align: center;vertical-align: middle;">ND</td>'+
+                  '</tr>';
+              }//for k
+            }// for j
+          }// for i
+        },
+        async:false
+      });// ajax
+
+      dataItems += '</table></div>';
+
+      $('#ejemplo').html(dataItems);
+      $('#loader').delay(2000).fadeOut("slow");
+  }
+
+  function getMasReciente(indicador,serie,cobertura){
+    var url = PathAPI + "Valores/PorCobCla";
+    var parametros = {"PCveInd":indicador, "PAnoFin":"0", "PCveSer":serie, "PCveCob":cobertura,
+"PCveAgrupaCla":"99", "POrden":"DESC", "PIdioma":"ES"};
+    var reciente;
+    $.ajax({
+      type: 'POST',
+      url: url,
+      data: parametros,
+      success: function( data, textStatus, jqxhr ) {
+        var coberturas = data.Series[0].Coberturas;
+        if(typeof coberturas[0].ValorDato[0] !== "undefined"){
+          var anio   = coberturas[0].ValorDato[0].AADato_ser;
+          var valor  = coberturas[0].ValorDato[0].Dato_Formato;
+          reciente = valor + '<br> (' + anio + ')';
+        }else{
+          var anio   = coberturas[0].Clasificaciones[0].ValorDato.AADato_ser;
+          var valor  = coberturas[0].Clasificaciones[0].ValorDato.Dato_Formato;
+          reciente = valor + '<br> (' + anio + ')';
+        }
+
+      },
+      async:false
+    });// ajax
+
+    return reciente;
+  }
+
+  function getClaveSerie(indicador){
+    var url = PathAPI + "AtrIndicador/PorClave";
+    var parametros = {"PCveInd": indicador, "PIdioma":"ES"};
+    var claveSerie;
+    $.ajax({
+      type: 'POST',
+      url: url,
+      data: parametros,
+      success: function( data, textStatus, jqxhr ) {
+        claveSerie = data.Serie[0].ClaveSer_ats;
+      },
+      async:false
+    });// ajax
+
+    return claveSerie;
+  }
+
+  function buscar(busqueda){
+    window.location.replace("busqueda.html?busqueda=" + busqueda);
+  }
+
+  function esconder() {
+    $('#cam_bus').hide();
+    $('#buscar').show();
+    lupa = false;
+  }
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  </script>
+
+  </body>
+</html>

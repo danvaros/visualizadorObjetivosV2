@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Objetivos de Desarrollo Sostenible</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="css/ffont-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,800,300,600italic,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/home.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+    <style media="screen">
+      .alinea{
+        margin-top: 10px;
+      }
+
+      .status_c{
+        border-radius: 20px;
+        background-color: #07c2a7;
+        height: 30px;
+        width: 30px;
+      }
+      .status_p{
+        border-radius: 20px;
+        background-color: #f3c000;
+        height: 30px;
+        width: 30px;
+      }
+      .status_i{
+        border-radius: 20px;
+        background-color: #ff6666;
+        height: 30px;
+        width: 30px;
+      }
+    .contendor_coll{
+      padding: 25px;
+    }
+
+    .no_botom{
+        margin-bottom: 0 !important;
+        border-style: solid;
+        border-width: 1px;
+    }
+    </style>
+  </head>
+  <body>
+     <!-- menu -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo"><img src="img/logo.png" alt="" /></a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down nav_sticky">
+            <li class="tam t_sm"><a class="t_sm" href="objetivos.html">Indicadores</a></li>
+            <li class="tam t_sm"><a href="estados.html" style="line-height: 21px; padding-top: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;Indicadores con<br>desglose geográfico</a></li>
+            <li class="tam t_sm"><a class="t_sm" href="como_vamos.html">¿C&oacute;mo vamos?</a></li>
+            <li class="tam t_sm"><a class="t_sm" href="explora.html">Explora</a></li>
+            <!-- <li class="tam t_sm"><a class="t_sm" href="compara.html">Compara</a></li> -->
+            <li class="tamps">
+              <a id="buscar"><img src="img/search.png" alt="" /></a>
+              <input id="cam_bus" type="text" name="buscar" style="display: none; background-color: rgba(0, 0, 0, 0.4); background-position: 95% 50%; background-repeat: no-repeat;border-bottom: 0 none; border-radius: 8px;color: #ffffff !important;padding: 0 0px;height:35px;" onfocusout="esconder()"/>
+            </li>
+              <li class="tamps">
+              <a id="busca" href="calendario.html"><img data-position="bottom" data-tooltip="Ir al calendario de actualizaciones" class="tooltipped" src="img/calendario.png"
+                  alt="" /></a>
+            </li>
+            <li class="tamps">
+              <a id="busca" href="exportacion.html"><img data-position="bottom" data-tooltip="Ir a la página de descargas masivas" class=" tooltipped" src="img/descarga.png"
+                  alt="" /></a>
+            </li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="objetivos.html">Indicadores</a></li>
+            <li><a href="estados.html">Indicadores por unidad geográfica</a></li>
+            <li><a href="como_vamos.html">¿C&oacute;mo vamos?</a></li>
+            <li><a href="explora.html">Explora</a></li>
+            <li><a href="compara.html">Compara</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+<!-- menu -->
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h3 class="fuerte t_principal"><b>Exportación masiva de información</b></h3>
+          <li class="divider"></li>
+        </div>
+      </div>
+      <div class="row" style="margin-top:25px;">
+        <div class="col s2"><p class="alinea fuerte t_normal">Elementos a exportar</p></div>
+        <div class="col s2">
+          <p class="center-align">
+            <input type="checkbox" id="test5" />
+            <label for="test5">Indicador</label>
+          </p>
+        </div>
+        <div class="col s2">
+          <p class="center-align">
+            <input type="checkbox" id="test6" />
+            <label for="test6">Metadato</label>
+          </p>
+        </div>
+        <div class="col s2">
+          <p class="center-align">
+            <input type="checkbox" id="test7" />
+            <label for="test7">Serie Historíca</label>
+          </p>
+        </div>
+        <div class="col s2">
+          <p class="center-align">
+            <input type="checkbox" id="test8" />
+            <label for="test8">Datos para el cálculo</label>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s2"><p class="alinea fuerte t_normal">Entidad federativa</p></div>
+        <div class="input-field col s2" style="margin-top:0 !important;">
+           <select>
+             <option value="" disabled selected>Entidad</option>
+             <option value="1">Aguascalientes</option>
+           </select>
+        </div>
+        <div class="col s1 center-align"><p class="alinea fuerte t_normal">Formato</p></div>
+        <div class="col s1">
+          <p>
+            <input type="checkbox" id="test9" />
+            <label for="test9"><a class="icns">XLS</a></label>
+          </p>
+        </div>
+        <div class="col s1">
+          <p>
+            <input type="checkbox" id="test10" />
+            <label for="test10"><a class="icn">CSV</a></label>
+          </p>
+        </div>
+        <div class="col s2">
+          <p>
+            <input type="checkbox" id="test10" />
+            <label for="test10"><a class="icnSDMX">SDMX</a></label>
+          </p>
+        </div>
+        <div class="col s1"><a class="waves-effect waves-light btn_fuera color claro t_sm sin_sombra">EXPORTAR</a></div>
+      </div>
+      <div class="row" style="margin-top:25px;">
+        <div class="col s12">
+          <a id="ver_grafica" class="waves-effect waves-light btn color  claro t_sm sin_sombra marg_top active_anio" onclick="cambio_tabla()" style="margin-right: -5px; border-color: #15b5f0; border-width: 1px; border-radius: 5px 0px 0px 5px;">Indicadores con desglose nacional y entidad federativa</a>
+          <a id="ver_tabla" class="waves-effect waves-light btn color  claro t_sm sin_sombra marg_top in¡active_anio" onclick="cambio_grafica()" style="margin-right: -1px; border-color: #15b5f0; border-width: 1px; border-radius: 0px 5px 5px 0px;">Indicadores por entidad federativa y municipio</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="row id_1 white-text no_botom" style="border-color:#d90a3b">
+            <div class="col s1">
+              <p class="center-align">
+                <input type="checkbox" id="testind1" />
+                <label for="testind1" style="color:#d90a3b !important;">i</label>
+              </p>
+            </div>
+            <div class="col s11">
+              <p>1- Erradicar la pobreza extrema y el hambre</p>
+            </div>
+          </div>
+          <div class="row gris_letra no_botom">
+            <div class="col s2 center-align">
+              <p>Meta 1.1</p>
+            </div>
+            <div class="col s10">
+              <p>Para 2030 erradicar la pobreza extrema para todas las personas en el mundo, actualmente medida por un ingreso por persona inferior a 1.25 dolares de los Estados Unidos al día</p>
+            </div>
+            <div class="col s2">
+              <p class="center-align">
+                <input type="checkbox" id="testind3" />
+                <label for="testind3" style="color:white !important;">i</label>
+              </p>
+            </div>
+            <div class="col s10">
+              <p>-1.1.1 Proporcion de la poblacion que vive por debajo del umbral internacional de la pobreza, desglozada por sexo, edad, situacion laboral, y ubicacion geografica (urbana o rural). Global</p>
+            </div>
+            <div class="col s12 divider" style="background-color: #a9a9a9;">
+            </div>
+            <div class="col s2 center-align">
+              <p>Meta 2.1</p>
+            </div>
+            <div class="col s10">
+              <p>Para 2030 erradicar la pobreza extrema para todas las personas en el mundo, actualmente medida por un ingreso por persona inferior a 1.25 dolares de los Estados Unidos al día</p>
+            </div>
+            <div class="col s2">
+              <p class="center-align">
+                <input type="checkbox" id="testind4" />
+                <label for="testind4" style="color:white !important;">i</label>
+              </p>
+            </div>
+            <div class="col s10">
+              <p>-1.1.1 Proporcion de la poblacion que vive por debajo del umbral internacional de la pobreza, desglozada por sexo, edad, situacion laboral, y ubicacion geografica (urbana o rural). Global</p>
+            </div>
+            <div class="col s2">
+              <p class="center-align">
+                <input type="checkbox" id="testind5" />
+                <label for="testind5" style="color:white !important;">i</label>
+              </p>
+            </div>
+            <div class="col s10">
+              <p>-1.1.1 Proporcion de la poblacion que vive por debajo del umbral internacional de la pobreza, desglozada por sexo, edad, situacion laboral, y ubicacion geografica (urbana o rural). Global</p>
+            </div>
+            <div class="col s2">
+              <p class="center-align">
+                <input type="checkbox" id="testind6" />
+                <label for="testind6" style="color:white !important;">i</label>
+              </p>
+            </div>
+            <div class="col s10">
+              <p>-1.1.1 Proporcion de la poblacion que vive por debajo del umbral internacional de la pobreza, desglozada por sexo, edad, situacion laboral, y ubicacion geografica (urbana o rural). Global</p>
+            </div>
+          </div>
+          <div class="row id_2  white-text no_botom" style="border-color:#d8ae2b">
+            <div class="col s1">
+              <p class="center-align">
+                <input type="checkbox" id="testind2" />
+                <label for="testind2" style="color:#d8ae2b !important;">i</label>
+              </p>
+            </div>
+            <div class="col s11">
+              <p>2- Lograr la enseñanza primaria universal</p>
+            </div>
+          </div>
+          <div class="row gris_letra no_botom">
+            <div class="col s2 center-align">
+              <p>Meta 1.1</p>
+            </div>
+            <div class="col s10">
+              <p>Para 2030 erradicar la pobreza extrema para todas las personas en el mundo, actualmente medida por un ingreso por persona inferior a 1.25 dolares de los Estados Unidos al día</p>
+            </div>
+            <div class="col s2">
+              <p class="center-align">
+                <input type="checkbox" id="testind0" />
+                <label for="testind0" style="color:white !important;">i</label>
+              </p>
+            </div>
+            <div class="col s10">
+              <p>-1.1.1 Proporcion de la poblacion que vive por debajo del umbral internacional de la pobreza, desglozada por sexo, edad, situacion laboral, y ubicacion geografica (urbana o rural). Global</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- footer -->
+    <footer class="page-footer id">
+      <div class="container">
+        <div class="row" id="fot">
+          <div class="col l3 s12">
+            <a href="home.html"><img src="img/ods_logo_home2.png" alt="" /></a>
+            <br>
+            <br>
+            <div class="" style="display:inline;">
+              <a href="https://www.facebook.com" style="margin-right: 12%;"><img src="img/fill2.png" alt="" style="width:3%;"/></a>
+              <a href="https://twitter.com" style="margin-right: 12%;"><img src="img/fill1.png" alt="" style="width:7%;"/></a>
+              <a href="#"><img src="img/fill3.png" alt="" style="width:7%;"/></a>
+            </div>
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+              <li><a class="fuerte t_sm" href="objetivos.html">Indicadores</a></li>
+              <!-- <li><a class="fuerte t_sm" href="estados.html">Indicadores con desglose geográfico</a></li>
+              <li><a class="fuerte t_sm" href="como_vamos.html">¿Cómo vamos?</a></li> -->
+              <li><a class="fuerte t_sm" href="explora.html">Explora</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+              <!-- <li><a class="fuerte t_sm" href="compara.html">Compara</a></li> -->
+            <li><a class="fuerte t_sm" href="calendario.html">Calendario de actualizaciones</a></li>
+            <li><a class="fuerte t_sm" href="exportacion.html">Exportación masiva</a></li>
+            <li><a class="fuerte t_sm" href="acerca.html">Acerca de</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12" style="display:inline;">
+            <a href="https://www.gob.mx" target="_blank"><img src="img/logoPR.png" alt="" style="width: 45%; margin-right: 15%;"/></a>
+            <a href="http://www.inegi.org.mx" target="_blank"><img src="img/logoINEGI.png" alt="" style="width:25%;"/></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright light-blue">
+      </div>
+    </footer>
+<!-- footer -->
+
+    <script type="text/javascript">
+
+    function cambio_grafica()
+    {
+      $('#ver_tabla').removeClass('inactive_anio');
+      $('#ver_tabla').addClass('active_anio');
+      $('#ver_grafica').removeClass('active_anio');
+      $('#ver_grafica').addClass('inactive_anio');
+    }
+
+    function cambio_tabla()
+    {
+      $('#ver_grafica').removeClass('inactive_anio');
+      $('#ver_grafica').addClass('active_anio');
+      $('#ver_tabla').removeClass('active_anio');
+      $('#ver_tabla').addClass('in¡active_anio');
+    }
+
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+    $(document).ready(function(){
+
+      var lupa =  false;
+      $('#buscar').click(function(){
+        if(lupa){
+          $('#cam_bus').hide();
+          lupa =  false;
+        }else{
+          $('#cam_bus').show();
+          $('#buscar').hide();
+          lupa =  true;
+        }
+      });
+
+      $('.collapsible').collapsible({
+        accordion : true
+      });
+
+      console.log($('#objetivos').find('li.active').children().children());
+      $(".button-collapse").sideNav();
+    });
+
+
+    var lupa = false;
+
+    function esconder() {
+      console.log("focusout");
+      $('#cam_bus').hide();
+      $('#buscar').show();
+      lupa = false;
+    }
+
+      $(document).ready(function() {
+        $("#sti").hide();
+
+        window.onload = function () {
+
+          $('#buscar').click(function () {
+            console.log("aca");
+            if (lupa) {
+              $('#cam_bus').hide();
+              lupa = false;
+            } else {
+              $('#cam_bus').show();
+              $('#buscar').hide();
+              document.getElementById("cam_bus").focus();
+              lupa = true;
+            }
+          });
+
+        }
+      });
+    </script>
+  </body>
+</html>

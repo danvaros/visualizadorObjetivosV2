@@ -1,0 +1,2623 @@
+
+
+
+    $(document).ready(function() {
+      var textoTwitterGrafica = 'Comparto esta grafica';
+      var textoTwitterMapa    = 'Comparto este mapa';
+      var URLactual = window.location;
+      var urlTwitterMapa = 'https://twitter.com/intent/tweet?text='+textoTwitterMapa+';url='+URLactual;
+      var urlTwitterGrafica = 'https://twitter.com/intent/tweet?text='+textoTwitterGrafica+';url='+URLactual;
+
+      $('#serie').hide();
+      $('.modal-trigger').leanModal();
+      $(".button-collapse").sideNav();
+      $('#share_grafica').attr('href',urlTwitterGrafica);
+      $('#share_mapa').attr('href',urlTwitterMapa);
+      $('#chart2btn').hide();
+
+      chartBarras = c3.generate({
+        legend: {
+          show: false
+        },
+        bindto: '#barras',
+        size: {
+          height: 500
+        },
+        data: {
+          columns: [],
+          type: 'bar',
+          color:
+          function (color, d) {
+            return d.index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
+
+            // Descrip_ind : function (d) {
+            //     return d.index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
+            //     console.log('x-x-x-x-x--x-x-x-x-x-x-x-x-x-x-x-');
+            //     console.log(d.index);
+            //return (d.value >= 45) ? '#00ff00' : '#ff0000';
+            //}
+          }
+        },
+        tooltip: {
+          //format: {
+          // title: function (d) { return d.name; },
+          //title: function (d) { return '' + d.name; },
+          //},
+          contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+            color = function() {
+              //return (d[0].value >= 45) ? '#00ff00' : '#ff0000';
+              return d[0].index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
+            };
+
+            return chartBarras.internal.getTooltipContent.call(this, d, defaultTitleFormat, defaultValueFormat, color)
+          }
+        },
+        axis: {
+          rotated: false,
+          x: {
+            type: 'category',
+            categories: [ 'Ags.','BC.','BCS.','Camp.','Coah.','Col.','Chis.','Chih.','CDMX.','Dgo.','Gto.','Gro.','Hgo.','Jal.','Mex.','Mich.',
+            'Mor.','Nay.','NL.','Oax.','Pue.','Qro.','Q Roo.','SLP.','Sin.','Son.','Tab.','Tamps.','Tlax.','Ver.','Yuc.','Zac.','Nal.',
+          ],
+          height: 50,
+          tick:{
+            rotate: -90,
+            multiline: false
+          },
+        },
+        //  y : {
+        //         tick: {
+        //             format: d3.format(".2f")
+        //         }
+        //     }
+      },
+    });//fin de grafica
+
+    $('.liga').val(URLactual);
+
+    $('#indicador-panel').hide();
+
+    if(PCveInd == 276){
+      $('#indicador-panel').show();
+    }
+
+    var select_2 = '<div class="input-field col s12" style="margin-bottom:20px;"><select class="select_datos_2" style="display:block !important; background-color: #f2f2f2;"><option value="0">Selecciona</option><option value="1">Defunciones de mujeres mientras se encuentran embarazadas o dentro de los 42 dias siguientes a la terminación del embarazo</option></select></div>';
+
+    var datos_doble_2 = '<div class="cuadro_titulo">' + Codigo_ind + ' ' + titulo +
+    '</div><div style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_2"><table class="bordered" id="miTabla2" class="miTabla2" style="width: 1726px;margin-left: -53px;">';
+
+    var datos_doble_22 =  ' <div class="cuadro_titulo"> ' + titulo +
+    '</div><div style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_22"><table class="bordered" id="miTabla22" class="miTabla22">';
+
+    var datos_doble_3 =  ' <div class="cuadro_titulo"> ' + titulo +
+    '</div><div class="scroller" style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_3"><table class="bordered" id="miTabla3" class="miTabla3" >';
+
+    for (var i = 0; i < estados.length; i++) {
+      if(i == 0){
+        datos_doble_2 +=  '<thead><tr>';
+        datos_doble_22 +=  '<thead><tr>';
+        datos_doble_3 +=  '<thead><tr>';
+      }
+      else if(i == 1){
+        datos_doble_2 +=  '<tbody><tr>';
+        datos_doble_22 +=  '<tbody><tr>';
+        datos_doble_3 +=  '<tbody><tr>';
+      }
+      else {
+        datos_doble_2 +=  '<tr>';
+        datos_doble_22 +=  '<tr>';
+        datos_doble_3 +=  '<tr>';
+      }
+
+      for (var j = 0 ; j < estados[0].length; j++) {
+        if(i == 0 && j == 0){
+          datos_doble_2 +=  '  <th  class="headcol">'+ estados[i][0] +'</th><th>'+ estados[i][j] .split('-')[0]+'</th>';
+          datos_doble_22 +=  '  <td  class="headcol">'+ estados[i][0] +'</td><td>'+ estados[i][j] .split('-')[0]+'</td>';
+          datos_doble_3 +=  '  <th  class="headcol">'+ estados[i][0] +'</th><th>'+ estados[i][j] .split('-')[0]+'</th>';
+        }
+        else if( i == 0 && j == 0 ){
+          datos_doble_2 += '<th class"padding-200">'+ estados[i][j].split('-')[0] +'</th>';
+          datos_doble_22 += '<td class"padding-200">'+ estados[i][j].split('-')[0] +'</td>';
+          datos_doble_3 += '<th class"padding-200">'+ estados[i][j].split('-')[0] +'</th>';
+        }
+        else if( i == 0 ){
+          datos_doble_2 += '<th>'+ estados[i][j].split('-')[0] +'</th>';
+          datos_doble_22 += '<td>'+ estados[i][j].split('-')[0] +'</td>';
+          datos_doble_3 += '<th>'+ estados[i][j].split('-')[0] +'</th>';
+        }
+        else if(j == 0 ) {
+          var varia;
+          if(estados[i][j] == "ND" || estados[i][j] == "NA"){
+            flag_valor_nd=true;
+            if(arreglo_valor_nd.indexOf(estados[i][j]) == -1)
+            arreglo_valor_nd.push(estados[i][j]);
+            varia = '<td class="headcol">'+ estados[i][0] +'</td><td>'+ estados[i][j] +'</td>';
+          }
+          else {
+            varia = '<td class="headcol">'+ estados[i][0] +'</td><td>'+ parseFloat(estados[i][j]) +'</td>';
+          }
+          datos_doble_2 += varia;
+          datos_doble_22 += varia;
+          datos_doble_3 += varia;
+        }
+        else if(j == 1){
+          if(estados[i][j] == "ND" || estados[i][j] == "NA")
+          {
+            flag_valor_nd=true;
+            if(arreglo_valor_nd.indexOf(estados[i][j]) == -1)
+            arreglo_valor_nd.push(estados[i][j]);
+            datos_doble_2 +=  '  <td class="laque">'+ estados[i][j] +'</td>';
+            datos_doble_22 +=  '  <td class="laque">'+ estados[i][j] +'</td>';
+            datos_doble_3 +=  '  <td class="laque">'+ estados[i][j] +'</td>';
+          }
+          else {
+            datos_doble_2 +=  '  <td class="laque">'+ parseFloat(estados[i][j]) +'</td>';
+            datos_doble_22 +=  '  <td class="laque">'+ parseFloat(estados[i][j]) +'</td>';
+            datos_doble_3 +=  '  <td class="laque">'+ parseFloat(estados[i][j]) +'</td>';
+          }
+        }
+        else{
+          if(estados[i][j] == "ND" || estados[i][j] == "NA"){
+            flag_valor_nd=true;
+            if(arreglo_valor_nd.indexOf(estados[i][j]) == -1)
+            arreglo_valor_nd.push(estados[i][j]);
+            datos_doble_2 +=  '  <td>'+ estados[i][j] +'</td>';
+            datos_doble_22 +=  '  <td>'+ estados[i][j] +'</td>';
+            datos_doble_3 +=  '  <td>'+ estados[i][j] +'</td>';
+          }
+          else {
+            datos_doble_2 +=  '  <td>'+ parseFloat(estados[i][j]) +'</td>';
+            datos_doble_22 +=  '  <td>'+ parseFloat(estados[i][j]) +'</td>';
+            datos_doble_3 +=  '  <td>'+ parseFloat(estados[i][j]) +'</td>';
+          }
+        }
+      }
+
+      if(i == 0){
+        datos_doble_2 +=  '</tr></thead>';
+        datos_doble_22 +=  '</tr></thead>';
+        datos_doble_3 +=  '</tr></thead>';
+      }
+      else{
+        datos_doble_2 +=  '</tr>';
+        datos_doble_22 +=  '</tr>';
+        datos_doble_3 +=  '</tr>';
+      }
+    }
+
+    if(flag_valor_nd){
+      var mensaje_nd='';
+      for(var i=0;i<arreglo_valor_nd.length;i++){
+        if(arreglo_valor_nd[i]=='ND'){
+          mensaje_nd=mensaje_nd+'<div><strong>ND:</strong> No disponible</div>';
+        }
+        if(arreglo_valor_nd[i]=='NA'){
+          mensaje_nd=mensaje_nd+'<div><strong>NA:</strong> No aplicable</div>';
+        }
+      }
+
+      datos_doble_2 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;"><div class="pie_cuadro2">'+ mensaje_nd +" "+ pie + '</div></div>';
+
+      datos_doble_22 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;"><div class="pie_cuadro2">'+
+      mensaje_nd + " " + pie +
+      '</div></div>';
+
+      datos_doble_3 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;"><div class="pie_cuadro2">'+ mensaje_nd +" "+ pie +'</div></div>';
+    }
+    else{
+      datos_doble_2 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;"><div class="pie_cuadro2">'+ pie + '</div></div>';
+
+      datos_doble_22 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;"><div class="pie_cuadro2">'+ pie +
+      '</div></div>';
+
+      datos_doble_3 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;"><div class="pie_cuadro2">'+ pie +
+      '</div></div>';
+    }
+
+    $('#serie_panel_tablas').html(datos_doble_2);
+    $('#serie_panel_tablas2').html(datos_doble_2);
+
+    $('#tabla_export').html(datos_doble_2);
+    $('#tabla_export2').html(datos_doble_22);
+
+    $('#tabla_nacional').html(datos_doble_2);
+
+    $('.scroller').scroll(function(e) {
+      $('.scroller').scrollLeft(e.target.scrollLeft);
+    });
+
+    $('#buscar').click(function(){
+      if(lupa){
+        $('#cam_bus').hide();
+        lupa =  false;
+      }else{
+        $('#cam_bus').show();
+        $('#buscar').hide();
+        lupa =  true;
+      }
+    });
+
+    $('#indicador').trigger("click");
+
+    // select de metadatos
+    $('#indicador').click(function(){
+
+      $('#indicador-panel').hide();
+      $('#indicador-grafica').show();
+      $('#mapas_hide').show();
+      $('#botonera_nacional').show();
+      $('#chart2').show();
+
+      if(codigoDg.replace(/\s/g,'') == 'N' ){
+        if(PCveInd == 236 || PCveInd == 311 || PCveInd == 312 || PCveInd == 48 || PCveInd == 333 || PCveInd == 304){
+          $('#tabla_nacional').hide();
+          $('#indicador-panel').show();
+          $('#mapas_hide').hide();
+          $('#botonera_nacional').hide();
+          $('#chart2').hide();
+        }
+      }
+
+      // if(codigoDg.replace(/\s/g,'') == 'NEM' ){
+      //   $('#tabla_nacional').hide();
+      //   $('#indicador-panel').hide();
+      //   $('#mapas_hide').hide();
+      //   $('#botonera_nacional').hide();
+      //   $('#chart2').hide();
+      //   $('#indicador-grafica').hide();
+      //   $('#DescargaDatos').hide();
+      //   $('#indicador').hide();
+      //   $('#metadato').hide();
+      //   $('#serie').hide();
+      //   $('#datos').hide();
+      //   $('#mensajeNEM').show();
+      //   $('#mensajeNEM').html('<h5 style="text-align:center;">Lo sentimos, esta información aún no está disponible.</h5>');
+      // }
+
+
+
+      $('#metadato-panel').hide();
+      $('#serie-panel').hide();
+      $('#datos-panel').hide();
+      $('#datos-panel-dos').hide();
+      $('#link-datos-panel').hide();
+      $('#no_va_serie').show();
+
+      $('#indicador').addClass('indicadores-taps-active');
+      $('#serie').removeClass('indicadores-taps-active');
+      $('#datos').removeClass('indicadores-taps-active');
+      $('#metadato').removeClass('indicadores-taps-active');
+
+      if( PCveInd == 333){
+        $('#tabla_nacional').hide();
+        $('#indicador-panel').show();
+        $('#mapas_hide').hide();
+        $('#botonera_nacional').hide();
+        $('#chart2').hide();
+        $('#indicador-grafica').hide();
+      }
+
+      colorObjetivo(obj);
+    });
+
+    $('#serie').click(function(){
+
+      $('#tabla_nacional').hide();
+      $('#metadato-panel').hide();
+      $('#indicador-panel').hide();
+      $('#mapas_hide').hide();
+      $('#chart2').hide();
+      $('#serie-panel').show();
+      $('#botonera_nacional').hide();
+      $('#indicador-grafica').hide();
+      $('#no_va_serie').hide();
+
+      var arre = [];
+      for (var i = 0; i < estados[0].length - 1; i++) {
+        arre.push(i)
+      }
+
+      if(arre.length > 17){
+        $('#miTabla2').DataTable({
+          scrollY:        "600px",
+          scrollX:        true,
+          scrollCollapse: true,
+          paging:         false,
+          searching: false,
+          aoColumnDefs: [
+            { 'bSortable': false,
+            'aTargets': arre }
+          ],
+          fixedColumns:   {
+            leftColumns: 1
+          }
+        });
+
+        $('.miTabla2').DataTable({
+          scrollY:        "600px",
+          scrollX:        true,
+          scrollCollapse: true,
+          paging:         false,
+          searching: false,
+          aoColumnDefs: [{
+            'bSortable': false,
+            'aTargets': arre
+          }],
+          fixedColumns:{
+            leftColumns: 1
+          }
+        });
+      }
+
+      $('#datos-panel').hide();
+      $('#datos-panel-dos').hide();
+      $('#link-datos-panel').hide();
+
+      $('#indicador').removeClass('indicadores-taps-active');
+      $('#serie').addClass('indicadores-taps-active');
+      $('#datos').removeClass('indicadores-taps-active');
+      $('#metadato').removeClass('indicadores-taps-active');
+
+      colorObjetivo(obj);
+    });
+
+    $('#datos').click(function(){
+      $('#tabla_nacional').hide();
+      $('#metadato-panel').hide();
+      $('#indicador-panel').hide();
+      $('#mapas_hide').hide();
+      $('#chart2').hide();
+      $('#serie-panel').hide();
+      $('#botonera_nacional').hide();
+      $('#datos-panel').show();
+      $('#datos-panel-dos').hide();
+      $('#link-datos-panel').show();
+      $('#indicador-grafica').hide();
+      $('#no_va_serie').show();
+
+      $('#indicador').removeClass('indicadores-taps-active');
+      $('#serie').removeClass('indicadores-taps-active');
+      $('#datos').addClass('indicadores-taps-active');
+      $('#metadato').removeClass('indicadores-taps-active');
+
+      if(codigoDg == "NEM  "){
+        put_isumo_sel_mun();
+      }
+
+      colorObjetivo(obj);
+    });
+
+    $('#metadato').click(function(){
+      if(PCveInd == 333)
+      armaMetadatos();
+
+      $('#tabla_nacional').hide();
+      $('#metadato-panel').show();
+      $('#indicador-panel').hide();
+      $('#mapas_hide').hide();
+      $('#chart2').hide();
+      $('#serie-panel').hide();
+      $('#indicador-grafica').hide();
+      $('#datos-panel').hide();
+      $('#datos-panel-dos').hide();
+      $('#link-datos-panel').hide();
+      $('#botonera_nacional').hide();
+      $('#no_va_serie').show();
+
+      $('#indicador').removeClass('indicadores-taps-active');
+      $('#serie').removeClass('indicadores-taps-active');
+      $('#datos').removeClass('indicadores-taps-active');
+      $('#metadato').addClass('indicadores-taps-active');
+
+      colorObjetivo(obj);
+    });
+
+    $('#indicador').trigger("click");
+
+    $('.select_datos_2').change(function(){
+      var osds=$('.select_datos_2').val();
+      if(osds == 1){
+        $('#datos_calculo_2').show();
+        if(table2 == null){
+          $('#miTabla2').show();
+          var arre = [];
+          for (var i = 0; i < estados[0].length - 1; i++) {
+            arre.push(i)
+          }
+
+          table2 = $('#miTabla2').DataTable({
+            scrollY:        "600px",
+            scrollX:        true,
+            scrollCollapse: true,
+            paging:         false,
+            searching: false,
+            aoColumnDefs: [{
+              'bSortable': false,
+              'aTargets': arre
+            }],
+            fixedColumns:{
+              leftColumns: 1
+            }
+          });
+        }
+      }
+      else
+      $('#datos_calculo_2').hide();
+    });
+
+    put_anios();
+
+    $('#filtros').on('change',function(){
+      $('#loader').show();
+      estados = arma_tabla($(this).val());
+      actualiza_grafica();
+      if($('#agregacion').val() != 1){
+        $('#'+anio_mas_actual).trigger( "click" );
+      }
+      $('#loader').delay(2000).fadeOut("slow");
+    });
+
+    armaMetadatos();
+    $("#sti").hide();
+    window.onload = function(){
+      $('#buscar').click(function(){
+        if (lupa){
+          $('#cam_bus').hide();
+          lupa = false;
+        }
+        else {
+          $('#cam_bus').show();
+          $('#buscar').hide();
+          document.getElementById("cam_bus").focus();
+          lupa = true;
+        }
+      });
+    }
+
+    // This must be a hyperlink
+    $(".exportCSV").on('click', function (event) {
+      // CSV
+      var args = [$('#tabla_export2 table'), Descrip_ind+'.csv'];
+      exportTableToCSV.apply(this, args);
+    });
+
+    if ($('.select_datos').val() != -1) {
+      $(".exportCSVDatos").hide();
+    }
+    else{
+      $(".exportCSVDatos").hide();
+    }
+
+    $(".exportCSVDatos").on('click', function (event) {
+      // CSV
+      var args = [$('#miTabla'), 'DatosParaElCalculo - '+Descrip_ind+'.csv'];
+      exportTableToCSV.apply(this, args);
+    });
+
+    $("#descargaXLS").attr('download',Descrip_ind+'.xls');
+
+    $("#contact").hover(
+      function() {
+        if($(this).hasClass('selected')) {
+          deselect($(this));
+        } else {
+          $(this).addClass('selected');
+          $('.pop').slideFadeToggle();
+        }
+        return false;
+      }, function() {
+        deselect($('#contact'));
+        return false;
+      }
+    );
+
+    $.fn.slideFadeToggle = function(easing, callback) {
+      return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+    };
+
+    // This must be a hyperlink
+    $(".exportXLS").on('click', function (event) {
+      var args1 = [$('#tabla_export table'), Descrip_ind+'.xls'];
+      exportTableToXLS.apply(this, args1);
+    });
+    //ocultamos el boton de municipios si no es para el 118
+    if(PCveInd != 118){
+      $("#boton_municipal").show();
+    }
+
+
+      $('#sel_estados').change(function(){
+
+      for(var j=1;j<=40;j++){
+        $('#anio_'+j).removeClass('active_anio');
+        $('#anio_'+j).addClass('inactive_anio');
+      }
+
+      $('#anio_1').addClass('active_anio');
+      $('#nueva_tabla_serie').html('');
+
+        var seleccionado = $(this).val();
+        $('#sel_municipios').html(get_sel_municipal(seleccionado));
+        $('#sel_municipios').show();
+        jQuery.each( coor_estado, function( i, val ){
+          if(seleccionado == val.estado){
+            map.setView([val.lat, val.long], val.zoom-1);
+            mun_mapa(seleccionado,arrray_anios[0],1);
+            put_grafica_municipal(arrray_anios[0]);
+          }
+        });
+     });
+
+
+     $('#sel_municipios').change(function(){
+       var sel_mun = $(this).val();
+       var sel_est = $('#sel_estados').val();
+
+       munisipal_ind(sel_mun,sel_est);
+     });
+
+     $('#boton_estatal').click(function(){
+       $("#boton_municipal").show();
+       $("#boton_estatal").hide();
+       $("#sel_estados").hide();
+       $("#sel_municipios").hide();
+       ban_mun = false;
+       cambio_anio(estados[0][1]);
+
+       console.log('cambio municipal');
+     });
+
+     $('#boton_municipal').click(function(){
+       $("#boton_municipal").hide();
+       $("#boton_estatal").show();
+       $("#sel_estados").show();
+       $("#sel_municipios").show();
+       ban_mun = true;
+       cambio_anio(estados[0][1]);
+       put_grafica_municipal(arrray_anios[0]);
+       console.log('cambio estatal');
+     });
+  });//fin del document ready
+
+  // ------------------------------------------ //
+  // ----------- Sabe si es Nacional ---------- //
+  // Sólo muestra una gráfica de linea para los
+  // valores Nacionales
+  // ------------------------------------------ //
+  if(codigoDg.replace(/\s/g,'') == 'N'){
+    if(arreglo_cla.length > 0){
+      poner_filtros_na();
+    }
+
+    //$('#row_filtros').hide();
+    //$('.cuadro_titulo').remove();
+    $('#map').remove();
+    //$('.pie_cuadro2').remove();
+    $('#footmap').remove();
+    $('#grafs').remove();
+    $('#indicador-grafica').remove();
+    $('#indicador-panel').hide();
+    //$('#mapas_hide').remove();
+    //console.log("hecho");
+    var chart2 = c3.generate({
+      bindto: '#chart2',
+      size: {
+        height: 400
+      },
+      data: {
+        x: 'Entidad',
+        columns: estados,
+      },
+      legend: {
+        show: false
+      },
+      padding: {
+        left: 40,
+        right: 30
+      },
+      point: {
+        show: true
+      },
+      color: {
+        pattern:['#f00']
+      },
+      axis : {
+        x : {
+          type : 'timeseries',
+          height: 120,
+          tick: {
+            format: function (x) { return x.getFullYear();},
+            rotate: -90
+            //format: '%Y' // format string is also available for timeseries data
+          },
+          // y : {
+          //     tick: {
+          //         format: d3.format(".0f")
+          //     },
+          //     padding: {top: 35, bottom: 0}
+          // }
+        },
+        y : {
+          tick: {
+            format: d3.format(".2f")
+          }
+        }
+      },tooltip: {
+        grouped: false, // Default true
+        format: {
+          title: function (d) { return d.name; },
+          value: function (value, ratio, id) {
+            (function ($) {
+              if (id != "Estados Unidos Mexicanos") {
+                $( "#chart2 svg g.c3-chart-line g.c3-circles circle" ).css('fill','#ccc');
+                $( "#chart2 svg g.c3-chart-line path.c3-line" ).css('stroke','#ccc');
+
+                $( "svg g.c3-chart-line g.c3-circles-" +id.replace(/ /g,'-') + " circle" ).css('fill','#00aeef');
+                $( "svg g.c3-chart-line path.c3-line-" +id.replace(/ /g,'-') ).css('stroke','#00aeef');
+
+                $( "svg g.c3-chart-line g.c3-circles-Promedio-nacional circle" ).css('fill','#f00');
+                $( "svg g.c3-chart-line path.c3-line-Promedio-nacional" ).css('stroke','#f00');
+                $( "svg g.c3-chart-line g.c3-circles-Estados-Unidos-Mexicanos circle" ).css('fill','#f00');
+                $( "svg g.c3-chart-line path.c3-line-Estados-Unidos-Mexicanos" ).css('stroke','#f00');
+
+              }
+              else {
+                $( "#chart2 svg g.c3-chart-line g.c3-circles circle" ).css('fill','#ccc');
+                $( "#chart2 svg g.c3-chart-line path.c3-line" ).css('stroke','#ccc');
+
+                $( "svg g.c3-chart-line g.c3-circles-Promedio-nacional circle" ).css('fill','#f00');
+                $( "svg g.c3-chart-line path.c3-line-Promedio-nacional" ).css('stroke','#f00');
+
+                $( "svg g.c3-chart-line g.c3-circles-Estados-Unidos-Mexicanos circle" ).css('fill','#f00');
+                $( "svg g.c3-chart-line path.c3-line-Estados-Unidos-Mexicanos" ).css('stroke','#f00');
+              }
+            }(jQuery));
+            return commaSeparateNumber(Math.round(value*10)/10);
+          }
+        }
+      },
+    });
+
+    $('#chart2btn').show();
+    $('#botonera_nacional').show();
+  }
+  else{
+    $('#botonera_nacional').remove();
+  }
+
+  //funcion atras de los controles de la grafica para cambiar de años
+  function atras(){
+    if((anio_activo+1)  < arrray_anios.length){
+      anio_activo++;
+      $('.numero').html(arrray_anios[anio_activo]);
+
+      if(codigoDg == "NEM  " && ban_mun == true){
+        put_grafica_municipal(arrray_anios[anio_activo]);
+      }else{
+        datosGrafica(arrray_anios[anio_activo]);
+      }
+    }
+  }
+
+  //controles de la grafica para cambiar de años hacia delante
+  function adelante(){
+    if(0 <= (anio_activo-1)){
+      anio_activo--;
+      $('.numero').html(arrray_anios[anio_activo]);
+      var array_Graficas = atributos.Grafica;
+
+      if(codigoDg == "NEM  " && ban_mun == true){
+        put_grafica_municipal(arrray_anios[anio_activo]);
+      }else{
+        datosGrafica(arrray_anios[anio_activo]);
+      }
+    }
+  }
+
+  function datosGrafica(year){
+    var indice = 0;
+    var serie = [];
+    var nuevos_estados_dobles = new Array();
+    var tabla_nueva = '';
+    var tabla_uno = '';
+
+    for (var i = 0; i < estados[0].length; i++) {
+      if(estados[0][i].includes(year)){
+        indice = i;
+      }
+    }
+
+    console.log(estados[0].length);
+    tabla_nueva += '<thead><tr><th>Entidad Federativa</th>';
+    for (var i = 0; i < estados.length; i++) {
+      if(i==0){
+        serie.push(Descrip_ind);
+      }
+      else{
+        if(i < estados.length){
+          var unods = (estados[i][indice] == 'ND') ? 'ND' : parseFloat(estados[i][indice]);//.toFixed(1);
+
+          for(k=0; k < arrray_anios.length; k++){
+            tabla_nueva += '<th>'+ arrray_anios[k] +'</th>';
+          }
+
+          tabla_nueva += '</tr></thead>';
+          tabla_nueva += '<tbody class="tabla_uno"><tr><td>'+estados[i][0]+'</td>';
+          tabla_nueva += '<td>' + unods + '</td></tr></tbody>';
+        }
+
+        if(estados[i][indice] == 'ND'){
+          var numero =  0;
+        }
+        else{
+          var numero =  parseFloat(estados[i][indice]);//.toFixed(1);
+        }
+
+
+        var valueToPush = {'numero':numero, 'estado':estados[i][0], 'abrevia':abrevia_edo(estados[i][0])};
+        nuevos_estados_dobles.push(valueToPush);
+
+        serie.push(parseFloat(estados[i][indice]));
+      }
+    }
+
+    nuevos_estados_dobles.sort(sortFunction);
+
+    var categories = [];
+    var categories2 = [];
+    var series = [];
+
+    //separar el arreglo
+    series.push(Descrip_ind);
+    categories.push(Descrip_ind);
+
+    for (var i = 0; i < nuevos_estados_dobles.length; i++) {
+      if('Estados Unidos Mexicanos' == nuevos_estados_dobles[i].estado ){
+        index_estados = i;
+      }
+      categories[i] = nuevos_estados_dobles[i].estado;
+      categories2[i] = nuevos_estados_dobles[i].abrevia;
+
+      series.push(parseFloat(nuevos_estados_dobles[i].numero));
+    }
+
+    cat_global = categories;
+    chartBarras.load({
+      columns: [series],
+      categories: categories2,
+      unload: [Descrip_ind],
+    });
+  }
+
+  //abreviaciones de estados
+  function abrevia_edo(nombre){
+    switch(nombre){
+      case "Estados Unidos Mexicanos":
+      return "Nal.";
+      break;
+      case "Aguascalientes":
+      return "Ags.";
+      break;
+      case "Baja California":
+      return "BC.";
+      break;
+      case "Baja California Sur":
+      return "BCS.";
+      break;
+      case "Campeche":
+      return "Camp.";
+      break;
+      case "Coahuila de Zaragoza":
+      return "Coah.";
+      break;
+      case "Colima":
+      return "Col.";
+      break;
+      case "Chiapas":
+      return "Chis.";
+      break;
+      case "Chihuahua":
+      return "Chih.";
+      break;
+      case "Ciudad de México":
+      return "CDMX.";
+      break;
+      case "Durango":
+      return "Dgo.";
+      break;
+      case "Guanajuato":
+      return "Gto.";
+      break;
+      case "Guerrero":
+      return "Gro.";
+      break;
+      case "Hidalgo":
+      return "Hgo.";
+      break;
+      case "Jalisco":
+      return "Jal.";
+      break;
+      case "México":
+      return "Mex.";
+      break;
+      case "Michoacán de Ocampo":
+      return "Mich.";
+      break;
+      case "Morelos":
+      return "Mor.";
+      break;
+      case "Nayarit":
+      return "Nay.";
+      break;
+      case "Nuevo León":
+      return "NL.";
+      break;
+      case "Oaxaca":
+      return "Oax.";
+      break;
+      case "Puebla":
+      return "Pue.";
+      break;
+      case "Querétaro":
+      return "Qro.";
+      break;
+      case "Quintana Roo":
+      return "Q. Roo.";
+      break;
+      case "San Luis Potosí":
+      return "SLP.";
+      break;
+      case "Sinaloa":
+      return "Sin.";
+      break;
+      case "Sonora":
+      return "Son.";
+      break;
+      case "Tabasco":
+      return "Tab.";
+      break;
+      case "Tamaulipas":
+      return "Tamps.";
+      break;
+      case "Tlaxcala":
+      return "Tlax.";
+      break;
+      case "Veracruz de Ignacio de la Llave":
+      return "Ver.";
+      break;
+      case "Yucatán":
+      return "Yuc.";
+      break;
+      case "Zacatecas":
+      return "Zac.";
+      break;
+      case "Extranjera":
+      return "Ext.";
+      break;
+
+    }
+  }
+
+  function regresa_estados_unidos(){
+    return index_estados;
+  }
+
+  function sortFunction(a, b) {
+    return b.numero - a.numero;
+  }
+
+  function commaSeparateNumber(x){
+    var parts = x.toString().split(".");parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");
+    return parts.join(".");
+  }
+
+  function gen(props){
+    var chart = c3.generate({
+      bindto: '.info',
+      padding: {
+        top: 10,
+        left: 30,
+        right: 10
+      },
+      data: {
+        x: 'Entidad',
+        columns: [
+          estados[0],
+          props,
+          busqueda_mexico()
+        ]
+      },
+      tooltip: {
+        format: {
+          title: function (d) {return d.name;},
+          value: function(value) {
+            return d3.format(",.1f")(value)
+          }
+        }
+      },
+      axis: {
+        x: {
+          type: 'timeseries',
+          tick: {
+            rotate:-90,
+            format: function (x) { return x.getFullYear(); }
+          },
+          height:40
+        },
+        y : {
+          tick: {
+            format: d3.format(".0f")
+          }
+        }
+      },
+      color: {
+        pattern: ['#00AEEF', '#f00']
+      },
+      size: {
+        width: 260,
+        height: 200
+      },
+      legend: {
+        show: false
+      },
+      grid: {
+        x: {
+          show: false
+        },
+        y: {
+          show: true
+        }
+      }
+
+    });
+  }
+
+  function busqueda_estado(cadena){
+    for(var i=0;i<estados.length;i++)
+    {
+      if(estados[i][0] == cadena)
+      {
+        if(estados[i][1] == "ND") return 0;
+        return parseFloat(estados[i][1]);
+      }
+    }
+  }
+
+  function busqueda_indice(cadena) {
+    for (var i = 0; i < estados.length; i++) {
+      if (estados[i][0] == cadena) {
+        return parseFloat(i);
+      }
+    }
+  }
+
+  function busqueda_mexico() {
+    var arrray=[];
+    for (var i = 0; i < estados.length; i++) {
+      if (estados[i][0] == "Estados Unidos Mexicanos") {
+        for(var j=0;j< estados[i].length;j++)
+        {
+          arrray.push(estados[i][j])
+        }
+      }
+    }
+    return arrray;
+  }
+
+  function busqueda_estado_posicion(cadena,posicion){
+    for(var i=0;i<estados.length;i++)
+    {
+      if(estados[i][0] == cadena)
+      {
+        if("ND" == estados[i][posicion]) return 0;
+        return parseFloat(estados[i][posicion]);
+      }
+    }
+  }
+
+  function busqueda_anio(cadena){
+    for(var i=0;i<estados[0].length;i++){
+      if(estados[0][i] == cadena)
+      {
+        return i;
+      }
+    }
+  }
+
+  L.tileLayer('http://{s}.google.com/vt/?hl=es&x={x}&y={y}&z={z}&s={s}&apistyle=s.t%3A5|p.l%3A53%2Cs.t%3A1314|p.v%3Aoff%2Cp.s%3A-100%2Cs.t%3A3|p.v%3Aon%2Cs.t%3A2|p.v%3Aoff%2Cs.t%3A4|p.v%3Aoff%2Cs.t%3A3|s.e%3Ag.f|p.w%3A1|p.l%3A100%2Cs.t%3A18|p.v%3Aoff%2Cs.t%3A49|s.e%3Ag.s|p.v%3Aon|p.s%3A-19|p.l%3A24%2Cs.t%3A50|s.e%3Ag.s|p.v%3Aon|p.l%3A15&style=47,37', {
+    subdomains:['mt0', 'mt1', 'mt2', 'mt3'],
+    maxZoom: 14,
+    minZomm:5,
+    attribution: '&copy <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> &copy <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+    id: 'mapbox.light',
+  }).addTo(map);
+
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
+    map.dragging.disable();
+  }
+
+  var info = L.control();
+  info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'infos hide');
+    this.update();
+    return this._div;
+  };
+
+  info.update = function (props) {
+    $('.infos').removeClass('hide');
+    $('.info2').removeClass('hide');
+    if(props != undefined){
+      this._div.innerHTML='<div><h5 style="font-weight:bold">' + props.nom_ent +'</h5><br><div style="height:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado(props.nom_ent)/*.toFixed(1)props.density*/ + '</b><b>(año)</b><p style="position: relative; top:-31px; left: 13%;" class="crop">'+titulo_des_graf+'</p></div></div><div class="info"></div>';
+
+      gen(estados[busqueda_indice(props.nom_ent)]);
+      $(".crop").dotdotdot();
+    }
+  };
+
+  info.addTo(map);
+
+  function getColo(d) {
+    return d >= 100 ? '#004b67' :
+    d > 50  ? '#007dab' :
+    d > 20  ? '#01baff' :
+    '#eff3ff';
+  }
+
+  function getColoR(number){
+    return brew.getColorInRange(number);
+  }
+
+  function style(feature) {
+    var res = String(getColoR(busqueda_estado(feature.properties.nom_ent))).split(",");
+    //console.log(res,'hhhh',"c"+res[1]);
+    return {
+      weight: 0.5,
+      opacity: 1,
+      color: '#000',
+      dashArray: '1',
+      fillOpacity: 1,
+      fillColor: getColoR(busqueda_estado(feature.properties.nom_ent)),
+      className: "c"+res[1]
+    };
+  }
+
+  function highlightFeature(e) {
+    if(locked == false){
+      var layer = e.target;
+      layer.setStyle({
+        weight: 2,
+        color: '#ccc',
+        dashArray: '',
+        fillOpacity: 0.7
+      });
+      if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+      }
+      info.update(layer.feature.properties);
+    }
+  }
+
+  function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+    info.update();
+  }
+
+  function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+  }
+
+  function onEachFeature(feature, layer) {
+    layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+      mousedown: function(e){
+        if (locked == true) {
+          locked = false;
+          (function ($) {
+            $(".info2").css("border","none");
+            $(".infos").css("border","none");
+          }(jQuery));
+        }
+        else {
+          locked = true;
+          (function ($) {
+            $(".info2").css("border-bottom","5px solid rgb(107, 174, 214)");
+            $(".info2").css("border-left","5px solid rgb(107, 174, 214)");
+            $(".info2").css("border-right","5px solid rgb(107, 174, 214)");
+            $(".infos").css("border-top","5px solid rgb(107, 174, 214)");
+            $(".infos").css("border-left","5px solid rgb(107, 174, 214)");
+            $(".infos").css("border-right","5px solid rgb(107, 174, 214)");
+          }(jQuery));
+        }
+      },
+    });
+  }
+
+  function highlightFromLegend(e){
+    (function ($) {
+      $("svg path."+e).addClass("highlighted");
+      var r=$("svg path."+e);
+      for(var i=0;i<r.length;i++)
+      {
+        r[i].classList.add("highlighted");
+      }
+    }(jQuery));
+  }
+
+  function clearHighlight() {
+    (function ($){
+      $("path").removeClass("highlighted");
+      var r=$("path");
+      for(var i=0;i<r.length;i++){
+        r[i].classList.remove("highlighted");
+      }
+    }(jQuery));
+  }
+
+  for (var i = 0; i < statesData.features.length; i++){
+    if (statesData.features[i].properties.nom_ent == null) continue;
+    values.push(busqueda_estado(statesData.features[i].properties.nom_ent));
+  }
+
+  console.log(values);
+
+  brew.setSeries(values);
+  brew.setNumClasses(3);
+  brew.setColorCode("Blues");
+  brew.classify('jenks');
+  var alfr=brew.getBreaks();
+  var brea =[];
+  for(var ii=0;ii<alfr.length;ii++){
+    if(alfr[ii] != -1){
+      brea.push(alfr[ii]);
+    }
+  }
+
+  geojson = L.geoJson(statesData, {
+    style: style,
+    onEachFeature: onEachFeature
+  }).addTo(map);
+
+  map.attributionControl.addAttribution('');
+
+  var legend = L.control();
+
+  legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info2 legend hide'),
+    grades = brew.getBreaks(),//[0, 20, 50, 100],
+    labels = [],
+    from, to;
+    for (var i = 0; i < grades.length-1; i++) {
+      from = grades[i];
+      to = grades[i + 1];
+      var res=String(getColoR(from)).split(",");
+      //console.log(from,from+1,res,grades);
+      labels.push(
+        '<div style="float:left; text-align: center;"><i class="leyenda" onmouseover="highlightFromLegend(\'c'+ res[1] +'\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoR(from) + '"></i><br>' +
+        from.toFixed(2) + (to.toFixed(2) ? '&ndash;' + to.toFixed(2) : '+')+'</div>');
+      }
+      div.innerHTML = labels.join('');
+      return div;
+    };
+    legend.addTo(map);
+
+    function put_anios(){
+      arrray_anios = [];
+      var cadena='';
+      anio_mas_actual='';
+
+      for(var i = 1; i < estados[0].length; i++){
+        if(i == 1){
+          anio_mas_actual = 'anio_'+i;
+          cadena = '<a id="anio_'+i+'" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\''+estados[0][i]+'\','+i+')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">'+estados[0][i].split('-')[0]+'</a>'+cadena;
+          arrray_anios.push(estados[0][i].split('-')[0]);
+        }
+        else if(i <= estados[0].length-1){
+          cadena='<a id="anio_'+i+'" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\''+estados[0][i]+'\','+i+')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">'+estados[0][i].split('-')[0]+'</a>'+cadena;
+          arrray_anios.push(estados[0][i].split('-')[0]);
+        }
+      }
+
+      if(cadena !=  ''){
+        cadena='<div class="col s12"><a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;cursor:none;float: left;padding-bottom: 0;padding-left: 8px;margin-top:6px;">Selecciona un año</a></div>'+'<div class="col s12 l12"><div class="owl-carousel owl-theme">'+cadena+'</div></div>';
+        //  cadena = cadena +'<div class="owl-carousel">'+cadena+'</div>';
+
+        $('#anios').html(cadena);
+        $('#'+anio_mas_actual).trigger( "click" );
+      }
+      else{
+        for (var i = 0; i < estados.length; i++){
+          if(i == 0){
+            estados[i][1] =  '2017-01-01';
+          }
+          else{
+            estados[i][1] = 1;
+          }
+        }
+
+        cambio_anio('2017-01-01',44);
+      }
+
+      $('.numero').html(arrray_anios[0]);
+
+      var array_Graficas = atributos.Grafica;
+
+      var g;
+      var index;
+      for(g = 0; g < array_Graficas.length; g++){
+        index = array_Graficas[g]['Seccion_gra'].indexOf('T');
+        console.log('index iindexindeixnidniedniendiendiednie');
+        console.log(index);
+        if (array_Graficas[g].Seccion_gra == 'T'){
+          if (array_Graficas[g].Clave_gra == 0){
+            $('#tabla_nacional').hide();
+            $('#botonera_nacional').hide();
+            $('#indicador-grafica').hide();
+          }
+          else if(array_Graficas[g].Clave_gra == 1){
+            console.log(array_Graficas[g].Descrip_gra);
+            datosGrafica(arrray_anios[0]);
+          }
+          else if(array_Graficas[g].Clave_gra == 2){
+            console.log(array_Graficas[g].Descrip_gra);
+            $('#chart2').show();
+            datosGrafica(arrray_anios[0]);
+          }
+          else if(array_Graficas[g].Clave_gra == 3){
+            console.log(array_Graficas[g].Descrip_gra);
+            datosGrafica(arrray_anios[0]);
+          }
+          else if(array_Graficas[g].Clave_gra == 4){
+            console.log(array_Graficas[g].Descrip_gra);
+            datosGrafica(arrray_anios[0]);
+          }
+          else if(array_Graficas[g].Clave_gra == 5){
+            console.log(array_Graficas[g].Descrip_gra);
+            datosGrafica(arrray_anios[0]);
+          }
+          else if(array_Graficas[g].Clave_gra == 7){
+            console.log(array_Graficas[g].Descrip_gra);
+            datosGrafica(arrray_anios[0]);
+          }
+        }
+      }
+
+      var contaAnios = arrray_anios.length - 1;
+
+      $('.owl-carousel').owlCarousel({
+        loop:false,
+        rtl:false,
+        margin:10,
+        rewind:false,
+        startPosition: contaAnios,
+        nav:true,
+        navText:['< Años anteriores','Años posteriores >'],
+        responsive:{
+          0:{
+            items:3
+          },
+          600:{
+            items:5
+          },
+          1000:{
+            items:7
+          }
+        }
+      });
+    }//fin funcion
+
+    function cambio_grafica(){
+      $('#ver_tabla').removeClass('inactive_anio');
+      $('#ver_tabla').addClass('active_anio');
+      $('#ver_grafica').removeClass('active_anio');
+      $('#ver_grafica').addClass('inactive_anio');
+      $('#indicador-grafica').hide();
+      $('#indicador-panel').show();
+    }
+
+    function cambio_tabla(){
+      $('#ver_grafica').removeClass('inactive_anio');
+      $('#ver_grafica').addClass('active_anio');
+      $('#ver_tabla').removeClass('active_anio');
+      $('#ver_tabla').addClass('inactive_anio');
+
+      $('#mapas_hide').show();
+      $('#indicador-grafica').show();
+      $('#indicador-panel').hide();
+    }
+
+    function cambio_grafica_nacional(){
+      $('#ver_tabla_nacional').removeClass('inactive_anio');
+      $('#ver_tabla_nacional').addClass('active_anio');
+      $('#ver_grafica_nacional').removeClass('active_anio');
+      $('#ver_grafica_nacional').addClass('inactive_anio');
+
+      $('#mapas_hide').hide();
+      $('#tabla_nacional').hide();
+      $('#indicador-panel').show();
+    }
+
+    function cambio_tabla_nacional(){
+      $('#ver_grafica_nacional').removeClass('inactive_anio');
+      $('#ver_grafica_nacional').addClass('active_anio');
+      $('#ver_tabla_nacional').removeClass('active_anio');
+      $('#ver_tabla_nacional').addClass('inactive_anio');
+
+      $('#mapas_hide').show();
+      $('#tabla_nacional').hide();
+      $('#indicador-panel').hide();
+    }
+
+    //cosas por acomodar las deja aqui por el tiempo :)
+
+    function cambio_anio(cadena, i){
+      var anio_buscar = $('#opciones_anio').val();
+      var posi = busqueda_anio(cadena);
+      var anioo = cadena.split('-');
+
+      $('.infos').remove();
+      $('.info2').remove();
+
+      for(var j=1;j<=40;j++){
+        $('#anio_'+j).removeClass('active_anio');
+        $('#anio_'+j).addClass('inactive_anio');
+      }
+
+      $('#anio_'+i).removeClass('inactive_anio');
+      $('#anio_'+i).addClass('active_anio');
+
+      map.removeLayer(geojson);
+
+      if(codigoDg == "NEM  " && ban_mun == true){
+        var seleccionado = $('#sel_estados').val();
+        $('#sel_municipios').html(get_sel_municipal(seleccionado));
+        jQuery.each( coor_estado, function( i, val ){
+          if(seleccionado == val.estado){
+            map.setView([val.lat, val.long], val.zoom-1);
+            mun_mapa(seleccionado,anioo,posi);
+          }
+        });
+      }//fin if
+      else{
+        map.setView([24.8, -100], 5);
+
+        locked =false;
+
+        var info = L.control();
+        info.onAdd = function (map) {
+          this._div = L.DomUtil.create('div', 'infos hide');
+          this.update();
+          return this._div;
+        };
+
+        info.update = function (props) {
+          $('.infos').removeClass('hide');
+          $('.info2').removeClass('hide');
+          if(props != undefined){
+            this._div.innerHTML='<div><h5 style="font-weight:bold">' + props.nom_ent +'</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado_posicion(props.nom_ent,posi).toFixed(1) + '</b><br/><b style="padding-left:20px;color:#999999;">('+anioo[0]+')</b><p style="position: relative; top:-31px; left: 13%;" class="crop">'+titulo_des_graf+'</p></p></div><div class="info"></div>';
+
+            gen(estados[busqueda_indice(props.nom_ent)]);
+            $(".crop").dotdotdot();
+          }
+        };
+        info.addTo(map);
+
+        function getColo(d) {
+          return d >= 100 ? '#004b67' :
+          d > 50  ? '#007dab' :
+          d > 20  ? '#01baff' :
+          '#eff3ff';
+        }
+
+        function getColoR(number){
+          return brew.getColorInRange(number);
+        }
+
+        function style(feature) {
+          var res = String(getColoR(busqueda_estado_posicion(feature.properties.nom_ent,posi))).split(",");
+          return {
+            weight: 0.5,
+            opacity: 1,
+            color: '#000',
+            dashArray: '1',
+            fillOpacity: 1,
+            fillColor: getColoR(busqueda_estado_posicion(feature.properties.nom_ent,posi)),
+            className: "c"+res[1]
+          };
+        }
+
+        function highlightFeature(e) {
+          if(locked == false)
+          {
+            var layer = e.target;
+            layer.setStyle({
+              weight: 2,
+              color: '#ccc',
+              dashArray: '',
+              fillOpacity: 1
+            });
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+              layer.bringToFront();
+            }
+            info.update(layer.feature.properties);
+          }
+        }
+
+        function resetHighlight(e) {
+          geojson.resetStyle(e.target);
+          info.update();
+        }
+
+        function zoomToFeature(e) {
+          map.fitBounds(e.target.getBounds());
+        }
+
+        function onEachFeature(feature, layer){
+          layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            mousedown: function(e)
+            {
+              if (locked == true) {
+                locked = false;
+                (function ($) {
+                  $(".info2").css("border","none");
+                  $(".infos").css("border","none");
+                }(jQuery));
+              }
+              else {
+                locked = true;
+                (function ($) {
+                  $(".info2").css("border-bottom","5px solid rgb(107, 174, 214)");
+                  $(".info2").css("border-left","5px solid rgb(107, 174, 214)");
+                  $(".info2").css("border-right","5px solid rgb(107, 174, 214)");
+                  $(".infos").css("border-top","5px solid rgb(107, 174, 214)");
+                  $(".infos").css("border-left","5px solid rgb(107, 174, 214)");
+                  $(".infos").css("border-right","5px solid rgb(107, 174, 214)");
+                }(jQuery));
+              }
+            },
+          });
+        }
+
+        function highlightFromLegend(e){
+          (function ($) {
+            $("svg path."+e).addClass("highlighted");
+            var r=$("svg path."+e);
+            for(var i=0;i<r.length;i++)
+            {
+              r[i].classList.add("highlighted");
+            }
+          }(jQuery));
+        }
+
+        function clearHighlight() {
+          (function ($) {
+
+            $("path").removeClass("highlighted");
+            var r=$("path");
+            for(var i=0;i<r.length;i++)
+            {
+              r[i].classList.remove("highlighted");
+            }
+          }(jQuery));
+        }
+
+        var brew = new classyBrew();
+        var values = [];
+        var values2 = [];
+        for (var i = 0; i < statesData.features.length; i++)
+        {
+          if (statesData.features[i].properties.nom_ent == null) continue;
+          values.push(busqueda_estado_posicion(statesData.features[i].properties.nom_ent,posi));
+        }
+
+        brew.setSeries(values);
+        brew.setNumClasses(3);
+        brew.setColorCode("Blues");
+        brew.classify('jenks');
+        var alfr=brew.getBreaks();
+        var brea =[];
+        for(var ii=0;ii<alfr.length;ii++)
+        {
+          if(alfr[ii] != -1)
+          {
+            brea.push(alfr[ii]);
+          }
+        }
+
+        geojson = L.geoJson(statesData, {
+          style: style,
+          onEachFeature: onEachFeature
+        }).addTo(map);
+
+        map.attributionControl.addAttribution('');
+        var legend = L.control();
+        legend.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info2 legend hide'),
+          grades = brew.getBreaks(),//[0, 20, 50, 100],
+          labels = [],
+          from, to;
+          for (var i = 0; i < grades.length-1; i++) {
+            from = grades[i];
+            to = grades[i + 1];
+            var res=String(getColoR(from)).split(",");
+            //console.log(from,from+1,res,grades);
+            labels.push(
+              '<div style="float:left; text-align: center;"><i class="leyenda" onmouseover="highlightFromLegend(\'c'+ res[1] +'\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoR(from) + '"></i><br>' +
+              from.toFixed(2) + (to.toFixed(2) ? '&ndash;' + to.toFixed(2) : '+')+'</div>');
+            }
+            div.innerHTML = labels.join('');
+            return div;
+          };
+          legend.addTo(map);
+
+          function busqueda_indice(cadena) {
+            for (var i = 0; i < estados.length; i++) {
+              if (estados[i][0] == cadena) {
+                return parseFloat(i);
+              }
+            }
+          }
+          console.log(estados);
+        }
+      }//fin cambio anio
+
+      function isScrolledIntoView(elem){
+
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + $(elem).height();
+
+        return (elemTop > docViewTop);
+      }
+
+      $( window ).scroll(function(){
+        if ($(window).scrollTop() == 0){
+          $("#sti").fadeOut(200);
+          $("#esconder").fadeIn(200);
+        }
+        if(!isScrolledIntoView($("#parrafo"))){
+          $("#esconder").fadeOut(200);
+          $("#sti").fadeIn(200);
+        }
+      });
+
+      function esconder() {
+        $('#cam_bus').hide();
+        $('#buscar').show();
+        lupa = false;
+      }
+
+      function armaMetadatos(){
+        var tablaMeta =  '';
+        var metadatosArr =  getMetadatos(vars);
+
+        tablaMeta =  tablaMeta + ' <table class="bordered"><tbody>'+
+        '<tr><th>Objetivo</th><td>'+metadatosArr.Descrip_obj+'</td></tr>'+
+        '<tr><th>Meta</th><td>'+metadatosArr.Descrip_met+'</td></tr>'+
+        '<tr><th>Nombre del Indicador</th><td>'+metadatosArr.Descrip_ind+'</td></tr>'+
+        '<tr><th>Definición</th><td><p>'+metadatosArr.Definicion_ft+'</p></td></tr>'+
+        '<tr><th>Tipo de Indicador</th><td>'+metadatosArr.DesTipoInd_ft+'</td></tr>'+
+        '<tr><th>Algoritmo</th><td><div class="imgAlgoritmo"><img src="img/algoritmos/'+metadatosArr.Algoritmo_ft+'.gif" alt="Algoritmo '+metadatosArr.Algoritmo_ft+'" /></div></td></tr>'+
+        '<tr><th>Descripción narrativa del cálculo del indicador</th><td>'+metadatosArr.DescripCal_ft+'</td></tr>'+
+        '<tr><th>Unidad de medida</th><td>'+metadatosArr.Descrip_uni+'</td></tr>'+
+        '<tr><th>Cobertura geográfica</th><td>'+metadatosArr.Descrip_fdg+'</td></tr>'+
+        '<tr><th>Referencia temporal</th><td>'+metadatosArr.CobTem_ft+'</td></tr>'+
+        '<tr><th>Oportunidad</th><td>'+metadatosArr.Oportunidad_ft+'</td></tr>'+
+        '<tr><th>Periodicidad del indicador</th><td>'+metadatosArr.Descrip_per+'</td></tr>'+
+        '<tr><th>Fuente generadora de la información estadística utilizada para el cálculo del indicador</th><td>';
+
+        for (var i = 0; i < metadatosArr.Fuente.length; i++) {
+          tablaMeta = tablaMeta  +  metadatosArr.Fuente[i].Descrip_fue + '<br>';
+        }
+
+        tablaMeta = tablaMeta + '</td></tr>'+
+        '<tr><th>Fecha de actualización del indicador</th><td>'+metadatosArr.FechaAct_atr+'</td></tr>'+
+        '<tr><th>Fecha de próxima actualización del indicador</th><td>'+metadatosArr.FecProxAct_eic+'</td></tr>'+
+        '<tr><th>Unidad del Estado (UE) responsable de calcular el indicador</th><td>';
+
+        for (var i = 0; i < metadatosArr.InsResp.length; i++) {
+          tablaMeta = tablaMeta  +  metadatosArr.InsResp[i].Descrip_ins + '<br>';
+        }
+
+
+        tablaMeta = tablaMeta + '</td></tr>'+
+        '<tr><th>Importancia y utilidad del indicador</th><td>'+metadatosArr.Importancia_ft+'</td></tr>'+
+        '<tr><th>Referencia nacional y/o internacional</th><td>';
+
+        for (var i = 0; i < metadatosArr.RefInt.length; i++) {
+          tablaMeta = tablaMeta  +  nl2br(metadatosArr.RefInt[i].Descrip_ri) + '<br>';
+        }
+
+        tablaMeta = tablaMeta + '</td></tr>'+
+        '<tr><th>Observaciones</th><td>'+nl2br(metadatosArr.Observacion_ft)+'</td></tr>'+
+        '<tr><th>Contacto</th><td>';
+
+        for (var i = 0; i < metadatosArr.Contacto.length; i++) {
+          tablaMeta = tablaMeta  +  metadatosArr.Contacto[i].Nombre_con + '<br>' + metadatosArr.Contacto[i].Puesto_con + '<br><b>Dirección:</b> ' + nl2br(metadatosArr.Contacto[i].Domicilio_con) +'<br> <b>Teléfono: </b>' + metadatosArr.Contacto[i].Telefono_con + '<br><b>Correo: </b>' + metadatosArr.Contacto[i].Correo_con + '<br  /><br  />';
+        }
+
+        tablaMeta = tablaMeta +  '</td></tr></tbody></table></p>';
+
+        $('#metadatosApi').html(tablaMeta);
+      }
+
+      function nl2br(str, is_xhtml) {
+        var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+        return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+      }
+
+      function colorBtn(objetivo){
+        switch(objetivo){
+          case "1.":
+          $('.headerObje').addClass('id_1');
+          $('#sti').addClass('id_1');
+          $('.indicadores-taps').removeClass('id_1');
+          $('.indicadores-taps-active').addClass('id_1');
+          $('.indicadores-taps-active').css('background-color', '#D90A38 !important');
+          break;
+          case "2.":
+          $('.headerObje').addClass('id_2');
+          $('#sti').addClass('id_2');
+          $('.indicadores-taps').removeClass('id_2');
+          $('.indicadores-taps-active').addClass('id_2');
+          $('.indicadores-taps-active').css('background-color','#D8AE2B !important');
+          break;
+          case "3.":
+          $('.headerObje').addClass('id_3');
+          $('#sti').addClass('id_3');
+          $('.indicadores-taps').removeClass('id_3');
+          $('.indicadores-taps-active').addClass('id_3');
+          $('.indicadores-taps-active').css('background-color','#299E32 !important');
+          break;
+          case "4.":
+          $('.headerObje').addClass('id_4');
+          $('#sti').addClass('id_4');
+          $('.indicadores-taps').removeClass('id_4');
+          $('.indicadores-taps-active').addClass('id_4');
+          $('.indicadores-taps-active').css('background-color','#BD052D !important');
+          break;
+          case "5.":
+          $('.headerObje').addClass('id_5');
+          $('#sti').addClass('id_5');
+          $('.indicadores-taps').removeClass('id_5');
+          $('.indicadores-taps-active').addClass('id_5');
+          $('.indicadores-taps-active').css('background-color','#E23429 !important');
+          break;
+          case "6.":
+          $('.headerObje').addClass('id_6');
+          $('#sti').addClass('id_6');
+          $('.indicadores-taps').removeClass('id_6');
+          $('.indicadores-taps-active').addClass('id_6');
+          $('.indicadores-taps-active').css('background-color','#56BCE3 !important');
+          break;
+          case "7.":
+          $('.headerObje').addClass('id_7');
+          $('#sti').addClass('id_7');
+          $('.indicadores-taps').removeClass('id_7');
+          $('.indicadores-taps-active').addClass('id_7');
+          $('.indicadores-taps-active').css('background-color','#F2CB02 !important');
+          break;
+          case "8.":
+          $('.headerObje').addClass('id_8');
+          $('#sti').addClass('id_8');
+          $('.indicadores-taps').removeClass('id_8');
+          $('.indicadores-taps-active').addClass('id_8');
+          $('.indicadores-taps-active').css('background-color','#9D063D !important');
+          break;
+          case "9.":
+          $('.headerObje').addClass('id_9');
+          $('#sti').addClass('id_9');
+          $('.indicadores-taps').removeClass('id_9');
+          $('.indicadores-taps-active').addClass('id_9');
+          $('.indicadores-taps-active').css('background-color','#E86A26 !important');
+          break;
+          case "10.":
+          $('.headerObje').addClass('id_10');
+          $('#sti').addClass('id_10');
+          $('.indicadores-taps').removeClass('id_10');
+          $('.indicadores-taps-active').addClass('id_10');
+          $('.indicadores-taps-active').css('background-color','#D4015E !important');
+          break;
+          case "11.":
+          $('.headerObje').addClass('id_11');
+          $('#sti').addClass('id_11');
+          $('.indicadores-taps').removeClass('id_11');
+          $('.indicadores-taps-active').addClass('id_11');
+          $('.indicadores-taps-active').css('background-color','#F0A612 !important');
+          break;
+          case "12.":
+          $('.headerObje').addClass('id_12');
+          $('#sti').addClass('id_12');
+          $('.indicadores-taps').removeClass('id_12');
+          $('.indicadores-taps-active').addClass('id_12');
+          $('.indicadores-taps-active').css('background-color','#B99319 !important');
+          break;
+          case "13.":
+          $('.headerObje').addClass('id_13');
+          $('#sti').addClass('id_13');
+          $('.indicadores-taps').removeClass('id_13');
+          $('.indicadores-taps-active').addClass('id_13');
+          $('.indicadores-taps-active').css('background-color','#2D7D3B !important');
+          break;
+          case "14.":
+          $('.headerObje').addClass('id_14');
+          $('#sti').addClass('id_14');
+          $('.indicadores-taps').removeClass('id_14');
+          $('.indicadores-taps-active').addClass('id_14');
+          $('.indicadores-taps-active').css('background-color','#4B95CF !important');
+          break;
+          case "15.":
+          $('.headerObje').addClass('id_15');
+          $('#sti').addClass('id_15');
+          $('.indicadores-taps').removeClass('id_15');
+          $('.indicadores-taps-active').addClass('id_15');
+          $('.indicadores-taps-active').css('background-color','#37B72F !important');
+          break;
+          case "16.":
+          $('.headerObje').addClass('id_16');
+          $('#sti').addClass('id_16');
+          $('.indicadores-taps').removeClass('id_16');
+          $('.indicadores-taps-active').addClass('id_16');
+          $('.indicadores-taps-active').css('background-color','#336198 !important');
+          break;
+          case "17.":
+          $('.headerObje').addClass('id_17');
+          $('#sti').addClass('id_17');
+          $('.indicadores-taps').removeClass('id_17');
+          $('.indicadores-taps-active').addClass('id_17');
+          $('.indicadores-taps-active').css('background-color','#2B3E63 !important');
+          break;
+        }
+      }
+
+      function exportTableToCSV($table, filename) {
+        var $rows = $table.find('tr:has(td)'),
+        tmpColDelim = String.fromCharCode(11), // vertical tab character
+        tmpRowDelim = String.fromCharCode(0), // null character
+        // actual delimiter characters for CSV format
+        colDelim = '","',
+        rowDelim = '"\r\n"',
+
+        // Grab text from table into CSV formatted string
+        csv = '"' + $rows.map(function (i, row) {
+          var $row = $(row),
+          $cols = $row.find('td');
+
+          return $cols.map(function (j, col) {
+            var $col = $(col),
+            text = $col.text();
+
+            return text.replace(/"/g, '""'); // escape double quotes
+
+          }).get().join(tmpColDelim);
+
+        }).get().join(tmpRowDelim)
+        .split(tmpRowDelim).join(rowDelim)
+        .split(tmpColDelim).join(colDelim) + '"';
+
+        // Deliberate 'false', see comment below
+        if (false && window.navigator.msSaveBlob) {
+
+          var blob = new Blob([decodeURIComponent(csv)], {
+            type: 'text/csv;charset=utf8'
+          });
+
+          window.navigator.msSaveBlob(blob, filename);
+        }
+        else if (window.Blob && window.URL) {
+          var blob = new Blob([csv], { type: 'text/csv;charset=utf8' });
+          var csvUrl = URL.createObjectURL(blob);
+
+          $(this)
+          .attr({
+            'download': filename,
+            'href': csvUrl
+          });
+        }
+        else {
+          var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+          $(this)
+          .attr({
+            'download': filename,
+            'href': csvData,
+            'target': '_blank'
+          });
+        }
+      }
+
+      function deselect(e) {
+        $('.pop').slideFadeToggle(function() {
+          e.removeClass('selected');
+        });
+      }
+
+      function buscar(busqueda){
+        window.location.replace("busqueda.html?busqueda=" + busqueda);
+      }
+
+      function exportTableToXLS($table1, filename1) {
+        var $rows1 = $table1.find('tr:has(td)'),
+        tmpColDelim1 = String.fromCharCode(11), // vertical tab character
+        tmpRowDelim1 = String.fromCharCode(0), // null character
+
+        // actual delimiter characters for CSV format
+        colDelim1 = '","',
+        rowDelim1 = '"\r\n"',
+
+        // Grab text from table into CSV formatted string
+        xls = '"' + $rows1.map(function (i, row) {
+          var $row1 = $(row),
+          $cols1 = $row1.find('td');
+
+          return $cols1.map(function (j, col) {
+            var $col1 = $(col),
+            text1 = $col1.text();
+            return text1.replace(/"/g, '""'); // escape double quotes
+          }).get().join(tmpColDelim1);
+        }).get().join(tmpRowDelim1)
+        .split(tmpRowDelim1).join(rowDelim1)
+        .split(tmpColDelim1).join(colDelim1) + '"';
+
+        // Deliberate 'false', see comment below
+        if (false && window.navigator.msSaveBlob) {
+          var blob1 = new Blob([decodeURIComponent($table1)], {
+            type: 'text/plain;charset=utf8'
+          });
+          window.navigator.msSaveBlob(blob1, filename1);
+        }
+        else if (window.Blob && window.URL) {
+          // HTML5 Blob
+          var blob1 = new Blob([xls], { type: 'text/plain;charset=utf8' });
+          var xlsUrl = URL.createObjectURL(blob1);
+
+          $(this)
+          .attr({
+            'download': filename1,
+            'href': xlsUrl
+          });
+        } else {
+          // Data URI
+          var xlsData = 'data:application/vnd.ms-excel;charset=utf-8,' + encodeURIComponent(xls);
+
+          $(this)
+          .attr({
+            'download': filename1,
+            'href': xlsData,
+            'target': '_blank'
+          });
+        }
+      }
+
+      //---------------------------------- codigo nuevo -----------/
+
+
+      function put_tabla_municipal(datos_brutos){
+        $('.tabla_completa').html(tablaCoS(datos_brutos.Series[0]));
+        $('.tabla_completa').css('overflow-y','scroll');
+        $('.tabla_completa').css('height','900px');
+      }
+
+      function put_grafica_municipal(anio){
+
+        var cl =  get_clave_estado($('#sel_estados').val());
+        var datos_brutos = get_estado_municipios(cl+'%',PCveInd);
+
+        arma_tabla_municipal(datos_brutos);
+        console.log(tabla_municipal);
+        datosGrafica_mun(anio);
+      }
+
+      var tabla_municipal = [];
+      function arma_tabla_municipal(d){
+        var temp = [];
+        tabla_municipal = [];
+        Descrip_ind = d.Descrip_ind;
+
+        temp.push('Entidad');
+        for (var i = 0; i < d.Series[0].Coberturas[0].ValorDato.length; i++) {
+          temp.push(d.Series[0].Coberturas[0].ValorDato[i].AADato_ser+'-01-01');
+        }
+
+        tabla_municipal.push(temp);
+
+        for (var i = 1; i < d.Series[0].Coberturas.length; i++) {
+          var temp = [];
+          var categories2 = [];
+          categories2.push(d.Series[0].Coberturas[i].Abrevia_cg);
+          temp.push(d.Series[0].Coberturas[i].Descrip_cg);
+          for (var j = 0; j < d.Series[0].Coberturas[i].ValorDato.length; j++) {
+            var dato_formato;
+            if(d.Series[0].Coberturas[i].ValorDato[j].Dato_Formato != '')
+            {
+              dato_formato = d.Series[0].Coberturas[i].ValorDato[j].Dato_Formato;
+            }
+            else {
+              dato_formato = 'null';
+            }
+            temp.push(dato_formato);
+          }
+          tabla_municipal.push(temp);
+        }
+      }
+
+      function datosGrafica_mun(year){
+        var array_Graficas = atributos.Grafica;
+        var indice = 0;
+        var serie = [];
+        var nuevos_estados_dobles = new Array();
+        var tabla_nueva = '';
+        var tabla_uno = '';
+
+        for (var i = 0; i < tabla_municipal[0].length; i++) {
+          if(tabla_municipal[0][i].includes(year)){
+            indice = i;
+          }
+        }
+
+
+        console.log(indice);
+
+        console.log(tabla_municipal[0].length);
+        tabla_nueva += '<thead><tr><th>Entidad Federativa</th>';
+        for (var i = 0; i < tabla_municipal.length; i++) {
+          if(i==0){
+            serie.push(Descrip_ind);
+          }
+          else{
+            if(i < tabla_municipal.length){
+              var unods = (tabla_municipal[i][indice] == 'ND') ? 'ND' : parseFloat(tabla_municipal[i][indice]);//.toFixed(1);
+
+              for(k=0; k < arrray_anios.length; k++){
+                tabla_nueva += '<th>'+ arrray_anios[k] +'</th>';
+              }
+
+              tabla_nueva += '</tr></thead>';
+              tabla_nueva += '<tbody class="tabla_uno"><tr><td>'+tabla_municipal[i][0]+'</td>';
+              tabla_nueva += '<td>' + unods + '</td></tr></tbody>';
+            }
+
+            if(tabla_municipal[i][indice] == 'ND'){
+              var numero =  0;
+            }
+            else{
+              var numero =  parseFloat(tabla_municipal[i][indice]);//.toFixed(1);
+            }
+
+
+            var valueToPush = {'numero':numero, 'estado':tabla_municipal[i][0], 'abrevia':abrevia_edo(tabla_municipal[i][0])};
+            nuevos_estados_dobles.push(valueToPush);
+
+            serie.push(parseFloat(tabla_municipal[i][indice]));
+          }
+        }
+
+        nuevos_estados_dobles.sort(sortFunction);
+
+        var categories = [];
+        var categories2 = [];
+        var series = [];
+
+        //separar el arreglo
+        series.push(Descrip_ind);
+        categories.push(Descrip_ind);
+
+        for (var i = 0; i < nuevos_estados_dobles.length; i++) {
+          if('Estados Unidos Mexicanos' == nuevos_estados_dobles[i].estado ){
+            index_estados = i;
+          }
+          categories[i] = nuevos_estados_dobles[i].estado;
+          categories2[i] = nuevos_estados_dobles[i].abrevia;
+
+          series.push(parseFloat(nuevos_estados_dobles[i].numero));
+        }
+
+        console.log(series);
+        console.log(categories);
+        console.log(nuevos_estados_dobles);
+        cat_global = categories;
+        chartBarras.load({
+          columns: [series],
+          categories: categories,
+          unload: [Descrip_ind],
+        });
+      }
+
+      var posi2;
+      function mun_mapa(e,anioo,posi){
+        $('.infos').remove();
+        $('.info2').remove();
+        map.removeLayer(geojson);
+        posi2 = posi;
+        //PCveInd indecacdor 118
+        var municipios = []; //arreglo con los valores de la llamada a la api
+        var geo_mun = [];
+        var features = [];
+        var valuesMunicipio = [];
+        var brew = new classyBrew();
+
+        //++sacar la clave del estado y sacar el indicador que se esta manejando
+        var cl =  get_clave_estado(e);
+        var datos_brutos = get_estado_municipios(cl+'%',PCveInd);
+        put_tabla_municipal(datos_brutos);
+        valorDato(datos_brutos);
+
+        for(var i = 0; i < municipio.features.length; i++){
+          if(e == municipio.features[i].properties.nom_ent){
+            features.push(municipio.features[i]);
+            if (municipio.features[i].properties.nom_mun == null) continue;
+
+            valuesMunicipio.push(busqueda_municipio(municipio.features[i].properties.nom_mun,posi));
+          }
+        }
+
+        geo_mun={'features':features,'type':"FeatureCollection"};
+
+        brew.setSeries(valuesMunicipio);
+        brew.setNumClasses(3);
+        brew.setColorCode("Blues");
+        brew.classify('jenks');
+        var alfr=brew.getBreaks();
+        var brea =[];
+        for(var ii=0;ii<alfr.length;ii++)
+        {
+          if(alfr[ii] != -1)
+          {
+            brea.push(alfr[ii]);
+          }
+        }
+
+        geojson = L.geoJson(geo_mun, {
+          style: style,
+          onEachFeature: onEachFeature
+        }).addTo(map);
+
+        map.attributionControl.addAttribution('');
+
+        var info = L.control();
+        info.onAdd = function (map) {
+          this._div = L.DomUtil.create('div', 'infos hide');
+          this.update();
+          return this._div;
+        };
+
+        info.update = function (props) {
+          //this._div = L.DomUtil.create('div', 'infos');
+          $('.infos').removeClass('hide');
+          $('.info2').removeClass('hide');
+          console.log(props);
+          if (props != undefined) {
+            this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_municipio(props.nom_mun,posi).toFixed(1)/*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">('+anioo[0]+')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >'+titulo_des_graf+'</p></div></div><div class="info"></div>';
+            gen(municipios[busqueda_indice(props.nom_mun)]);
+            $(".crop").dotdotdot();
+          }
+        }
+        info.addTo(map);
+
+        var legend = L.control();
+        legend.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info2 legend hide'),
+          grades = brew.getBreaks(),//[0, 20, 50, 100],
+          labels = [],
+          from, to;
+          for (var i = 0; i < grades.length - 1; i++) {
+            from = grades[i];
+            to = grades[i + 1];
+            var res = String(getColoR(from)).split(",");
+            //console.log(from, from + 1, res, grades);
+            labels.push(
+              '<div style="float:left; text-align: center;"><i class="leyenda" onmouseover="highlightFromLegend(\'c' + res[1] + '\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoR(from) + '"></i><br>' +
+              from.toFixed(2) + (to.toFixed(2) ? '&ndash;' + to.toFixed(2) : '+') + '</div>');
+            }
+            div.innerHTML = labels.join('');
+            return div;
+          };
+          legend.addTo(map);
+
+
+          function valorDato(data){
+            var temporal = [];
+            var Descrip_ind = data.Descrip_ind;
+
+            temporal.push('Municipio');
+            for (var j = 0; j < data.Series[0].Coberturas[0].ValorDato.length; j++) {
+              temporal.push(data.Series[0].Coberturas[0].ValorDato[j].AADato_ser+'-01-01');
+            }
+            municipios.push(temporal);
+            var imprime = false;
+
+              for (var i = 1; i < data.Series[0].Coberturas.length; i++) {
+                var temporal = [];
+                var categories2 = [];
+                categories2.push(data.Series[0].Coberturas[i].Abrevia_cg);
+                temporal.push(data.Series[0].Coberturas[i].Descrip_cg);
+
+              for (var j = 0; j < data.Series[0].Coberturas[i].ValorDato.length; j++) {
+                var dato_formato;
+                if(data.Series[0].Coberturas[i].ValorDato[j].Dato_Formato != '')
+                {
+                  dato_formato = data.Series[0].Coberturas[i].ValorDato[j].Dato_Formato;
+                }
+                else {
+                  dato_formato = 0;
+                }
+                temporal.push(dato_formato);
+              }
+              municipios.push(temporal);
+            }
+          }//fin funcion valorDato
+
+          function busqueda_municipio(cadena,posicion) {
+            //console.log("super log",cadena,estados);
+            for (var i = 0; i < municipios.length; i++) {
+              if (municipios[i][0] == cadena) {
+                //console.log(cadena,municipios[i][1],i);
+                return parseFloat(municipios[i][posicion]);
+              }
+            }
+          }
+
+          function getColoR(number){
+            return brew.getColorInRange(number);
+          }
+
+          function style(feature) {
+            var res = String(getColoR(busqueda_municipio(feature.properties.nom_mun,posi))).split(",");
+            //console.log(res, 'hhhh', "c" + res[1]);
+            //console.log("hola->",res[1]);
+            return {
+              weight: 0.5,
+              opacity: 1,
+              color: '#000',
+              dashArray: '1',
+              fillOpacity: 1,
+              // fillColor: getColoR(feature.properties.density),
+              fillColor: getColoR(busqueda_municipio(feature.properties.nom_mun,posi)),
+              className: "c" + res[1]
+            };
+          }
+
+          function highlightFeature(e) {
+            if(locked == false)
+            {
+              var layer = e.target;
+              layer.setStyle({
+                weight: 2,
+                color: '#ccc',
+                dashArray: '',
+                fillOpacity: 0.7
+              });
+              if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+              }
+              info.update(layer.feature.properties);
+            }
+          }
+
+          function resetHighlight(e) {
+            geojson.resetStyle(e.target);
+            info.update();
+          }
+
+          function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+          }
+
+          function onEachFeature(feature, layer){
+            layer.on({
+              mouseover: highlightFeature,
+              mouseout: resetHighlight,
+              mousedown: function(e)
+              {
+                if (locked == true) {
+                  locked = false;
+                  (function ($) {
+                    $(".info2").css("border","none");
+                    $(".infos").css("border","none");
+                  }(jQuery));
+                }
+                else {
+                  locked = true;
+                  (function ($) {
+                    $(".info2").css("border-bottom","5px solid rgb(107, 174, 214)");
+                    $(".info2").css("border-left","5px solid rgb(107, 174, 214)");
+                    $(".info2").css("border-right","5px solid rgb(107, 174, 214)");
+                    $(".infos").css("border-top","5px solid rgb(107, 174, 214)");
+                    $(".infos").css("border-left","5px solid rgb(107, 174, 214)");
+                    $(".infos").css("border-right","5px solid rgb(107, 174, 214)");
+                  }(jQuery));
+                }
+              },
+            });
+          }
+
+          function highlightFromLegend(e){
+            (function ($) {
+              $("svg path."+e).addClass("highlighted");
+              var r=$("svg path."+e);
+              for(var i=0;i<r.length;i++)
+              {
+                r[i].classList.add("highlighted");
+              }
+            }(jQuery));
+          }
+
+          function clearHighlight() {
+            (function ($) {
+
+              $("path").removeClass("highlighted");
+              var r=$("path");
+              for(var i=0;i<r.length;i++)
+              {
+                r[i].classList.remove("highlighted");
+              }
+            }(jQuery));
+          }
+
+          function busqueda_indice(cadena) {
+            for (var i = 0; i < municipios.length; i++) {
+              if (municipios[i][0] == cadena) {
+                return parseFloat(i);
+              }
+            }
+          }
+        }//fin mun
+
+        function sacar_lista_municipios(){
+          var esta_mun = [];
+          var new_esta = [];
+          var new_mun  = [];
+
+          var preba = [{estado:'aguas',municipios:[{nombre:'mun1'},{nombre:'mun2'},{nombre:'mun3'}]},{estado:'aguas negras',municipios:[{nombre:'mun1'},{nombre:'mun2'},{nombre:'mun3'}]},{estado:'aguas muy negras',municipios:[{nombre:'mun1'},{nombre:'mun2'},{nombre:'mun3'}]}]
+          console.log(dataLocal);
+          console.log(preba);
+
+
+          for (var i = 0; i < dataLocal.Series[0].Coberturas.length; i++) {
+            if(dataLocal.Series[0].Coberturas[i].ClaveCobGeo_cg < 1001){
+              console.log(dataLocal.Series[0].Coberturas[i].Descrip_cg);
+              var tem = { estado :  dataLocal.Series[0].Coberturas[i].Descrip_cg , municipios : [] };
+              esta_mun.push(tem);
+            }else{
+              var tem  =  {nombre : dataLocal.Series[0].Coberturas[i].Descrip_cg };
+              esta_mun[esta_mun.length-1].municipios.push(tem);
+            }
+          }
+          console.log(esta_mun);
+        }
+
+        function get_sel_municipal(e){
+          var mun_arry = get_muni_estado(e);
+          var options = '<option value"00" >Selecciona un Municipio</option>';
+          for (var i = 0; i < mun_arry.length; i++) {
+            options += '<option value"' + mun_arry[i].nombre + '" >' + mun_arry[i].nombre +'</option>'
+          }
+          return options;
+        }
+
+        function get_muni_estado(e){
+          var r ;
+          for (var i = 0; i < sel_municipal.length; i++) {
+            if(e == sel_municipal[i].estado){
+              r = sel_municipal[i].municipios;
+              break;
+            }
+          }
+          return r;
+        }
+
+        function get_estado_municipios(c,i){
+          var covertura = c+'%';
+          var resultado;
+          $.ajax({
+            type: 'POST',
+            url: "https://ods.org.mx/API/Valores/PorCobCla",
+            data:{"PCveInd":i,"PAnoIni":"0","PAnoFin":"0","PCveSer":GloSerie[0],"PCveCob":covertura,"PCveAgrupaCla": "0","POrden":"ASC","PIdioma":"ES"},
+            success: function( data, textStatus, jqxhr ) {
+              resultado = data;
+            },
+            error: function() {
+              //alert('Error occured');
+            },
+            async:false
+          });
+          console.log(resultado);
+          return resultado;
+        }
+
+
+      function get_estado_municipios(c,i){
+        var covertura = c;
+        var resultado;
+        console.log(i);
+        console.log(GloSerie[0]);
+        console.log(covertura);
+        $.ajax({
+          type: 'POST',
+          url: "https://ods.org.mx/API/Valores/PorCobCla",
+          data:{"PCveInd":i,"PAnoIni":"0","PAnoFin":"0","PCveSer":GloSerie[0],"PCveCob":covertura,"PCveAgrupaCla": "0","POrden":"DESC","PIdioma":"ES"},
+          success: function( data, textStatus, jqxhr ) {
+            resultado = data;
+          },
+          error: function() {
+            //alert('Error occured');
+          },
+          async:false
+        });
+        console.log(resultado);
+        return resultado;
+      }
+
+      function get_clave_estado(estado){
+        var clave = '';
+        for (var i = 0; i < cod_estados.length; i++) {
+          if(cod_estados[i].estado ==  estado){
+            clave =  cod_estados[i].clave;
+            break;
+
+          }
+          return clave;
+        }
+
+        function munisipal_ind(sel_mun,sel_est){
+          $('.infos').remove();
+          $('.info2').remove();
+          map.removeLayer(geojson);
+
+        //PCveInd indecacdor 118
+        var municipios = []; //arreglo con los valores de la llamada a la api
+        var geo_mun = [];
+        var features = [];
+        var valuesMunicipio = [];
+        var brew = new classyBrew();
+       //++sacar la clave del estado y sacar el indicador que se esta manejando
+       var cl =  get_clave_estado(sel_est);
+       valorDato(get_estado_municipios(cl+'%',PCveInd));
+
+
+          for(var i = 0; i < municipio.features.length; i++){
+            if(sel_mun == municipio.features[i].properties.nom_mun && sel_est == municipio.features[i].properties.nom_ent)
+            {
+              features.push(municipio.features[i]);
+            }
+
+            if(sel_est == municipio.features[i].properties.nom_ent){
+              if (municipio.features[i].properties.nom_mun == null) continue;
+              valuesMunicipio.push(busqueda_municipio(municipio.features[i].properties.nom_mun,posi2));
+            }
+          }
+
+          brew.setSeries(valuesMunicipio);
+          brew.setNumClasses(3);
+          brew.setColorCode("Blues");
+          brew.classify('jenks');
+          var alfr=brew.getBreaks();
+          var brea =[];
+          for(var ii=0;ii<alfr.length;ii++)
+          {
+            if(alfr[ii] != -1)
+            {
+              brea.push(alfr[ii]);
+            }
+          }
+
+          geo_mun={'features':features,'type':"FeatureCollection"};
+
+          console.log(valorDato);
+          console.log(valuesMunicipio);
+
+          geojson = L.geoJson(geo_mun, {
+            style: style,
+            onEachFeature: onEachFeature
+          }).addTo(map);
+
+          function busqueda_municipio(cadena,posicion) {
+            //console.log("super log",cadena,estados);
+            for (var i = 0; i < municipios.length; i++) {
+              if (municipios[i][0] == cadena) {
+                //console.log(cadena,municipios[i][1],i);
+                return parseFloat(municipios[i][posicion]);
+              }
+            }
+          }
+
+          map.attributionControl.addAttribution('');
+
+          var info = L.control();
+          info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'infos hide');
+            this.update();
+            return this._div;
+          };
+
+          info.update = function (props) {
+            //this._div = L.DomUtil.create('div', 'infos');
+            $('.infos').removeClass('hide');
+            $('.info2').removeClass('hide');
+            console.log(props);
+            if (props != undefined) {
+              this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_municipio(props.nom_mun,posi2).toFixed(1)/*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(2010)</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >'+titulo_des_graf+'</p></div></div><div class="info"></div>';
+              gen(municipios[busqueda_indice(props.nom_mun)]);
+            }
+          }
+          info.addTo(map);
+
+          var legend = L.control();
+          legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info2 legend hide'),
+            grades = brew.getBreaks(),//[0, 20, 50, 100],
+            labels = [],
+            from, to;
+            for (var i = 0; i < grades.length - 1; i++) {
+              from = grades[i];
+              to = grades[i + 1];
+              var res = String(getColoR(from)).split(",");
+              //console.log(from, from + 1, res, grades);
+              labels.push(
+                '<div style="float:left; text-align: center;"><i class="leyenda" onmouseover="highlightFromLegend(\'c' + res[1] + '\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoR(from) + '"></i><br>' +
+                from.toFixed(2) + (to.toFixed(2) ? '&ndash;' + to.toFixed(2) : '+') + '</div>');
+              }
+              div.innerHTML = labels.join('');
+              return div;
+            };
+            legend.addTo(map);
+
+
+            function valorDato(data){
+              var temporal = [];
+              var Descrip_ind = data.Descrip_ind;
+
+              temporal.push('Municipio');
+              for (var j = 0; j < data.Series[0].Coberturas[0].ValorDato.length; j++) {
+                temporal.push(data.Series[0].Coberturas[0].ValorDato[j].AADato_ser+'-01-01');
+              }
+              municipios.push(temporal);
+              var imprime = false;
+
+
+            for (var i = 1; i < data.Series[0].Coberturas.length; i++) {
+
+                var temporal = [];
+                var categories2 = [];
+                categories2.push(data.Series[0].Coberturas[i].Abrevia_cg);
+                temporal.push(data.Series[0].Coberturas[i].Descrip_cg);
+
+                for (var j = 0; j < data.Series[0].Coberturas[i].ValorDato.length; j++) {
+                  var dato_formato;
+                  if(data.Series[0].Coberturas[i].ValorDato[j].Dato_Formato != '')
+                  {
+                    dato_formato = data.Series[0].Coberturas[i].ValorDato[j].Dato_Formato;
+                  }
+                  else {
+                    dato_formato = 0;
+                  }
+                  temporal.push(dato_formato);
+                }
+                municipios.push(temporal);
+              }
+            }//fin funcion valorDato
+
+            function getColoR(number){
+              return brew.getColorInRange(number);
+            }
+
+            function style(feature) {
+              var res = String(getColoR(busqueda_municipio(feature.properties.nom_mun,posi2))).split(",");
+              //console.log(res, 'hhhh', "c" + res[1]);
+              //console.log("hola->",res[1]);
+              return {
+                weight: 0.5,
+                opacity: 1,
+                color: '#000',
+                dashArray: '1',
+                fillOpacity: 1,
+                // fillColor: getColoR(feature.properties.density),
+                fillColor: getColoR(busqueda_municipio(feature.properties.nom_mun,posi2)),
+                className: "c" + res[1]
+              };
+            }
+
+            function highlightFeature(e) {
+              if(locked == false)
+              {
+                var layer = e.target;
+                layer.setStyle({
+                  weight: 2,
+                  color: '#ccc',
+                  dashArray: '',
+                  fillOpacity: 0.7
+                });
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                  layer.bringToFront();
+                }
+                info.update(layer.feature.properties);
+              }
+            }
+
+            function resetHighlight(e) {
+              geojson.resetStyle(e.target);
+              info.update();
+            }
+
+            function zoomToFeature(e) {
+              map.fitBounds(e.target.getBounds());
+            }
+
+            function onEachFeature(feature, layer){
+              layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                mousedown: function(e)
+                {
+                  if (locked == true) {
+                    locked = false;
+                    (function ($) {
+                      $(".info2").css("border","none");
+                      $(".infos").css("border","none");
+                    }(jQuery));
+                  }
+                  else {
+                    locked = true;
+                    (function ($) {
+                      $(".info2").css("border-bottom","5px solid rgb(107, 174, 214)");
+                      $(".info2").css("border-left","5px solid rgb(107, 174, 214)");
+                      $(".info2").css("border-right","5px solid rgb(107, 174, 214)");
+                      $(".infos").css("border-top","5px solid rgb(107, 174, 214)");
+                      $(".infos").css("border-left","5px solid rgb(107, 174, 214)");
+                      $(".infos").css("border-right","5px solid rgb(107, 174, 214)");
+                    }(jQuery));
+                  }
+                },
+              });
+            }
+
+            function highlightFromLegend(e){
+              (function ($) {
+                $("svg path."+e).addClass("highlighted");
+                var r=$("svg path."+e);
+                for(var i=0;i<r.length;i++)
+                {
+                  r[i].classList.add("highlighted");
+                }
+              }(jQuery));
+            }
+
+            function clearHighlight() {
+              (function ($) {
+
+                $("path").removeClass("highlighted");
+                var r=$("path");
+                for(var i=0;i<r.length;i++)
+                {
+                  r[i].classList.remove("highlighted");
+                }
+              }(jQuery));
+            }
+
+            function busqueda_indice(cadena) {
+              for (var i = 0; i < municipios.length; i++) {
+                if (municipios[i][0] == cadena) {
+                  return parseFloat(i);
+                }
+              }
+            }
+          }//fin de la funcion munisipal_ind
+
+          function put_isumo_sel_mun(){
+            //Armamos el select para que tenga todas las series que pueden existir
+            var select='<div class="input-field col s12" style="margin-bottom:20px;"><select id="insumo_change2" class="select_datos" style="display:block !important; background-color: #f2f2f2;">';
+
+            select += '<option value="-1"> Selecciona una opción </option>';
+
+            for (var i = 0; i < datos_calculo.length; i++) {
+              select += '<option value="'+datos_calculo[i].ClaveSer_ats+'">'+datos_calculo[i].DescripSer_des+'</option>';
+            }
+
+            select += '</select></div><div class="col s12" id="insumos_cont"></div><div class="col s12" id="insumos_contDat" style="display:none;"></div><div id="nueva_tabla_serie" class="input-field col s12" style="margin-bottom:20px;overflow:scroll;height:510px;"></div>';
+
+            //sin pie y cabezera de la pagina
+            $('#datos-panel').html(select);
+
+          }

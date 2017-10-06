@@ -1,0 +1,122 @@
+﻿{
+    "ClaveInd_ser":26,
+    "Codigo_ind":"3.1.1.",
+    "Descrip_ind":"Razón de mortalidad materna",
+    "TipoCua_atr":"CoS",
+    "Series":[ {
+        "Clave_ser":87,
+        "Descrip_ser":"Razón de mortalidad materna",
+        "Tipo_ser":"R",
+        "Coberturas":[ {
+            "ClaveCobGeo_ser":"020",
+            "Descrip_cg":"Oaxaca",
+            "ValorDato":[ {
+                "AADato_ser": 1990, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 175.20761596110998, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1991, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 204.728834651359, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1992, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 139.076492070639, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1993, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 151.521233041663, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1994, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 150.039775645221, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1995, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 132.77385875293902, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1996, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 148.51079519849202, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1997, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 129.53770583541498, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1998, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 92.3574232278919, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 1999, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 91.613136897723493, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2000, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 107.142857142857, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2001, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 86.800786700801, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2002, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 89.2339267389462, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2003, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 56.512500565124995, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2004, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 73.0677017924421, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2005, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 80.9323405632891, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2006, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 63.3475669841866, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2007, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 82.909900626561992, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2008, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 79.8531655225019, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2009, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 79.1006495841224, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2010, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 71.29909365558909, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2011, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 61.2820198553744, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2012, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 65.2580772261623, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2013, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 50.3524672708963, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2014, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 46.6601178781925, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ,
+            {
+                "AADato_ser": 2015, "MMDato_ser": 0, "DDDato_ser": 0, "Dato_ser": 48.5672656629432, "NoDato_ser": 0, "NoDatos": null, "Nota_ser": null, "Descrip_not": null, "Leyenda_ser": null
+            }
+            ],
+            "Clasificaciones":[]
+        }
+        ]
+    }
+    ]
+}

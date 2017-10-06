@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Objetivos de Desarrollo Sostenible</title>
+    <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/tooltipster.bundle.min.css" />
+	  <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,800,300,600italic,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/home.css">
+
+
+
+  	<!-- Load c3.css -->
+  	<link href="lib/c3.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/section-scroll.css">
+
+<style media="screen">
+  .infoPadre{
+    width: 276px;
+}
+
+  .cuadrosSocial li {
+    display: inline;
+}
+
+.cuadrosSocial li a{
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: all 1.0s ease;
+  width: 40px;
+}
+
+
+.cuadrosSocial li a:hover {
+  background-color: #ccc;
+
+}
+
+.select-dropdown{
+  padding-left: 10px !important;
+}
+
+
+.select-wrapper span.caret{
+  padding-right: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.espacio_seccion{
+  height: 40px;
+}
+
+.leaflet-right
+{
+  width: 295px;
+}
+
+.infos
+{
+  box-shadow: 0 0 0 0 !important;
+}
+
+td
+{
+  padding: 1px !important;
+  border-radius: 0 !important;
+}
+
+
+.section-bullets li a:before {
+    background-color: #00aeef;
+}
+
+
+.section-bullets li:hover {
+    background-color: #eee;
+
+}
+
+
+
+.section-bullets .active a {
+  color: #fff;
+}
+
+ .section-bullets .active a:after {
+    background-color: #FFF;
+}
+
+</style>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="image.js"></script>
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/rgbcolor.js"></script>
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/StackBlur.js"></script>
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/canvg.js"></script>
+
+    <script type="text/javascript" src="lib/jquery.section-scroll.js"></script>
+<script src='config.js'></script>
+   </head>
+  <body>
+      <!-- menu -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class=" container nav-wrapper" style="margin-top:0px;">
+          <a href="index.html" class="brand-logo"><img src="img/logo.png" alt="" /></a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down nav_sticky">
+            <li class="tam t_sm"><a class="t_sm" href="objetivos.html">Indicadores</a></li>
+            <li class="tam t_sm"><a href="estados.html" style="line-height: 21px; padding-top: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;Indicadores con<br>desglose geográfico</a></li>
+            <li class="tam t_sm"><a class="t_sm" href="como_vamos.html">¿C&oacute;mo vamos?</a></li>
+            <li class="tam t_sm"><a class="t_sm" href="explora.html">Explora</a></li>
+            <li class="tam t_sm"><a class="t_sm" href="compara.html">Compara</a></li>
+            <li class="tamps">
+              <a id="buscar"><img src="img/search.png" alt="" /></a>
+              <input id="cam_bus" type="text" name="buscar" style="display: none; background-color: rgba(0, 0, 0, 0.4); background-position: 95% 50%; background-repeat: no-repeat;border-bottom: 0 none; border-radius: 8px;color: #ffffff !important;padding: 0 0px;height:35px;" onfocusout="esconder()"/>
+            </li>
+              <li class="tamps">
+              <a id="busca" href="calendario.html"><img data-position="bottom" data-tooltip="Ir al calendario de actualizaciones" class="tooltipped" src="img/calendario.png"
+                  alt="" /></a>
+            </li>
+            <li class="tamps">
+              <a id="busca" href="exportacion.html"><img data-position="bottom" data-tooltip="Ir a la página de descargas masivas" class=" tooltipped" src="img/descarga.png"
+                  alt="" /></a>
+            </li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="objetivos.html">Indicadores</a></li>
+            <li><a href="estados.html">Indicadores por unidad geográfica</a></li>
+            <li><a href="como_vamos.html">¿C&oacute;mo vamos?</a></li>
+            <li><a href="explora.html">Explora</a></li>
+            <li><a href="compara.html">Compara</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+<!-- menu -->
+    <div class="container">
+      <div class="row scrollable-section" data-section-title="Menú de selección">
+        <div class="col s12">
+          <h3 class="fuerte t_principal">COMPARA</h3>
+          <li class="divider"></li>
+          <br>
+          <p class="gris t_sm">
+          Esta sección permite llevar a cabo el cruce de dos indicadores seleccionados por el usuario, a fin de que pueda analizar de manera sencillas y visual la correlación existente entre dos variables. Igualmente se puede llevar a cabo un seguimiento del comportamiento de los dos indicadores seleccionados en el tiempo por medio de un gráfico y exportar la información, mapas y gráficos para su uso.
+          </p>
+        </div>
+      </div>
+      <!--  -->
+      <div class="row">
+        <p class="claro t_sm col s12 m1" style="margin-top: 25px; width: 123px;">1. Tipo de indicador</p>
+        <div class="input-field col s12 m4 caja_s">
+          <select>
+            <option value="" disabled selected>Elige una opción</option>
+            <option value="2">Estatal</option>
+            <option value="3">Municipal</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+
+          <p class="claro col s12 m1 t_sm" style="margin-top: 25px; width: 123px;">2. Objetivo</p>
+          <div class="input-field col s12  m4 caja_s">
+            <select>
+              <option value="" disabled selected>Elige una opción</option>
+              <option value="1">Poner fin a la pobreza en todas sus formas en todo el mundo</option>
+              <option value="2">Garantizar una vida sana y promover el bienestar para todos en todas las edades</option>
+              <option value="3">Garantizar una educación inclusiva, equitativa y de calidad y promover oportunidades de aprendizaje durante toda la vida para todos</option>
+              <option value="1">Lograr la igualdad entre los géneros y el empoderamiento de todas las mujeres y niñas</option>
+              <option value="1">Garantizar la disponibilidad de agua y su ordenación sostenible y el saneamiento para todos</option>
+              <option value="1">Garantizar el acceso a una energía asequible, segura, sostenible y moderna para todos</option>
+              <option value="1">Promover el crecimiento económico sostenido, inclusivo y sostenible, el empleo pleno y productivo y el trabajo decente para todos</option>
+              <option value="1">Construir infraestructura resiliente, promover la industrialización inclusiva y sostenible y fomentar la innovación</option>
+              <option value="2">Reducir la desigualdad en y entre los países</option>
+              <option value="2">Lograr que las ciudades y los asentamientos humanos sean inclusivos, seguros, resilientes y sostenibles</option>
+            </select>
+          </div>
+
+
+
+          <p class="claro col s12 m1 offset-m1 t_sm" style="    margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 25px;
+            width: 123px;
+            color: #2e4367;
+            text-align: right;">Indicador</p>
+
+          <div class="input-field col s12 m4 caja_s">
+            <select>
+              <option value="" disabled selected>Elige un opción</option>
+              <option value="1">Porcentaje de la población con servicio eléctrico</option>
+              <option value="2">Viviendas particulares donde se utiliza leña o carbón para cocinar</option>
+              <option value="3">Viviendas con disponibilidad de focos ahorradores</option>
+            </select>
+          </div>
+
+      </div>
+      <div class="row">
+
+          <p class="claro col s12 m1 t_sm" style="margin-top: 25px; width: 123px;">3. Objetivo</p>
+          <div class="input-field col s12 m4 caja_s">
+            <select>
+              <option value="" disabled selected>Elige una opcion</option>
+              <option value="1">Poner fin a la pobreza en todas sus formas en todo el mundo</option>
+              <option value="2">Garantizar una vida sana y promover el bienestar para todos en todas las edades</option>
+              <option value="3">Garantizar una educación inclusiva, equitativa y de calidad y promover oportunidades de aprendizaje durante toda la vida para todos</option>
+              <option value="1">Lograr la igualdad entre los géneros y el empoderamiento de todas las mujeres y niñas</option>
+              <option value="1">Garantizar la disponibilidad de agua y su ordenación sostenible y el saneamiento para todos</option>
+              <option value="1">Garantizar el acceso a una energía asequible, segura, sostenible y moderna para todos</option>
+              <option value="1">Promover el crecimiento económico sostenido, inclusivo y sostenible, el empleo pleno y productivo y el trabajo decente para todos</option>
+              <option value="1">Construir infraestructura resiliente, promover la industrialización inclusiva y sostenible y fomentar la innovación</option>
+              <option value="2">Reducir la desigualdad en y entre los países</option>
+              <option value="2">Lograr que las ciudades y los asentamientos humanos sean inclusivos, seguros, resilientes y sostenibles</option>				    </select>
+          </div>
+
+
+          <p class="claro col s12 m1 offset-m1 t_sm" style="    margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 25px;
+            width: 123px;
+            color: #2e4367;
+            text-align: right;">Indicador</p>
+          <div class="input-field col s12 m4 caja_s">
+            <select>
+              <option value="" disabled selected>Elige un opción</option>
+              <option value="1">Porcentaje de la población con servicio eléctrico</option>
+              <option value="2">Viviendas particulares donde se utiliza leña o carbón para cocinar</option>
+              <option value="3">Viviendas con disponibilidad de focos ahorradores</option>
+            </select>
+          </div>
+
+      </div>
+      <div class="espacio_seccion"></div>
+      <div class="row scrollable-section" id="mapa" data-section-title="Mapa">
+           <div class="cuadro_titulo">
+              <h4>Razón de mortalidad materna</h4>
+              <li class="divider"></li>
+              <p>1990-2015</p>
+              <span>Defunciones de mujeres por cada 100 mil nacidos vivos</span>
+          </div>
+          <div class="col s12">
+
+            <div id="map">
+              <div class="leaflet-top leaflet-right" style="top:139px;">
+                <div id="colrs" class="info2 legend leaflet-control hide">
+                  <table id="legend-colors">
+                    <tbody>
+                      <tr>
+                        <td class="legend-breaks legend-breaks-b-0">74.4 - 117.2</td>
+                        <td class="legend-color legend-color-00 tooltipped" data-container="body" onmouseover="highlightFromLegend('cA3')" onmouseout="clearHighlight();" style="background-color: #64acbe;" data-position="top" data-tooltip="9.2 - 16.1 / 74.4 - 117.2"></td>
+                        <td class="legend-color legend-color-01 tooltipped" data-container="body" onmouseover="highlightFromLegend('cB3')" onmouseout="clearHighlight();" style="background-color: #627f8c;" data-position="top" data-tooltip="16.1 - 21.2 / 74.4 - 117.2"></td>
+                        <td class="legend-color legend-color-02 tooltipped" data-container="body" onmouseover="highlightFromLegend('cC3')" onmouseout="clearHighlight();" style="background-color: #574249;" data-position="top" data-tooltip="21.2 - 33.5 / 74.4 - 117.2"></td>
+                      </tr>
+                      <tr>
+                        <td class="legend-breaks legend-breaks-b-1">39.6 - 74.4</td>
+                        <td class="legend-color legend-color-10 tooltipped" data-container="body" onmouseover="highlightFromLegend('cA2')" onmouseout="clearHighlight();" style="background-color: #b0d5df;" data-position="top" data-tooltip="9.2 - 16.1 / 39.6 - 74.4"></td>
+                        <td class="legend-color legend-color-11 tooltipped" data-container="body" onmouseover="highlightFromLegend('cB2')" onmouseout="clearHighlight();" style="background-color: #ad9ea5;" data-position="top" data-tooltip="16.1 - 21.2 / 39.6 - 74.4"></td>
+                        <td class="legend-color legend-color-12 tooltipped" data-container="body" onmouseover="highlightFromLegend('cC2')" onmouseout="clearHighlight();" style="background-color: #985356;" data-position="top" data-tooltip="21.2 - 33.5 / 39.6 - 74.4"></td>
+                      </tr>
+                      <tr>
+                        <td class="legend-breaks legend-breaks-b-2">2.6 - 39.6</td>
+                        <td class="legend-color legend-color-20 tooltipped" data-container="body" onmouseover="highlightFromLegend('cA1')" onmouseout="clearHighlight();" style="background-color: #e8e8e8;" data-position="top" data-tooltip="9.2 - 16.1 / 2.6 - 39.6"></td>
+                        <td class="legend-color legend-color-21 tooltipped" data-container="body" onmouseover="highlightFromLegend('cB1')" onmouseout="clearHighlight();" style="background-color: #e4acac;" data-position="top" data-tooltip="16.1 - 21.2 / 2.6 - 39.6"></td>
+                        <td class="legend-color legend-color-22 tooltipped" data-container="body" onmouseover="highlightFromLegend('cC1')" onmouseout="clearHighlight();" style="background-color: #c85a5a;" data-position="top" data-tooltip="21.2 - 33.5/ 2.6 - 39.6"></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td class="legend-breaks legend-breaks-0">9.2 - 16.1</td>
+                        <td class="legend-breaks legend-breaks-1">16.1 - 21.2</td>
+                        <td class="legend-breaks legend-breaks-2">21.2 - 33.5</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+
+<style>
+.cuadro_titulo{
+    background-color: #fff;
+    padding: 30px;
+    color: #083362;
+}
+
+.cuadro_titulo p{
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0px;
+}
+
+.cuadro_titulo span{
+      font-size: 14px;
+    font-weight: 300;
+}
+
+.cuadro_titulo .divider {
+    background-color: #fff;
+}
+
+.pie_cuadro2{
+  background-color: #fff;
+  color: #083362;
+  padding: 20px;
+}
+.pie_cuadro2 div{
+  margin-top:6px;
+  font-weight: 100;
+  font-size: initial;
+}
+</style>
+
+
+
+           <div class="pie_cuadro2">
+              <div><strong>Nota:</strong> A partir de 2007 se excluyen defunciones con residencia en el extranjero y a partir de 2009 las defunciones extemporáneas</div>
+              <div><strong>Fuente:</strong> SS. Dirección General de Información en Salud (DGIS)</div>
+              <div><strong>Fecha de actualización:</strong> Noviembre de 2016</div>
+            </div>
+            <div class="row">
+	            <div class="col s8 center-align">
+	            	<a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;">Año</a>
+		            <a class="waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" style ="margin-right: -5px; border-color: black; border-width: 1px; border-radius: 5px 0px 0px 5px;">2013</a>
+		            <a class="waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" style ="margin-right: -5px; border-color: black; border-width: 1px; border-radius: 0;">2014</a>
+		            <a class="waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" style ="margin-right: -5px; border-color: black; border-width: 1px; border-radius: 0px 5px 5px 0px;">2015</a>
+	            </div>
+	            <div class="col s4">
+                    <a class="waves-effect waves-light btn color claro t_sm sin_sombra marg_top modal-trigger" href="#modalMapa" style="width: 250px;">Comparte este mapa</a>
+	            </div>
+            </div>
+          </div>
+      </div>
+      <br><br><br>
+      <div class="row scrollable-section" id="grafica" data-section-title="Gráfica">
+        <div class="col s12">
+          <h3 class="fuerte t_principal">Comparación de indicadores en el tiempo</h3>
+          <li class="divider"></li>
+          <br><br>
+           <div class="cuadro_titulo">
+              <h4>Razón de mortalidad materna</h4>
+              <li class="divider"></li>
+              <p>1990-2015</p>
+              <span>Defunciones de mujeres por cada 100 mil nacidos vivos</span>
+          </div>
+          <div id="chart"></div>
+          <div class="row">
+          <div class="col s1 center-align">
+            <label for="">
+              2008
+            </label>
+          </div>
+          <div class="col s10">
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="test5" min="2008" max="2012" />
+              </p>
+            </form>
+          </div>
+          <div class="col s1 center-align">
+            <label for="" >
+              2012
+            </label>
+          </div>
+          </div>
+            <div class="pie_cuadro2">
+              <div><strong>Nota:</strong> A partir de 2007 se excluyen defunciones con residencia en el extranjero y a partir de 2009 las defunciones extemporáneas</div>
+              <div><strong>Fuente:</strong> SS. Dirección General de Información en Salud (DGIS)</div>
+              <div><strong>Fecha de actualización:</strong> Noviembre de 2016</div>
+            </div>
+          <div class="col s4 offset-s8">
+                <a class="waves-effect waves-light btn color claro t_sm sin_sombra marg_top modal-trigger" href="#modalGrafica" style="width: 250px;">Comparte esta gráfica</a>
+          </div>
+        </div>
+      </div>
+      <div class="row scrollable-section" data-section-title="Descarga de datos">
+        <div class="col s12">
+          <h3 class="fuerte t_principal">Datos</h3>
+          <li class="divider"></li>
+          <div class="row">
+          	<div class="col s10 offset-s1">
+          		<div class="row">
+          			<div class="col s8">
+          				<p class="fuerte t_normal">Nombre</p>
+		  			</div>
+		  			<div class="col s2">
+          				<p class="fuerte t_normal">Institución</p>
+		  			</div>
+		  			<div class="col s2">
+          				<p class="fuerte t_normal">Formato</p>
+		  			</div>
+		  			<div class="col s12">
+          				<li class="divider griss"></li>
+		  			</div>
+		  			<div class="col s6">
+          				<p class="gris t_sm">Indicadores Objetivo 1 ODS</p>
+		  			</div>
+		  			<div class="col s2">
+          				<p class="gris t_sm">ODS</p>
+		  			</div>
+		  			<div class="col s4" style="margin-top: 10px;">
+          				<a class="icn">CSV</a><a class="icns">XLS</a> <a class="icnSDMX">SDMX</a><a class="icnPDF">PDF</a>
+		  			</div>
+		  			<div class="col s12">
+          				<li class="divider griss"></li>
+		  			</div>
+		  			<div class="col s6">
+          				<p class="gris t_sm">Indicadores Objetivo 2 ODS</p>
+		  			</div>
+		  			<div class="col s2">
+          				<p class="gris t_sm">ODS</p>
+		  			</div>
+		  			<div class="col s4" style="margin-top: 10px;">
+          				<a class="icn">CSV</a><a class="icns">XLS</a> <a class="icnSDMX">SDMX</a><a class="icnPDF">PDF</a>
+		  			</div>
+          		</div>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- footer -->
+    <footer class="page-footer id">
+      <div class="container">
+        <div class="row" id="fot">
+          <div class="col l3 s12">
+            <a href="home.html"><img src="img/ods_logo_home2.png" alt="" /></a>
+            <br>
+            <br>
+            <div class="" style="display:inline;">
+              <a href="https://www.facebook.com" style="margin-right: 12%;"><img src="img/fill2.png" alt="" style="width:3%;"/></a>
+              <a href="https://twitter.com" style="margin-right: 12%;"><img src="img/fill1.png" alt="" style="width:7%;"/></a>
+              <a href="#"><img src="img/fill3.png" alt="" style="width:7%;"/></a>
+            </div>
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+              <li><a class="fuerte t_sm" href="objetivos.html">Indicadores</a></li>
+              <li><a class="fuerte t_sm" href="estados.html">Indicadores con desglose geográfico</a></li>
+              <li><a class="fuerte t_sm" href="como_vamos.html">¿Cómo vamos?</a></li>
+              <li><a class="fuerte t_sm" href="explora.html">Explora</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+          <li><a class="fuerte t_sm" href="compara.html">Compara</a></li>
+            <li><a class="fuerte t_sm" href="calendario.html">Calendario de actualizaciones</a></li>
+            <li><a class="fuerte t_sm" href="exportacion.html">Exportación masiva</a></li>
+            <li><a class="fuerte t_sm" href="acerca.html">Acerca de</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12" style="display:inline;">
+            <a href="https://www.gob.mx" target="_blank"><img src="img/logoPR.png" alt="" style="width: 45%; margin-right: 15%;"/></a>
+            <a href="http://www.inegi.org.mx" target="_blank"><img src="img/logoINEGI.png" alt="" style="width:25%;"/></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright light-blue">
+      </div>
+    </footer>
+<!-- footer -->
+
+
+
+  <!-- Modal Structure -->
+  <div id="modalMapa" class="modal">
+    <div class="modal-content">
+      <h5>Compartir</h5>
+      <div class="row">
+        <b>Redes Sociales</b>
+        <ul class="cuadrosSocial">
+          <li>
+            <a class="waves-effect" href="https://twitter.com/intent/tweet?text=aqui va el texto;url=http://104.236.211.149/ods/compara.html#!"><i class="fa fa-twitter fa-lg"></i></a>
+          </li>
+          <li>
+            <a class="waves-effect "><i class="fa fa-facebook fa-lg" style="padding-left: 4px;"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <i class="fa fa-code" aria-hidden="true"></i> <b>Embed</b>
+        <div class="input-field col s12">
+         <input placeholder="Placeholder" id="" type="text" class="validate" value="<script src='http://104.236.211.149/ods/embed.js'></script>">
+         <label for="">Copia este código para insertar el mapa en una página HTML</label>
+       </div>
+      </div>
+
+      <div class="row">
+      <i class="fa fa-code" aria-hidden="true"></i> <b>Liga</b>
+        <div class="input-field col s12">
+            <input placeholder="Placeholder" id="" type="text" class="validate" value="http://104.236.211.149/ods/compara.html#mapa">
+       </div>
+      </div>
+
+      <div class="row">
+      <i class="fa fa-code" aria-hidden="true"></i> <b>PDF</b>
+        <div class="input-field col s12">
+            <a class="waves-effect btn color claro">Descargar PDF</a>
+       </div>
+      </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Grafica -->
+<div id="modalGrafica" class="modal">
+  <div class="modal-content">
+    <h5>Compartir</h5>
+    <div class="row">
+      <b>Redes Sociales</b>
+      <ul class="cuadrosSocial">
+        <li>
+
+          <a class="waves-effect" href="https://twitter.com/intent/tweet?text=aqui va el texto;url=http://104.236.211.149/ods/compara.html#!"><i class="fa fa-twitter fa-lg"></i></a>
+
+        </li>
+
+        <li>
+          <a class="waves-effect "><i class="fa fa-facebook fa-lg" style="padding-left: 4px;"></i></a>
+        </li>
+
+      </ul>
+    </div>
+    <div class="row">
+      <i class="fa fa-code" aria-hidden="true"></i> <b>Embed</b>
+      <div class="input-field col s12">
+       <input placeholder="Placeholder" id="" type="text" class="validate" value="<script src='http://104.236.211.149/ods/embed.js'></script>">
+       <label for="">Copia este código para insertar el mapa en una página HTML</label>
+     </div>
+    </div>
+
+    <div class="row">
+    <i class="fa fa-code" aria-hidden="true"></i> <b>Liga</b>
+      <div class="input-field col s12">
+          <input placeholder="Placeholder" id="" type="text" class="validate" value="http://104.236.211.149/ods/compara.html#grafica">
+     </div>
+    </div>
+
+    <div class="row">
+    <i class="fa fa-code" aria-hidden="true"></i> <b>PDF</b>
+      <div class="input-field col s12">
+          <a class="waves-effect btn color claro">Descargar PDF</a>
+     </div>
+    </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+  </div>
+</div>
+</div>
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <!-- <script type="text/javascript" src="entidad.json"></script> -->
+    <script type="text/javascript" src="entidadCompara.json"></script>
+    <!-- <script type="text/javascript" src="entidad2.json"></script> -->
+    <!-- <script type="text/javascript" src="municipio.json"></script>
+    <script type="text/javascript" src="nacion.json"></script> -->
+
+    <!-- Load d3.js and c3.js -->
+  <script src="lib/d3.v3.min.js" charset="utf-8"></script>
+  <script src="lib/c3.min.js"></script>
+  <script src="classybrew/build/classybrew.min.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function() {
+    var lupa =  false;
+    $('#buscar').click(function(){
+      if(lupa){
+        $('#cam_bus').hide();
+        lupa =  false;
+      }else{
+        $('#cam_bus').show();
+        $('#buscar').hide();
+        lupa =  true;
+      }
+    });
+
+    $('body').sectionScroll(); // Easy Peasy Lemon Squeezy
+
+    $(".button-collapse").sideNav();
+    $('.modal-trigger').leanModal();
+
+
+    	$('select').material_select();
+  	});
+    $(document).ready(function(){
+      $('.collapsible').collapsible({
+        accordion : true
+      });
+      $(document).ready(function(){
+        $('.tooltipped').tooltip({delay: 50});
+      });
+
+      console.log($('#objetivos').find('li.active').children().children());
+    });
+    </script>
+
+
+
+  <script>
+	function gen(props)
+	{
+	  // var chart = c3.generate({
+		// 		bindto: '.info',
+		// 		padding: {
+		// 			top: 10,
+		// 	        left: 30,
+		// 	        right: 10
+		// 	    },
+		// 	    data: {
+		// 	        x: 'x',
+		// 			columns: [
+	  //           ['x', '2009-01-01', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01'],
+	  //           props
+		//         ]
+    //
+    //
+		// 	    },
+		// 	    axis: {
+		// 	        x: {
+		// 	            type: 'timeseries',
+		// 	            tick: {
+		//                		 format: function (x) { return x.getFullYear(); }
+		// 	            }
+		// 	        },
+		// 	        y : {
+		// 	            tick: {
+		// 	                format: d3.format(".2s")
+		// 	            }
+		// 	        }
+		// 	    },
+		// 	    color: {
+		// 	        pattern: ['#00AEEF']
+		// 	    },
+		// 	    size: {
+		// 	        width: 260,
+		// 	        height: 160
+		// 	    },
+		// 	    legend: {
+		// 	        show: false
+		// 	    },
+		// 	    grid: {
+		// 	        x: {
+		// 	            show: false
+		// 	        },
+		// 	        y: {
+		// 	            show: true
+		// 	        }
+		// 	    }
+    //
+		// });
+	}
+  </script>
+
+
+    <script type="text/javascript">
+
+    //variable de mapa
+      var img;
+      var data_url;
+      var locked=false;
+      var map = L.map('map' ,
+      {
+	        scrollWheelZoom: false,
+	        maxZoom: 14,
+			minZomm:5,
+			//zoomControl:false,
+			//dragging: false
+      }).setView([24.8, -100], 5);
+
+    //implementacion de mapa estandar y ubicacion haci como zoom
+ //     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+	 	L.tileLayer('http://{s}.google.com/vt/?hl=es&x={x}&y={y}&z={z}&s={s}&apistyle=s.t%3A5|p.l%3A53%2Cs.t%3A1314|p.v%3Aoff%2Cp.s%3A-100%2Cs.t%3A3|p.v%3Aon%2Cs.t%3A2|p.v%3Aoff%2Cs.t%3A4|p.v%3Aoff%2Cs.t%3A3|s.e%3Ag.f|p.w%3A1|p.l%3A100%2Cs.t%3A18|p.v%3Aoff%2Cs.t%3A49|s.e%3Ag.s|p.v%3Aon|p.s%3A-19|p.l%3A24%2Cs.t%3A50|s.e%3Ag.s|p.v%3Aon|p.l%3A15&style=47,37', {
+		subdomains:['mt0', 'mt1', 'mt2', 'mt3'],
+        maxZoom: 14,
+        minZomm:5,
+        attribution: '&copy <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> &copy <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+        id: 'mapbox.light',
+        id: 'mapbox.light',
+      }).addTo(map);
+
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) )
+      {
+			map.dragging.disable();
+	  }
+
+
+
+      // control that shows state info on hover
+      var info = L.control();
+      info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'infos hide');
+        this.update();
+        return this._div;
+      };
+
+
+      var flag=null;
+
+      info.update = function (props) {
+	         //this._div = L.DomUtil.create('div', 'infos');
+    	     $('.infos').removeClass('hide');
+    	    //  $('.info2').removeClass('hide');
+          //  $('.info3').removeClass('hide');
+          //console.log(document.getElementsByClassName('infos'));
+          if(document.getElementsByClassName('infos').length != 0)
+          {
+            flag=true;
+            var classList = document.getElementsByClassName('infos')[0].className.split(/\s+/);
+            for (var i = 0; i < classList.length; i++)
+            {
+                //console.log('entro')
+                if (classList[i] === 'hide')
+                {
+                    flag=false;
+                }
+            }
+            // if(flag)
+            // {
+            //     $('#colrs').removeClass('hide');
+            // }
+          }
+          //console.log(flag);
+          if(flag != null && flag == true)
+          {
+              $('#colrs').removeClass('hide');
+          }
+    	     if(props != undefined)
+    	     {
+    		      this._div.innerHTML='<div class="infoPadre" ><h5 style="font-weight:bold">' + props.nom_ent + '</h5>'+
+                                    ' <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + props.density + '</b></p>' +
+                                    ' <p style="position: absolute; top: 25%; left: 35%;">Porcentaje de aguas<br>residuales tratadas</p>'+
+                                    ' <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #c85a5a;">' + props.rezago + '</b></p>' +
+                                    '</b></p><p style="position: absolute; top: 55%; left: 35%;">Proporción de la población con rezago educativo (2012)</p></div>';
+
+    			  //gen(estados[props.cve]);
+    	     }
+/*
+        this._div.innerHTML = '<div><h4>Aguas tratadas</h4>' +  (props ?
+          '<b>' + props.nom_ent + '</b><br />' + props.density + '% avance</div>'
+          : 'Situate sobre un estado')+'<div class="info"></div>';
+          if(props != undefined)
+		  {
+
+		  }
+*/
+      };
+      info.addTo(map);
+      // get color depending on population density value
+      // function getColor(d) {
+      // 	return d > 1000 ? '#800026' :
+      // 	       d > 500  ? '#BD0026' :
+      // 	       d > 200  ? '#E31A1C' :
+      // 	       d > 100  ? '#FC4E2A' :
+      // 	       d > 50   ? '#FD8D3C' :
+      // 	       d > 20   ? '#FEB24C' :
+      // 	       d > 10   ? '#FED976' :
+      // 	                  '#FFEDA0';
+      // }
+
+      function getColor(d)
+      {
+        //console.log(d);
+        switch(d)
+        {
+          case 'A3': return '#64acbe';
+          case 'B3': return '#627f8c';
+          case 'C3': return '#574249';
+          case 'A2': return '#b0d5df';
+          case 'B2': return '#ad9ea5';
+          case 'C2': return '#985356';
+          case 'A1': return '#e8e8e8';
+          case 'B1': return '#e4acac';
+          case 'C1': return '#c85a5a';
+
+        }
+        // return d.localeCompare('A3') ? '#64acbe' :
+        //        d.localeCompare('B3')  ? '#627f8c' :
+        //        d.localeCompare('C3')  ? '#574249' :
+        //        d.localeCompare('A2') ? '#b0d5df' :
+        //        d.localeCompare('B2')  ? '#ad9ea5' :
+        //        d.localeCompare('C2')  ? '#985356' :
+        //        d.localeCompare('A1') ? '#e8e8e8' :
+        //        d.localeCompare('B1')  ? '#e4acac' :
+        //        d.localeCompare('C1')  ? '#c85a5a' :
+        //                  '#fff';
+      }
+
+      function getColoR(number)
+      {
+	       return brew.getColorInRange(number);
+	    }
+
+      function getColoO(number)
+      {
+	       return bre.getColorInRange(number);
+	    }
+
+      function style(feature)
+      {
+	      //  var res = String(getColoR (feature.properties.density+feature.properties.rezago)).split(",");
+        var res='lasn';
+        var letra;
+        var numero;
+        if(feature.properties.rezago >= 16.1 && feature.properties.rezago <= 21.2)
+        {
+          letra ='B';
+        }
+        else if(feature.properties.rezago < 16.1)
+        {
+          letra='A';
+        }
+        else if(feature.properties.rezago > 21.2)
+        {
+          letra='C';
+        }
+        else
+        {
+          letra='D';
+        }
+        if(feature.properties.density >= 39.6 && feature.properties.density <= 74.4)
+        {
+          numero ='2';
+        }
+        else if(feature.properties.density < 39.6)
+        {
+          numero='1';
+        }
+        else if(feature.properties.density > 74.4)
+        {
+          numero='3';
+        }
+        else
+        {
+          numero='4';
+        }
+        // console.log(letra,'->',numero);
+	    //console.log("hola->",res[1]);
+        return {
+          weight: 0.5,
+          opacity: 1,
+          color: '#000',
+          dashArray: '1',
+          fillOpacity: 0.6,
+          // fillColor: getColoR(feature.properties.density),
+          fillColor: getColor(letra.concat(numero)),
+          //  className: "c"+res[1]
+          className: "c"+letra+numero
+        };
+      }
+      function highlightFeature(e) {
+	     if(locked == false)
+	     {
+	        var layer = e.target;
+	        layer.setStyle({
+	          weight: 2,
+	          color: '#ccc',
+	          dashArray: '',
+	          fillOpacity: 0.7
+	        });
+	        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+	          layer.bringToFront();
+	        }
+	        info.update(layer.feature.properties);
+	     }
+      }
+      var geojson;
+      function resetHighlight(e) {
+/*
+	     if(locked == false)
+	     {
+*/
+		     geojson.resetStyle(e.target);
+			 info.update();
+// 	 	 }
+      }
+      function zoomToFeature(e) {
+        map.fitBounds(e.target.getBounds());
+      }
+      function onEachFeature(feature, layer) {
+        layer.on({
+          mouseover: highlightFeature,
+          mouseout: resetHighlight,
+          mousedown: function(e)
+          {
+			if (locked == true) {
+				locked = false;
+				(function ($) {
+								 $(".info2").css("border","none");
+								 $(".infos").css("border","none");
+							   }(jQuery));
+			}
+			else {
+				locked = true;
+				(function ($) {
+							//	$(".info2").css("border","5px solid #00cc99");
+								$(".info2").css("border-bottom","5px solid rgb(107, 174, 214)");
+								$(".info2").css("border-left","5px solid rgb(107, 174, 214)");
+								$(".info2").css("border-right","5px solid rgb(107, 174, 214)");
+								$(".infos").css("border-top","5px solid rgb(107, 174, 214)");
+								$(".infos").css("border-left","5px solid rgb(107, 174, 214)");
+								$(".infos").css("border-right","5px solid rgb(107, 174, 214)");
+//								$(".infos").css("border","5px solid #00cc99");
+							   }(jQuery));
+			}
+// 			resetHighlight(e);
+		 },
+//          click: zoomToFeature
+        });
+      }
+
+      function highlightFromLegend(e)
+      	{
+	      	//console.log(e);
+			(function ($) {
+				$("svg path."+e).addClass("highlighted");
+				var r=$("svg path."+e);
+				for(var i=0;i<r.length;i++)
+				{
+					r[i].classList.add("highlighted");
+					//console.log(r[i]);
+				}
+				//console.log($("svg path."+e));
+			}(jQuery));
+		}
+
+		function clearHighlight() {
+			(function ($) {
+
+				$("path").removeClass("highlighted");
+				var r=$("path");
+				for(var i=0;i<r.length;i++)
+				{
+					r[i].classList.remove("highlighted");
+				}
+				//console.log(r);
+			}(jQuery));
+		}
+
+
+		var brew = new classyBrew();
+		var values = [];
+		for (var i = 0; i < statesData.features.length; i++)
+    {
+			if (statesData.features[i].properties.density == null) continue;
+			values.push(statesData.features[i].properties.density);
+		}
+		brew.setSeries(values);
+		brew.setNumClasses(3);
+		brew.setColorCode("Blues");
+		brew.classify('jenks');
+
+    var bre = new classyBrew();
+		var val = [];
+		for (var i = 0; i < statesData.features.length; i++)
+    {
+			if (statesData.features[i].properties.rezago == null) continue;
+			val.push(statesData.features[i].properties.rezago);
+		}
+		bre.setSeries(val);
+		bre.setNumClasses(3);
+		bre.setColorCode("Reds");
+		bre.classify('jenks');
+/*
+      geojson = L.geoJson(statesData, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+*/
+
+/*
+	  geojson = L.geoJson(municipio, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+	  geojson = L.geoJson(entidad, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+*/
+
+      geojson = L.geoJson(statesData, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+/*
+      geojson = L.geoJson(nacion, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+*/
+
+      map.attributionControl.addAttribution('');
+      var legend = L.control();
+      legend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info2 legend hide'),
+          grades = brew.getBreaks(),//[0, 20, 50, 100],
+          labels = [],
+          from, to;
+        for (var i = 0; i < grades.length-1; i++)
+        {
+          from = grades[i];
+          to = grades[i + 1];
+          var res=String(getColoR(from + 1)).split(",");
+          //console.log(res[1]);
+          labels.push(
+            '<div style="float:left; text-align: center; width:33.3333%;"><i class="leyenda" onmouseover="highlightFromLegend(\'c'+ res[1] +'\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoR(from + 1) + '"></i><br>' + from + (to ? '&ndash;' + to : '+')+'</div>');
+            /*' + from + (to ? '&ndash;' + to : '+')+'*/
+        }
+        div.innerHTML = labels.join('');
+        return div;
+      };
+      legend.addTo(map);
+
+
+      var legend = L.control();
+      legend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info3 legend hide'),
+          grades = bre.getBreaks(),//[0, 20, 50, 100],
+          labels = [],
+          from, to;
+        for (var i = 0; i < grades.length-1; i++) {
+          from = grades[i];
+          to = grades[i + 1];
+          var res=String(getColoO(from + 1)).split(",");
+          //console.log(res[1]);
+          labels.push(
+            '<div style="float:left; text-align: center; width:33.333333%;"><i class="leyenda" onmouseover="highlightFromLegend(\'c'+ res[1] +'\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoO(from + 1) + '"></i><br>' +
+            from + (to ? '&ndash;' + to : '+')+'</div>');
+        }
+        div.innerHTML = labels.join('');
+        return div;
+      };
+      legend.addTo(map);
+    </script>
+
+
+
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('.tooltip').tooltipster({
+				contentCloning: true,
+				animation: 'fade',
+				delay: 200,
+				theme: 'tooltipster-light',
+				trigger: 'hover'
+            });
+
+
+
+// var chart = c3.generate({
+//     data: {
+//         xs: {
+//             setosa: 'setosa_x',
+//         },
+//         // iris data from R
+//         columns: [
+//             ["setosa_x", 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.4, 3.0, 3.0, 4.0, 4.4, 3.9, 3.5, 3.8, 3.8, 3.4, 3.7, 3.6, 3.3, 3.4, 3.0, 3.4, 3.5, 3.4, 3.2, 3.1, 3.4, 4.1, 4.2, 3.1, 3.2, 3.5, 3.6, 3.0, 3.4, 3.5, 2.3, 3.2, 3.5, 3.8, 3.0, 3.8, 3.2, 3.7, 3.3],
+
+//             ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
+
+//         ],
+//         type: 'scatter'
+//     },
+//     axis: {
+//         x: {
+//             label: 'Sepal.Width',
+//             tick: {
+//                 fit: false
+//             }
+//         },
+//         y: {
+//             label: 'Petal.Width'
+//         }
+//     }
+
+
+
+var chart = c3.generate({
+   size: {
+            height: 500
+          },
+    data: {
+        xs: {
+            setosa: 'setosa_x',
+        },
+        // iris data from R
+        columns: [
+            ["setosa_x", 35, 30, 32, 31, 36, 39, 34, 34, 29, 31, 37, 34, 30, 30, 40, 44, 39, 35, 38, 38, 34, 37, 36, 33, 34, 30, 34, 35, 34, 32, 31, 34, 41, 42, 31, 32, 35, 36, 30, 34, 35, 23, 32, 35, 38, 30, 38, 32, 37, 33],
+
+            ["setosa", 2, 2, 2, 2, 2, 4, 3, 2, 2, 1, 2, 2, 1, 1, 2, 4, 4, 3, 3, 3, 2, 4, 2, 5, 2, 2, 4, 2, 2, 2, 2, 4, 1, 2, 2, 2, 2, 1, 2, 2, 3, 3, 2, 6, 4, 3, 2, 2, 2, 2],
+
+        ],
+        type: 'scatter'
+    },
+    axis: {
+        x: {
+            label: 'Sepal.Width',
+            tick: {
+                fit: false
+            }
+        },
+        y: {
+            label: 'Petal.Width'
+        }
+    }
+});
+
+
+
+
+
+
+        });
+
+
+        var lupa = false;
+
+        function esconder() {
+          console.log("focusout");
+          $('#cam_bus').hide();
+          $('#buscar').show();
+          lupa = false;
+        }
+
+          $(document).ready(function() {
+            $("#sti").hide();
+
+            window.onload = function () {
+
+              $('#buscar').click(function () {
+                console.log("aca");
+                if (lupa) {
+                  $('#cam_bus').hide();
+                  lupa = false;
+                } else {
+                  $('#cam_bus').show();
+                  $('#buscar').hide();
+                  document.getElementById("cam_bus").focus();
+                  lupa = true;
+                }
+              });
+
+            }
+
+
+          });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Objetivos de Desarrollo Sostenible</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="css/ffont-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,800,300,600italic,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/home.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <style media="screen">
+
+    a.selected {
+      background-color:#1F75CC;
+      color:white;
+      z-index:100;
+      right:0;
+      bottom:15%;
+      position:absolute;
+    }
+     #contact{
+       position: absolute;
+        right: 0;
+        bottom: 15%;
+        background:#EFD331;
+        color:#ffffff;
+        padding:5px 10px;
+        text-decoration:none;
+        z-index: 99;
+     }
+
+     #contact img{
+       padding: 8px;
+       max-width: 64px;
+     }
+
+    .disclaimer {
+      background-color:#FFFFFF;
+      cursor:default;
+      display:none;
+      margin-top: 0px;
+      position:absolute;
+      text-align:left;
+      width:394px;
+      z-index:50;
+      padding: 15px 25px;
+      right:84px;
+      bottom:15%;
+      z-index: 99999;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 3px;
+      padding-left: 15px;
+      text-indent: -15px;
+    }
+
+
+    .disclaimer p, .disclaimer.div {
+      margin: 8px 0;
+      padding-bottom: 8px;
+      font-family:'Helvetica';
+      font-weight:300;
+      text-align:justify;
+    }
+
+    .disclaimer h1{
+      font-size:30px;
+      font-family:'Helvetica';
+      font-weight:800;
+    }
+
+        .ns{
+            background-color: #afaaaa;
+            color: black;
+            border-radius: 5px;
+        }
+
+        .fond{
+          color: #afaaaa !important;
+        }
+
+        .fond_global{
+          color: #2d8670 !important;
+          font-weight: normal !important;
+        }
+
+        .borde_b{
+          border-bottom: solid 1px #afaaaa;
+        }
+           #loader {
+      display: block;
+      background: rgba(62, 60, 60, 0.6);
+      color: white;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10000;
+    }
+
+  #loader p {
+      display: block;
+      font-size: 40px;
+      position: absolute;
+      top: -70px;
+      /* left: 0; */
+      bottom: 0;
+      right: 15px;
+      color: #fff !important /*margin: auto;*/;
+      text-align: right;
+    }
+
+     #loader p #tex{
+      width: 300px;
+    }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<script src='config.js'></script>
+
+    <span id="loader">
+    <p style="color:#333; padding-top: 100px; ">Cargando<br>información</p>
+  </span>
+<script>
+
+$('#loader').show();
+</script>
+
+
+  </head>
+  <body>
+
+    <!-- menu -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class=" container nav-wrapper" style="margin-top:0px;">
+          <a href="index.html" class="brand-logo"><img src="img/icono_header.svg" alt="" /></a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down nav_sticky">
+            <li class="tam t_sm"><a class="t_sm" href="objetivos.html">Indicadores</a></li>
+
+             <li class="tam t_sm"><a href="estados.html" style="line-height: 21px; padding-top: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;Indicadores con<br>desglose geográfico</a></li>
+
+            <!--<li class="tam t_sm"><a class="t_sm" href="como_vamos.html">¿C&oacute;mo vamos?</a></li> -->
+            <li class="tam t_sm"><a class="t_sm" href="explora.html">Explora</a></li>
+            <!-- <li class="tam t_sm"><a class="t_sm" href="compara.html">Compara</a></li> -->
+            <li class="tamps">
+              <a id="buscar"><img src="img/search.png" alt="" /></a>
+              <input id="cam_bus" type="text" name="buscar" style="display: none; background-color: rgba(0, 0, 0, 0.4); background-position: 95% 50%; background-repeat: no-repeat;border-bottom: 0 none; border-radius: 8px;color: #ffffff !important;padding: 0 0px;height:35px;" onfocusout="esconder()"/>
+            </li>
+            <li class="tamps">
+              <a id="busca" href="calendario.html"><img data-position="bottom" data-tooltip="Ir al calendario de actualizaciones" class="tooltipped" src="img/calendario.png"
+                  alt="" /></a>
+            </li>
+            <li class="tamps">
+              <a id="busca" href="descarga.html"><img data-position="bottom" data-tooltip="Ir a la página de descargas masivas" class=" tooltipped" src="img/descarga.png"
+                  alt="" /></a>
+            </li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+          <li><a href="index.html">Inicio</a></li>
+            <li><a href="objetivos.html">Indicadores</a></li>
+           <!--  <li><a href="estados.html">Indicadores por unidad geográfica</a></li> -->
+           <!--  <li><a href="como_vamos.html">¿C&oacute;mo vamos?</a></li> -->
+            <li><a href="explora.html">Explora</a></li>
+            <!-- <li><a href="compara.html">Compara</a></li> -->
+         <!--    <li class="tamps">
+           <a id="busca" href="calendario.html">Calendario</a>
+         </li> -->
+          </ul>
+        </div>
+      </nav>
+    </div>
+<!-- menu -->
+
+
+    <div class="container" id="objetivo0">
+      <div class="row">
+        <div class="col s12">
+          <h3 class="fuerte t_principal">INDICADORES</h3>
+          <li class="divider"></li>
+        </div>
+        <div class="col s12">
+          <br>
+          <div class="input-field col s10 l4" style="margin-left:15px;">
+            <i class="material-icons prefix caja_i">search</i>
+            <input id="icon_prefix" type="text" class="validate caja_d autocomplete" placeholder=" Buscar indicadores" style="padding-left: 12px;">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <ul id="objetivos" class="collapsible popout" data-collapsible="accordion">
+           <li id="objetivo1" class="objetivos">
+             <div id="fin_pobreza" class="collapsible-header fin_pobreza">
+               <div class="obj_icon center-align id_1">
+                 <img class="ico_obj" src="img/ods-01.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">1- Fin de la pobreza<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="fin_pobreza_cont">
+                <div class="col s12">
+                 <p>No se tiene indicadores disponibles para este objetivo</p>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo2" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_2" id="id_2">
+                 <img class="ico_obj" src="img/ods-02.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">2- Hambre cero<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="hambre_cero_cont">
+               <div class="col s12">
+                  <p>No se tiene indicadores disponibles para este objetivo</p>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo3" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_3" id="id_3">
+                 <img class="ico_obj" src="img/ods-03.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">3- Salud y bienestar<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="salud_bienestar_cont">
+             </div>
+           </li>
+           <li id="objetivo4" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_4" id="id_4">
+                 <img class="ico_obj" src="img/ods-04.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">4- Educación de calidad<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="educacion_calidad_cont">
+               <div class="row" >
+                  <div class="col s1"></div>
+                  <div class="col s11">
+                    <p>No se tiene indicadores disponibles para este objetivo</p>
+                  </div>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo5" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_5" id="id_5">
+                 <img class="ico_obj ico_top" src="img/ods-05.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">5- Igualdad de género<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="igualdad_genero_cont">
+                <div class="row" >
+                  <div class="col s1"></div>
+                  <div class="col s11">
+                    <p>No se tiene indicadores disponibles para este objetivo</p>
+                  </div>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo6" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_6" id="id_6">
+                 <img class="ico_obj ico_top" src="img/ods-06.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">6- Agua limpia y saneamiento<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="agua_limpia_cont">
+                <div class="row" >
+                  <div class="col s1"></div>
+                  <div class="col s11">
+                    <p>No se tiene indicadores disponibles para este objetivo</p>
+                  </div>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo7" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_7" id="id_7">
+                 <img class="ico_obj" src="img/ods-07.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">7- Energía asequible y no contaminante<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="energia_esequible_cont">
+                <div class="row" >
+                  <div class="col s1"></div>
+                  <div class="col s11">
+                    <p>No se tiene indicadores disponibles para este objetivo</p>
+                  </div>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo8" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_8" id="id_8">
+                 <img class="ico_obj" src="img/ods-08.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">8- Trabajo decente y crecimiento económico<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="trabajo_docente_cont">
+                <div class="col s12">
+                  <p>No se tiene indicadores disponibles para este objetivo</p>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo9" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_9" id="id_9">
+                 <img class="ico_obj" src="img/ods-09.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">9- Industria, innovación e infraestructura<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="industria_innovacion_cont">
+                <div class="col s12">
+                  <p>No se tiene indicadores disponibles para este objetivo</p>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo10" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_10" id="id_10">
+                 <img class="ico_obj" src="img/ods-10.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">10- Reducción de las desigualdades<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="reduccion_desigualdades_cont">
+                <div class="row" >
+                  <div class="col s1"></div>
+                  <div class="col s11">
+                    <p>No se tiene indicadores disponibles para este objetivo</p>
+                  </div>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo11" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_11" id="id_11">
+                 <img class="ico_obj" src="img/ods-11.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">11- Ciudades y comunidades sustentables<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="ciudades_comunidades_cont">
+                <div class="row" >
+                  <div class="col s1"></div>
+                  <div class="col s11">
+                    <p>No se tiene indicadores disponibles para este objetivo</p>
+                  </div>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo12" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_12" id="id_12">
+                 <img class="ico_obj" src="img/ods-12.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">12- Producción y consumo responsables<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="produccion_consumo_cont">
+                <div class="row" >
+                  <div class="col s1"></div>
+                  <div class="col s11">
+                    <p>No se tiene indicadores disponibles para este objetivo</p>
+                  </div>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo13" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_13" id="id_13">
+                 <img class="ico_obj" src="img/ods-13.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">13- Acción por el clima<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="accion_clima_cont">
+               <div class="row" >
+                  <div class="col s1"></div>
+                  <div class="col s11">
+                    <p>No se tiene indicadores disponibles para este objetivo</p>
+                  </div>
+                </div>
+             </div>
+           </li>
+           <li id="objetivo14" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_14" id="id_14">
+                 <img class="ico_obj" src="img/ods-14.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">14- Vida submarina<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="vida_submarina_cont">
+              <div class="col s12">
+                <p>No se tiene indicadores disponibles para este objetivo</p>
+              </div>
+             </div>
+           </li>
+           <li id="objetivo15" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_15" id="id_15">
+                 <img class="ico_obj" src="img/ods-15.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">15- Vida de ecosistemas terrestres<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="vida_ecosistemas_cont">
+              <div class="col s12">
+                <p>No se tiene indicadores disponibles para este objetivo</p>
+              </div>
+             </div>
+           </li>
+           <li id="objetivo16" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_16" id="id_16">
+                 <img class="ico_obj" src="img/ods-16.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">16- Paz, justicia e instituciones sólidas<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="paz_justicia_cont">
+              <div class="col s12">
+                  <p>No se tiene indicadores disponibles para este objetivo</p>
+              </div>
+             </div>
+           </li>
+           <li id="objetivo17" class="objetivos">
+             <div class="collapsible-header">
+               <div class="obj_icon center-align id_17" id="id_17">
+                 <img class="ico_obj" src="img/ods-17.png" alt="" />
+               </div>
+               <span class="marg_obj t_sm gris">17- Alianzas para lograr objetivos<i class="fa fa-angle-down right" aria-hidden="true"></i></span>
+             </div>
+             <div class="collapsible-body back_gray t_sm gris" style="overflow: hidden;" id="alianzas_objetivos_cont">
+              <div class="col s12">
+                <p>No se tiene indicadores disponibles para este objetivo</p>
+              </div>
+             </div>
+           </li>
+         </ul>
+        </div>
+      </div>
+    </div>
+
+
+<!-- footer -->
+    <footer class="page-footer id">
+      <div class="container">
+        <div class="row" id="fot">
+          <div class="col l3 s12">
+            <a href="index.html"><img src="img/logo_footer.svg" alt="" style="width: 60%;"/></a>
+            <br>
+            <br>
+   <!--          <div class="" style="display:inline;">
+              <a href="https://www.facebook.com" style="margin-right: 12%;"><img src="img/fill2.png" alt="" style="width:3%;"/></a>
+              <a href="https://twitter.com" style="margin-right: 12%;"><img src="img/fill1.png" alt="" style="width:7%;"/></a>
+              <a href="#"><img src="img/fill3.png" alt="" style="width:7%;"/></a>
+            </div>
+ -->          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+              <li><a class="fuerte t_sm" href="objetivos.html">Indicadores</a></li>
+              <!-- <li><a class="fuerte t_sm" href="estados.html">Indicadores con desglose geográfico</a></li>
+              <li><a class="fuerte t_sm" href="como_vamos.html">¿Cómo vamos?</a></li> -->
+              <li><a class="fuerte t_sm" href="explora.html">Explora</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+             <!-- <li><a class="fuerte t_sm" href="compara.html">Compara</a></li> -->
+            <li><a class="fuerte t_sm" href="calendario.html">Calendario de actualizaciones</a></li>
+            <li><a class="fuerte t_sm" href="descarga.html">Descarga masiva</a></li>
+            <li><a class="fuerte t_sm" href="acerca.html">Acerca de</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12" style="display:inline;">
+            <a href="https://www.gob.mx" target="_blank"><img src="img/logoPR.png" alt="" style="width: 45%; margin-right: 15%;"/></a>
+            <a href="http://www.inegi.org.mx" target="_blank"><img src="img/logoINEGI.png" alt="" style="width:25%;"/></a>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="footer-copyright light-blue">
+      </div> -->
+    </footer>
+<!-- footer -->
+
+<div class="disclaimer pop">
+  <h1>Aviso</h1>
+  <p>Esta es una versión beta de la Plataforma oficial para el seguimiento de los indicadores de los Objetivos de Desarrollo Sostenible. El INEGI y el Gobierno de la República trabajan para actualizar la información constantemente.</p>
+</div>
+
+<a href="#" id="contact"> <img src="img/informacion.png" alt="" /> </a>
+    <script type="text/javascript">
+    var objetivoId = getParameterByName('objetivoId');
+    var lupa = false;
+    var visibles =  true;
+
+    $(document).ready(function(){
+      $('#cam_bus').keypress(function(e) {
+          if(e.which == 13) {
+            buscar($('#cam_bus').val());
+          }
+      });
+
+      $('#icon_prefix').keypress(function(e) {
+          if(e.which == 13) {
+            buscar($('#icon_prefix').val());
+          }
+      });
+
+      function deselect(e) {
+        $('.pop').slideFadeToggle(function() {
+          e.removeClass('selected');
+        });
+      }
+
+      $("#contact").hover(
+       function() {
+         if($(this).hasClass('selected')) {
+           deselect($(this));
+         } else {
+           $(this).addClass('selected');
+           $('.pop').slideFadeToggle();
+         }
+         return false;
+       }, function() {
+         deselect($('#contact'));
+         return false;
+       }
+     );
+
+
+     $.fn.slideFadeToggle = function(easing, callback) {
+       return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+     };
+
+      $('.collapsible').collapsible({
+        accordion : true
+      });
+
+      console.log($('#objetivos').find('li.active').children().children());
+      $(".button-collapse").sideNav();
+
+
+              $("#sti").hide();
+
+        window.onload = function () {
+
+          $('#buscar').click(function () {
+            if(lupa) {
+              $('#cam_bus').hide();
+              lupa = false;
+            } else {
+              $('#cam_bus').show();
+              $('#buscar').hide();
+              document.getElementById("cam_bus").focus();
+              lupa = true;
+            }
+          });
+        }
+
+    llamada(27,99);
+    if(objetivoId != ''){
+      desplegar(objetivoId);
+      console.log('entro');
+    }
+
+    });
+
+/*    function buscar(busqueda){
+      if(busqueda != ''){
+        $('.objetivos:not(:contains("'+ busqueda +'"))').hide();
+      }else{
+        $('.objetivos').show();
+      }
+    }
+*/
+     function buscar(busqueda){
+    window.location.replace("busqueda.html?busqueda=" + busqueda);
+  }
+
+    function llamada(indicador, ser){
+      var url = PathAPI + 'Tematica/Todos';
+      //var url = 'https://operativos.inegi.org.mx/datos/api/Valores/PorClaveSerie';
+      var parametros =  {"PIdioma":"ES"}
+      //var parametros =  {'PCveInd':indicador,'PAnoIni':'0', 'PAnoFin':'0', 'POrden':'DESC','PCveSer': ser , 'PIdioma':'ES'}
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data: parametros,
+          success: function( data, textStatus, jqxhr ) {
+             console.log(data);
+             ponObjetivos(data);
+
+              /*var obj = getParameterByName("busqueda");
+              if(obj != null){
+                buscar(obj);
+              }*/
+
+              $('#loader').delay(2000).fadeOut("slow");
+          },
+          async:false
+        });
+    }
+
+    function ponObjetivos(datos){
+      var checar = 0;
+      for (var i = 0; i < datos.length; i++) {
+        var contenido='';
+        for (var j = 0; j < datos[i].Meta.length; j++) {
+var clave_arb_meta  = datos[i].Meta[j].Indicador[0].ClaveInd_arb;
+        if(true){
+          if(clave_arb_meta != -1){
+          if(j > 2){
+                contenido = contenido + '<div class="row borde_b fond ocultar" >';
+              }else{
+                contenido = contenido + '<div class="row borde_b fond" >';
+              }
+          contenido = contenido + '<div class="col s1">'+
+                                    '<p>'+datos[i].Meta[j].Codigo_des+'</p>'+
+                                  '</div>'+
+                                  '<div class="col s11">'+
+                                    '<p style="padding-bottom: 0px;" class="marmar">'+datos[i].Meta[j].Descrip_des+'</p><p>';
+
+
+            for (var k = 0; k < datos[i].Meta[j].Indicador.length; k++) {
+
+              var clave_arb     = datos[i].Meta[j].Indicador[k].ClaveInd_arb;
+              var codigo_dg     = datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg;
+              var descrip_des   = datos[i].Meta[j].Indicador[k].Descrip_des;
+              var codigo_des    = datos[i].Meta[j].Indicador[k].Codigo_des;
+            if( clave_arb == -1){
+
+            }else if(clave_arb == 333)
+            {
+              if(datos[i].Meta[j].Indicador[k].TieneValores){
+                 contenido = contenido +
+                  '<a class="buscar" href="indicadores.html?objetivo='+datos[i].Codigo_des+'&meta='+datos[i].Meta[j].Clave_arb+'&indicador='+ clave_arb+'&codigo='+codigo_dg+'&obj='+datos[i].Clave_arb+'">'+
+                    codigo_des +' '+ descrip_des +
+                  '</a>'+
+                  '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
+                    ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
+                  '</a>' +
+                  '&nbsp;&nbsp;'+
+                '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
+                  '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
+                '<br>';
+              }else{
+                 contenido = contenido +
+                  '<span class="buscar" >'+
+                    codigo_des +' '+ descrip_des +
+                  '</span>'+
+                  '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
+                    ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
+                  '</a>' +
+                  '&nbsp;&nbsp;'+
+                '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
+                  '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
+                '<br>';
+              }
+            }
+            else{
+              if(datos[i].Meta[j].Indicador[k].TieneValores){
+                 contenido = contenido +
+                  '<a class="buscar" href="indicadores.html?objetivo='+datos[i].Codigo_des+'&meta='+datos[i].Meta[j].Clave_arb+'&indicador='+ clave_arb+'&codigo='+codigo_dg+'&obj='+datos[i].Clave_arb+'">'+
+                    codigo_des +' '+ descrip_des +
+                  '</a>'+
+                  '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
+                    ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
+                  '</a>' +
+                  '&nbsp;&nbsp;'+
+                '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
+                  '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
+                '<br>';
+              }else{
+                 contenido = contenido +
+                  '<span class="buscar" >'+
+                    codigo_des +' '+ descrip_des +
+                  '</span>'+
+                  '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
+                    ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
+                  '</a>' +
+                  '&nbsp;&nbsp;'+
+                '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
+                  '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
+                '<br>';
+              }
+
+            }//fin for mas interno
+          }
+          contenido = contenido +     '</p></div>'+'</div>';
+          }
+        }else {
+          var mensa = '<p>No se tiene indicadores disponibles para este objetivo</p>';
+          contenido =  '<div class="col s12">'+mensa+'</div>';
+        }//fin condicion para no ver las metas
+
+          // if(checar < 2 ){
+          //   console.log(contenido);
+          //   checar ++;
+          // }
+
+
+
+        }//despues de este cambia el indicador
+
+if(datos[i].Meta.length > 2){
+            contenido = contenido +    '<div class="row fond link_less">' +
+                                          '<div class="col s12">'+
+                                            '<p style="text-align:right !important;"><a class="fond mensaje" href="#objetivoId'+(i+1)+'" onclick="show_less()">Ver menos</a></p>'+
+                                          '</div>'+
+                                        '</div>';
+          }
+
+     // se asigna el codiogo de cada contenedor
+        if(datos[i].Clave_arb == "ODS0010"){
+          if(datos[i].Ind_disponibles){
+            $('#fin_pobreza_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0020")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#hambre_cero_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0030")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#salud_bienestar_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0040")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#educacion_calidad_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0050")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#igualdad_genero_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0060")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#agua_limpia_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0070")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#energia_esequible_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0080")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#trabajo_docente_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0090")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#industria_innovacion_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0100")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#reduccion_desigualdades_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0110")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#ciudades_comunidades_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0120")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#produccion_consumo_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0130")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#accion_clima_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0140")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#vida_submarina_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0150")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#vida_ecosistemas_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0160")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#paz_justicia_cont').html(contenido);
+          }
+        }else if(datos[i].Clave_arb == "ODS0170")
+        {
+          if(datos[i].Ind_disponibles){
+            $('#alianzas_objetivos_cont').html(contenido);
+          }
+        }
+        //limpiamos la variable
+        contenido = '';
+
+
+      }//fin for mas externo
+
+
+      show_less();
+
+      $('.tooltipped').tooltip({delay: 50});
+      // console.log(tabla);
+    }
+
+    function show_less()
+    {
+      if(visibles){
+        $('.ocultar').hide();
+        console.log('oculta');
+        visibles = false;
+        $('.mensaje').html('Ver más');
+      }
+      else{
+       $('.ocultar').show();
+       console.log('muetra');
+       visibles = true;
+       $('.mensaje').html('Ver menos');
+      }
+    }
+
+    function esconder() {
+      $('#cam_bus').hide();
+      $('#buscar').show();
+      lupa = false;
+    }
+
+    function desplegar(objetivoId)
+    {
+      $('#objetivo'+objetivoId+' > div').click();
+      window.location.href = '#objetivo'+ (objetivoId-1);
+    }
+
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    </script>
+  </body>
+</html>

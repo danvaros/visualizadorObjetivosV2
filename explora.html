@@ -1,0 +1,2828 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Objetivos de Desarrollo Sostenible</title>
+
+    <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/tooltipster.bundle.min.css" />
+	  <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,700,800,300,600italic,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="lib/owl.carousel.min.css">
+    <link rel="stylesheet" href="lib/owl.theme.default.min.css">
+    <!-- Load c3.css -->
+  	<link href="lib/c3.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/section-scroll.css"> -->
+
+<style media="screen">
+
+a.selected {
+  background-color:#1F75CC;
+  color:white;
+  z-index:100;
+  right:0;
+  bottom:15%;
+  position:absolute;
+}
+ #contact{
+   position: absolute;
+    right: 0;
+    bottom: 15%;
+    background:#EFD331;
+    color:#ffffff;
+    padding:5px 10px;
+    text-decoration:none;
+    z-index: 99;
+ }
+
+ #contact img{
+   padding: 8px;
+   max-width: 64px;
+ }
+
+.disclaimer {
+  background-color:#FFFFFF;
+  cursor:default;
+  display:none;
+  margin-top: 0px;
+  position:absolute;
+  text-align:left;
+  width:394px;
+  z-index:50;
+  padding: 15px 25px;
+  right:84px;
+  bottom:15%;
+  z-index: 99999;
+}
+
+label {
+  display: block;
+  margin-bottom: 3px;
+  padding-left: 15px;
+  text-indent: -15px;
+}
+
+
+.disclaimer p, .disclaimer.div {
+  margin: 8px 0;
+  padding-bottom: 8px;
+  font-family:'Helvetica';
+  font-weight:300;
+  text-align:justify;
+}
+
+.disclaimer h1{
+  font-size:30px;
+  font-family:'Helvetica';
+  font-weight:800;
+}
+
+
+svg g.c3-chart-line g.c3-circles-Estados-Unidos-Mexicanos circle{
+  fill: #f00 !important;
+}
+
+#datosNacional{
+  display: none;
+}
+
+  .infoPadre{
+    width: 276px;
+}
+
+  .cuadrosSocial li {
+    display: inline;
+}
+
+.cuadrosSocial li a{
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: all 1.0s ease;
+  width: 40px;
+}
+
+
+.cuadrosSocial li a:hover {
+  background-color: #ccc;
+
+}
+
+.select-dropdown{
+  padding-left: 10px !important;
+}
+
+
+.select-wrapper span.caret{
+  padding-right: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.espacio_seccion{
+  height: 40px;
+}
+
+
+
+.promedios{
+  font-size: 40px !important;
+  font-weight: 200;
+}
+
+.topColor{
+  color: #3ebcef;
+}
+.section-bullets{
+  display: none;
+}
+
+.section-bullets li a:before {
+    background-color: #00aeef;
+}
+
+
+.section-bullets li:hover {
+    background-color: #eee;
+}
+
+.section-bullets .active a {
+  color: #fff;
+}
+
+ .section-bullets .active a:after {
+    background-color: #FFF;
+}
+
+.line_pro{
+  border-bottom: #F44336;
+  border: solid 1px #F44336;
+  margin: 10px;
+  max-width: 32%;
+}
+
+.active_anio
+{
+  background-color: #15b5f0;
+  color: white;
+}
+
+.inactive_anio
+{
+  background-color: white;
+  color: #15b5f0;
+}
+
+ #loader {
+      display: block;
+      background: rgba(62, 60, 60, 0.6);
+      color: white;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10000;
+    }
+
+   #loader p {
+      display: block;
+      font-size: 40px;
+      position: absolute;
+      top: -70px;
+      /* left: 0; */
+      bottom: 0;
+      right: 15px;
+      color: #fff !important /*margin: auto;*/;
+      text-align: right;
+    }
+
+     #loader p #tex{
+      width: 300px;
+    }
+
+    .crop {
+     width: 185px;
+     line-height: 18px;
+     height: 50px;
+     overflow: hidden;
+     margin: 0 auto;
+     text-align: left;
+   }
+</style>
+  <span id="loader">
+    <p style="color:#333; padding-top: 100px; ">Cargando<br>información</p>
+  </span>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+  <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script src="image.js"></script> -->
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/rgbcolor.js"></script>
+
+    <script src="image.js"></script>
+    <!-- <script type="text/javascript" src="http://gabelerner.github.io/canvg/rgbcolor.js"></script>
+
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/StackBlur.js"></script>
+    <script type="text/javascript" src="http://gabelerner.github.io/canvg/canvg.js"></script> -->
+
+    <!-- <script type="text/javascript" src="lib/jquery.section-scroll.js"></script> -->
+    <script src="lib/owl.carousel.min.js"></script>
+  </head>
+  <body>
+
+ <!-- menu -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class=" container nav-wrapper" style="margin-top:0px;">
+          <a href="index.html" class="brand-logo"><img src="img/icono_header.svg" alt="" /></a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down nav_sticky">
+            <li class="tam t_sm"><a class="t_sm" href="objetivos.html">Indicadores</a></li>
+
+             <li class="tam t_sm"><a href="estados.html" style="line-height: 21px; padding-top: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;Indicadores con<br>desglose geográfico</a></li>
+
+            <!--<li class="tam t_sm"><a class="t_sm" href="como_vamos.html">¿C&oacute;mo vamos?</a></li> -->
+            <li class="tam t_sm"><a class="t_sm" href="explora.html">Explora</a></li>
+            <!-- <li class="tam t_sm"><a class="t_sm" href="compara.html">Compara</a></li> -->
+            <li class="tamps">
+              <a id="buscar"><img src="img/search.png" alt="" /></a>
+              <input id="cam_bus" type="text" name="buscar" style="display: none; background-color: rgba(0, 0, 0, 0.4); background-position: 95% 50%; background-repeat: no-repeat;border-bottom: 0 none; border-radius: 8px;color: #ffffff !important;padding: 0 0px;height:35px;" onfocusout="esconder()"/>
+            </li>
+            <li class="tamps">
+              <a id="busca" href="calendario.html"><img data-position="bottom" data-tooltip="Ir al calendario de actualizaciones" class="tooltipped" src="img/calendario.png"
+                  alt="" /></a>
+            </li>
+            <!-- <li class="tamps">
+              <a id="busca" href="exportacion.html"><img data-position="bottom" data-tooltip="Ir a la página de descargas masivas" class=" tooltipped" src="img/descarga.png"
+                  alt="" /></a>
+            </li> -->
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+          <li><a href="index.html">Inicio</a></li>
+            <li><a href="objetivos.html">Indicadores</a></li>
+           <!--  <li><a href="estados.html">Indicadores por unidad geográfica</a></li> -->
+           <!--  <li><a href="como_vamos.html">¿C&oacute;mo vamos?</a></li> -->
+            <li><a href="explora.html">Explora</a></li>
+            <!-- <li><a href="compara.html">Compara</a></li> -->
+           <!--  <li class="tamps">
+             <a id="busca" href="calendario.html">Calendario</a>
+           </li> -->
+          </ul>
+        </div>
+      </nav>
+    </div>
+<!-- menu -->
+    <div class="container">
+      <div class="row scrollable-section" data-section-title="Menú de selección" >
+        <div class="col s12">
+          <h3 class="fuerte t_principal">EXPLORA</h3>
+          <li class="divider"></li>
+          <!-- <p class="gris t_sm">
+          Esta sección permite visuallizar los indicadores de los cuales se dispone información para 11 de los 17 objetivos de la Agenda 2030 para el Desarrollo Sostenible. Igualmente ofrece la posiblilidad de filtrar la información por tipo de desagregación y unidades territoriales menores, en el caso de que esta se encuentre disponible, y exportarla para su manipulacion al igual que los materiales graficos que se generen por el usuario.
+          </p> -->
+          <p class="gris t_sm">
+          Esta sección permite visualizar los indicadores de los Objetivos de Desarrollo Sostenible y ofrece la posibilidad de filtrar la información por cobertura geográfica, y exportar las series estadísticas así como los gráficos que el usuario genere durante la navegación.
+        </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4 l2" style="display: flex;">
+          <p class="claro t_sm" style="display: inline-table; margin-top: 25px; margin-right: 20px;">1. Tipo de indicador</p>
+        </div>
+        <div class="col s8 l5" style="display: flex;">
+          <div class="input-field col s12 caja_s">
+            <select id="agregacion">
+              <option value="" disabled selected>Elige una opción</option>
+              <option value="1">Nacional</option>
+              <option value="2" selected>Estatal</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4 l2" style="display: flex;">
+          <p class="claro t_sm" style="display: inline-table; margin-top: 25px; margin-right: 63px;">2. Objetivo</p>
+        </div>
+        <div class="col s8 l5" style="display: flex;">
+          <div class="input-field col s12 caja_s">
+            <select id="obj_name">
+              <option value="-1" disabled="">Elige un objetivo</option>
+              <option value="1.">Fin de la pobreza</option>
+              <option value="3." selected="">Salud y bienestar</option>
+              <option value="8.">Trabajo decente y crecimiento económico</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4 l2" style="display: flex;">
+          <p class="claro t_sm" style="display: inline-table; margin-top: 25px; margin-right: 63px;">3. Indicador </p>
+        </div>
+        <div class="col s8 l5" style="display: flex;">
+            <div class="input-field col s12 caja_s">
+            <select id="indicadores">
+              <!-- <option value="" disabled selected>Elige una opcion</option> -->
+
+              <option value="26" selected>Razón de mortalidad materna</option>
+              <option value="27">Proporción de partos con asistencia de personal sanitario especializado</option>
+              <option value="23">Tasa de mortalidad de niños menores de 5 años</option>
+              <option value="132">Tasa de incidencia asociada al paludismo (por 100 mil habitantes)</option>
+              <option value="333">Proporción de tratamientos otorgados a casos confirmados de paludismo, para la prevención, control y eliminación de la transmisión del Plasmodium Vivax</option>
+              <option value="140">Proporción de mujeres en edad reproductiva (de 15 a 49 años) con demanda satisfecha de planificación familiar con métodos modernos</option>
+              <option value="141">Tasa de fecundidad de las adolescentes de 10 a 14 años por cada 1,000 adolescentes en ese grupo de edad</option>
+              <option value="334">Tasa de fecundidad de las adolescentes de 15 a 19 años por cada 1,000 mujeres de ese grupo de edad</option>
+            </select>
+          </div>
+        </div>
+       <!--  <div class="col s5 offset-s2" style="display: flex;">
+          <a class="waves-effect waves-light btn color claro t_sm sin_sombra marg_top" style="width: 250px;" id ="hacer_llamada" onclick="llamar_api()">Ir</a>
+        </div> -->
+      </div>
+      <div class="row" id="row_filtros" style="display: none;">
+        <div class="col s4 l2" style="display: flex;">
+          <p class="claro t_sm" style="display: inline-table; margin-top: 25px; margin-right: 63px;">4. filtros</p>
+        </div>
+        <div class="col s8 l5" style="display: flex;">
+          <div class="input-field col s12 caja_s">
+            <select id="filtros">
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="espacio_seccion"></div>
+      <div class="hide">Ocurrio un Error al hacer la llamada</div>
+      <div class="row scrollable-section" data-section-title="Mapa">
+        <div class="col s12" id="seccion_mapa">
+          <div class="cuadro_titulo" id="headmap" >
+              <h4>Razón de mortalidad materna</h4>
+              <li class="divider"></li>
+              <p>1990-2015</p>
+              <span>Defunciones de mujeres por cada 100 mil nacidos vivos</span>
+          </div>
+
+            <div id="map"></div>
+
+            <div class="pie_cuadro2" id="footmapdatos" >
+              <div><strong>Nota:</strong> A partir de 2007 se excluyen defunciones con residencia en el extranjero y a partir de 2009 las defunciones extemporáneas</div>
+              <div><strong>Fuente:</strong> SS. Dirección General de Información en Salud (DGIS)</div>
+              <div><strong>Fecha de actualización:</strong> Noviembre de 2016</div>
+            </div>
+
+
+      <style>
+.cuadro_titulo{
+    background-color: #fff;
+    padding: 30px;
+    color: #083362;
+}
+
+.cuadro_titulo p{
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0px;
+}
+
+.cuadro_titulo span{
+      font-size: 14px;
+    font-weight: 300;
+}
+
+.cuadro_titulo .divider {
+    background-color: #fff;
+}
+
+.pie_cuadro2{
+  background-color: #fff;
+  color: #083362;
+  padding: 20px;
+}
+.pie_cuadro2 div{
+  margin-top:6px;
+  font-weight: 100;
+  font-size: initial;
+}
+</style>
+
+            <!-- <div id="map"></div> -->
+            <div class="row" id="footmap" style="padding-left: 31px;">
+	            <div id="anios" class="col s12 l8">
+	            	<a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;">Año</a>
+		            <a class="waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" style ="margin-right: -5px; border-color: black; border-width: 1px; border-radius: 5px 0px 0px 5px;">2013</a>
+		            <a class="waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" style ="margin-right: -5px; border-color: black; border-width: 1px; border-radius: 0;">2014</a>
+		            <a class="waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" style ="margin-right: -5px; border-color: black; border-width: 1px; border-radius: 0px 5px 5px 0px;">2015</a>
+	            </div>
+	            <div class="col s12 l4 rengal" >
+                    <a style="margin-top: 42px; float: right;" class="waves-effect waves-light btn color claro t_sm sin_sombra modal-trigger" href="#modalMapa" style="width: 250px;margin-top:42px;">Comparte este mapa</a>
+	            </div>
+            </div>
+          </div>
+      </div>
+      <br><br><br>
+      <div class="row scrollable-section" data-section-title="Gráfica" id="grafica">
+        <div class="col s12" id="grafica_c">
+          <h3 class="fuerte t_principal">Evolución del indicador en el tiempo</h3>
+          <li class="divider"></li>
+          <br><br>
+          <div class="cuadro_titulo">
+              <!-- <h4>Razón de mortalidad materna</h4>
+              <li class="divider"></li>
+              <p>1990-2015</p>
+              <span>Defunciones de mujeres por cada 100 mil nacidos vivos</span> -->
+          </div>
+          <div id="chart2"></div>
+          <div class="pie_cuadro2">
+              <!-- <div><strong>Nota:</strong> A partir de 2007 se excluyen defunciones con residencia en el extranjero y a partir de 2009 las defunciones extemporáneas</div>
+              <div><strong>Fuente:</strong> SS. Dirección General de Información en Salud (DGIS)</div>
+              <div><strong>Fecha de actualización:</strong> Noviembre de 2016</div> -->
+            </div>
+          <div class="col s4" style="margin-top: 40px;">
+            <div class="col s1 line_pro"></div>
+            <div class="col s6">
+              Promedio nacional
+            </div>
+          </div>
+          <div class="col s4 offset-s4">
+                <a class="waves-effect waves-light btn color claro t_sm sin_sombra marg_top modal-trigger" href="#modalGrafica" style="width: 250px;">Comparte esta gráfica</a>
+          </div>
+        </div>
+      </div>
+
+    <!--   <div id="datosEstatal" style="display:none;">
+        <div class="row scrollable-section" data-section-title="Tablas" >
+          <div class="col s12">
+            <h3 class="fuerte t_principal">Top 3 estados</h3>
+            <li class="divider"></li>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s4">
+            <h4 class="fuerte t_principal topColor"><strong>1</strong></h4>
+            <h2 class="promedios">Chiapas</h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+          <div class="col s4">
+            <h4 class="fuerte t_principal topColor"><strong>2</strong></h4>
+            <h2 class="promedios">Guerrero </h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+          <div class="col s4">
+            <h4 class="fuerte t_principal topColor"><strong>3</strong></h4>
+            <h2 class="promedios">Oaxaca</h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <h3 class="fuerte t_principal">Top 3 con más avance</h3>
+            <li class="divider"></li>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s4">
+            <h4 class="fuerte t_principal topColor"><strong>1</strong></h4>
+            <h2 class="promedios">Chiapas</h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+          <div class="col s4">
+            <h4 class="fuerte t_principal topColor"><strong>2</strong></h4>
+            <h2 class="promedios">Guerrero </h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+          <div class="col s4">
+            <h4 class="fuerte t_principal topColor"><strong>3</strong></h4>
+            <h2 class="promedios">Oaxaca</h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+        </div>
+      </div> -->
+
+  <!--     <div id="datosNacional">
+        <div class="row">
+          <div class="col s12">
+            <h3 class="fuerte t_principal">Promedio regional y global</h3>
+            <li class="divider"></li>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s4">
+            <h2 class="promedios">Nacional</h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+          <div class="col s4">
+            <h2 class="promedios">Regional</h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+          <div class="col s4">
+            <h2 class="promedios">Nacional</h2>
+            <h4 class="fuerte t_principal"><strong>13.1</strong></h4>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="row scrollable-section" data-section-title="Descarga de datos">
+        <div class="col s12" id="datos_descarga">
+          <h3 class="fuerte t_principal">Descargar datos</h3>
+          <li class="divider"></li>
+          <div class="row">
+          	<div class="col s12 l10">
+          		<div class="row">
+          			<div class="col s4">
+          				<p class="fuerte t_normal">Nombre</p>
+		  			    </div>
+    		  			<div class="col s4">
+              				<p class="fuerte t_normal" >Institución</p>
+    		  			</div>
+    		  			<div class="col s3">
+              				<p class="fuerte t_normal">Formato</p>
+    		  			</div>
+    		  			<div class="col s12">
+              				<li class="divider griss"></li>
+    		  			</div>
+    		  			<div class="col s4">
+              				<p class="gris t_sm" id="da_indicador">Razón de mortalidad materna</p>
+    		  			</div>
+    		  			<div class="col s4">
+              				<p class="gris t_sm" id="da_institucion">Secretaría de Salud (SS). Dirección General de Información en Salud (DGIS).</p>
+    		  			</div>
+    		  			<div class="col s3" style="margin-top: 10px;">
+              				<a class="icn col s12 l3  exportCSV">CSV</a>
+                      <span class="col s12 l12" style="margin-top:10px;" id="exportarXLS"></span>
+                      <!-- <a class="icns">XLS</a> -->
+                      <!-- <a class="icnSDMX">SDMX</a>
+                      <a class="icnPDF">PDF</a> -->
+    		  			</div>
+    		  			<div class="col s12">
+              				<li class="divider griss"></li>
+    		  			</div>
+          		</div>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div id="tabla_export" style="display: none;"></div>
+<div id="tabla_export2" style="display: none;"></div>
+
+    <footer class="page-footer id">
+      <div class="container">
+        <div class="row" id="fot">
+          <div class="col l3 s12">
+            <a href="index.html"><img src="img/logo_footer.svg" alt="" style="width: 60%;"/></a>
+            <br>
+            <br>
+            <div class="" style="display:inline;">
+         <!--      <a href="https://www.facebook.com" style="margin-right: 12%;"><img src="img/fill2.png" alt="" style="width:3%;"/></a>
+              <a href="https://twitter.com" style="margin-right: 12%;"><img src="img/fill1.png" alt="" style="width:7%;"/></a>
+              <a href="#"><img src="img/fill3.png" alt="" style="width:7%;"/></a> -->
+            </div>
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+              <li><a class="fuerte t_sm" href="objetivos.html">Indicadores</a></li>
+              <!-- <li><a class="fuerte t_sm" href="estados.html">Indicadores con desglose geográfico</a></li>
+              <li><a class="fuerte t_sm" href="como_vamos.html">¿Cómo vamos?</a></li> -->
+              <li><a class="fuerte t_sm" href="explora.html">Explora</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <ul class="fuerte">
+             <!-- <li><a class="fuerte t_sm" href="compara.html">Compara</a></li> -->
+            <li><a class="fuerte t_sm" href="calendario.html">Calendario de actualizaciones</a></li>
+            <!-- <li><a class="fuerte t_sm" href="exportacion.html">Exportación masiva</a></li> -->
+            <li><a class="fuerte t_sm" href="acerca.html">Acerca de</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12" style="display:inline;">
+            <a href="https://www.gob.mx" target="_blank"><img src="img/logoPR.png" alt="" style="width: 45%; margin-right: 15%;"/></a>
+            <a href="http://www.inegi.org.mx" target="_blank"><img src="img/logoINEGI.png" alt="" style="width:25%;"/></a>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="footer-copyright light-blue">
+      </div> -->
+    </footer>
+
+
+    <div class="disclaimer pop">
+      <h1>Aviso</h1>
+      <p>Esta es una versión beta de la Plataforma oficial para el seguimiento de los indicadores de los Objetivos de Desarrollo Sostenible. El INEGI y el Gobierno de la República trabajan para actualizar la información constantemente.</p>
+    </div>
+
+    <a href="#" id="contact"> <img src="img/informacion.png" alt="" /> </a>
+
+
+<!-- Modal Grafica -->
+<div id="modalGrafica" class="modal" >
+  <div class="modal-content">
+    <h5>Compartir</h5>
+    <div class="row">
+      <b>Redes Sociales</b>
+      <ul class="cuadrosSocial">
+
+        <li id="share_tw_grafica"></li>
+        <li>
+           <a class="waves-effect" href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u='+ window.location ,'ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><i class="fa fa-facebook fa-lg" style="padding-left: 4px;"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <!-- <i class="fa fa-code" aria-hidden="true"></i> <b>Embed</b>
+      <div class="input-field col s12">
+       <input placeholder="Placeholder" id="" type="text" class="validate" value="<script src='http://104.236.211.149/ods/embed.js'></script>">
+       <label for="">Copia este código para insertar el mapa en una página HTML</label>
+     </div> -->
+    </div>
+
+    <div class="row">
+    <i class="fa fa-code" aria-hidden="true"></i> <b>Liga</b>
+      <div class="input-field col s12">
+          <input placeholder="Placeholder" class="liga" type="text" class="validate" value="http://104.236.211.149/ods/compara.html#grafica">
+     </div>
+    </div>
+
+<!--     <div class="row">
+    <i class="fa fa-code" aria-hidden="true"></i> <b>PDF</b>
+      <div class="input-field col s12">
+          <a class="waves-effect btn color claro">Descargar PDF</a>
+     </div>
+    </div> -->
+    <div class="modal-footer">
+      <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modalMapa" class="modal">
+  <div class="modal-content">
+    <h5>Compartir</h5>
+    <div class="row">
+      <b>Redes Sociales</b>
+      <ul class="cuadrosSocial">
+        <li id="share_tw_mapa"></li>
+        <li>
+            <a class="waves-effect" href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u='+ window.location ,'ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><i class="fa fa-facebook fa-lg" style="padding-left: 4px;"></i></a>
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="row">
+      <i class="fa fa-code" aria-hidden="true"></i> <b>Embed</b>
+      <div class="input-field col s12">
+       <input placeholder="++" id="" type="text" class="validate" value="<script src='http://104.236.211.149/ods/embed.js'></script>">
+       <label for="">Copia este código para insertar el mapa en una página HTML</label>
+     </div>
+    </div> -->
+
+    <div class="row">
+    <i class="fa fa-code" aria-hidden="true"></i> <b>Liga</b>
+      <div class="input-field col s12">
+          <input placeholder="++" class="liga" type="text" class="validate" value="http://104.236.211.149/ods/compara.html#mapa">
+     </div>
+    </div>
+
+   <!--  <div class="row">
+    <i class="fa fa-code" aria-hidden="true"></i> <b>PDF</b>
+      <div class="input-field col s12">
+          <a id="pdf_descarga" class="waves-effect btn color claro">Descargar PDF</a>
+     </div>
+    </div> -->
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" style="display:none;">
+
+</div>
+<div class="row" id="show_grafica">
+
+  <div id="copia" style="width:100%; height:600px;"></div>
+  <div id="copias" style="width:100%; height:600px;"></div>
+  <div id="fondo" style="width:100%; height:600px;"></div>
+  <div id="todo" style="width:1298px; height:600px;"></div>
+  <div id="todo_listo" style="width:1298px; height:600px;"></div>
+  <div id="images" style="width:100%; height:600px;"></div>
+  <div id="forms" style="width:100%; height:600px;"></div>
+</div>
+
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <!-- <script type="text/javascript" src="entidad2.json"></script> -->
+    <!-- <script type="text/javascript" src="entidadCompara.json"></script> -->
+    <script type="text/javascript" src="entidad2.json"></script>
+    <!-- <script type="text/javascript" src="estados_indicador3.js"></script> -->
+    <script type="text/javascript" src="variable.js"></script>
+    <script type="text/javascript" src="municipio.json"></script>
+    <script type="text/javascript" src="nacion.json"></script>
+    <script src="lib/excellentexport.js"></script>
+
+
+    <!-- Load d3.js and c3.js -->
+  <script src="lib/d3.v3.min.js" charset="utf-8"></script>
+  <script src="lib/c3.min.js"></script>
+  <script src="classybrew/build/classybrew.min.js"></script>
+
+  <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
+  <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+  <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
+  <script type="text/javascript" src="lib/html2canvas.js"></script>
+  <script src='config.js'></script>
+  <script src='funcionesApi.js'></script>
+  <script src="lib/jquery.dotdotdot.js"></script>
+  <script src="cobertura.js"></script>
+  <script type="text/javascript" src="appExplora.js"></script>
+
+  <script type="text/javascript">
+        var titulo_des_graf="Razón de mortalidad materna";
+        var objeto;
+        var primera_carga =  true;
+        var initialLoad = true;
+
+
+
+        $(document).ready(function()
+        {
+
+          function exportTableToCSV($table, filename) {
+
+              var $rows = $table.find('tr:has(td)'),
+
+                  // Temporary delimiter characters unlikely to be typed by keyboard
+                  // This is to avoid accidentally splitting the actual contents
+                  tmpColDelim = String.fromCharCode(11), // vertical tab character
+                  tmpRowDelim = String.fromCharCode(0), // null character
+
+                  // actual delimiter characters for CSV format
+                  colDelim = '","',
+                  rowDelim = '"\r\n"',
+
+                  // Grab text from table into CSV formatted string
+                  csv = '"' + $rows.map(function (i, row) {
+                      var $row = $(row),
+                          $cols = $row.find('td');
+
+                      return $cols.map(function (j, col) {
+                          var $col = $(col),
+                              text = $col.text();
+
+                          return text.replace(/"/g, '""'); // escape double quotes
+
+                      }).get().join(tmpColDelim);
+
+                  }).get().join(tmpRowDelim)
+                      .split(tmpRowDelim).join(rowDelim)
+                      .split(tmpColDelim).join(colDelim) + '"';
+
+              // Deliberate 'false', see comment below
+              if (false && window.navigator.msSaveBlob) {
+
+                  var blob = new Blob([decodeURIComponent(csv)], {
+                      type: 'text/csv;charset=utf8'
+                  });
+
+                  // Crashes in IE 10, IE 11 and Microsoft Edge
+                  // See MS Edge Issue #10396033: https://goo.gl/AEiSjJ
+                  // Hence, the deliberate 'false'
+                  // This is here just for completeness
+                  // Remove the 'false' at your own risk
+                  window.navigator.msSaveBlob(blob, filename);
+
+              } else if (window.Blob && window.URL) {
+                  // HTML5 Blob
+                  var blob = new Blob([csv], { type: 'text/csv;charset=utf8' });
+                  var csvUrl = URL.createObjectURL(blob);
+
+                  $(this)
+                      .attr({
+                          'download': filename,
+                          'href': csvUrl
+                      });
+              } else {
+                  // Data URI
+                  var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+                  $(this)
+                      .attr({
+                          'download': filename,
+                          'href': csvData,
+                          'target': '_blank'
+                      });
+              }
+          }
+
+
+
+          function pruebaInicio(initialLoad){
+              if (initialLoad == true) {
+                  console.log(':::::::::::::::::::::::: Indicador Inicial :::::::::::::::::::::::');
+                  $("#exportarXLS").html('<a href="#" class="icns col s12 l3" download="Indicador.xls" onclick="return ExcellentExport.excel(this, '+"'miTabla33'"+', '+"'Indicadores'"+');">XLS</a>');
+                  $(".exportCSV").on('click', function (event) {
+                      var args;
+                          args = [$('#miTabla33'), 'IndicadorExp.csv'];
+                      exportTableToCSV.apply(this, args);
+                  });
+                  initialLoad = false;
+              } else {
+                console.log(':::::::::::::::::::::::: Indicador Diferente :::::::::::::::::::::::');
+                  $("#exportarXLS").html('<a href="#" class="icns col s12 l3" download="Indicador.xls" onclick="return ExcellentExport.excel(this, '+"'miTabla22'"+', '+"'Indicadores'"+');">XLS</a>');
+                  $(".exportCSV").on('click', function (event) {
+                      // CSV
+                      var args;
+                          //Do work when it's not the initial load.
+                          args = [$('#tabla_export2 table'), 'IndicadorExplora.csv'];
+                      exportTableToCSV.apply(this, args);
+                      initialLoad = false;
+                      // If CSV, don't do event.preventDefault() or return false
+                      // We actually need this to be a typical hyperlink
+                  });
+              }
+          }
+
+          pruebaInicio(initialLoad);
+
+          // $('.modal').modal();
+          $('.modal-trigger').leanModal();
+
+          compartir();
+
+
+          $('#show_grafica').hide();
+
+          console.log('al inicio',$('#tit_map_des').html());
+          llamada(2,3);
+          //$("#obj_name").html('<option value="-1">Selecciona un Objetivo</option>');
+
+          $("#obj_name").on('change', function()
+          {
+            if($('#agregacion').val() ==  1)
+            {
+              // initialLoad = false;
+              // pruebaInicio(initialLoad);
+              var indicador = $(this).val().split(".")[0];
+              console.log("entro",indicador);
+              console.log("Meta",objeto[indicador-1].Meta.length);
+              $("#indicadores").html('<option value="-1">Selecciona un Indicador</option>')
+              for(var i=0;i<objeto[indicador-1].Meta.length;i++)
+              {
+                console.log("Meta adentro",objeto[indicador-1].Meta.length);
+                for(var j=0;j<objeto[indicador-1].Meta[i].Indicador.length;j++)
+                {
+                    console.log('------------------------- wachicol ----------------');
+                    console.log(objeto[indicador-1].Meta[i].Indicador[j].TieneValores);
+                    console.log(objeto[indicador-1].Meta[i].Indicador[j].DesGeo.Codigo_dg);
+
+                  if($.trim(objeto[indicador-1].Meta[i].Indicador[j].DesGeo.Codigo_dg) == 'N' && objeto[indicador-1].Meta[i].Indicador[j].TieneValores == true){
+                    $("#indicadores").append('<option value="'+objeto[indicador-1].Meta[i].Indicador[j].ClaveInd_arb+'">'+objeto[indicador-1].Meta[i].Indicador[j].Descrip_des+'</option>');
+
+                  }
+                }
+              }
+            }else if($('#agregacion').val() ==  -1){/*no hacemos nada */}
+            else{
+              // initialLoad = false;
+              // pruebaInicio(initialLoad);
+              var indicador = $(this).val().split(".")[0];
+              console.log("entro",indicador);
+              console.log("Meta",objeto[indicador-1].Meta.length);
+              $("#indicadores").html('<option value="-1">Selecciona un Indicador</option>')
+              for(var i=0;i<objeto[indicador-1].Meta.length;i++)
+              {
+                console.log("Meta adentro",objeto[indicador-1].Meta.length);
+                for(var j=0;j<objeto[indicador-1].Meta[i].Indicador.length;j++)
+                {
+                    console.log(objeto[indicador-1].Meta[i].Indicador[j].DesGeo.Codigo_dg);
+
+                  if(($.trim(objeto[indicador-1].Meta[i].Indicador[j].DesGeo.Codigo_dg) == 'NE' && objeto[indicador-1].Meta[i].Indicador[j].TieneValores == true) || ($.trim(objeto[indicador-1].Meta[i].Indicador[j].DesGeo.Codigo_dg) == 'NEE' && objeto[indicador-1].Meta[i].Indicador[j].TieneValores == true)){
+                    $("#indicadores").append('<option value="'+objeto[indicador-1].Meta[i].Indicador[j].ClaveInd_arb+'">'+objeto[indicador-1].Meta[i].Indicador[j].Descrip_des+'</option>');
+                  }
+                }
+              }
+            }
+             $('select').material_select();
+          });
+
+          titulos(26);
+          $('#indicadores').on('change',function(){
+            $('#loader').show();
+            initialLoad = false;
+           pruebaInicio(initialLoad);
+           // var indicador = $(this).val().split(".")[0];
+            llamar_api();
+
+            $('#datos_descarga').show();//panel de datos de descarga
+
+            if($('#agregacion').val() != 1){
+              $('#datosNacional').hide( );
+              $('#datosEstatal').hide( );
+              $('#seccion_mapa').show();//panel de datos de descarga
+              $('#grafica_c').hide();
+              put_anios();
+            }else{
+              $('#grafica_c').show();
+            }
+
+            actualiza_grafica();
+            //else{
+            //   // $('#headmap').show();
+            //   // $('#footmapdatos').show();
+            //   // $('#footmap').show();
+            //   // $('#map').show();
+            // }
+          });
+          //activamos el change
+        });
+
+
+
+        function titulos(indicador){
+              var atributos = getAtributos(indicador);
+              var titulo   =  '<h4>'+ atributos.DescripInd_des  +'</h4>' +
+                              '<li class="divider"></li> ' +
+                              '<p> '+ atributos.CobTemporal_ser +' </p>' +
+                              '<span> '+ atributos.Descrip_uni +'</span>';
+
+
+              var pie  =' <div> '+ ((atributos.Descrip_not != null || atributos.Descrip_not != "") ? ''  : '<strong>Nota:</strong>' + atributos.Descrip_not)+
+                        ' <div><strong>Fuente:</strong> '+ atributos.Descrip_fue +' </div>'+
+                        ' <div><strong>Fecha de actualización:</strong> '+ atributos.FecProxAct_cal +'</div>'+
+                        ' </div>';
+
+              $('.pie_cuadro2').html(pie);
+              $('.cuadro_titulo').html(titulo);
+              titulo_des_graf = atributos.DescripInd_des;
+
+              put_datos(atributos.DescripInd_des, atributos.Descrip_ins);
+            }
+
+
+
+        function llamada(indicador, ser){
+          var url = PathAPI + 'Tematica/Todos';
+          //var url = 'https://operativos.inegi.org.mx/datos/api/Valores/PorClaveSerie';
+          var parametros =  {"PIdioma":"ES"}
+          //var parametros =  {'PCveInd':indicador,'PAnoIni':'0', 'PAnoFin':'0', 'POrden':'DESC','PCveSer': ser , 'PIdioma':'ES'}
+
+            $.ajax({
+              type: 'POST',
+              url: url,
+              data: parametros,
+              success: function( data, textStatus, jqxhr ) {
+                 console.log(".-----",data);
+                 objeto = data;
+              },
+              async:false
+            });
+        }
+
+        function llamar_api()
+        {
+            getInd($("#indicadores").val());
+            console.log('------------------------- estados -------------');
+            console.log(estados);
+            //cambio_anio('2015-01-01',1);
+             chart2.load({
+               columns: estados
+             });
+             titulos($("#indicadores").val());
+        }
+
+
+        function llamar_api_2(){
+          getSerie(26);
+           //cambio_anio('2015-01-01',1);
+             chart2.load({
+               columns: estados
+             });
+        }
+
+  var normal,fondo,todo;
+    $(document).ready(function()
+    {
+      $('#grafica_c').hide();
+      var lupa =  false;
+
+      $('#buscar').click(function(){
+        if(lupa){
+          $('#cam_bus').hide();
+          lupa =  false;
+        }else{
+          $('#cam_bus').show();
+          $('#buscar').hide();
+          lupa =  true;
+        }
+      });
+
+
+     $(".button-collapse").sideNav();
+
+      $('select').material_select();
+      // $('.collapsible').collapsible(
+      //   {
+      //     accordion : true
+      //   });
+
+      console.log($('#objetivos').find('li.active').children().children());
+
+      $('#agregacion').on('change', function (e)
+      {
+        $('#datos_descarga').hide();//panel de datos de descarga
+        $('#seccion_mapa').hide();//panel de datos de descarga
+        $('#grafica_c').hide();
+        $('#datosEstatal').hide();
+       // $('#row_filtros').hide();
+
+
+        // $('#headmap').hide();
+        // $('#footmapdatos').hide();
+        // $('#footmap').hide();
+        // $('#map').hide();
+        // $('#datosNacional').show();
+
+        //borramos el select
+        $("#obj_name").html('<option value="-1" disabled selected>Elige un objetivo</option>');
+        $("#indicadores").html('<option value="-1" disabled selected>Elige un indicador</option>');
+        console.log('------------------------ nuevo ---------------------');
+        // for(var i=0;i<objeto.length;i++)
+        // {
+        //   var bkr =  false;
+        //   for (var j = 0; j < objeto[i].Meta.length; j++) {
+        //     for (var k = 0; k < objeto[i].Meta[j].Indicador.length; k++) {
+        //       if($('#agregacion').val() ==  1 ){
+        //         if($.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'N'){
+        //           console.log('nacional '+ k + objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg);
+        //           $("#obj_name").append('<option value="'+objeto[i].Codigo_des+'">'+objeto[i].Abrevia_des+'</option>');
+        //           bkr =  true;
+        //           break;
+        //         }
+        //       }else{
+        //         if($.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'NE' || $.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'NEE'){
+        //           console.log('estatal '+ k + objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg);
+        //           $("#obj_name").append('<option value="'+objeto[i].Codigo_des+'">'+objeto[i].Abrevia_des+'</option>');
+        //           bkr =  true;
+        //           break;
+        //         }
+        //       }
+        //     }
+        //     if(bkr){
+        //       break;
+        //     }
+        //   }
+        // }
+
+        //$('select').material_select();
+        //cargamos los selects correspondientes
+
+        carga_selectes();
+      });
+
+
+  });// fin segundo document ready
+
+function carga_selectes(){
+  //borramos el select
+  console.log('------------------------ nuevo ---------------------');
+    for(var i=0; i<objeto.length;i++)
+    {
+      var bkr =  false;
+      for (var j = 0; j < objeto[i].Meta.length; j++) {
+        for (var k = 0; k < objeto[i].Meta[j].Indicador.length; k++) {
+          if($('#agregacion').val() ==  1 ){
+            if($.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'N'){
+              console.log('nacional '+ objeto[i].Meta[j].Indicador[k].TieneValores);
+              $("#obj_name").append('<option value="'+objeto[i].Codigo_des+'">'+objeto[i].Abrevia_des+'</option>');
+              bkr =  true;
+              break;
+            }
+          }else{
+            if($.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'NE'  || $.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'NEE'){
+              console.log('estatal '+ k + objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg);
+              $("#obj_name").append('<option value="'+objeto[i].Codigo_des+'">'+objeto[i].Abrevia_des+'</option>');
+              bkr =  true;
+              break;
+            }
+          }
+        }
+        if(bkr){
+          break;
+        }
+      }
+    }
+     $('select').material_select();
+}
+
+
+	  function commaSeparateNumber(x){var parts=x.toString().split(".");parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");return parts.join(".");}
+    console.log("@@@@-----",estados);
+		  var chart2 = c3.generate({
+			bindto: '#chart2',
+      size: {
+            height: 500
+          },
+		    data: {
+		        x: 'Entidad',
+ 		        columns: estados,
+		    },
+		    legend: {
+				show: false
+				},
+			padding: {
+		        left: 40,
+		        right: 30
+		    },
+		    point: {
+			  show: true
+			},
+			color: {
+		        pattern:['#f00','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc']
+		    },
+        axis : {
+            x : {
+                type : 'timeseries',
+                tick: {
+                    rotate:-90,
+                    format: function (x) { return x.getFullYear(); }
+                  //format: '%Y' // format string is also available for timeseries data
+                },
+                size : 80,
+                height: 35
+            },
+            y : {
+              // inner: true,
+              tick: {
+                  // count: 10,
+                  format: d3.format(".1f")
+                }
+                // tick: {
+                //     format: function (d) {
+                //         return (parseInt(d) == d) ? d : null;
+                //     }
+                // }
+            }
+		    },tooltip: {
+		        grouped: false, // Default true
+		        	format: {
+		            title: function (d) { return d.name; },
+		            value: function (value, ratio, id) {
+			            (function ($) {
+				            if (id != "Estados Unidos Mexicanos") {
+                      console.log("es estados unidos",id);
+        					      $( "#chart2 svg g.c3-chart-line g.c3-circles circle" ).css('fill','#ccc');
+        								$( "#chart2 svg g.c3-chart-line path.c3-line" ).css('stroke','#ccc');
+
+                        $( "svg g.c3-chart-line g.c3-circles-" +id.replace(/ /g,'-') + " circle" ).css('fill','#00aeef');
+        								$( "svg g.c3-chart-line path.c3-line-" +id.replace(/ /g,'-') ).css('stroke','#00aeef');
+
+        								$( "svg g.c3-chart-line g.c3-circles-Promedio-nacional circle" ).css('fill','#f00');
+        								$( "svg g.c3-chart-line path.c3-line-Promedio-nacional" ).css('stroke','#f00');
+                        $( "svg g.c3-chart-line g.c3-circles-Estados-Unidos-Mexicanos circle" ).css('fill','#f00');
+        								$( "svg g.c3-chart-line path.c3-line-Estados-Unidos-Mexicanos" ).css('stroke','#f00');
+				            }
+				            else {
+                      console.log("no es estados unidos",id);
+					            $( "#chart2 svg g.c3-chart-line g.c3-circles circle" ).css('fill','#ccc');
+      								$( "#chart2 svg g.c3-chart-line path.c3-line" ).css('stroke','#ccc');
+
+      					      $( "svg g.c3-chart-line g.c3-circles-Promedio-nacional circle" ).css('fill','#f00');
+      								$( "svg g.c3-chart-line path.c3-line-Promedio-nacional" ).css('stroke','#f00');
+
+                      $( "svg g.c3-chart-line g.c3-circles-Estados-Unidos-Mexicanos circle" ).css('fill','#f00');
+                      $( "svg g.c3-chart-line path.c3-line-Estados-Unidos-Mexicanos" ).css('stroke','#f00');
+				            }
+			            }(jQuery));
+		                return commaSeparateNumber(Math.round(value*10)/10);
+		            },
+		           //value: d3.format('.2F') // apply this format to both y and y2
+		        }
+		    },
+		});
+
+	function gen(props)
+	{
+	  var chart = c3.generate({
+				bindto: '.info',
+				padding: {
+					top: 10,
+			        left: 30,
+			        right: 10
+			    },
+			    data: {
+			        x: 'Entidad',
+					columns: [
+            // ['Entidad','2016-01-01','2015-01-01','2014-01-01','2013-01-01','2012-01-01','2011-01-01','2010-01-01','2009-01-01','2008-01-01','2007-01-01','2006-01-01','2005-01-01','2004-01-01','2003-01-01','2002-01-01','2001-01-01','2000-01-01','1999-01-01','1998-01-01','1997-01-01','1996-01-01','1995-01-01','1994-01-01','1993-01-01','1992-01-01','1991-01-01','1990-01-01'],
+            estados[0],
+	            props,
+              busqueda_mexico()
+		        ]
+			    },
+			    axis: {
+			        x: {
+			            type: 'timeseries',
+			            tick: {
+                       rotate:90,
+		               		 format: function (x) { return x.getFullYear(); }
+			            }
+			        },
+			        y : {
+			            // tick: {
+			            //     format: d3.format(".2f")
+			            // }
+                  tick: {
+                      format: d3.format(".0f")
+                  }
+			        }
+			    },
+			    color: {
+			        pattern: ['#00AEEF', '#f00']
+			    },
+			    size: {
+			        width: 260,
+			        height: 200
+			    },
+			    legend: {
+			        show: false
+			    },
+			    grid: {
+			        x: {
+			            show: false
+			        },
+			        y: {
+			            show: true
+			        }
+			    },
+		});
+	}
+
+function busqueda_estado(cadena)
+{
+  for(var i=0;i<estados.length;i++)
+  {
+    if(estados[i][0] == cadena)
+    {
+      console.log(cadena);
+      return parseFloat(estados[i][1]);
+    }
+  }
+}
+
+function busqueda_indice(cadena) {
+  for (var i = 0; i < estados.length; i++) {
+    if (estados[i][0] == cadena) {
+      return parseFloat(i);
+    }
+  }
+}
+
+function busqueda_mexico() {
+  var arrray=[];
+  for (var i = 0; i < estados.length; i++) {
+    if (estados[i][0] == "Estados Unidos Mexicanos") {
+      for(var j=0;j< estados[i].length;j++)
+      {
+        arrray.push(estados[i][j])
+      }
+    }
+  }
+  return arrray;
+}
+
+function busqueda_estado_posicion(cadena,posicion)
+{
+  for(var i=0;i<estados.length;i++)
+  {
+    if(estados[i][0] == cadena)
+    {
+      console.log(cadena);
+      return parseFloat(estados[i][posicion]);
+    }
+  }
+}
+
+function busqueda_anio(cadena)
+{
+     for(var i=0;i<estados[0].length;i++)
+    {
+      if(estados[0][i] == cadena)
+      {
+        console.log(estados[0][i]);
+        return i;
+      }
+    }
+}
+
+function setInitialMapZoom() {
+
+   var viewportWidth = window.innerWidth;
+   var mapZoom;
+
+   if (viewportWidth < 376) {
+        mapZoom = 4;
+    }else if (viewportWidth >= 376 && viewportWidth < 1920) {
+        mapZoom = 5;
+    }else {
+        mapZoom = 6;
+    }
+}
+
+  //variable de mapa
+  var img;
+  var data_url;
+  var locked=false;
+  var map = L.map('map' ,
+  {
+    scrollWheelZoom: false,
+    zoom: setInitialMapZoom(),
+    //maxZoom: 14,
+    //minZomm:4,
+    //zoomControl:false,
+    //dragging: false
+  }).setView([24.8, -100], 4);
+
+    //implementacion de mapa estandar y ubicacion haci como zoom
+ //     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+	 	L.tileLayer('http://{s}.google.com/vt/?hl=es&x={x}&y={y}&z={z}&s={s}&apistyle=s.t%3A5|p.l%3A53%2Cs.t%3A1314|p.v%3Aoff%2Cp.s%3A-100%2Cs.t%3A3|p.v%3Aon%2Cs.t%3A2|p.v%3Aoff%2Cs.t%3A4|p.v%3Aoff%2Cs.t%3A3|s.e%3Ag.f|p.w%3A1|p.l%3A100%2Cs.t%3A18|p.v%3Aoff%2Cs.t%3A49|s.e%3Ag.s|p.v%3Aon|p.s%3A-19|p.l%3A24%2Cs.t%3A50|s.e%3Ag.s|p.v%3Aon|p.l%3A15&style=47,37', {
+		subdomains:['mt0', 'mt1', 'mt2', 'mt3'],
+        maxZoom: 14,
+        minZomm:5,
+        attribution: '&copy <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> &copy <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+        id: 'mapbox.light',
+      }).addTo(map);
+
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) )
+      {
+			map.dragging.disable();
+	  }
+
+      // control that shows state info on hover
+      var info = L.control();
+      info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'infos hide');
+        this.update();
+        return this._div;
+      };
+
+      info.update = function (props) {
+	     //this._div = L.DomUtil.create('div', 'infos');
+	     $('.infos').removeClass('hide');
+	     $('.info2').removeClass('hide');
+	     if(props != undefined)
+	     {
+		      this._div.innerHTML='<div><h5 style="font-weight:bold">' + props.nom_ent +'</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado(props.nom_ent).toFixed(2)/*props.density*/ + '</b><p style="position: absolute; top: 15%; left: 35%;" id="tit_map_des" class="crop">'+titulo_des_graf+'</p></div></div><div class="info"></div>';
+          console.log("busqueda",estados[busqueda_indice(props.nom_ent)]);
+			  gen(estados[busqueda_indice(props.nom_ent)]);
+        $(".crop").dotdotdot();
+	     }
+/*
+        this._div.innerHTML = '<div><h4>Aguas tratadas</h4>' +  (props ?
+          '<b>' + props.nom_ent + '</b><br />' + props.density + '% avance</div>'
+          : 'Situate sobre un estado')+'<div class="info"></div>';
+          if(props != undefined)
+		  {
+
+		  }
+*/
+      };
+      info.addTo(map);
+      // get color depending on population density value
+      // function getColor(d) {
+      // 	return d > 1000 ? '#800026' :
+      // 	       d > 500  ? '#BD0026' :
+      // 	       d > 200  ? '#E31A1C' :
+      // 	       d > 100  ? '#FC4E2A' :
+      // 	       d > 50   ? '#FD8D3C' :
+      // 	       d > 20   ? '#FEB24C' :
+      // 	       d > 10   ? '#FED976' :
+      // 	                  '#FFEDA0';
+      // }
+
+      function getColor(d) {
+        return d > 100 ? '#004b67' :
+               d > 50  ? '#007dab' :
+               d > 20  ? '#01baff' :
+                         '#45ccff';
+      }
+
+      function getColoR(number)
+      {
+	    return brew.getColorInRange(number);
+	  }
+
+      function style(feature) {
+	    var res=String(getColoR(busqueda_estado(feature.properties.nom_ent))).split(",");
+      console.log(res,'hhhh',"c"+res[1]);
+	    //console.log("hola->",res[1]);
+        return {
+          weight: 0.5,
+          opacity: 1,
+          color: '#000',
+          dashArray: '1',
+          fillOpacity: 1,
+          // fillColor: getColoR(feature.properties.density),
+          fillColor: getColoR(busqueda_estado(feature.properties.nom_ent)),
+           className: "c"+res[1]
+        };
+      }
+      function highlightFeature(e) {
+	     if(locked == false)
+	     {
+	        var layer = e.target;
+	        layer.setStyle({
+	          weight: 2,
+	          color: '#ccc',
+	          dashArray: '',
+	          fillOpacity: 0.7
+	        });
+	        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+	          layer.bringToFront();
+	        }
+	        info.update(layer.feature.properties);
+	     }
+      }
+      var geojson;
+      function resetHighlight(e) {
+/*
+	     if(locked == false)
+	     {
+*/
+		   geojson.resetStyle(e.target);
+			 info.update();
+// 	 	 }
+      }
+      function zoomToFeature(e) {
+        map.fitBounds(e.target.getBounds());
+      }
+      function onEachFeature(feature, layer) {
+        layer.on({
+          mouseover: highlightFeature,
+          mouseout: resetHighlight,
+          mousedown: function(e)
+          {
+			if (locked == true) {
+				locked = false;
+				(function ($) {
+								 $(".info2").css("border","none");
+								 $(".infos").css("border","none");
+							   }(jQuery));
+			}
+			else {
+				locked = true;
+				(function ($) {
+							//	$(".info2").css("border","5px solid #00cc99");
+								$(".info2").css("border-bottom","5px solid rgb(107, 174, 214)");
+								$(".info2").css("border-left","5px solid rgb(107, 174, 214)");
+								$(".info2").css("border-right","5px solid rgb(107, 174, 214)");
+								$(".infos").css("border-top","5px solid rgb(107, 174, 214)");
+								$(".infos").css("border-left","5px solid rgb(107, 174, 214)");
+								$(".infos").css("border-right","5px solid rgb(107, 174, 214)");
+//								$(".infos").css("border","5px solid #00cc99");
+							   }(jQuery));
+			}
+// 			resetHighlight(e);
+		 },
+//          click: zoomToFeature
+        });
+      }
+
+      function highlightFromLegend(e)
+      	{
+	      	//console.log(e);
+			(function ($) {
+				$("svg path."+e).addClass("highlighted");
+				var r=$("svg path."+e);
+				for(var i=0;i<r.length;i++)
+				{
+					r[i].classList.add("highlighted");
+					//console.log(r[i]);
+				}
+				//console.log($("svg path."+e));
+			}(jQuery));
+		}
+
+		function clearHighlight() {
+			(function ($) {
+
+				$("path").removeClass("highlighted");
+				var r=$("path");
+				for(var i=0;i<r.length;i++)
+				{
+					r[i].classList.remove("highlighted");
+				}
+				//console.log(r);
+			}(jQuery));
+		}
+
+		var brew = new classyBrew();
+		var values = [];
+    var values2 = [];
+		for (var i = 0; i < statesData.features.length; i++)
+    {
+      console.log(statesData.features[i].properties.nom_ent);
+      if (statesData.features[i].properties.nom_ent == null) continue;
+			values.push(busqueda_estado(statesData.features[i].properties.nom_ent));
+			// if (statesData.features[i].properties.density == null) continue;
+			// values2.push(statesData.features[i].properties.density);
+		}
+
+    console.log(values,values2);
+		brew.setSeries(values);
+		brew.setNumClasses(4);
+		brew.setColorCode("Blues");
+		brew.classify('jenks');
+/*
+      geojson = L.geoJson(statesData, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+*/
+
+/*
+	  geojson = L.geoJson(municipio, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+	  geojson = L.geoJson(entidad, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+*/
+
+      geojson = L.geoJson(statesData, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+/*
+      geojson = L.geoJson(nacion, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+*/
+
+      map.attributionControl.addAttribution('');
+      var legend = L.control();
+      legend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info2 legend hide'),
+          grades = brew.getBreaks(),//[0, 20, 50, 100],
+          labels = [],
+          from, to;
+        for (var i = 0; i < grades.length-1; i++) {
+          from = grades[i];
+          to = grades[i + 1];
+          var res=String(getColoR(from)).split(",");
+          console.log(from,from+1,res,grades);
+          labels.push(
+            '<div style="float:left; text-align: center;"><i class="leyenda" onmouseover="highlightFromLegend(\'c'+ res[1] +'\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoR(from) + '"></i><br>' +
+            from.toFixed(2) + (to.toFixed(2) ? '&ndash;' + to.toFixed(2) : '+')+'</div>');
+        }
+        div.innerHTML = labels.join('');
+        return div;
+      };
+      legend.addTo(map);
+
+      setTimeout(function() {
+
+  }, 3000);
+
+
+    </script>
+    <script>
+    //globales
+
+    function actualiza_grafica(){
+     // chart2.unload();
+      console.log('--------------------- estado para la grafica ---------------------- ');
+      console.log(estados);
+      // chart2.load({
+      //   columns: estados,
+      //    unload:estados
+      // });
+
+
+      var datos_doble_22 =  ' <div class="cuadro_titulo"> TABLA'+
+        //  ' <span>Defunciones de mujeres por cada 100 mil nacidos vivos</span>'+
+      '</div>' +
+                        '<div style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_2">'+
+                        '<table class="bordered" id="miTabla22" class="miTabla22" style="display:none">';
+
+
+
+         for (var i = 0; i < estados.length; i++) {
+           if(i == 0){
+            // datos_doble +=  '<thead><tr>';
+            datos_doble_22 +=  '<thead><tr>';
+          }
+           else if(i == 1){
+            //  datos_doble +=  '<tbody><tr>';
+             datos_doble_22 +=  '<tbody><tr>';
+           }
+           else {
+              // datos_doble +=  '<tr>';
+              datos_doble_22 +=  '<tr>';
+           }
+
+           for (var j = estados[0].length -1 ; j > 0 ; j--) {
+            if(i == 0 && j == estados[0].length -1){
+              // datos_doble +=  '  <th  class="headcol">'+ estados[i][0] +'</th><th>'+ estados[i][j] .split('-')[0]+'</th>';
+              datos_doble_22 +=  '  <td  class="headcol">'+ estados[i][0] +'</td><td>'+ estados[i][j] .split('-')[0]+'</td>';
+            }
+            else if( i == 0 && j == estados[0].length -1 ){
+              // datos_doble += '<th class"padding-200">'+ estados[i][j].split('-')[0] +'</th>';
+              datos_doble_22 += '<td class"padding-200">'+ estados[i][j].split('-')[0] +'</td>';
+            }
+            else if( i == 0 ){
+              // datos_doble += '<th>'+ estados[i][j].split('-')[0] +'</th>';
+              datos_doble_22 += '<td>'+ estados[i][j].split('-')[0] +'</td>';
+            }
+            else if(j == estados[0].length -1 ) {
+              var varia = '<td class="headcol">'+ estados[i][0] +'</td><td>'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+              // datos_doble += varia;
+              datos_doble_22 += varia;
+            }
+            else if(j == estados[0].length -2){
+                // datos_doble +=  '  <td class="laque">'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                datos_doble_22 +=  '  <td class="laque">'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+            }
+            else{
+              // datos_doble +=  '  <td>'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+              datos_doble_22 +=  '  <td>'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+            }
+           }
+
+
+             if(i == 0){
+              //  datos_doble +=  '</tr></thead>';
+               datos_doble_22 +=  '</tr></thead>';
+             }else{
+              //  datos_doble +=  '</tr>';
+               datos_doble_22 +=  '</tr>';
+             }
+         }
+
+
+
+        //    datos_doble_2 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;">'+
+        // ' <div class="pie_cuadro2">'+ pie +
+        //  '</div></div>';
+        //
+        //    datos_doble_3 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;">'+
+        // ' <div class="pie_cuadro2">'+ pie +
+        //  '</div></div>';
+
+      $('#tabla_export2').html(datos_doble_22);
+
+
+
+      $('#chart2').html('');
+      chart2 = c3.generate({
+        bindto: '#chart2',
+        size: {
+              height: 500
+            },
+          data: {
+              x: 'Entidad',
+              columns: estados,
+          },
+          legend: {
+          show: false
+          },
+        padding: {
+              left: 40,
+              right: 30
+          },
+          point: {
+          show: true
+        },
+        color: {
+              pattern:['#f00','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc','#ccc']
+          },
+
+          axis : {
+              x : {
+                  type : 'timeseries',
+                  tick: {
+                      rotate:90,
+                      format: function (x) { return x.getFullYear(); }
+                    //format: '%Y' // format string is also available for timeseries data
+                  }
+              },
+              y : {
+                // padding: {top: 0, bottom: 0},
+                // tick: {
+                //       format: d3.format(".2f")
+                //   }
+                //  tick: {
+                //     format: function (d) {
+                //         return (parseInt(d) == d) ? d : null;
+                //     }
+                // }
+                tick: {
+                  // count: 10,
+                  format: d3.format(".1f"),
+                }
+              }
+          },tooltip: {
+              grouped: false, // Default true
+                format: {
+                  title: function (d) { return d.name; },
+                  value: function (value, ratio, id) {
+                    (function ($) {
+                      if (id != "Estados Unidos Mexicanos") {
+                          $( "#chart2 svg g.c3-chart-line g.c3-circles circle" ).css('fill','#ccc');
+                          $( "#chart2 svg g.c3-chart-line path.c3-line" ).css('stroke','#ccc');
+
+                          $( "svg g.c3-chart-line g.c3-circles-" +id.replace(/ /g,'-') + " circle" ).css('fill','#00aeef');
+                          $( "svg g.c3-chart-line path.c3-line-" +id.replace(/ /g,'-') ).css('stroke','#00aeef');
+
+                          $( "svg g.c3-chart-line g.c3-circles-Promedio-nacional circle" ).css('fill','#f00');
+                          $( "svg g.c3-chart-line path.c3-line-Promedio-nacional" ).css('stroke','#f00');
+                          $( "svg g.c3-chart-line g.c3-circles-Estados-Unidos-Mexicanos circle" ).css('fill','#f00');
+                          $( "svg g.c3-chart-line path.c3-line-Estados-Unidos-Mexicanos" ).css('stroke','#f00');
+                      }
+                      else {
+                        $( "#chart2 svg g.c3-chart-line g.c3-circles circle" ).css('fill','#ccc');
+                        $( "#chart2 svg g.c3-chart-line path.c3-line" ).css('stroke','#ccc');
+
+                        $( "svg g.c3-chart-line g.c3-circles-Promedio-nacional circle" ).css('fill','#f00');
+                        $( "svg g.c3-chart-line path.c3-line-Promedio-nacional" ).css('stroke','#f00');
+
+                        $( "svg g.c3-chart-line g.c3-circles-Estados-Unidos-Mexicanos circle" ).css('fill','#f00');
+                        $( "svg g.c3-chart-line path.c3-line-Estados-Unidos-Mexicanos" ).css('stroke','#f00');
+                      }
+                    }(jQuery));
+                      return commaSeparateNumber(Math.round(value*10)/10);
+                  },
+                //value: d3.format('.2f') // apply this format to both y and y2
+              }
+          },
+      });
+    }//fin de la función
+ var arrray_anios = [];
+    var anio_mas_actual;
+
+    function put_anios(){
+      var cadena='';
+
+      console.log('----------------------- estados anios -----------------');
+      console.log(estados);
+      console.log(estados[0]);
+      console.log(estados[0].length);
+
+      for(var i = 1; i < estados[0].length; i++)
+      {
+        if(i == 1)
+        {
+        anio_mas_actual = 'anio_'+i;
+        cadena = '<a id="anio_'+i+'" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra " onclick="cambio_anio(\''+estados[0][i]+'\','+i+')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">'+estados[0][i].split('-')[0]+'</a>'+cadena;
+        arrray_anios.push(estados[0][i].split('-')[0]);
+        }
+        else if(i <= estados[0].length-1)
+        {
+        cadena='<a id="anio_'+i+'" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra " onclick="cambio_anio(\''+estados[0][i]+'\','+i+')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">'+estados[0][i].split('-')[0]+'</a>'+cadena;
+        arrray_anios.push(estados[0][i].split('-')[0]);
+        }
+      }
+
+      if(cadena !=  ''){
+        cadena='<div class="col s12"><a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;cursor:none;float: left;padding-bottom: 0;padding-left: 0px;margin-top:6px;">Selecciona un año</a></div>'+'<div class="col s12"><div class="owl-carousel owl-theme">'+cadena+'</div></div>';
+        $('#anios').html(cadena);
+
+        $('#'+anio_mas_actual).trigger( "click" );
+      }else{
+        for (var i = 0; i < estados.length; i++) {
+          if(i == 0){
+            estados[i][1] =  '2017-01-01';
+          }else{
+            estados[i][1] = 1;
+          }
+        }
+        console.log('--------------- estados fake ------------------');
+        console.log(estados);
+        cambio_anio('2017-01-01',44);
+
+
+
+      }
+
+var contaAnios = arrray_anios.length - 1;
+
+
+      $('.owl-carousel').owlCarousel({
+          loop:false,
+          rtl:false,
+          margin:10,
+          rewind:false,
+          startPosition: contaAnios,
+          nav:true,
+          navText:['< Años anteriores','Años posteriores >'],
+          responsive:{
+              0:{
+                  items:3
+              },
+              600:{
+                  items:5
+              },
+              1000:{
+                  items:7
+              }
+          }
+      });
+
+
+
+    }//fin funcion
+
+    function poner_filtros(){
+      console.log('--------------------- ponemos filtros ------------------');
+      $("#filtros").html('');
+      for (var i = 0; i < arreglo_cla.length; i++) {
+        $("#filtros").append('<option value="'+i+'">'+arreglo_cla[i]+'</option>');
+      }
+      //$('#row_filtros').show();
+      $('select').material_select();
+    }
+
+    $('#filtros').on('change',function(){
+      $('#loader').show();
+      estados = arma_tabla($(this).val());
+      console.log('------------------------- estados tabala select-----------------');
+      console.log(estados);
+      actualiza_grafica();
+      if($('#agregacion').val() != 1){
+        $('#'+anio_mas_actual).trigger( "click" );
+      }
+      $('#loader').delay(2000).fadeOut("slow");
+    });
+
+
+
+    $(document).ready(function() {
+      $('#cam_bus').keypress(function(e) {
+        if(e.which == 13) {
+          buscar($('#cam_bus').val());
+        }
+      });
+
+      //  $('body').sectionScroll(); // Easy Peasy Lemon Squeezy
+        $('.tooltip').tooltipster({
+        contentCloning: true,
+        animation: 'fade',
+        delay: 200,
+        theme: 'tooltipster-light',
+        trigger: 'hover'
+            });
+        //pedimos los años en la primera llamada
+        put_anios();
+    });
+
+
+        function cambio_anio(cadena, i){
+          console.log(document.getElementsByTagName("g"));
+          document.getElementsByTagName("g")[0].innerHTML=" ";
+          for(var j=1; j<=7; j++)
+          {
+            $('#anio_'+j).removeClass('active_anio');
+            $('#anio_'+j).addClass('inactive_anio');
+          }
+          $('#anio_'+i).removeClass('inactive_anio');
+          $('#anio_'+i).addClass('active_anio');
+          // $('#map').html('');
+          $('.infos').remove();
+          $('.info2').remove();
+          var anio_buscar = $('#opciones_anio').val();
+          var posi = busqueda_anio(cadena);
+
+          locked =false;
+
+          var info = L.control();
+          info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'infos hide');
+            this.update();
+            return this._div;
+          };
+
+          info.update = function (props) {
+    	     $('.infos').removeClass('hide');
+    	     $('.info2').removeClass('hide');
+    	     if(props != undefined)
+    	     {
+             console.log("Estado creo:---> ",props);
+    		      this._div.innerHTML='<div><h5 style="font-weight:bold">' + props.nom_ent +'</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado_posicion(props.nom_ent,posi).toFixed(2) + '</b></p><p style="position: absolute; top: 15%; left: 35%;" id="tit_map_des" class="crop">'+titulo_des_graf+'</p></div><div class="info"></div>';
+
+    			  // gen(estados[props.cve]);
+            gen(estados[busqueda_indice(props.nom_ent)]);
+            $(".crop").dotdotdot();
+    	     }
+          };
+
+
+          info.addTo(map);
+
+          function getColor(d) {
+            return d > 100 ? '#004b67' :
+                   d > 50  ? '#007dab' :
+                   d > 20  ? '#01baff' :
+                             '#45ccff';
+          }
+
+          function getColoR(number)
+          {
+    	      return brew.getColorInRange(number);
+    	    }
+
+          function style(feature) {
+    	    var res=String(getColoR(busqueda_estado_posicion(feature.properties.nom_ent,posi))).split(",");
+          console.log(res,'hhhh',"c"+res[1]);
+            return {
+              weight: 0.5,
+              opacity: 1,
+              color: '#000',
+              dashArray: '1',
+              fillOpacity: 1,
+              fillColor: getColoR(busqueda_estado_posicion(feature.properties.nom_ent,posi)),
+               className: "c"+res[1]
+            };
+          }
+          function highlightFeature(e) {
+    	     if(locked == false)
+    	     {
+    	        var layer = e.target;
+    	        layer.setStyle({
+    	          weight: 2,
+    	          color: '#ccc',
+    	          dashArray: '',
+    	          fillOpacity: 0.7
+    	        });
+    	        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    	          layer.bringToFront();
+    	        }
+    	        info.update(layer.feature.properties);
+    	     }
+          }
+          var geojson;
+          function resetHighlight(e) {
+    		     geojson.resetStyle(e.target);
+    			 info.update();
+          }
+          function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+          }
+          function onEachFeature(feature, layer) {
+            layer.on({
+              mouseover: highlightFeature,
+              mouseout: resetHighlight,
+              mousedown: function(e)
+              {
+    			if (locked == true) {
+    				locked = false;
+    				(function ($) {
+    								 $(".info2").css("border","none");
+    								 $(".infos").css("border","none");
+    							   }(jQuery));
+    			}
+    			else {
+    				locked = true;
+    				(function ($) {
+    								$(".info2").css("border-bottom","5px solid rgb(107, 174, 214)");
+    								$(".info2").css("border-left","5px solid rgb(107, 174, 214)");
+    								$(".info2").css("border-right","5px solid rgb(107, 174, 214)");
+    								$(".infos").css("border-top","5px solid rgb(107, 174, 214)");
+    								$(".infos").css("border-left","5px solid rgb(107, 174, 214)");
+    								$(".infos").css("border-right","5px solid rgb(107, 174, 214)");
+    							   }(jQuery));
+    			}
+    		 },
+            });
+          }
+
+          function highlightFromLegend(e)
+          	{
+    			(function ($) {
+    				$("svg path."+e).addClass("highlighted");
+    				var r=$("svg path."+e);
+    				for(var i=0;i<r.length;i++)
+    				{
+    					r[i].classList.add("highlighted");
+    				}
+    			}(jQuery));
+    		}
+
+    		function clearHighlight() {
+    			(function ($) {
+
+    				$("path").removeClass("highlighted");
+    				var r=$("path");
+    				for(var i=0;i<r.length;i++)
+    				{
+    					r[i].classList.remove("highlighted");
+    				}
+    			}(jQuery));
+    		}
+
+    		var brew = new classyBrew();
+    		var values = [];
+        var values2 = [];
+    		for (var i = 0; i < statesData.features.length; i++)
+        {
+          console.log(statesData.features[i].properties.nom_ent);
+          if (statesData.features[i].properties.nom_ent == null) continue;
+    			values.push(busqueda_estado_posicion(statesData.features[i].properties.nom_ent,posi));
+    		}
+
+        console.log(values,values2);
+    		brew.setSeries(values);
+    		brew.setNumClasses(4);
+    		brew.setColorCode("Blues");
+    		brew.classify('jenks');
+
+          geojson = L.geoJson(statesData, {
+            style: style,
+            onEachFeature: onEachFeature
+          }).addTo(map);
+
+          map.attributionControl.addAttribution('');
+          var legend = L.control();
+          legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info2 legend hide'),
+              grades = brew.getBreaks(),//[0, 20, 50, 100],
+              labels = [],
+              from, to;
+            for (var i = 0; i < grades.length-1; i++) {
+              from = grades[i];
+              to = grades[i + 1];
+              var res=String(getColoR(from)).split(",");
+              console.log(from,from+1,res,grades);
+              labels.push(
+                '<div style="float:left; text-align: center;"><i class="leyenda" onmouseover="highlightFromLegend(\'c'+ res[1] +'\')" onmouseout="clearHighlight();" style="width:100%; background:' + getColoR(from) + '"></i><br>' +
+                from.toFixed(2) + (to.toFixed(2) ? '&ndash;' + to.toFixed(2) : '+')+'</div>');
+            }
+            div.innerHTML = labels.join('');
+            return div;
+          };
+          legend.addTo(map);
+
+        }
+
+
+    function nodeToString ( node )
+		{
+			var tmpNode = document.createElement( "div" );
+			tmpNode.appendChild( node.cloneNode( true ) );
+			var str = tmpNode.innerHTML;
+			tmpNode = node = null; // prevent memory leaks in IE
+			return str;
+		}
+
+
+      $('#pdf_descarga').click(function()
+			{
+        $('#show_grafica').show();
+        $('#copia').html("");
+        $('#copias').html("");
+        $('#fondo').html("");
+        $('#todo').html("");
+        $('#todo_listo').html("");
+        $('#images').html("");
+        $('#forms').html("");
+
+        $(".infos").css("border-top","7px solid #f6f6f6");
+        $(".infos").css("border-left","7px solid #f6f6f6");
+        $(".infos").css("border-right","7px solid #f6f6f6");
+        $(".infos").css("border-bottom","7px solid #f6f6f6");
+
+            var copias_canvas;
+        leafletImage(map, function(err, canvas) {
+    				// now you have canvas
+    				// example thing to do with that canvas:
+    				console.log("Ya lo hizo");
+    				img = document.createElement('img');
+    				var dimensions = map.getSize();
+    				img.width = dimensions.x;
+    				img.height = dimensions.y;
+    				img.src = canvas.toDataURL();
+    				data_url = canvas.toDataURL();
+    			//	document.getElementById('images').innerHTML = '';
+    				document.getElementById('images').appendChild(img);
+
+            var mapa = document.getElementById('map');
+            var svg = mapa.childNodes[0].childNodes[2].childNodes[0].innerHTML;
+            document.getElementById('copia').innerHTML='<canvas id="canvas_todo" width="1298px" height="600px"></canvas>';
+            var canvas = document.getElementById('canvas_todo');
+            canvg(canvas, svg);
+            normal = canvas.toDataURL('image/png');
+
+            document.getElementById('copias').innerHTML='<canvas id="canvas_tol" width="1298px" height="600px"></canvas>';
+            var canvas2 = document.getElementById('canvas_tol');
+
+            //[7].childNodes
+
+
+            var c = mapa.childNodes[1].childNodes[1].childNodes[0];
+             var c = mapa.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1].childNodes[4].childNodes[2].childNodes[0].childNodes[0].childNodes[0].style.fill='none';
+
+             var c = mapa.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1].childNodes;
+             console.log(c);
+            for(var j=0;j<c.length;j++)
+            {
+              console.log(c[j],c[j].classList.value);
+              if(c[j].classList.value === 'domain')
+              {
+                c[j].style.fill='none';
+                c[j].style.stroke='#000';
+                // c[j].childNodes[z].style.display='none';
+              }
+              if (c[j].firstChild)
+              {
+                //console.log("tiene hijos");
+                for(var z=0;z<c[j].childNodes.length;z++)
+                {
+                  // console.log(c[j].childNodes[z]);
+                  if(c[j].childNodes[z].className != undefined)
+                  {
+                    if(c[j].childNodes[z].classList.value === 'domain')
+                    {
+                      //console.log("->"+c[j].childNodes[z].tagName);
+                      c[j].style.fill='none';
+                      c[j].style.stroke='#000';
+                      // c[j].childNodes[z].style.display='none';
+                    }
+                  }
+                }
+              }
+              if(c[j].className != undefined)
+              {
+                if(c[j].classList.value == 'line')
+                {
+                  c[j].style.fill='none';
+                  console.log(c[j]);
+                }
+                if(c[j].classList.value == 'x-axis-label')
+                {
+                  c[j].style.display='none';
+                }
+              }
+            }
+            $('.c3-line-Estados-Unidos-Mexicanos')[0].style.fill='none';
+            var svg2 = nodeToString(mapa.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[0]);
+            canvg(canvas2, svg2);
+
+            html2canvas(mapa.childNodes[1].childNodes[1], {
+                onrendered: function(canvas) {
+                    theCanvas = canvas;
+                    $("#copias").append(canvas);
+                    copias_canvas= canvas.toDataURL('image/png');
+                }
+            });
+
+            html2canvas($("#map"), {
+                onrendered: function(canvas) {
+                    theCanvas = canvas;
+                    $("#fondo").append(canvas);
+                    fondo = document.getElementById('fondo').childNodes[0].toDataURL('image/png');
+                    $('#todo').html('<div id="todo_junto" style="width:1298px; height:600px; background-image: url('+normal+'), url('+data_url+'); background-repeat: no-repeat;"><div style="width:296px; height:314px; position: absolute; right: 30%;  background-image: url('+copias_canvas+'); background-repeat: no-repeat;"><img src="'+document.getElementById('canvas_tol').toDataURL('image/png')+'" style="margin-top: 100px; margin-left: 10px;"></div></div>');
+
+                    html2canvas($("#todo"), {
+                        onrendered: function(canvas) {
+                            theCanvas = canvas;
+                            // document.body.appendChild(canvas);
+                            // Canvas2Image.saveAsPNG(canvas);
+                            $("#todo_listo").append(canvas);
+                            todo = document.getElementById('todo_listo').childNodes[0].toDataURL('image/png');
+                            //console.log(todo);
+                            var method = "post";
+                    				var form = document.createElement("form");
+                    				form.setAttribute("method", method);
+                    				form.setAttribute("action", "generar.php");
+                            var hiddenField = document.createElement("input");
+                    				hiddenField.setAttribute("type", "hidden");
+                    				hiddenField.setAttribute("name", "todo_ya");
+                    				hiddenField.setAttribute("value", todo);
+                    				form.appendChild(hiddenField);
+                    				document.getElementById('forms').appendChild(form);
+                    				console.log("Envia");
+                            $(".infos").css("border","none");
+                            $(".info2").css("border","none");
+                            locked=false;
+                            $('#show_grafica').hide();
+                    				form.submit();
+                        }
+                    });
+                }
+            });
+    		});
+
+      });
+
+
+      var lupa = false;
+
+      function esconder() {
+        console.log("focusout");
+        $('#cam_bus').hide();
+        $('#buscar').show();
+        lupa = false;
+      }
+
+        $(document).ready(function() {
+          $("#sti").hide();
+
+          window.onload = function () {
+
+            $('#buscar').click(function () {
+              console.log("aca");
+              if (lupa) {
+                $('#cam_bus').hide();
+                lupa = false;
+              } else {
+                $('#cam_bus').show();
+                $('#buscar').hide();
+                document.getElementById("cam_bus").focus();
+                lupa = true;
+              }
+            });
+          }
+        });
+
+
+        function put_datos(indicador, institucion){
+            $('#da_indicador').html(indicador);
+            $('#da_institucion').html(institucion);
+        }
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+            $('#indicador-panel').hide();
+            $('.modal-trigger').leanModal();
+
+            var select_2 = '<div class="input-field col s12" style="margin-bottom:20px;"><select class="select_datos_2" style="display:block !important; background-color: #f2f2f2;"><option value="0">Selecciona</option><option value="1">Defunciones de mujeres mientras se encuentran embarazadas o dentro de los 42 dias siguientes a la terminación del embarazo</option></select></div>';
+
+
+            var datos_doble_2 =  ' <div class="cuadro_titulo"> TABLA'+
+              //  ' <span>Defunciones de mujeres por cada 100 mil nacidos vivos</span>'+
+            '</div>' +
+                              '<div style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_2">'+
+                              '<table class="bordered" id="miTabla2" class="miTabla2" style="display:none">';
+
+             var datos_doble_3 =  ' <div class="cuadro_titulo"> TABLA'+
+              //  ' <span>Defunciones de mujeres por cada 100 mil nacidos vivos</span>'+
+            '</div>' +
+                              '<div class="scroller" style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_3">'+
+                              '<table class="bordered" id="miTabla3" class="miTabla3" >';
+
+                              var datos_doble_33 =  ' <div class="cuadro_titulo"> TABLA'+
+                               //  ' <span>Defunciones de mujeres por cada 100 mil nacidos vivos</span>'+
+                             '</div>' +
+                                               '<div class="scroller" style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_3">'+
+                                               '<table class="bordered" id="miTabla33" class="miTabla33" >';
+              // console.log(estados);
+              // console.log(estados.length);
+              // console.log(estados[0].length);
+
+
+               for (var i = 0; i < estados.length; i++) {
+                 if(i == 0){
+                  // datos_doble +=  '<thead><tr>';
+                  datos_doble_2 +=  '<thead><tr>';
+                  datos_doble_3 +=  '<thead><tr>';
+                  datos_doble_33 +=  '<thead><tr>';
+                }
+                 else if(i == 1){
+                  //  datos_doble +=  '<tbody><tr>';
+                   datos_doble_2 +=  '<tbody><tr>';
+                   datos_doble_3 +=  '<tbody><tr>';
+                   datos_doble_33 +=  '<tbody><tr>';
+                 }
+                 else {
+                    // datos_doble +=  '<tr>';
+                    datos_doble_2 +=  '<tr>';
+                    datos_doble_3 +=  '<tr>';
+                    datos_doble_33 +=  '<tr>';
+                 }
+
+                 for (var j = estados[0].length -1 ; j > 0 ; j--) {
+                  if(i == 0 && j == estados[0].length -1){
+                    // datos_doble +=  '  <th  class="headcol">'+ estados[i][0] +'</th><th>'+ estados[i][j] .split('-')[0]+'</th>';
+                    datos_doble_2 +=  '  <th  class="headcol">'+ estados[i][0] +'</th><th>'+ estados[i][j] .split('-')[0]+'</th>';
+                    datos_doble_3 +=  '  <th  class="headcol">'+ estados[i][0] +'</th><th>'+ estados[i][j] .split('-')[0]+'</th>';
+                    datos_doble_33 +=  '  <td  class="headcol">'+ estados[i][0] +'</td><td>'+ estados[i][j] .split('-')[0]+'</td>';
+                  }
+                  else if( i == 0 && j == estados[0].length -1 ){
+                    // datos_doble += '<th class"padding-200">'+ estados[i][j].split('-')[0] +'</th>';
+                    datos_doble_2 += '<th class"padding-200">'+ estados[i][j].split('-')[0] +'</th>';
+                    datos_doble_3 += '<th class"padding-200">'+ estados[i][j].split('-')[0] +'</th>';
+                    datos_doble_33 += '<td class"padding-200">'+ estados[i][j].split('-')[0] +'</td>';
+                  }
+                  else if( i == 0 ){
+                    // datos_doble += '<th>'+ estados[i][j].split('-')[0] +'</th>';
+                    datos_doble_2 += '<th>'+ estados[i][j].split('-')[0] +'</th>';
+                    datos_doble_3 += '<th>'+ estados[i][j].split('-')[0] +'</th>';
+                    datos_doble_33 += '<td>'+ estados[i][j].split('-')[0] +'</td>';
+                  }
+                  else if(j == estados[0].length -1 ) {
+                    var varia = '<td class="headcol">'+ estados[i][0] +'</td><td>'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                    // datos_doble += varia;
+                    datos_doble_2 += varia;
+                    datos_doble_3 += varia;
+                    datos_doble_33 += varia;
+                  }
+                  else if(j == estados[0].length -2){
+                      // datos_doble +=  '  <td class="laque">'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                      datos_doble_2 +=  '  <td class="laque">'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                      datos_doble_3 +=  '  <td class="laque">'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                      datos_doble_33 +=  '  <td class="laque">'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                  }
+                  else{
+                    // datos_doble +=  '  <td>'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                    datos_doble_2 +=  '  <td>'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                    datos_doble_3 +=  '  <td>'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                    datos_doble_33 +=  '  <td>'+ parseFloat(estados[i][j]).toFixed(2) +'</td>';
+                  }
+                 }
+
+
+                   if(i == 0){
+                    //  datos_doble +=  '</tr></thead>';
+                     datos_doble_2 +=  '</tr></thead>';
+                     datos_doble_3 +=  '</tr></thead>';
+                     datos_doble_33 +=  '</tr></thead>';
+                   }else{
+                    //  datos_doble +=  '</tr>';
+                     datos_doble_2 +=  '</tr>';
+                     datos_doble_3 +=  '</tr>';
+                     datos_doble_33 +=  '</tr>';
+                   }
+               }
+
+
+
+              //    datos_doble_2 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;">'+
+              // ' <div class="pie_cuadro2">'+ pie +
+              //  '</div></div>';
+              //
+              //    datos_doble_3 +=  '</tbody></table></div><p class="nota" style="color:#8694a8;">'+
+              // ' <div class="pie_cuadro2">'+ pie +
+              //  '</div></div>';
+
+            $('#tabla_export').html(datos_doble_33);
+
+          });
+</script>
+    <!-- <script type="text/javascript">
+
+    $(document).ready(function () {
+
+    function exportTableToCSV($table, filename) {
+
+        var $rows = $table.find('tr:has(td)'),
+
+            // Temporary delimiter characters unlikely to be typed by keyboard
+            // This is to avoid accidentally splitting the actual contents
+            tmpColDelim = String.fromCharCode(11), // vertical tab character
+            tmpRowDelim = String.fromCharCode(0), // null character
+
+            // actual delimiter characters for CSV format
+            colDelim = '","',
+            rowDelim = '"\r\n"',
+
+            // Grab text from table into CSV formatted string
+            csv = '"' + $rows.map(function (i, row) {
+                var $row = $(row),
+                    $cols = $row.find('td');
+
+                return $cols.map(function (j, col) {
+                    var $col = $(col),
+                        text = $col.text();
+
+                    return text.replace(/"/g, '""'); // escape double quotes
+
+                }).get().join(tmpColDelim);
+
+            }).get().join(tmpRowDelim)
+                .split(tmpRowDelim).join(rowDelim)
+                .split(tmpColDelim).join(colDelim) + '"';
+
+				// Deliberate 'false', see comment below
+        if (false && window.navigator.msSaveBlob) {
+
+						var blob = new Blob([decodeURIComponent(csv)], {
+	              type: 'text/csv;charset=utf8'
+            });
+
+            // Crashes in IE 10, IE 11 and Microsoft Edge
+            // See MS Edge Issue #10396033: https://goo.gl/AEiSjJ
+            // Hence, the deliberate 'false'
+            // This is here just for completeness
+            // Remove the 'false' at your own risk
+            window.navigator.msSaveBlob(blob, filename);
+
+        } else if (window.Blob && window.URL) {
+						// HTML5 Blob
+            var blob = new Blob([csv], { type: 'text/csv;charset=utf8' });
+            var csvUrl = URL.createObjectURL(blob);
+
+            $(this)
+            		.attr({
+                		'download': filename,
+                		'href': csvUrl
+		            });
+				} else {
+            // Data URI
+            var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+						$(this)
+                .attr({
+               		  'download': filename,
+                    'href': csvData,
+                    'target': '_blank'
+            		});
+        }
+    }
+
+    // // This must be a hyperlink
+    // $(".exportCSV").on('click', function (event) {
+    //     // CSV
+    //
+    //
+    //
+    //
+    //     var args = [$('#tabla_export2 table'), 'IndicadorExplora.csv'];
+    //
+    //     exportTableToCSV.apply(this, args);
+    //
+    //     // If CSV, don't do event.preventDefault() or return false
+    //     // We actually need this to be a typical hyperlink
+    // });
+
+
+
+// function pruebaInicio(initialLoad){
+//     if (initialLoad) {
+//         console.log(':::::::::::::::::::::::: Indicador Inicial :::::::::::::::::::::::');
+//         $("#exportarXLS").html('<a href="#" class="icns " download="Indicador.xls" onclick="return ExcellentExport.excel(this, '+"'miTabla33'"+', '+"'Indicadores'"+');">XLS</a>');
+//         $(".exportCSV").on('click', function (event) {
+//             // CSV
+//             var args;
+//                 //Do work that is done when the page was first refreshed/loaded.
+//                 args = [$('#miTabla33'), 'IndicadorExp.csv'];
+//
+//             exportTableToCSV.apply(this, args);
+//
+//             // If CSV, don't do event.preventDefault() or return false
+//             // We actually need this to be a typical hyperlink
+//         });
+//         initialLoad = false;
+//     } else {
+//       console.log(':::::::::::::::::::::::: Indicador Diferente :::::::::::::::::::::::');
+//         $("#exportarXLS").html('<a href="#" class="icns " download="Indicador.xls" onclick="return ExcellentExport.excel(this, '+"'miTabla22'"+', '+"'Indicadores'"+');">XLS</a>');
+//         $(".exportCSV").on('click', function (event) {
+//             // CSV
+//             var args;
+//                 //Do work when it's not the initial load.
+//                 args = [$('#tabla_export2 table'), 'IndicadorExplora.csv'];
+//             exportTableToCSV.apply(this, args);
+//
+//             // If CSV, don't do event.preventDefault() or return false
+//             // We actually need this to be a typical hyperlink
+//         });
+//     }
+// }
+
+//pruebaInicio(initialLoad);
+
+      //
+      // //This must be a hyperlink
+      // $(".exportCSV").on('click', function (event) {
+      //     // CSV
+      //     var args;
+      //
+      //     if (initialLoad) {
+      //         //Do work that is done when the page was first refreshed/loaded.
+      //         args = [$('#miTabla33'), 'IndicadorExp.csv'];
+      //         initialLoad = false;
+      //     } else {
+      //         //Do work when it's not the initial load.
+      //         args = [$('#tabla_export2 table'), 'IndicadorExplora.csv'];
+      //     }
+      //
+      //     exportTableToCSV.apply(this, args);
+      //
+      //     // If CSV, don't do event.preventDefault() or return false
+      //     // We actually need this to be a typical hyperlink
+      // });
+
+
+
+// .on('load', function (event) {
+//
+//     if (initialLoad) {
+//         //Do work that is done when the page was first refreshed/loaded.
+//
+//         $(this).attr({
+//             download: "Indicador.xls",
+//             onclick: "return ExcellentExport.excel(this, 'miTabla33', 'Indicadores');"
+//           });
+//         initialLoad = false;
+//
+//     } else {
+//         //Do work when it's not the initial load.
+//         $(this).attr({
+//             download: "Indicador.xls",
+//             onclick: "return ExcellentExport.excel(this, 'miTabla22', 'Indicadores');"
+//           });
+//         initialLoad = false;
+//     }
+
+    // If CSV, don't do event.preventDefault() or return false
+    // We actually need this to be a typical hyperlink
+});
+
+</script> -->
+<script type="text/javascript">
+$(document).ready(function () {
+
+  function deselect(e) {
+    $('.pop').slideFadeToggle(function() {
+      e.removeClass('selected');
+    });
+  }
+  $("#contact").hover(
+   function() {
+     if($(this).hasClass('selected')) {
+       deselect($(this));
+     } else {
+       $(this).addClass('selected');
+       $('.pop').slideFadeToggle();
+     }
+     return false;
+   }, function() {
+     deselect($('#contact'));
+     return false;
+   }
+  );
+
+
+  $.fn.slideFadeToggle = function(easing, callback) {
+   return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+  };
+
+
+
+function exportTableToXLS($table1, filename1) {
+
+    var $rows1 = $table1.find('tr:has(td)'),
+
+        // Temporary delimiter characters unlikely to be typed by keyboard
+        // This is to avoid accidentally splitting the actual contents
+        tmpColDelim1 = String.fromCharCode(11), // vertical tab character
+        tmpRowDelim1 = String.fromCharCode(0), // null character
+
+        // actual delimiter characters for CSV format
+        colDelim1 = '","',
+        rowDelim1 = '"\r\n"',
+
+        // Grab text from table into CSV formatted string
+        xls = '"' + $rows1.map(function (i, row) {
+            var $row1 = $(row),
+                $cols1 = $row1.find('td');
+
+            return $cols1.map(function (j, col) {
+                var $col1 = $(col),
+                    text1 = $col1.text();
+
+                return text1.replace(/"/g, '""'); // escape double quotes
+
+            }).get().join(tmpColDelim1);
+
+        }).get().join(tmpRowDelim1)
+            .split(tmpRowDelim1).join(rowDelim1)
+            .split(tmpColDelim1).join(colDelim1) + '"';
+
+    // Deliberate 'false', see comment below
+    if (false && window.navigator.msSaveBlob) {
+
+        var blob1 = new Blob([decodeURIComponent($table1)], {
+            type: 'text/plain;charset=utf8'
+        });
+
+        // Crashes in IE 10, IE 11 and Microsoft Edge
+        // See MS Edge Issue #10396033: https://goo.gl/AEiSjJ
+        // Hence, the deliberate 'false'
+        // This is here just for completeness
+        // Remove the 'false' at your own risk
+        window.navigator.msSaveBlob(blob1, filename1);
+
+    } else if (window.Blob && window.URL) {
+        // HTML5 Blob
+        var blob1 = new Blob([xls], { type: 'text/plain;charset=utf8' });
+        var xlsUrl = URL.createObjectURL(blob1);
+
+        $(this)
+            .attr({
+                'download': filename1,
+                'href': xlsUrl
+            });
+    } else {
+        // Data URI
+        var xlsData = 'data:application/vnd.ms-excel;charset=utf-8,' + encodeURIComponent(xls);
+
+        $(this)
+            .attr({
+                'download': filename1,
+                'href': xlsData,
+                'target': '_blank'
+            });
+    }
+}
+
+
+
+
+
+// This must be a hyperlink
+$(".exportXLS").on('click', function (event) {
+    // CSV
+    var args1 = [$('#tabla_export table'), 'Indicador.xls'];
+
+    exportTableToXLS.apply(this, args1);
+
+    // If CSV, don't do event.preventDefault() or return false
+    // We actually need this to be a typical hyperlink
+});
+
+
+
+});
+
+// function exportXXLS()
+// {
+//   var blob = new Blob([document.getElementById('tabla_export').innerHTML], {
+//           type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+//       });
+// saveAs(blob, "Report.xls");
+// }
+
+
+
+</script>
+
+
+<script>
+  function selects_aut(){
+//$('#loader').show();
+if(tipo == 1){
+ $('#seccion_mapa').hide();//panel de datos de descarga
+}
+
+  console.log('------------------ hacemos los chage --------------');
+  $('#agregacion').val(tipo);
+
+  carga_selectes_compartir(tipo);
+
+  $("#obj_name").val(objetivo).trigger('change');
+  $("#indicadores").val(indicador_sel).trigger('change');
+  $('select').material_select();
+  setTimeout(function(){
+        // carga_selectes_compartir(tipo);
+
+        //$('#indicadores').val(indicador_sel);
+        //$('select').material_select();
+
+    }, 1000);
+
+/*
+console.log('test');
+  setTimeout(function(){
+
+       $('#indicadores').trigger('change');
+    }, 3000);
+*/
+  // $("#obj_name").html('<option value="-1" disabled selected>Elige un objetivo</option>');
+  // $("#indicadores").html('<option value="-1" disabled selected>Elige un indicador</option>');
+  // carga_selectes();
+
+  //$('#obj_name').val(objetivo);
+  // $('select').material_select();
+  // setTimeout(function(){
+  //     alert("Hello");
+
+
+  //   }, 3000);
+
+  // setTimeout(function(){
+  //   alert("Hello");
+  //   //$('#indicadores').val(indicador_sel).trigger('change');
+  // }, 3000);
+
+
+ $('select').material_select();
+}
+
+function compartir(){
+  var tipo = $('#agregacion').val();
+  var objetivo = $('#obj_name').val();
+  var indicador_sel = $('#indicadores').val();
+
+
+     var textoTwitterGrafica = 'Comparto%20esta%20grafica';
+     var textoTwitterMapa    = 'Comparto%20este%20mapa';
+     var URLactual_arr = window.location + '';
+     var URLactual = URLactual_arr.split('?')[0] + '?tipo='+tipo+'&objetivo='+objetivo+'&indicador_sel='+indicador_sel;
+          $('.liga').val(URLactual);
+
+
+  console.log('------------------ empezamos con la validacion por que parece que hay pedo-----------------');
+    var urlTwitterMapa  = 'http://twitter.com/share?text='+textoTwitterMapa+'&amp;url='+URLactual+'&amp;hashtags=stackoverflow,example,youssefusf';
+    console.log('url mapa : '+urlTwitterMapa);
+
+    var urlTwitterGrafica = 'http://twitter.com/share?text='+textoTwitterGrafica+'&amp;url='+URLactual+'&amp;hashtags=stackoverflow,example,youssefusf';
+    console.log('url grafica : '+urlTwitterGrafica);
+
+    var cadena = '<a class="waves-effect" id="share_mapa" href="'+urlTwitterMapa+'"><i class="fa fa-twitter fa-lg"></i></a>';
+    $('#share_tw_mapa').html(cadena);
+
+    cadena = '<a class="waves-effect" id="share_mapa" href="'+urlTwitterGrafica+'"><i class="fa fa-twitter fa-lg"></i></a>';
+    $('#share_tw_grafica').html(cadena);
+
+    console.log('----------- en teoria deberia poner los enlaces ya ---------------');
+}
+
+function carga_selectes_compartir(tipo){
+  //borramos el select
+  $("#obj_name").html('<option value="-1" disabled selected>Elige un objetivo</option>');
+  $("#indicadores").html('<option value="-1" disabled selected>Elige un indicador</option>');
+  console.log('------------------------ nuevo ---------------------');
+    for(var i=0; i<objeto.length;i++)
+    {
+      var bkr =  false;
+      for (var j = 0; j < objeto[i].Meta.length; j++) {
+        for (var k = 0; k < objeto[i].Meta[j].Indicador.length; k++) {
+          if(tipo ==  1 ){
+            if($.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'N'){
+              console.log('nacional '+ objeto[i].Meta[j].Indicador[k].TieneValores);
+              $("#obj_name").append('<option value="'+objeto[i].Codigo_des+'">'+objeto[i].Abrevia_des+'</option>');
+              bkr =  true;
+              break;
+            }
+          }else{
+            if($.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'NE'  || $.trim(objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg) == 'NEE'){
+              console.log('estatal '+ k + objeto[i].Meta[j].Indicador[k].DesGeo.Codigo_dg);
+              $("#obj_name").append('<option value="'+objeto[i].Codigo_des+'">'+objeto[i].Abrevia_des+'</option>');
+              bkr =  true;
+              break;
+            }
+          }
+        }
+        if(bkr){
+          break;
+        }
+      }
+    }
+  }
+
+
+function ind_change(indicador){
+   $('#loader').show();
+            var indicador = $(this).val().split(".")[0];
+            llamar_api();
+            $('#grafica_c').show();
+            $('#datos_descarga').show();//panel de datos de descarga
+
+            if($('#agregacion').val() != 1){
+              $('#datosNacional').hide( );
+              $('#datosEstatal').hide( );
+              $('#seccion_mapa').show();//panel de datos de descarga
+              put_anios();
+            }
+
+            actualiza_grafica();
+            //else{
+            //   // $('#headmap').show();
+            //   // $('#footmapdatos').show();
+            //   // $('#footmap').show();
+            //   // $('#map').show();
+            // }
+}
+
+ function buscar(busqueda){
+    window.location.replace("busqueda.html?busqueda=" + busqueda);
+  }
+
+</script>
+  </body>
+</html>
