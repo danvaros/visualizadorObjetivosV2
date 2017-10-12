@@ -492,6 +492,7 @@ $('#loader').show();
 
 <a href="#" id="contact"> <img src="img/informacion.png" alt="" /> </a>
     <script type="text/javascript">
+    var PathAPI = "https://ods.org.mx/v2/API/";
     var objetivoId = getParameterByName('objetivoId');
     var lupa = false;
     var visibles =  true;
@@ -581,7 +582,7 @@ $('#loader').show();
   }
 
     function llamada(indicador, ser){
-      var url = PathAPI + 'Tematica/Todos';
+      var url = 'https://ods.org.mx/v2/API/Tematica/Todos';
       //var url = 'https://operativos.inegi.org.mx/datos/api/Valores/PorClaveSerie';
       var parametros =  {"PIdioma":"ES"}
       //var parametros =  {'PCveInd':indicador,'PAnoIni':'0', 'PAnoFin':'0', 'POrden':'DESC','PCveSer': ser , 'PIdioma':'ES'}
@@ -609,7 +610,8 @@ $('#loader').show();
       for (var i = 0; i < datos.length; i++) {
         var contenido='';
         for (var j = 0; j < datos[i].Meta.length; j++) {
-var clave_arb_meta  = datos[i].Meta[j].Indicador[0].ClaveInd_arb;
+          var clave_arb_meta  = datos[i].Meta[j].Indicador[0].ClaveInd_arb;
+          console.log(clave_arb_meta);
         if(true){
           if(clave_arb_meta != -1){
           if(j > 2){
@@ -618,10 +620,10 @@ var clave_arb_meta  = datos[i].Meta[j].Indicador[0].ClaveInd_arb;
                 contenido = contenido + '<div class="row borde_b fond" >';
               }
           contenido = contenido + '<div class="col s1">'+
-                                    '<p>'+datos[i].Meta[j].Codigo_des+'</p>'+
+                                  '<p>'+datos[i].Meta[j].Codigo_des+'</p>'+
                                   '</div>'+
                                   '<div class="col s11">'+
-                                    '<p style="padding-bottom: 0px;" class="marmar">'+datos[i].Meta[j].Descrip_des+'</p><p>';
+                                  '<p style="padding-bottom: 0px;" class="marmar">'+datos[i].Meta[j].Descrip_des+'</p><p>';
 
 
             for (var k = 0; k < datos[i].Meta[j].Indicador.length; k++) {

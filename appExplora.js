@@ -1,3 +1,4 @@
+var PathAPI = "https://ods.org.mx/v2/API/";
 var estados = [];
 var clave_ser = '';
 var claveInd_ser = '';
