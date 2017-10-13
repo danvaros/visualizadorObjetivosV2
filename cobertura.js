@@ -1,4 +1,5 @@
 // estas globales se utilizara para generar el nuevo select
+var PathAPI = "https://ods.org.mx/v2/API/";
 var arreglo_cla =  [];
 var arreglo_agru =  [];
 var arreglo_datos =  [];

@@ -1,3 +1,4 @@
+var PathAPI = "https://ods.org.mx/v2/API/";
 $(document).ready(function(){
 	$('#sel_estados').hide();
 	get_tematica(PCveInd);
@@ -31,6 +32,9 @@ function crea_lista(data, PCveInd){
 	for (var i = 0; i < data.length; i++) {
 		contenido = contenido + '<optgroup label="'+ data[i].Abrevia_des +'">';
 		for (var j = 0; j < data[i].Meta.length; j++) {
+
+			console.log(data[i].Meta[j].Indicador.length);
+
 			for (var k = 0; k < data[i].Meta[j].Indicador.length; k++) {
 				var clave_arb     = data[i].Meta[j].Indicador[k].ClaveInd_arb;
 				var codigo_dg     = data[i].Meta[j].Indicador[k].DesGeo.Codigo_dg;

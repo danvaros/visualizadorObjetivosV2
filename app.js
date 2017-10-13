@@ -1,3 +1,4 @@
+var PathAPI = "https://ods.org.mx/v2/API/";
 var titulo_des_graf = "";
 var inicio = 0;
 var estados = [];
@@ -38,9 +39,9 @@ $.ajax({
   url: PathAPI + "AtrIndicador/PorDesglose",
   data: {"PCveInd": PCveInd, "POpcion": "Cl", "PIdioma": "ES"},
   success: function( data, textStatus, jqxhr ) {
-    clasif = data.AgrupaClas.TotalNivAgrupa_cla;
+    clasif = data.Serie[0].AgrupaClas.TotalNivAgrupa_cla;
     for (var i = 0; i < data.Serie.length; i++) {
-      GloSerie.push(data.Serie[i].ClaveSer_ats);
+      GloSerie.push(data.Serie[i].Clave_ser);
     }
     console.log(GloSerie);
     console.log(data);

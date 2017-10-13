@@ -901,7 +901,7 @@
             </div>
         </div>
     </div>
-<script src='config.js'></script>
+    <script src='config.js'></script>
     <script src="cobertura.js"></script>
     <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
     <!-- <script type="text/javascript" src="entidad.json"></script> -->
@@ -931,6 +931,7 @@
 
 
     <script>
+    var PathAPI = "https://ods.org.mx/v2/API/";
         var titulo_des_graf = "Razón de mortalidad materna";
         var estadoYear = 2015;
         var chart;
@@ -2577,7 +2578,7 @@
                 '<tr><th>Nombre del Indicador</th><td>' + metadatosArr.Descrip_ind + '</td></tr>' +
                 '<tr><th>Definición</th><td><p>' + metadatosArr.Definicion_ft + '</p></td></tr>' +
                 '<tr><th>Tipo de Indicador</th><td>' + metadatosArr.DesTipoInd_ft + '</td></tr>' +
-                '<tr><th>Algoritmo</th><td><div class="imgAlgoritmo"><img src="http://ods.org.mx'+ metadatosArr.RutaAlgoritmo_ft + metadatosArr.Algoritmo_ft + metadatosArr.ExtAlgoritmo_ft +'" alt="Algoritmo ' + metadatosArr.Algoritmo_ft + '" /></div></td></tr>' +
+                '<tr><th>Algoritmo</th><td><div class="imgAlgoritmo"><img src="http://ods.org.mx'+ metadatosArr.RutaAlgo_ft + metadatosArr.Algoritmo_ft + metadatosArr.ExtAlgo_ft +'" alt="Algoritmo ' + metadatosArr.Algoritmo_ft + '" /></div></td></tr>' +
                 '<tr><th>Descripción narrativa del cálculo del indicador</th><td>' + metadatosArr.DescripCal_ft + '</td></tr>' +
                 '<tr><th>Unidad de medida</th><td>' + metadatosArr.Descrip_uni + '</td></tr>' +
                 '<tr><th>Cobertura geográfica</th><td>' + metadatosArr.Descrip_fdg + '</td></tr>' +
