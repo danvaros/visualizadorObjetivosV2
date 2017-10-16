@@ -33,6 +33,8 @@ function crea_lista(data, PCveInd){
 		contenido = contenido + '<optgroup label="'+ data[i].Abrevia_des +'">';
 		for (var j = 0; j < data[i].Meta.length; j++) {
 
+			console.log(data.length);
+			console.log(data[i].Meta.length);
 			console.log(data[i].Meta[j].Indicador.length);
 
 			for (var k = 0; k < data[i].Meta[j].Indicador.length; k++) {
