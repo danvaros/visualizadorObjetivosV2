@@ -1,4 +1,4 @@
-var PathAPI = "https://ods.org.mx/v2/API/";
+var PathAPI2 = "https://ods.org.mx/v2/API/";
 $(document).ready(function(){
 	$('#sel_estados').hide();
 	get_tematica(PCveInd);
@@ -13,7 +13,7 @@ $('select').material_select();
 });
 
 function get_tematica(PCveInd){
-	var url = PathAPI + 'Tematica/Todos';
+	var url = PathAPI2 + 'Tematica/Todos';
     var parametros =  {"PIdioma":"ES"}
     $.ajax({
       type: 'POST',
