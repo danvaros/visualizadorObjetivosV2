@@ -56,16 +56,3 @@ function crea_lista(data, PCveInd){
 
 
 }
-
-
-
-
-
-// <optgroup label="2. Hambre cero">
-// <option value="4">2.1.2. Proporción de la población con inseguridad alimentaria moderada o severa (carencia por acceso a la alimentación)</option>
-// </optgroup>
-// <optgroup label="3. Salud y bienestar">
-// <option value="5">3.1.1. Razón de mortalidad materna</option>
-// <option value="6">3.1.2. Proporción de partos con asistencia de personal sanitario especializado</option>
-// </optgroup>
-// </select>

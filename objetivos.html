@@ -609,6 +609,8 @@ $('#loader').show();
       for (var i = 0; i < datos.length; i++) {
         var contenido='';
         for (var j = 0; j < datos[i].Meta.length; j++) {
+          console.log(datos[i].Meta[j]);
+          console.log(datos[i].Meta[j].Indicador[0]);
           var clave_arb_meta  = datos[i].Meta[j].Indicador[0].ClaveInd_arb;
           console.log(clave_arb_meta);
         if(true){
@@ -633,8 +635,7 @@ $('#loader').show();
               var codigo_des    = datos[i].Meta[j].Indicador[k].Codigo_des;
             if( clave_arb == -1){
 
-            }else if(clave_arb == 333)
-            {
+            }else if(clave_arb == 333){
               if(datos[i].Meta[j].Indicador[k].TieneValores){
                  contenido = contenido +
                   '<a class="buscar" href="indicadores.html?objetivo='+datos[i].Codigo_des+'&meta='+datos[i].Meta[j].Clave_arb+'&indicador='+ clave_arb+'&codigo='+codigo_dg+'&obj='+datos[i].Clave_arb+'">'+
