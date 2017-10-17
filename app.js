@@ -142,8 +142,8 @@ if(codigoDg == "NEM  "){
       $('#tabla_nacional').hide();
 
 
-      tipoTabulado = data.TipoCua_atr;
-      cason = data.ClaveAgrupaClas_atr;
+      tipoTabulado = data.Series[0].TipoCua_ats;
+      cason = data.Series[0].ClaveAgrupaClas_ats;
 
       tabulado = get_tabulado(tipoTabulado,data.Series[0]);
       for (var i = 0; i < data.Series.length; i++) {
@@ -168,9 +168,9 @@ else
     data: {'PCveInd': PCveInd,'PAnoIni':'0', 'PAnoFin':'0', 'POrden':'DESC', 'PIdioma':'ES'},
     success: function( data, textStatus, jqxhr ) {
 
-      tipoTabulado = data.TipoCua_atr;
+      tipoTabulado = data.Series[0].TipoCua_ats;
 
-      cason = data.ClaveAgrupaClas_atr;
+      cason = data.Series[0].ClaveAgrupaClas_ats;
 
       tabulado = get_tabulado(tipoTabulado,data.Series[0]);
 
@@ -1384,7 +1384,7 @@ function generar_titulos_cob(){
   '<li class="divider"></li> '+
   '<p>' + ((atributos.DescripSer_des != null || atributos.DescripSer_des != "") ? ''  : '<strong>Serie: </strong>' + atributos.DescripSer_des) +'</p>';
   '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
-  '<span id="descrip_uni"> '+ atributos.Descrip_uni +'</span>';
+  '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>';
 
   pie_insumo =  ' <div> '+ ((atributos.Serie[serie_insumo].NotaSer_not != null) ? '<strong>Nota serie:</strong>' + atributos.Serie[serie_insumo].NotaSer_not : "") +'</div>'+
   ' <div> '+ ((atributos.Serie[serie_insumo].DescripSer_fue != null) ? '<strong>Fuente:</strong>' + atributos.Serie[serie_insumo].DescripSer_fue : "") +'</div>'+
@@ -1403,7 +1403,7 @@ function generar_titulos(){
   '<li class="divider"></li> '+
   '<p>' + ((atributos.DescripSer_des != null || atributos.DescripSer_des != "") ? ''  : '<strong>Serie: </strong>' + atributos.DescripSer_des) +'</p>';
   '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
-  '<span id="descrip_uni"> '+ atributos.Descrip_uni +'</span>';
+  '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>';
 
   pie_insumo =  ' <div> '+ ((atributos.Serie[serie_insumo].NotaSer_not != null) ? '<strong>Nota serie:</strong>' + atributos.Serie[serie_insumo].NotaSer_not : "") +'</div>'+
   ' <div> '+ ((atributos.Serie[serie_insumo].DescripSer_fue != null) ? '<strong>Fuente:</strong>' + atributos.Serie[serie_insumo].DescripSer_fue : "") +'</div>'+
@@ -1423,7 +1423,7 @@ function titulos(indicador){
     titulo   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
     '<li class="divider"></li> ' +
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
-    '<span id="descrip_uni"> '+ atributos.Descrip_uni +'</span>' +
+    '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>' +
     '<p id="no_va_serie"><strong>Total<strong></p>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
@@ -1437,7 +1437,7 @@ function titulos(indicador){
     titulo   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
     '<li class="divider"></li> ' +
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
-    '<span id="descrip_uni"> '+ atributos.Descrip_uni +'</span>' +
+    '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>' +
     '<p id="no_va_serie"><strong>Esta vista presenta los datos totales del indicador. Para conocer más detalles visita la sección de serie histórica.<strong></p>';
 
 
@@ -1451,7 +1451,7 @@ function titulos(indicador){
     titulo   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
     '<li class="divider"></li> ' +
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
-    '<span id="descrip_uni"> '+ atributos.Descrip_uni +'</span>';
+    '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota: </strong> ' + atributos.Descrip_not+
