@@ -534,6 +534,7 @@
             <div class="col s12">
                 <div class="input-field col s6 m2 l2">
                     <select name="estados" id="sel_estados" class="browser-default">
+              <option selected="selected">Selecciona un estado</option>
               <option value="Aguascalientes">Aguascalientes</option>
               <option value="Baja California">Baja California</option>
               <option value="Baja California Sur">Baja California Sur</option>
@@ -1203,6 +1204,7 @@
             $('#serie_panel_tablas2').html(datos_doble_2);
 
             $('#tabla_export').html(datos_doble_2);
+            $('#tabla_export').append($("#metadatosApi"));
             $('#tabla_export2').html(datos_doble_22);
 
             $('#tabla_nacional').html(datos_doble_2);
@@ -2212,7 +2214,7 @@
             }
 
             if (cadena != '') {
-                cadena = '<div class="col s12"><a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;cursor:none;float: left;padding-bottom: 0;padding-left: 8px;margin-top:6px;">Selecciona un año</a></div>' + '<div class="col s12 l12"><div class="owl-carousel owl-theme">' + cadena + '</div></div>';
+                cadena = '<div class="col s12"><a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;cursor:none;float: left;padding-bottom: 0;padding-left: 8px;margin-top:6px;">Selecciona un periodo</a></div>' + '<div class="col s12 l12"><div class="owl-carousel owl-theme">' + cadena + '</div></div>';
                 //  cadena = cadena +'<div class="owl-carousel">'+cadena+'</div>';
 
                 $('#anios').html(cadena);
@@ -2572,7 +2574,7 @@
             var tablaMeta = '';
             var metadatosArr = getMetadatos(vars);
 
-            tablaMeta = tablaMeta + ' <table class="bordered"><tbody>' +
+            tablaMeta = tablaMeta + ' <table class="bordered" id="metadatosInd"><tbody>' +
                 '<tr><th>Objetivo</th><td>' + metadatosArr.Descrip_obj + '</td></tr>' +
                 '<tr><th>Meta</th><td>' + metadatosArr.Descrip_met + '</td></tr>' +
                 '<tr><th>Nombre del Indicador</th><td>' + metadatosArr.Descrip_ind + '</td></tr>' +
