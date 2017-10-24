@@ -11,7 +11,7 @@ function indicadores(){
           );
 
           // Setup cURL
-          $ch = curl_init('https://ods.org.mx/API/Tematica/Todos');
+          $ch = curl_init('https://ods.org.mx/v2/API/Tematica/Todos');
           curl_setopt_array($ch, array(
               CURLOPT_POST => TRUE,
               CURLOPT_RETURNTRANSFER => TRUE,
@@ -80,7 +80,7 @@ function datos($indicador){
     );
 
     // Setup cURL
-    $ch = curl_init('https://ods.org.mx/API/Valores/PorClave');
+    $ch = curl_init('https://ods.org.mx/v2/API/Valores/PorClave');
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,
@@ -115,7 +115,7 @@ function clasificaciones($indicador){
     );
 
     // Setup cURL
-    $ch = curl_init('https://ods.org.mx/API/AtrIndicador/PorDesglose');
+    $ch = curl_init('https://ods.org.mx/v2/API/AtrIndicador/PorDesglose');
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,
@@ -149,7 +149,7 @@ function datosMetadato($indicador){
     );
 
     // Setup cURL
-    $ch = curl_init('https://ods.org.mx/API/Metadato/PorClave');
+    $ch = curl_init('https://ods.org.mx/v2/API/Metadato/PorClave');
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,
@@ -184,7 +184,7 @@ function nombreIndicador($indicador){
           );
 
           // Setup cURL
-          $ch = curl_init('https://ods.org.mx/API/AtrIndicador/PorClave');
+          $ch = curl_init('https://ods.org.mx/v2/API/AtrIndicador/PorClave');
           curl_setopt_array($ch, array(
               CURLOPT_POST => TRUE,
               CURLOPT_RETURNTRANSFER => TRUE,
