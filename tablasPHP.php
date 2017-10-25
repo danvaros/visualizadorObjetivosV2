@@ -300,9 +300,9 @@ function get_tabuladoCSV($indicador){
 
 // ----------- Crea todos los XLS de Indicador ---------//
 
-  // for ($i=0; $i < count($ClaveInd_arb); $i++) {
-  //   get_tabulado($ClaveInd_arb[$i]);
-  // }
+  for ($i=0; $i < count($ClaveInd_arb); $i++) {
+    get_tabulado($ClaveInd_arb[$i]);
+  }
 
 // ----------- Crea todos los CSV de Indicador ---------//
 
@@ -341,7 +341,7 @@ function get_tabuladoCSV($indicador){
 //creaXLSCoS(datos(26));
 
 
-metadato(datosMetadato(1));
+//metadato(datosMetadato(1));
 
 
 function abecedario($posicion){
@@ -467,7 +467,7 @@ function metadato($data){
   $objDrawing = new PHPExcel_Worksheet_Drawing();
   $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
   $objDrawing->setDescription('Image');
-  $objDrawing->setPath('./img/algoritmos/'.$data['Algoritmo_ft'].'.gif');
+  $objDrawing->setPath($data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
   $objDrawing->setHeight(200);
   $objDrawing->setCoordinates('B7');
   $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
@@ -475,7 +475,7 @@ function metadato($data){
   // Add a drawing to the header
   $objDrawing = new PHPExcel_Worksheet_HeaderFooterDrawing();
   $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
-  $objDrawing->setPath('./img/algoritmos/'.$data['Algoritmo_ft'].'.gif');
+  $objDrawing->setPath($data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
   $objDrawing->setHeight(200);
   $objPHPExcel->getActiveSheet()->getHeaderFooter()->addImage($objDrawing, PHPExcel_Worksheet_HeaderFooter::IMAGE_HEADER_LEFT);
 
