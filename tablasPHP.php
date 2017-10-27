@@ -217,7 +217,7 @@ function get_tabulado($indicador){
 
     $valores = datos($indicador);
 
-    switch($valores['Series']['TipoCua_ats']){
+    switch($valores['Series'][0]['TipoCua_ats']){
       case 'CoS':
         $t = creaXLSCoS(datos($indicador));
       break;
@@ -249,12 +249,12 @@ function get_tabuladoCSV($indicador){
 
     $class = clasificaciones($indicador);
 
-    $clasif = $class['AgrupaClas']['TotalNivAgrupa_cla'];
+    $clasif = $class['Serie'][0]['AgrupaClas']['TotalNivAgrupa_cla'];
     //var_dump($clasif);
 
     $valores = datos($indicador);
 
-    switch($valores['TipoCua_atr']){
+    switch($valores['Series'][0]['TipoCua_ats']){
       case 'CoS':
         $t = creaCSVCoS(datos($indicador));
       break;
@@ -298,15 +298,15 @@ function get_tabuladoCSV($indicador){
 //$indicadorres = array(1,340,341,342,2,105,118,345,26,27,23,346,347,348,349,132,333,350,351,352,353,354,140,141,334);
 
 
-get_tabulado(26);
+//get_tabulado(26);
 
 // ----------- Crea todos los XLS de Indicador ---------//
 
-  //for ($i=0; $i < count($ClaveInd_arb); $i++) {
-    //get_tabulado($ClaveInd_arb[$i]);
+  for ($i=0; $i < count($ClaveInd_arb); $i++) {
+    get_tabulado($ClaveInd_arb[$i]);
     //var_dump($ClaveInd_arb[$i]);
     //echo "muestra ".$i;
-  //}
+  }
 
 // ----------- Crea todos los CSV de Indicador ---------//
 
