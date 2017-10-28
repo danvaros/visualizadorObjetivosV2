@@ -629,7 +629,12 @@
 
         <div class="row card tablaPadding" id="metadato-panel">
             <div class="col s12 l12" id="metadatosApi"></div>
-            <div class="col s12 l12" id="metadatosApi2" style="display:none;"><br /><br /><h1>Metadato</h1></div>
+            <div class="col s12 l12" id="metadatosApi2Titulo" style="display:none;">
+                <br/>
+                <h2>Metadato</h2>
+                <br/>
+            </div>
+            <div class="col s12 l12" id="metadatosApi2" style="display:none;"></div>
         </div>
 
         <div class="row" id="botonera_nacional" style="display: none; ">
@@ -1205,6 +1210,7 @@
             $('#serie_panel_tablas2').html(datos_doble_2);
 
             $('#tabla_export').html(datos_doble_2);
+            $('#tabla_export').append($("#metadatosApi2Titulo"));
             $('#tabla_export').append($("#metadatosApi2"));
             $('#tabla_export2').html(datos_doble_22);
 
