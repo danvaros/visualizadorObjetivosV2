@@ -1532,8 +1532,9 @@
                 $('#nueva_tabla_serie').html('');
 
                 var seleccionado = $(this).val();
+                console.log(seleccionado);
                 $('#sel_municipios').html(get_sel_municipal(seleccionado));
-                $('#sel_municipios').show();
+                //$('#sel_municipios').show();
                 jQuery.each(coor_estado, function(i, val) {
                     if (seleccionado == val.estado) {
                         map.setView([val.lat, val.long], val.zoom - 1);
@@ -3033,15 +3034,23 @@
             //++sacar la clave del estado y sacar el indicador que se esta manejando
             var cl = get_clave_estado(e);
             var datos_brutos = get_estado_municipios(cl + '%', PCveInd);
+            console.log(datos_brutos);
             put_tabla_municipal(datos_brutos);
             valorDato(datos_brutos);
-
+            
             for (var i = 0; i < municipio.features.length; i++) {
                 if (e == municipio.features[i].properties.nom_ent) {
                     features.push(municipio.features[i]);
                     if (municipio.features[i].properties.nom_mun == null) continue;
-
-                    valuesMunicipio.push(busqueda_municipio(municipio.features[i].properties.nom_mun, posi));
+                    var temp = busqueda_municipio(municipio.features[i].properties.nom_mun, posi);
+                    console.log(temp);
+                    if(typeof temp == 'undefined'){
+                        alert('entro');
+                        valuesMunicipio.push(1);
+                    }else{
+                        valuesMunicipio.push(temp);
+                    }
+                    
                 }
             }
 
@@ -3049,6 +3058,8 @@
                 'features': features,
                 'type': "FeatureCollection"
             };
+
+            console.log(valuesMunicipio);
 
             brew.setSeries(valuesMunicipio);
             brew.setNumClasses(3);
