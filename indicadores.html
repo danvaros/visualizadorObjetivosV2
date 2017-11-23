@@ -2363,8 +2363,8 @@
             $('#anio_' + i).addClass('active_anio');
 
             map.removeLayer(geojson);
-
-            if (codigoDg == "NEM  " && ban_mun == true) {
+ 
+            if (codigoDg.trim() == "NEM" && ban_mun == true) {
                 var seleccionado = $('#sel_estados').val();
                 $('#sel_municipios').html(get_sel_municipal(seleccionado));
                 jQuery.each(coor_estado, function(i, val) {
