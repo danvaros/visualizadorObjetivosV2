@@ -3400,7 +3400,13 @@
 
                 if (sel_est == municipio.features[i].properties.nom_ent) {
                     if (municipio.features[i].properties.nom_mun == null) continue;
-                    valuesMunicipio.push(busqueda_municipio(municipio.features[i].properties.nom_mun, posi2));
+                        var temp = busqueda_municipio(municipio.features[i].properties.nom_mun, posi2);
+                    if(typeof temp == 'undefined'){
+                        valuesMunicipio.push(1);
+                    }else{
+                        valuesMunicipio.push(temp);
+                    }
+                    //valuesMunicipio.push(busqueda_municipio(municipio.features[i].properties.nom_mun, posi2));
                 }
             }
 
