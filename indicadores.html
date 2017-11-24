@@ -594,7 +594,7 @@
         </div>
 
 
-        <a id="link-datos-panel" class="waves-effect waves-light btn color right claro t_sm sin_sombra marg_top exportCSVDatos">Exportar datos para el cálculo</a>
+        <a id="link-datos-panel" href="#" onclick="return ExcellentExport.excel(this, 'nueva_tabla_serieDat', 'Datos para el Cálculo');" class="waves-effect waves-light btn color right claro t_sm sin_sombra marg_top exportCSVDatos">Exportar datos para el cálculo</a>
 
         <div class="row card tablaPadding scroller" id="serie-panel" style=" border-radius: 20px;">
 
@@ -1478,12 +1478,13 @@
                 $(".exportCSVDatos").hide();
             }
 
-            $(".exportCSVDatos").on('click', function(event) {
-                // CSV
-                var args = [$('#miTabla'), 'DatosParaElCalculo - ' + Descrip_ind + '.csv'];
-                exportTableToCSV.apply(this, args);
-            });
+            // $(".exportCSVDatos").on('click', function(event) {
+            //     // CSV
+            //     var args = [$('#miTabla'), 'DatosParaElCalculo - ' + Descrip_ind + '.csv'];
+            //     exportTableToCSV.apply(this, args);
+            // });
 
+            $("#insumos_contDat").attr('download','DatosParaElCalculo - '+Descrip_ind+'.xls');
             $("#descargaXLS").attr('download', Descrip_ind + '.xls');
 
             $("#contact").hover(
@@ -1530,6 +1531,7 @@
                 $('#anio_1').removeClass('inactive_anio');
                 $('#anio_1').addClass('active_anio');
                 $('#nueva_tabla_serie').html('');
+                $('#nueva_tabla_serieDat').html('');
 
                 var seleccionado = $(this).val();
                 console.log(seleccionado);
@@ -2363,7 +2365,7 @@
             $('#anio_' + i).addClass('active_anio');
 
             map.removeLayer(geojson);
- 
+
             if (codigoDg.trim() == "NEM" && ban_mun == true) {
                 var seleccionado = $('#sel_estados').val();
                 $('#sel_municipios').html(get_sel_municipal(seleccionado));
@@ -3037,7 +3039,7 @@
             console.log(datos_brutos);
             put_tabla_municipal(datos_brutos);
             valorDato(datos_brutos);
-            
+
             for (var i = 0; i < municipio.features.length; i++) {
                 if (e == municipio.features[i].properties.nom_ent) {
                     features.push(municipio.features[i]);
@@ -3049,7 +3051,7 @@
                     }else{
                         valuesMunicipio.push(temp);
                     }
-                    
+
                 }
             }
 
