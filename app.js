@@ -8,7 +8,7 @@ var insumos_cobertura = [];
 var insumo_cober_clasifica = [];
 var insumo_cober_clasifica_tipo = [];
 var cobertura_notas = false;
-
+var calculoD = [];
 var query_string = {};
 var query = window.location.search.substring(1);
 var obj = getParameterByName("objetivo");
@@ -22,6 +22,7 @@ var Codigo_ind = '';
 var Descrip_ind = '';
 var tituloObjetivo = '';
 var titulo ;
+var tituloDat ;
 var pie ;
 var Algoritmo_ft = '';
 var data_local = '';
@@ -378,14 +379,22 @@ $(document).ready(function(){
     }
     else{
       put_tabla_insumo($(this).val());
+      $('#nueva_tabla_serieDat').html('');
       $('#nueva_tabla_serie').html(tabulado_series[($(this).val())]);
+      $('#nueva_tabla_serieDat').append(tituloDat);
+      $('#nueva_tabla_serieDat').append(calculoD[$('#insumo_change').val()]);
+      $('#nueva_tabla_serieDat').append(tabulado_series[($(this).val())]);
       $('#insumos_cont').hide();
       $('#este2').hide();
     }
   });
 
   $('#insumo_change_cob').on('change',function(){
+    $('#nueva_tabla_serieDat').html('');
     $('#nueva_tabla_serie').html(tabulado_series[($(this).val())]);
+    $('#nueva_tabla_serieDat').append(tituloDat);
+    $('#nueva_tabla_serieDat').append(calculoD[$('#insumo_change_cob').val()]);
+    $('#nueva_tabla_serieDat').append(tabulado_series[($(this).val())]);
     put_filtros_insumo_cob($(this).val());
     $('#insumos_cont').html('');
     $('#insumos_contDat').html('');
@@ -1131,7 +1140,7 @@ function valorDatoInsumos(data){
     });
   }
 
-  select += '</select></div><div class="col s12" id="insumos_cont"></div><div class="col s12" id="insumos_contDat" style="display:none;"></div><div id="nueva_tabla_serie" class="input-field col s12" style="margin-bottom:20px;overflow:scroll;height:510px;"></div>';
+  select += '</select></div><div class="col s12" id="insumos_cont"></div><div class="col s12" id="insumos_contDat" style="display:none;"></div><div id="nueva_tabla_serie" class="input-field col s12" style="margin-bottom:20px;overflow:scroll;height:510px;"></div><div id="nueva_tabla_serieDat" class="input-field col s12" style="margin-bottom:20px;overflow:scroll;height:510px;display:none;"></div>';
 
   //sin pie y cabezera de la pagina
   $('#datos-panel').html(select);
@@ -1162,7 +1171,7 @@ function coberturaInsumos(data){
     });
   }
 
-  select += '</select></div><div class="col s12" id="tipo_gen"><select id="este2" style="margin-bottom :15px; display:none !important; background-color: #f2f2f2;"></select></div><div class="col s12" id="insumo_filtro"><select id="este" style="display:none !important; background-color: #f2f2f2;"></select></div><div class="col s12" id="insumos_cont"></div><div id="nueva_tabla_serie" class="input-field col s12" style="margin-bottom:20px;height:510px;overflow:scroll;"></div>';
+  select += '</select></div><div class="col s12" id="tipo_gen"><select id="este2" style="margin-bottom :15px; display:none !important; background-color: #f2f2f2;"></select></div><div class="col s12" id="insumo_filtro"><select id="este" style="display:none !important; background-color: #f2f2f2;"></select></div><div class="col s12" id="insumos_cont"></div><div id="nueva_tabla_serie" class="input-field col s12" style="margin-bottom:20px;height:510px;overflow:scroll;"></div><div id="nueva_tabla_serieDat" class="input-field col s12" style="margin-bottom:20px;overflow:scroll;height:510px;display:none;"></div>';
 
   //sin pie y cabezera de la pagina
   $('#datos-panel').html(select);
@@ -1367,6 +1376,7 @@ $(document).ready(function()
 });
 
 var titulo;
+var tituloDat;
 var titulo_insumo;
 var pie;
 var pie_insumo;
@@ -1415,6 +1425,7 @@ function generar_titulos(){
 
 function titulos(indicador){
   var serie_insumo =  $('#insumo_change').val();
+  var serie_insumoCob =  $('insumo_change_cob').val();
   atributos_general = getAtributos(indicador);
   atributos = atributos_general;
 
@@ -1425,6 +1436,10 @@ function titulos(indicador){
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
     '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>' +
     '<p id="no_va_serie"><strong>Total<strong></p>';
+    tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
+                             '<li class="divider"></li> ' +
+                             '<p> '+ atributos.Serie[1].CobTemporal_ser +' </p>';
+    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[1].Descrip_ser +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota:</strong> ' + atributos.Descrip_not+
@@ -1439,7 +1454,10 @@ function titulos(indicador){
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
     '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>' +
     '<p id="no_va_serie"><strong>Esta vista presenta los datos totales del indicador. Para conocer más detalles visita la sección de serie histórica.<strong></p>';
-
+    tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
+                             '<li class="divider"></li> ' +
+                             '<p> '+ atributos.Serie[1].CobTemporal_ser +' </p>';
+    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[1].Descrip_ser +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota:</strong> ' + atributos.Descrip_not+
@@ -1452,6 +1470,10 @@ function titulos(indicador){
     '<li class="divider"></li> ' +
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
     '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>';
+    tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
+                             '<li class="divider"></li> ' +
+                             '<p> '+ atributos.Serie[1].CobTemporal_ser +' </p>';
+    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[1].Descrip_ser +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota: </strong> ' + atributos.Descrip_not+

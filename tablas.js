@@ -38,7 +38,8 @@ function tablaCoS(data){
       cabezera = true;
     }
 
-    tabuladoCoS += '</tr></thead><tr><td>' +  '<span style="display:none;">'+data.Coberturas[i].ClaveCobGeo_cg+ '</span>' + data.Coberturas[i].Descrip_cg +'</td>';
+    //tabuladoCoS += '</tr></thead><tr><td>' +  '<span style="display:none;">'+data.Coberturas[i].ClaveCobGeo_cg+ '</span>' + data.Coberturas[i].Descrip_cg +'</td>';
+    tabuladoCoS += '</tr></thead><tr><td>' + data.Coberturas[i].Descrip_cg +'</td>';
     for (var j = 0; j < data.Coberturas[i].ValorDato.length; j++) {
       if(data.Coberturas[i].ValorDato[j].Dato_Formato == ""){
         tabuladoCoS += '<td style="text-align:right;"> '+ data.Coberturas[i].ValorDato[j].NoDatos.Codigo_nd +' </td>';
@@ -85,7 +86,8 @@ function tablaCoCl(data){
       tabuladoCoCl =   subTabulado +' '+ tabuladoCoCl;
     }//fin if condicion cabezera
 
-    tabuladoCoCl   +=  '<tr ><td>' +  '<span style="display:none;">'+data.Coberturas[i].ClaveCobGeo_cg+ '</span>' + data.Coberturas[i].Descrip_cg +'</td>';
+    //tabuladoCoCl   +=  '<tr ><td>' +  '<span style="display:none;">'+data.Coberturas[i].ClaveCobGeo_cg+ '</span>' + data.Coberturas[i].Descrip_cg +'</td>';
+    tabuladoCoCl   +=  '<tr ><td>' + data.Coberturas[i].Descrip_cg +'</td>';
     for (var j = 0; j < data.Coberturas[i].Clasificaciones.length; j++) {
       if(data.Coberturas[i].Clasificaciones[j].ValorDato.Dato_Formato == ""){
         tabuladoCoCl   +=  '<td style="text-align:right;"> '+ data.Coberturas[i].Clasificaciones[j].ValorDato.NoDatos.Codigo_nd +' </td>';
@@ -232,7 +234,8 @@ function CoClanidada(data){
       cabezera = true;
     }
 
-    tabulado += '<tr><td>'+  '<span style="display:none;">'+data.Coberturas[i].ClaveCobGeo_cg+ '</span>' + data.Coberturas[i].Descrip_cg + '</td>';
+    //tabulado += '<tr><td>'+  '<span style="display:none;">'+data.Coberturas[i].ClaveCobGeo_cg+ '</span>' + data.Coberturas[i].Descrip_cg + '</td>';
+    tabulado += '<tr><td>' + data.Coberturas[i].Descrip_cg + '</td>';
     for (var j = 0; j < data.Coberturas[i].Clasificaciones.length; j++) {
       if(data.Coberturas[i].Clasificaciones[j].ValorDato.Dato_Formato == ""){
         console.log(data.Coberturas[i].Clasificaciones[j].ValorDato.NoDatos.Codigo_nd);
