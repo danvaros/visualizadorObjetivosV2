@@ -212,8 +212,8 @@ function datoscalculo($indicador){
 
           $bar = array();
           for ($i=0; $i < count($foo); $i++) {
-            if($foo[$i]['Tipo_ats'] == 'I'){
-              $bar[] = $foo[$i]['DescripSer_des'];
+            if($foo[$i]['Tipo_ser'] == 'I'){
+              $bar[] = $foo[$i]['Descrip_des'];
             }
           }
           //var_dump($bar);
