@@ -1922,6 +1922,21 @@
         }
 
         function gen(props) {
+
+            if (codigoDg.trim() == "NEM" && ban_mun == true) {
+                var arr_tempo = [];
+                for (let index = 0; index < props.length; index++) {
+                    if(props[index] != 0){
+                        console.log(props[index]);
+                        arr_tempo.push(props[index]);
+                    }else{
+                        arr_tempo.push(null);
+                    }   
+                }
+                props =  arr_tempo;
+            }
+            
+
             var chart = c3.generate({
                 bindto: '.info',
                 padding: {
