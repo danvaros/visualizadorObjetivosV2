@@ -1931,11 +1931,11 @@
                         arr_tempo.push(props[index]);
                     }else{
                         arr_tempo.push(null);
-                    }   
+                    }
                 }
                 props =  arr_tempo;
             }
-            
+
 
             var chart = c3.generate({
                 bindto: '.info',
@@ -2605,7 +2605,7 @@
                 '<tr><th>Nombre del Indicador</th><td>' + metadatosArr.Descrip_ind + '</td></tr>' +
                 '<tr><th>Definición</th><td><p>' + metadatosArr.Definicion_ft + '</p></td></tr>' +
                 '<tr><th>Tipo de Indicador</th><td>' + metadatosArr.DesTipoInd_ft + '</td></tr>' +
-                '<tr><th>Algoritmo</th><td><div class="imgAlgoritmo"><img src="http://ods.org.mx'+ metadatosArr.RutaAlgoritmo_ft + metadatosArr.Algoritmo_ft + metadatosArr.ExpAlgoritmo_ft +'" alt="Algoritmo ' + metadatosArr.Algoritmo_ft + '" /></div></td></tr>' +
+                '<tr><th>Algoritmo</th><td><div class="imgAlgoritmo"><img src="http://ods.org.mx/docs'+ metadatosArr.RutaAlgoritmo_ft + metadatosArr.Algoritmo_ft + metadatosArr.ExpAlgoritmo_ft +'" alt="Algoritmo ' + metadatosArr.Algoritmo_ft + '" /></div></td></tr>' +
                 '<tr><th>Descripción narrativa del cálculo del indicador</th><td>' + metadatosArr.DescripCal_ft + '</td></tr>' +
                 '<tr><th>Unidad de medida</th><td>' + metadatosArr.Descrip_uni + '</td></tr>' +
                 '<tr><th>Cobertura geográfica</th><td>' + metadatosArr.Descrip_fdg + '</td></tr>' +
@@ -2964,7 +2964,6 @@
                     indice = i;
                 }
             }
-
 
             console.log(indice);
 

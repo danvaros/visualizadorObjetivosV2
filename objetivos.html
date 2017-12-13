@@ -607,20 +607,25 @@ $('#loader').show();
     function ponObjetivos(datos){
       var checar = 0;
       for (var i = 0; i < datos.length; i++) {
-        var contenido='';
+        var contenido = '';
         for (var j = 0; j < datos[i].Meta.length; j++) {
           console.log(datos[i].Meta[j]);
-          console.log(datos[i].Meta[j].Indicador[0]);
-          var clave_arb_meta  = datos[i].Meta[j].Indicador[0].ClaveInd_arb;
-          console.log(clave_arb_meta);
+          console.log(datos[i].Meta[j].Indicador[1]);
+
+            var clave_arb_meta;
+            clave_arb_meta  = datos[i].Meta[j].Indicador[0].ClaveInd_arb;
+
+          // var clave_arb_meta;
+          // clave_arb_meta  = datos[i].Meta[j].Indicador[0].ClaveInd_arb;
+          // console.log(clave_arb_meta);
         if(true){
           if(clave_arb_meta != -1){
-          if(j > 2){
-                contenido = contenido + '<div class="row borde_b fond ocultar" >';
-              }else{
-                contenido = contenido + '<div class="row borde_b fond" >';
-              }
-          contenido = contenido + '<div class="col s1">'+
+            if(j > 2){
+                  contenido = contenido + '<div class="row borde_b fond ocultar" >';
+                }else{
+                  contenido = contenido + '<div class="row borde_b fond" >';
+                }
+                contenido = contenido + '<div class="col s1">'+
                                   '<p>'+datos[i].Meta[j].Codigo_des+'</p>'+
                                   '</div>'+
                                   '<div class="col s11">'+
@@ -633,61 +638,60 @@ $('#loader').show();
               var codigo_dg     = datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg;
               var descrip_des   = datos[i].Meta[j].Indicador[k].Descrip_des;
               var codigo_des    = datos[i].Meta[j].Indicador[k].Codigo_des;
-            if( clave_arb == -1){
-
-            }else if(clave_arb == 333){
-              if(datos[i].Meta[j].Indicador[k].TieneValores){
-                 contenido = contenido +
-                  '<a class="buscar" href="indicadores.html?objetivo='+datos[i].Codigo_des+'&meta='+datos[i].Meta[j].Clave_arb+'&indicador='+ clave_arb+'&codigo='+codigo_dg+'&obj='+datos[i].Clave_arb+'">'+
-                    codigo_des +' '+ descrip_des +
-                  '</a>'+
-                  '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
-                    ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
-                  '</a>' +
-                  '&nbsp;&nbsp;'+
-                '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
-                  '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
-                '<br>';
-              }else{
-                 contenido = contenido +
-                  '<span class="buscar" >'+
-                    codigo_des +' '+ descrip_des +
-                  '</span>'+
-                  '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
-                    ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
-                  '</a>' +
-                  '&nbsp;&nbsp;'+
-                '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
-                  '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
-                '<br>';
+              if( clave_arb == -1){
+              }else if(clave_arb == 333){
+                if(datos[i].Meta[j].Indicador[k].TieneValores){
+                     contenido = contenido +
+                      '<a class="buscar" href="indicadores.html?objetivo='+datos[i].Codigo_des+'&meta='+datos[i].Meta[j].Clave_arb+'&indicador='+ clave_arb+'&codigo='+codigo_dg+'&obj='+datos[i].Clave_arb+'">'+
+                        codigo_des +' '+ descrip_des +
+                      '</a>'+
+                      '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
+                        ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
+                      '</a>' +
+                      '&nbsp;&nbsp;'+
+                    '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
+                      '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
+                    '<br>';
+                }else{
+                     contenido = contenido +
+                      '<span class="buscar" >'+
+                        codigo_des +' '+ descrip_des +
+                      '</span>'+
+                      '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
+                        ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
+                      '</a>' +
+                      '&nbsp;&nbsp;'+
+                    '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
+                      '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
+                    '<br>';
+                }
               }
-            }
-            else{
-              if(datos[i].Meta[j].Indicador[k].TieneValores){
-                 contenido = contenido +
-                  '<a class="buscar" href="indicadores.html?objetivo='+datos[i].Codigo_des+'&meta='+datos[i].Meta[j].Clave_arb+'&indicador='+ clave_arb+'&codigo='+codigo_dg+'&obj='+datos[i].Clave_arb+'">'+
-                    codigo_des +' '+ descrip_des +
-                  '</a>'+
-                  '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
-                    ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
-                  '</a>' +
-                  '&nbsp;&nbsp;'+
-                '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
-                  '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
-                '<br>';
-              }else{
-                 contenido = contenido +
-                  '<span class="buscar" >'+
-                    codigo_des +' '+ descrip_des +
-                  '</span>'+
-                  '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
-                    ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
-                  '</a>' +
-                  '&nbsp;&nbsp;'+
-                '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
-                  '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
-                '<br>';
-              }
+              else{
+                    if(datos[i].Meta[j].Indicador[k].TieneValores){
+                       contenido = contenido +
+                        '<a class="buscar" href="indicadores.html?objetivo='+datos[i].Codigo_des+'&meta='+datos[i].Meta[j].Clave_arb+'&indicador='+ clave_arb+'&codigo='+codigo_dg+'&obj='+datos[i].Clave_arb+'">'+
+                          codigo_des +' '+ descrip_des +
+                        '</a>'+
+                        '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
+                          ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
+                        '</a>' +
+                        '&nbsp;&nbsp;'+
+                      '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
+                        '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
+                      '<br>';
+                    }else{
+                         contenido = contenido +
+                          '<span class="buscar" >'+
+                            codigo_des +' '+ descrip_des +
+                          '</span>'+
+                          '<a class="buscar fond_global tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].DescripS_tatr : "n/A" )+'"> &nbsp;&nbsp; '+
+                            ((typeof datos[i].Meta[j].Indicador[k].TipoInd[0] != "undefined") ? datos[i].Meta[j].Indicador[k].TipoInd[0].Cve_tatr : "n/A" )+
+                          '</a>' +
+                          '&nbsp;&nbsp;'+
+                        '<a class="buscar ns tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+ datos[i].Meta[j].Indicador[k].DesGeo.Descrip_dg +'">'+
+                          '&nbsp;&nbsp;&nbsp;'+ datos[i].Meta[j].Indicador[k].DesGeo.Codigo_dg +'&nbsp;</a>'+
+                        '<br>';
+                    }
 
             }//fin for mas interno
           }
@@ -707,8 +711,8 @@ $('#loader').show();
 
         }//despues de este cambia el indicador
 
-if(datos[i].Meta.length > 2){
-            contenido = contenido +    '<div class="row fond link_less">' +
+          if(datos[i].Meta.length > 2){
+                contenido = contenido +    '<div class="row fond link_less">' +
                                           '<div class="col s12">'+
                                             '<p style="text-align:right !important;"><a class="fond mensaje" href="#objetivoId'+(i+1)+'" onclick="show_less()">Ver menos</a></p>'+
                                           '</div>'+
