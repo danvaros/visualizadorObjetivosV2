@@ -464,7 +464,7 @@ function metadato($data){
   $objDrawing = new PHPExcel_Worksheet_Drawing();
   $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
   $objDrawing->setDescription('Image');
-  $objDrawing->setPath('http://ods.org.mx'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
+  $objDrawing->setPath('http://ods.org.mx/docs'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
   $objDrawing->setHeight(200);
   $objDrawing->setCoordinates('B7');
   $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
@@ -472,7 +472,7 @@ function metadato($data){
   // Add a drawing to the header
   $objDrawing = new PHPExcel_Worksheet_HeaderFooterDrawing();
   $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
-  $objDrawing->setPath('http://ods.org.mx'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
+  $objDrawing->setPath('http://ods.org.mx/docs'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
   $objDrawing->setHeight(200);
   $objPHPExcel->getActiveSheet()->getHeaderFooter()->addImage($objDrawing, PHPExcel_Worksheet_HeaderFooter::IMAGE_HEADER_LEFT);
 
@@ -656,7 +656,7 @@ function metadatoCSV($data){
   $objDrawing = new PHPExcel_Worksheet_Drawing();
   $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
   $objDrawing->setDescription('Image');
-  $objDrawing->setPath('http://ods.org.mx'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
+  $objDrawing->setPath('http://ods.org.mx/docs'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
   $objDrawing->setHeight(200);
   $objDrawing->setCoordinates('B7');
   $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
@@ -664,7 +664,7 @@ function metadatoCSV($data){
   // Add a drawing to the header
   $objDrawing = new PHPExcel_Worksheet_HeaderFooterDrawing();
   $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
-  $objDrawing->setPath('http://ods.org.mx'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
+  $objDrawing->setPath('http://ods.org.mx/docs'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
   $objDrawing->setHeight(200);
   $objPHPExcel->getActiveSheet()->getHeaderFooter()->addImage($objDrawing, PHPExcel_Worksheet_HeaderFooter::IMAGE_HEADER_LEFT);
 

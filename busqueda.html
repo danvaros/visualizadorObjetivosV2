@@ -342,6 +342,7 @@ $('#loader').show();
           $('.collection-item:Contains("'+ res[i] +'")').show();
         }
       }else{
+        //$('#resultado').html('No se encontraron coincidencias.');
         $('.objetivos').show();
       }
     }
@@ -458,6 +459,11 @@ $('#loader').show();
         }
         }//despues de este cambia el indicador
         $('#resultado').append(lista_resultados);
+        // if(lista_resultados != '' || lista_resultados != NULL){
+        //   $('#resultado').append(lista_resultados);
+        // }else{
+        //   $('#resultado').append('No se encontraron resultados');
+        // }
       }//fin for mas externo
 
       $('.tooltipped').tooltip({delay: 50});
