@@ -1088,7 +1088,7 @@
 
             var select_2 = '<div class="input-field col s12" style="margin-bottom:20px;"><select class="select_datos_2" style="display:block !important; background-color: #f2f2f2;"><option value="0">Selecciona</option><option value="1">Defunciones de mujeres mientras se encuentran embarazadas o dentro de los 42 dias siguientes a la terminación del embarazo</option></select></div>';
 
-            var datos_doble_2 = '<div class="cuadro_titulo">' + Codigo_ind + ' ' + titulo +
+            var datos_doble_2 = '<div class="cuadro_titulo">' + Codigo_ind + titulo +
                 '</div><div style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_2"><table class="bordered" id="miTabla2" class="miTabla2" style="width: 1726px;margin-left: -53px;">';
 
             var datos_doble_22 = ' <div class="cuadro_titulo"> ' + titulo +
@@ -1114,7 +1114,8 @@
 
                 for (var j = 0; j < estados[0].length; j++) {
                     if (i == 0 && j == 0) {
-                        datos_doble_2 += '  <th  class="headcol">' + estados[i][0] + '</th><th>' + estados[i][j].split('-')[0] + '</th>';
+                        //datos_doble_2 += '  <th  class="headcol">' + estados[i][0] + '</th><th>' + estados[i][j].split('-')[0] + '</th>';
+                        datos_doble_2 += '  <th  class="headcol">' + estados[i][0] + '</th>';
                         datos_doble_22 += '  <td  class="headcol">' + estados[i][0] + '</td><td>' + estados[i][j].split('-')[0] + '</td>';
                         datos_doble_3 += '  <th  class="headcol">' + estados[i][0] + '</th><th>' + estados[i][j].split('-')[0] + '</th>';
                     } else if (i == 0 && j == 0) {
@@ -1126,16 +1127,18 @@
                         datos_doble_22 += '<td>' + estados[i][j].split('-')[0] + '</td>';
                         datos_doble_3 += '<th>' + estados[i][j].split('-')[0] + '</th>';
                     } else if (j == 0) {
-                        var varia;
+                        var varia, varia2;
                         if (estados[i][j] == "ND" || estados[i][j] == "NA") {
                             flag_valor_nd = true;
                             if (arreglo_valor_nd.indexOf(estados[i][j]) == -1)
                                 arreglo_valor_nd.push(estados[i][j]);
                             varia = '<td class="headcol">' + estados[i][0] + '</td><td>' + estados[i][j] + '</td>';
+                            varia2 = '<td class="headcol">' + estados[i][0] + '</td>';
                         } else {
                             varia = '<td class="headcol">' + estados[i][0] + '</td><td>' + parseFloat(estados[i][j]) + '</td>';
+                            varia2 = '<td class="headcol">' + estados[i][0] + '</td>';
                         }
-                        datos_doble_2 += varia;
+                        datos_doble_2 += varia2;
                         datos_doble_22 += varia;
                         datos_doble_3 += varia;
                     } else if (j == 1) {
@@ -2070,7 +2073,8 @@
             $('.infos').removeClass('hide');
             $('.info2').removeClass('hide');
             if (props != undefined) {
-                this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><br><div style="height:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado(props.nom_ent) /*.toFixed(1)props.density*/ + '</b><b>(año)</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+              var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) != 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
+                this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><br><div style="height:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*.toFixed(1)props.density*/ + '</b><b>(año)</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></div></div><div class="info"></div>';
 
                 gen(estados[busqueda_indice(props.nom_ent)]);
                 $(".crop").dotdotdot();
@@ -2404,10 +2408,13 @@
                 };
 
                 info.update = function(props) {
+
                     $('.infos').removeClass('hide');
                     $('.info2').removeClass('hide');
+                    //console.log(busqueda_estado_posicion(props.nom_ent, posi));
                     if (props != undefined) {
-                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
+                        var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
+                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
 
                         gen(estados[busqueda_indice(props.nom_ent)]);
                         $(".crop").dotdotdot();
@@ -3103,12 +3110,13 @@
             };
 
             info.update = function(props) {
+              var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
                 //this._div = L.DomUtil.create('div', 'infos');
                 $('.infos').removeClass('hide');
                 $('.info2').removeClass('hide');
                 console.log(props);
                 if (props != undefined) {
-                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_municipio(props.nom_mun, posi).toFixed(1) /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' +  valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                     $(".crop").dotdotdot();
                 }
@@ -3471,12 +3479,13 @@
             };
 
             info.update = function(props) {
+              var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
                 //this._div = L.DomUtil.create('div', 'infos');
                 $('.infos').removeClass('hide');
                 $('.info2').removeClass('hide');
                 console.log(props);
                 if (props != undefined) {
-                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_municipio(props.nom_mun, posi2).toFixed(1) /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(2010)</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(2010)</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                 }
             }
