@@ -694,7 +694,7 @@
                     <a id="ver_grafica" class="active_anio waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" onclick="cambio_tabla()" style="margin-right: -5px; border-color: #15b5f0; border-width: 1px; border-radius: 5px 0px 0px 5px;">VER GRAFICA</a>
                     <a id="ver_tabla" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" onclick="cambio_grafica()" style="margin-right: -1px; border-color: #15b5f0; border-width: 1px; border-radius: 0px 5px 5px 0px;">VER DATOS</a>
                 </div>
-                <div class="col s12 l2 right-align" style="margin-top: 60px;">
+                <div class="col s12 l2 right-align periodos" style="margin-top: 60px;">
                     <a href="#!" class="col s4 right-align" onclick="atras()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                     <a class="col s4 center-align numero" id="numero_anio">2015</a>
                     <a href="#!" class="col s4 left-align" onclick="adelante()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
@@ -2333,6 +2333,7 @@
             $('#ver_grafica').addClass('inactive_anio');
             $('#indicador-grafica').hide();
             $('#indicador-panel').show();
+            $('.periodos').hide();
         }
 
         function cambio_tabla() {
@@ -2344,6 +2345,7 @@
             $('#mapas_hide').show();
             $('#indicador-grafica').show();
             $('#indicador-panel').hide();
+            $('.periodos').show();
         }
 
         function cambio_grafica_nacional() {
@@ -3113,10 +3115,11 @@
             };
 
             info.update = function(props) {
-              var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
+
                 //this._div = L.DomUtil.create('div', 'infos');
                 $('.infos').removeClass('hide');
                 $('.info2').removeClass('hide');
+                var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
                 console.log(props);
                 if (props != undefined) {
                     this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' +  valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
