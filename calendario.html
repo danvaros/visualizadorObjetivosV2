@@ -275,6 +275,11 @@
             {
                 display:none;
             }
+
+            .tooltipped22{
+              max-width: 300px;
+              opacity: 0.7;
+            }
     </style>
     <span id="loader">
         <p style="color:#333; padding-top: 100px; ">Cargando<br>información</p>
@@ -451,6 +456,7 @@
   var temas = tematicas();
 
   $(document).ready(function() {
+
     $('#cam_bus').keypress(function(e) {
         if(e.which == 13) {
           buscar($('#cam_bus').val());
@@ -516,13 +522,13 @@
           if(indies[ii].CveNotaFecProx_cal == 0){
             contenido =  contenido + '</td>';
           }else if(indies[ii].CveNotaFecProx_cal == 238){
-            contenido =  contenido + '<sup><a href="#">1/</a></sup></td>';
+            contenido =  contenido + '<sup><a href="#" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="La actualización del indicador está sujeta a la publicación de los microdatos por parte de INEGI.">1/</a></sup></td>';
           }else if(indies[ii].CveNotaFecProx_cal == 304){
-            contenido =  contenido + '<sup><a href="#">2/</a></sup></td>';
+            contenido =  contenido + '<sup><a href="#" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="La actualización se realizará en la segunda quincena de septiembre.">2/</a></sup></td>';
           }else if(indies[ii].CveNotaFecProx_cal == 268){
-            contenido =  contenido + '<sup><a href="#">3/</a></sup></td>';
+            contenido =  contenido + '<sup><a href="#" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dependerá del año en que se levante y en el que se publique.">3/</a></sup></td>';
           }else if(indies[ii].CveNotaFecProx_cal == 211){
-            contenido =  contenido + '<sup><a href="#">4/</a></sup></td>';
+            contenido =  contenido + '<sup><a href="#" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="La actualización se hará cuando se publique el siguiente inventario de emisiones (no existe una periodicidad definida para la publicación de los inventarios).">4/</a></sup></td>';
           }
 
           contenido =  contenido + '</tr>';
@@ -553,6 +559,8 @@
   }
 
 $('#cuerpo').html(contenido);
+
+$('.tooltipped').tooltip({delay: 50});
 
 $('.notaCal').html();
 
