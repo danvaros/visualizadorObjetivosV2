@@ -2745,8 +2745,6 @@ function compartir(){
      var URLactual = URLactual_arr.split('?')[0] + '?tipo='+tipo+'&objetivo='+objetivo+'&indicador_sel='+indicador_sel;
           $('.liga').val(URLactual);
 
-
-  console.log('------------------ empezamos con la validacion por que parece que hay pedo-----------------');
     var urlTwitterMapa  = 'http://twitter.com/share?text='+textoTwitterMapa+'&amp;url='+URLactual+'&amp;hashtags=stackoverflow,example,youssefusf';
     console.log('url mapa : '+urlTwitterMapa);
 
@@ -2759,7 +2757,6 @@ function compartir(){
     cadena = '<a class="waves-effect" id="share_mapa" href="'+urlTwitterGrafica+'"><i class="fa fa-twitter fa-lg"></i></a>';
     $('#share_tw_grafica').html(cadena);
 
-    console.log('----------- en teoria deberia poner los enlaces ya ---------------');
 }
 
 function carga_selectes_compartir(tipo){

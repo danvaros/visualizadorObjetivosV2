@@ -2079,7 +2079,7 @@
             $('.infos').removeClass('hide');
             $('.info2').removeClass('hide');
             if (props != undefined) {
-              var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) != 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
+              var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
                 this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><br><div style="height:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*.toFixed(1)props.density*/ + '</b><b>(año)</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></div></div><div class="info"></div>';
 
                 gen(estados[busqueda_indice(props.nom_ent)]);
