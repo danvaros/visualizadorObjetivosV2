@@ -1532,6 +1532,7 @@ function setInitialMapZoom() {
 		for (var i = 0; i < statesData.features.length; i++)
     {
       console.log(statesData.features[i].properties.nom_ent);
+      console.log(busqueda_estado(statesData.features[i].properties.nom_ent));
       if (statesData.features[i].properties.nom_ent == null) continue;
 			values.push(busqueda_estado(statesData.features[i].properties.nom_ent));
 			// if (statesData.features[i].properties.density == null) continue;
