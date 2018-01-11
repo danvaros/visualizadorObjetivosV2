@@ -2399,7 +2399,7 @@
                 jQuery.each(coor_estado, function(i, val) {
                     if (seleccionado == val.estado) {
                         map.setView([val.lat, val.long], val.zoom - 1);
-                        mun_mapa(seleccionado, anioo, posi);
+                        mun_mapa(seleccionado, anioo[0], posi);
                     }
                 });
             } //fin if
@@ -3124,12 +3124,10 @@
                 $('.info2').removeClass('hide');
 
                 console.log(props);
-                //var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
                 if (props != undefined) {
-                  var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
-                  console.log(anioo[0]);
-                  console.log(anioo);
-                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                    console.log('anioooooo'+anioo[0]);
+                    var valnul = busqueda_municipio(props.nom_mun, posi).toFixed(1) == 0 ? 'ND' : busqueda_municipio(props.nom_mun, posi).toFixed(1);
+                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                     $(".crop").dotdotdot();
                 }
