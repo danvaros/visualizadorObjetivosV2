@@ -1881,7 +1881,7 @@ border-bottom-right-radius: 15px;
                   <a href="informes.html">Informes de América Latina y el Caribe</a>
                 </div>
                 <div class="">
-                  <a href="https://www.youtube.com/watch?v=e91hUoijbmk">Video: ODS mejoran la vida de todos alrededor del planeta</a>
+                  <a href="video.html">Video: ODS mejoran la vida de todos alrededor del planeta</a>
                 </div>
                 <div class="">
                   <div class="">
@@ -1945,7 +1945,7 @@ La erradicación de la pobreza en todas sus formas y dimensiones es una condici�
                   </a>
                 </div>
                 <div class="">
-                  <a href=" http://200.23.8.225/odm/Doctos/AcuerdoCrea.pdf">Acuerdo de creación</a>
+                  <a href="http://www.objetivosdedesarrollodelmilenio.org.mx/Doctos/AcuerdoCrea.pdf">Acuerdo de creación</a>
                 </div>
                 <!-- <div class="footnotes">
                   <ol>
@@ -2428,14 +2428,14 @@ En México se ha decidido que la Oficina de la Presidencia de la República teng
 
       var titulo   =  '<h4>'+ atributos.DescripInd_des  +'</h4>' +
                       '<li class="divider"></li> ' +
-                      '<p> '+ atributos.CobTemporal_ser +' </p>' +
-                      '<span> '+ atributos.Descrip_uni +'</span>';
+                      '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
+                      '<span> '+ atributos.Serie[0].Descrip_uni +'</span>';
 
       titulo_des_graf=atributos.DescripInd_des;
       console.log(titulo_des_graf);
 
-      var pie  =((atributos.Descrip_not != null || atributos.Descrip_not != "") ? '':'<div><strong>Nota:</strong> '+ atributos.Descrip_not)+
-                ' <div><strong>Fuente:</strong> '+ atributos.Descrip_fue +' </div>'+
+      var pie  =((atributos.Serie[0].Descrip_not != null || atributos.Serie[0].Descrip_not != "") ? '':'<div><strong>Nota:</strong> '+ atributos.Serie[0].Descrip_not)+
+                ' <div><strong>Fuente:</strong> '+ atributos.Serie[0].Descrip_fue +' </div>'+
                 ' <div><strong>Fecha de actualización:</strong> '+ atributos.FecProxAct_cal +'</div>'+
                 ' </div>';
 

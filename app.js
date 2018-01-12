@@ -1456,8 +1456,8 @@ function titulos(indicador){
     '<p id="no_va_serie"><strong>Esta vista presenta los datos totales del indicador. Para conocer más detalles visita la sección de serie histórica.<strong></p>';
     tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
                              '<li class="divider"></li> ' +
-                             '<p> '+ atributos.Serie[1].CobTemporal_ser +' </p>';
-    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[1].Descrip_ser +'</span>';
+                             '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>';
+    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_ser +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota:</strong> ' + atributos.Descrip_not+
@@ -1472,8 +1472,8 @@ function titulos(indicador){
     '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>';
     tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
                              '<li class="divider"></li> ' +
-                             '<p> '+ atributos.Serie[1].CobTemporal_ser +' </p>';
-    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[1].Descrip_ser +'</span>';
+                             '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>';
+    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_ser +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota: </strong> ' + atributos.Descrip_not+

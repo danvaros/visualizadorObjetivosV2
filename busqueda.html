@@ -122,6 +122,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src='config.js'></script>
+    <script src='funcionesAPI.js'></script>
 
     <span id="loader">
     <p style="color:#333; padding-top: 100px; ">Cargando<br>información</p>
@@ -194,6 +195,9 @@ $('#loader').show();
       </div>
 
       <div class="row" >
+        <div id="noresultado">
+
+        </div>
         <ul class="collection" id="resultado">
 
         </ul>
@@ -261,6 +265,7 @@ $('#loader').show();
 
 
     $(document).ready(function(){
+      $('#noresultado').hide();
       $('#cam_bus').keypress(function(e) {
           if(e.which == 13) {
             buscar($('#cam_bus').val());
@@ -335,13 +340,23 @@ $('#loader').show();
     function buscar(busqueda){
       $('.collection-item').hide();
       if(busqueda != ''){
+        $('#noresultado').hide();
         var res = busqueda.split(" ");
         console.log(res);
         for (var i = 0; i < res.length; i++) {
-          $('.collection-item:Contains("'+ res[i] +'")').show();
+          if($('.collection-item:Contains("'+ res[i] +'")').length > 0){
+            $('.collection-item:Contains("'+ res[i] +'")').show();
+          }else{
+            $('#noresultado').show();
+            $('#noresultado').html('<h3>No se encontró ninguna coincidencia</h3>');
+          }
         }
       }else{
+        //$('#resultado').html('No se encontraron coincidencias.');
         $('.objetivos').show();
+        console.log('entrado');
+        $('#noresultado').show();
+        $('#noresultado').html('<h3>No se encontró ninguna coincidencia</h3>');
       }
     }
 
@@ -361,6 +376,10 @@ $('#loader').show();
               var obj = getParameterByName("busqueda");
               if(obj != null){
                 buscar(obj);
+              }else{
+                console.log('entrado');
+                $('#noresultado').show();
+                $('#noresultado').html('<h3>No se encontró ninguna coincidencia</h3>');
               }
 
               $('#loader').delay(2000).fadeOut("slow");
@@ -457,6 +476,17 @@ $('#loader').show();
         }
         }//despues de este cambia el indicador
         $('#resultado').append(lista_resultados);
+
+
+        //if(lista_resultados != '' || lista_resultados != NULL){
+          //$('#resultado').append(lista_resultados);
+          //$('#noresultado').show();
+          //$('#noresultado').html('<h3>No se encontró ninguna coincidencia</h3>');
+        //}else{
+          //$('#resultado').append('No se encontraron resultados');
+          //$('#noresultado').show();
+          //$('#noresultado').html('<h3>No se encontró ninguna coincidencia</h3>');
+        //}
       }//fin for mas externo
 
       $('.tooltipped').tooltip({delay: 50});

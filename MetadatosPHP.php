@@ -461,20 +461,20 @@ function metadato($data){
   $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B6', $data['DesTipoInd_ft']);
   //$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B7', $data['Algoritmo_ft']);
     // Create new picture object and insert picture
-  $objDrawing = new PHPExcel_Worksheet_Drawing();
-  $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
-  $objDrawing->setDescription('Image');
-  $objDrawing->setPath('http://ods.org.mx'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
-  $objDrawing->setHeight(200);
-  $objDrawing->setCoordinates('B7');
-  $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+  // $objDrawing = new PHPExcel_Worksheet_Drawing();
+  // $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
+  // $objDrawing->setDescription('Image');
+  // $objDrawing->setPath('http://ods.org.mx/docs'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
+  // $objDrawing->setHeight(200);
+  // $objDrawing->setCoordinates('B7');
+  // $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 
   // Add a drawing to the header
-  $objDrawing = new PHPExcel_Worksheet_HeaderFooterDrawing();
-  $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
-  $objDrawing->setPath('http://ods.org.mx'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
-  $objDrawing->setHeight(200);
-  $objPHPExcel->getActiveSheet()->getHeaderFooter()->addImage($objDrawing, PHPExcel_Worksheet_HeaderFooter::IMAGE_HEADER_LEFT);
+  // $objDrawing = new PHPExcel_Worksheet_HeaderFooterDrawing();
+  // $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
+  // $objDrawing->setPath('http://ods.org.mx/docs'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
+  // $objDrawing->setHeight(200);
+  // $objPHPExcel->getActiveSheet()->getHeaderFooter()->addImage($objDrawing, PHPExcel_Worksheet_HeaderFooter::IMAGE_HEADER_LEFT);
 
   $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B8', $data['DescripCal_ft']);
   $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B9', $data['Descrip_uni']);
@@ -653,20 +653,20 @@ function metadatoCSV($data){
   $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B6', $data['DesTipoInd_ft']);
   //$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B7', $data['Algoritmo_ft']);
     // Create new picture object and insert picture
-  $objDrawing = new PHPExcel_Worksheet_Drawing();
-  $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
-  $objDrawing->setDescription('Image');
-  $objDrawing->setPath('http://ods.org.mx'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
-  $objDrawing->setHeight(200);
-  $objDrawing->setCoordinates('B7');
-  $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+  // $objDrawing = new PHPExcel_Worksheet_Drawing();
+  // $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
+  // $objDrawing->setDescription('Image');
+  // $objDrawing->setPath('http://ods.org.mx/docs'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
+  // $objDrawing->setHeight(200);
+  // $objDrawing->setCoordinates('B7');
+  // $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 
   // Add a drawing to the header
-  $objDrawing = new PHPExcel_Worksheet_HeaderFooterDrawing();
-  $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
-  $objDrawing->setPath('http://ods.org.mx'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
-  $objDrawing->setHeight(200);
-  $objPHPExcel->getActiveSheet()->getHeaderFooter()->addImage($objDrawing, PHPExcel_Worksheet_HeaderFooter::IMAGE_HEADER_LEFT);
+  // $objDrawing = new PHPExcel_Worksheet_HeaderFooterDrawing();
+  // $objDrawing->setName('Algoritmo'.$data['Algoritmo_ft']);
+  // $objDrawing->setPath('http://ods.org.mx/docs'.$data['RutaAlgoritmo_ft'].$data['Algoritmo_ft'].$data['ExpAlgoritmo_ft']);
+  // $objDrawing->setHeight(200);
+  // $objPHPExcel->getActiveSheet()->getHeaderFooter()->addImage($objDrawing, PHPExcel_Worksheet_HeaderFooter::IMAGE_HEADER_LEFT);
 
   $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B8', $data['DescripCal_ft']);
   $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B9', $data['Descrip_uni']);

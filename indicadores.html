@@ -694,7 +694,7 @@
                     <a id="ver_grafica" class="active_anio waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" onclick="cambio_tabla()" style="margin-right: -5px; border-color: #15b5f0; border-width: 1px; border-radius: 5px 0px 0px 5px;">VER GRAFICA</a>
                     <a id="ver_tabla" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra marg_top" onclick="cambio_grafica()" style="margin-right: -1px; border-color: #15b5f0; border-width: 1px; border-radius: 0px 5px 5px 0px;">VER DATOS</a>
                 </div>
-                <div class="col s12 l2 right-align" style="margin-top: 60px;">
+                <div class="col s12 l2 right-align periodos" style="margin-top: 60px;">
                     <a href="#!" class="col s4 right-align" onclick="atras()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                     <a class="col s4 center-align numero" id="numero_anio">2015</a>
                     <a href="#!" class="col s4 left-align" onclick="adelante()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
@@ -957,12 +957,15 @@
         var values2 = [];
         var flag_valor_nd = false;
         var arreglo_valor_nd = [];
+        var arrray_leyendas = [];
         var arrray_anios = [];
         var anio_activo = 0;
         var anio_mas_actual;
         var lupa = false;
         var categories = [];
         var categories2 = [];
+        var hayleyendaser;
+        var leyendasser = [];
 
         var map = L.map('map', {
             scrollWheelZoom: false,
@@ -1027,6 +1030,9 @@
                     height: 500
                 },
                 data: {
+                    selection: {
+                      draggable: true
+                    },
                     columns: [],
                     type: 'bar',
                     color: function(color, d) {
@@ -1039,6 +1045,9 @@
                         //return (d.value >= 45) ? '#00ff00' : '#ff0000';
                         //}
                     }
+                },
+                subchart: {
+                  show: true
                 },
                 tooltip: {
                     //format: {
@@ -1088,7 +1097,7 @@
 
             var select_2 = '<div class="input-field col s12" style="margin-bottom:20px;"><select class="select_datos_2" style="display:block !important; background-color: #f2f2f2;"><option value="0">Selecciona</option><option value="1">Defunciones de mujeres mientras se encuentran embarazadas o dentro de los 42 dias siguientes a la terminación del embarazo</option></select></div>';
 
-            var datos_doble_2 = '<div class="cuadro_titulo">' + Codigo_ind + ' ' + titulo +
+            var datos_doble_2 = '<div class="cuadro_titulo">' + Codigo_ind + titulo +
                 '</div><div style=" width: auto; height: auto; overflow: auto;" id="datos_calculo_2"><table class="bordered" id="miTabla2" class="miTabla2" style="width: 1726px;margin-left: -53px;">';
 
             var datos_doble_22 = ' <div class="cuadro_titulo"> ' + titulo +
@@ -1114,7 +1123,8 @@
 
                 for (var j = 0; j < estados[0].length; j++) {
                     if (i == 0 && j == 0) {
-                        datos_doble_2 += '  <th  class="headcol">' + estados[i][0] + '</th><th>' + estados[i][j].split('-')[0] + '</th>';
+                        //datos_doble_2 += '  <th  class="headcol">' + estados[i][0] + '</th><th>' + estados[i][j].split('-')[0] + '</th>';
+                        datos_doble_2 += '  <th  class="headcol">' + estados[i][0] + '</th>';
                         datos_doble_22 += '  <td  class="headcol">' + estados[i][0] + '</td><td>' + estados[i][j].split('-')[0] + '</td>';
                         datos_doble_3 += '  <th  class="headcol">' + estados[i][0] + '</th><th>' + estados[i][j].split('-')[0] + '</th>';
                     } else if (i == 0 && j == 0) {
@@ -1126,16 +1136,18 @@
                         datos_doble_22 += '<td>' + estados[i][j].split('-')[0] + '</td>';
                         datos_doble_3 += '<th>' + estados[i][j].split('-')[0] + '</th>';
                     } else if (j == 0) {
-                        var varia;
+                        var varia, varia2;
                         if (estados[i][j] == "ND" || estados[i][j] == "NA") {
                             flag_valor_nd = true;
                             if (arreglo_valor_nd.indexOf(estados[i][j]) == -1)
                                 arreglo_valor_nd.push(estados[i][j]);
                             varia = '<td class="headcol">' + estados[i][0] + '</td><td>' + estados[i][j] + '</td>';
+                            varia2 = '<td class="headcol">' + estados[i][0] + '</td>';
                         } else {
                             varia = '<td class="headcol">' + estados[i][0] + '</td><td>' + parseFloat(estados[i][j]) + '</td>';
+                            varia2 = '<td class="headcol">' + estados[i][0] + '</td>';
                         }
-                        datos_doble_2 += varia;
+                        datos_doble_2 += varia2;
                         datos_doble_22 += varia;
                         datos_doble_3 += varia;
                     } else if (j == 1) {
@@ -1540,7 +1552,13 @@
                 jQuery.each(coor_estado, function(i, val) {
                     if (seleccionado == val.estado) {
                         map.setView([val.lat, val.long], val.zoom - 1);
-                        mun_mapa(seleccionado, arrray_anios[0], 1);
+                        var datos_brutos =  datosBrutos(seleccionado);
+                        if(hayleyendaser){
+                          mun_mapa(seleccionado, leyendasser[0], 1,datos_brutos);
+                        }else {
+                          mun_mapa(seleccionado, arrray_anios[0], 1,datos_brutos);
+                        }
+
                         put_grafica_municipal(arrray_anios[0]);
                     }
                 });
@@ -1931,11 +1949,11 @@
                         arr_tempo.push(props[index]);
                     }else{
                         arr_tempo.push(null);
-                    }   
+                    }
                 }
                 props =  arr_tempo;
             }
-            
+
 
             var chart = c3.generate({
                 bindto: '.info',
@@ -2070,7 +2088,8 @@
             $('.infos').removeClass('hide');
             $('.info2').removeClass('hide');
             if (props != undefined) {
-                this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><br><div style="height:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado(props.nom_ent) /*.toFixed(1)props.density*/ + '</b><b>(año)</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+              var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
+                this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><br><div style="height:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*.toFixed(1)props.density*/ + '</b><b>(año)</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></div></div><div class="info"></div>';
 
                 gen(estados[busqueda_indice(props.nom_ent)]);
                 $(".crop").dotdotdot();
@@ -2224,6 +2243,7 @@
 
         function put_anios() {
             arrray_anios = [];
+            arrray_leyendas = [];
             var cadena = '';
             anio_mas_actual = '';
 
@@ -2232,6 +2252,9 @@
                     anio_mas_actual = 'anio_' + i;
                     cadena = '<a id="anio_' + i + '" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + estados[0][i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + estados[0][i].split('-')[0] + '</a>' + cadena;
                     arrray_anios.push(estados[0][i].split('-')[0]);
+                    console.log('ffffffffffffffffffffffffffffffffff --');
+                    console.log(estados);
+                    //arrray_leyendas.push(estados[0][i].split('-')[0]);
                 } else if (i <= estados[0].length - 1) {
                     cadena = '<a id="anio_' + i + '" class="active_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + estados[0][i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + estados[0][i].split('-')[0] + '</a>' + cadena;
                     arrray_anios.push(estados[0][i].split('-')[0]);
@@ -2326,6 +2349,7 @@
             $('#ver_grafica').addClass('inactive_anio');
             $('#indicador-grafica').hide();
             $('#indicador-panel').show();
+            $('.periodos').hide();
         }
 
         function cambio_tabla() {
@@ -2337,6 +2361,7 @@
             $('#mapas_hide').show();
             $('#indicador-grafica').show();
             $('#indicador-panel').hide();
+            $('.periodos').show();
         }
 
         function cambio_grafica_nacional() {
@@ -2391,7 +2416,8 @@
                 jQuery.each(coor_estado, function(i, val) {
                     if (seleccionado == val.estado) {
                         map.setView([val.lat, val.long], val.zoom - 1);
-                        mun_mapa(seleccionado, anioo, posi);
+                        mun_mapa(seleccionado, anioo[0], posi,0);
+                        //aqui ya valio verga
                     }
                 });
             } //fin if
@@ -2408,10 +2434,13 @@
                 };
 
                 info.update = function(props) {
+
                     $('.infos').removeClass('hide');
                     $('.info2').removeClass('hide');
+                    //console.log(busqueda_estado_posicion(props.nom_ent, posi));
                     if (props != undefined) {
-                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
+                        var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
+                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
 
                         gen(estados[busqueda_indice(props.nom_ent)]);
                         $(".crop").dotdotdot();
@@ -2610,7 +2639,7 @@
                 '<tr><th>Nombre del Indicador</th><td>' + metadatosArr.Descrip_ind + '</td></tr>' +
                 '<tr><th>Definición</th><td><p>' + metadatosArr.Definicion_ft + '</p></td></tr>' +
                 '<tr><th>Tipo de Indicador</th><td>' + metadatosArr.DesTipoInd_ft + '</td></tr>' +
-                '<tr><th>Algoritmo</th><td><div class="imgAlgoritmo"><img src="http://ods.org.mx'+ metadatosArr.RutaAlgoritmo_ft + metadatosArr.Algoritmo_ft + metadatosArr.ExpAlgoritmo_ft +'" alt="Algoritmo ' + metadatosArr.Algoritmo_ft + '" /></div></td></tr>' +
+                '<tr><th>Algoritmo</th><td><div class="imgAlgoritmo"><img src="http://ods.org.mx/docs'+ metadatosArr.RutaAlgoritmo_ft + metadatosArr.Algoritmo_ft + metadatosArr.ExpAlgoritmo_ft +'" alt="Algoritmo ' + metadatosArr.Algoritmo_ft + '" /></div></td></tr>' +
                 '<tr><th>Descripción narrativa del cálculo del indicador</th><td>' + metadatosArr.DescripCal_ft + '</td></tr>' +
                 '<tr><th>Unidad de medida</th><td>' + metadatosArr.Descrip_uni + '</td></tr>' +
                 '<tr><th>Cobertura geográfica</th><td>' + metadatosArr.Descrip_fdg + '</td></tr>' +
@@ -2970,7 +2999,6 @@
                 }
             }
 
-
             console.log(indice);
 
             console.log(tabla_municipal[0].length);
@@ -3041,7 +3069,13 @@
 
         var posi2;
 
-        function mun_mapa(e, anioo, posi) {
+        function datosBrutos(e){
+          var cl = get_clave_estado(e);
+          var datos_brutos = get_estado_municipios(cl + '%', PCveInd);
+          return datos_brutos;
+        }
+
+        function mun_mapa(e, anioo, posi, datos_brutos) {
             $('.infos').remove();
             $('.info2').remove();
             map.removeLayer(geojson);
@@ -3054,8 +3088,7 @@
             var brew = new classyBrew();
 
             //++sacar la clave del estado y sacar el indicador que se esta manejando
-            var cl = get_clave_estado(e);
-            var datos_brutos = get_estado_municipios(cl + '%', PCveInd);
+
             console.log(datos_brutos);
             put_tabla_municipal(datos_brutos);
             valorDato(datos_brutos);
@@ -3109,12 +3142,16 @@
             };
 
             info.update = function(props) {
+
                 //this._div = L.DomUtil.create('div', 'infos');
                 $('.infos').removeClass('hide');
                 $('.info2').removeClass('hide');
+
                 console.log(props);
                 if (props != undefined) {
-                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_municipio(props.nom_mun, posi).toFixed(1) /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                    var valnul = busqueda_municipio(props.nom_mun, posi).toFixed(1) == 0 ? 'ND' : busqueda_municipio(props.nom_mun, posi).toFixed(1);
+                      this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                     $(".crop").dotdotdot();
                 }
@@ -3361,6 +3398,7 @@
         function get_estado_municipios(c, i) {
             var covertura = c;
             var resultado;
+
             console.log(i);
             console.log(GloSerie[0]);
             console.log(covertura);
@@ -3378,7 +3416,38 @@
                     "PIdioma": "ES"
                 },
                 success: function(data, textStatus, jqxhr) {
-                    resultado = data;
+                  console.log('aquí resultado - ooooooooooooo');
+                    //resultado = data;
+                    console.log(data);
+                    console.log(data.Series[0].Coberturas[0].ValorDato[0].Leyenda_ser);
+                    if(data.Series[0].Coberturas[0].ValorDato[0].Leyenda_ser != null){
+                      resultado = data;
+                      hayleyendaser = true;
+                      var temporal = [];
+                      for (var j = 0; j < data.Series[0].Coberturas[0].ValorDato.length; j++) {
+                        temporal.push(data.Series[0].Coberturas[0].ValorDato[j].Leyenda_ser);
+                      }
+
+                      console.log(temporal);
+                      leyendasser = temporal;
+
+                      // se reemplaza la barra de años dependiendo si tenemos leyendas o no
+                      var cadena = '';
+                      //se recorre el arreglo de las leyendas para armar el carrucel de etiquetas o años combinados
+                      for (var i = 0; i < leyendasser.length; i++) {
+                        console.log(leyendasser[i]);
+                          cadena = '<a id="anio_' + i + '" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + leyendasser[i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + leyendasser[i] + '</a>' + cadena;
+                      }
+
+                      if (cadena != '') {
+                          cadena = '<div class="col s12"><a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;cursor:none;float: left;padding-bottom: 0;padding-left: 8px;margin-top:6px;">Selecciona un periodo</a></div>' + '<div class="col s12 l12"><div class="owl-carousel owl-theme">' + cadena + '</div></div>';
+                          $('#anios').html(cadena);
+                      }
+
+                    }else{
+                      resultado = data;
+                      hayleyendaser = false;
+                    }
                 },
                 error: function() {
                     //alert('Error occured');
@@ -3477,12 +3546,16 @@
             };
 
             info.update = function(props) {
+              //var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
                 //this._div = L.DomUtil.create('div', 'infos');
                 $('.infos').removeClass('hide');
                 $('.info2').removeClass('hide');
+                var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
+
                 console.log(props);
                 if (props != undefined) {
-                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_municipio(props.nom_mun, posi2).toFixed(1) /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(2010)</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                  //var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
+                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(2010)</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                 }
             }
@@ -3515,7 +3588,7 @@
 
                 temporal.push('Municipio');
                 for (var j = 0; j < data.Series[0].Coberturas[0].ValorDato.length; j++) {
-                    temporal.push(data.Series[0].Coberturas[0].ValorDato[j].AADato_ser + '-01-01');
+                    temporal.push(data.Series[0].Coberturas[0].ValorDato[j].AADato_serf + '-01-01');
                 }
                 municipios.push(temporal);
                 var imprime = false;

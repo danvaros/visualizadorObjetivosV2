@@ -9,11 +9,11 @@ $indicadores = $datos['indicadores'];
 $tipoSeleccion = $datos['tipoSeleccion'];
 $tipoFormato = $datos['tipoFormato'];
 
-$indicadores = split(',',$indicadores);
+$indicadores = explode(',',$indicadores);
 
 for ($i=1; $i < count($indicadores); $i++) {
    $otra = $indicadores[$i];
-   $foo = split('ind',$otra);
+   $foo = explode('ind',$otra);
    $opo[] = $foo[1];
 }
 
