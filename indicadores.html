@@ -957,12 +957,15 @@
         var values2 = [];
         var flag_valor_nd = false;
         var arreglo_valor_nd = [];
+        var arrray_leyendas = [];
         var arrray_anios = [];
         var anio_activo = 0;
         var anio_mas_actual;
         var lupa = false;
         var categories = [];
         var categories2 = [];
+        var hayleyendaser;
+        var leyendasser = [];
 
         var map = L.map('map', {
             scrollWheelZoom: false,
@@ -1549,7 +1552,13 @@
                 jQuery.each(coor_estado, function(i, val) {
                     if (seleccionado == val.estado) {
                         map.setView([val.lat, val.long], val.zoom - 1);
-                        mun_mapa(seleccionado, arrray_anios[0], 1);
+                        var datos_brutos =  datosBrutos(seleccionado);
+                        if(hayleyendaser){
+                          mun_mapa(seleccionado, leyendasser[0], 1,datos_brutos);
+                        }else {
+                          mun_mapa(seleccionado, arrray_anios[0], 1,datos_brutos);
+                        }
+
                         put_grafica_municipal(arrray_anios[0]);
                     }
                 });
@@ -2234,6 +2243,7 @@
 
         function put_anios() {
             arrray_anios = [];
+            arrray_leyendas = [];
             var cadena = '';
             anio_mas_actual = '';
 
@@ -2242,6 +2252,9 @@
                     anio_mas_actual = 'anio_' + i;
                     cadena = '<a id="anio_' + i + '" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + estados[0][i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + estados[0][i].split('-')[0] + '</a>' + cadena;
                     arrray_anios.push(estados[0][i].split('-')[0]);
+                    console.log('ffffffffffffffffffffffffffffffffff --');
+                    console.log(estados);
+                    //arrray_leyendas.push(estados[0][i].split('-')[0]);
                 } else if (i <= estados[0].length - 1) {
                     cadena = '<a id="anio_' + i + '" class="active_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + estados[0][i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + estados[0][i].split('-')[0] + '</a>' + cadena;
                     arrray_anios.push(estados[0][i].split('-')[0]);
@@ -2399,7 +2412,8 @@
                 jQuery.each(coor_estado, function(i, val) {
                     if (seleccionado == val.estado) {
                         map.setView([val.lat, val.long], val.zoom - 1);
-                        mun_mapa(seleccionado, anioo[0], posi);
+                        mun_mapa(seleccionado, anioo[0], posi,0);
+                        //aqui ya valio verga
                     }
                 });
             } //fin if
@@ -3050,7 +3064,13 @@
 
         var posi2;
 
-        function mun_mapa(e, anioo, posi) {
+        function datosBrutos(e){
+          var cl = get_clave_estado(e);
+          var datos_brutos = get_estado_municipios(cl + '%', PCveInd);
+          return datos_brutos;
+        }
+
+        function mun_mapa(e, anioo, posi, datos_brutos) {
             $('.infos').remove();
             $('.info2').remove();
             map.removeLayer(geojson);
@@ -3063,8 +3083,7 @@
             var brew = new classyBrew();
 
             //++sacar la clave del estado y sacar el indicador que se esta manejando
-            var cl = get_clave_estado(e);
-            var datos_brutos = get_estado_municipios(cl + '%', PCveInd);
+
             console.log(datos_brutos);
             put_tabla_municipal(datos_brutos);
             valorDato(datos_brutos);
@@ -3125,9 +3144,9 @@
 
                 console.log(props);
                 if (props != undefined) {
-                    console.log('anioooooo'+anioo[0]);
                     var valnul = busqueda_municipio(props.nom_mun, posi).toFixed(1) == 0 ? 'ND' : busqueda_municipio(props.nom_mun, posi).toFixed(1);
-                    this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                      this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                     $(".crop").dotdotdot();
                 }
@@ -3374,6 +3393,7 @@
         function get_estado_municipios(c, i) {
             var covertura = c;
             var resultado;
+
             console.log(i);
             console.log(GloSerie[0]);
             console.log(covertura);
@@ -3391,7 +3411,38 @@
                     "PIdioma": "ES"
                 },
                 success: function(data, textStatus, jqxhr) {
-                    resultado = data;
+                  console.log('aquí resultado - ooooooooooooo');
+                    //resultado = data;
+                    console.log(data);
+                    console.log(data.Series[0].Coberturas[0].ValorDato[0].Leyenda_ser);
+                    if(data.Series[0].Coberturas[0].ValorDato[0].Leyenda_ser != null){
+                      resultado = data;
+                      hayleyendaser = true;
+                      var temporal = [];
+                      for (var j = 0; j < data.Series[0].Coberturas[0].ValorDato.length; j++) {
+                        temporal.push(data.Series[0].Coberturas[0].ValorDato[j].Leyenda_ser);
+                      }
+
+                      console.log(temporal);
+                      leyendasser = temporal;
+
+                      // se reemplaza la barra de años dependiendo si tenemos leyendas o no
+                      var cadena = '';
+                      //se recorre el arreglo de las leyendas para armar el carrucel de etiquetas o años combinados
+                      for (var i = 0; i < leyendasser.length; i++) {
+                        console.log(leyendasser[i]);
+                          cadena = '<a id="anio_' + i + '" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + leyendasser[i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + leyendasser[i] + '</a>' + cadena;
+                      }
+
+                      if (cadena != '') {
+                          cadena = '<div class="col s12"><a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;cursor:none;float: left;padding-bottom: 0;padding-left: 8px;margin-top:6px;">Selecciona un periodo</a></div>' + '<div class="col s12 l12"><div class="owl-carousel owl-theme">' + cadena + '</div></div>';
+                          $('#anios').html(cadena);
+                      }
+
+                    }else{
+                      resultado = data;
+                      hayleyendaser = false;
+                    }
                 },
                 error: function() {
                     //alert('Error occured');
