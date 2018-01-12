@@ -2368,6 +2368,10 @@
             var posi = busqueda_anio(cadena);
             var anioo = cadena.split('-');
 
+            console.log('-----  ver index ----------');
+            console.log(posi);
+            console.log(i);
+            podi =  i;
             $('.infos').remove();
             $('.info2').remove();
 
@@ -2427,7 +2431,8 @@
                 }
 
                 function style(feature) {
-                    var res = String(getColoR(busqueda_estado_posicion(feature.properties.nom_ent, posi))).split(",");
+                   var res = String(getColoR(busqueda_estado_posicion(feature.properties.nom_ent, posi))).split(",");
+                   
                     return {
                         weight: 0.5,
                         opacity: 1,
