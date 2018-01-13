@@ -964,8 +964,6 @@
         var lupa = false;
         var categories = [];
         var categories2 = [];
-        var hayleyendaser;
-        var leyendasser = [];
 
         var map = L.map('map', {
             scrollWheelZoom: false,
@@ -1554,9 +1552,9 @@
                         map.setView([val.lat, val.long], val.zoom - 1);
                         var datos_brutos =  datosBrutos(seleccionado);
                         if(hayleyendaser){
-                          mun_mapa(seleccionado, leyendasser[0], 1,datos_brutos);
+                          mun_mapa(seleccionado, leyendasser[1], 1, datos_brutos);
                         }else {
-                          mun_mapa(seleccionado, arrray_anios[0], 1,datos_brutos);
+                          mun_mapa(seleccionado, arrray_anios[1], 1,datos_brutos);
                         }
 
                         put_grafica_municipal(arrray_anios[0]);
@@ -1577,7 +1575,7 @@
                 $("#sel_estados").hide();
                 $("#sel_municipios").hide();
                 ban_mun = false;
-                cambio_anio(estados[0][1]);
+                cambio_anio(estados[0][1],1);
 
                 console.log('cambio municipal');
             });
@@ -2247,19 +2245,33 @@
             var cadena = '';
             anio_mas_actual = '';
 
-            for (var i = 1; i < estados[0].length; i++) {
+         
+
+            for (var i = 1; i < estados[0].length; i++) { 
+                var anioParametro = estados[0][i];
+                var anioParametroSplit = estados[0][i].split('-')[0];
+
                 if (i == 1) {
                     anio_mas_actual = 'anio_' + i;
-                    cadena = '<a id="anio_' + i + '" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + estados[0][i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + estados[0][i].split('-')[0] + '</a>' + cadena;
-                    arrray_anios.push(estados[0][i].split('-')[0]);
-                    console.log('ffffffffffffffffffffffffffffffffff --');
-                    console.log(estados);
-                    //arrray_leyendas.push(estados[0][i].split('-')[0]);
-                } else if (i <= estados[0].length - 1) {
-                    cadena = '<a id="anio_' + i + '" class="active_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + estados[0][i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + estados[0][i].split('-')[0] + '</a>' + cadena;
-                    arrray_anios.push(estados[0][i].split('-')[0]);
+                } 
+
+                if(hayleyendaser){
+                    anioParametro = leyendasser[i];
+                    anioParametroSplit = leyendasser[i];
                 }
+
+                cadena = '<a id="anio_' + i + '"waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + anioParametro + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + anioParametroSplit + '</a>' + cadena;
+                
+                arrray_anios.push(estados[0][i].split('-')[0]);
             }
+            
+            // if(hayleyendaser){
+            //     arrray_anios = leyendasser;
+            // }
+           
+
+
+
 
             if (cadena != '') {
                 cadena = '<div class="col s12"><a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;cursor:none;float: left;padding-bottom: 0;padding-left: 8px;margin-top:6px;">Selecciona un periodo</a></div>' + '<div class="col s12 l12"><div class="owl-carousel owl-theme">' + cadena + '</div></div>';
@@ -2389,18 +2401,21 @@
         //cosas por acomodar las deja aqui por el tiempo :)
 
         function cambio_anio(cadena, i) {
-            var anio_buscar = $('#opciones_anio').val();
-            var posi = busqueda_anio(cadena);
-            var anioo = cadena.split('-');
-
-            console.log('-----  ver index ----------');
-            console.log(posi);
-            console.log(i);
-            podi =  i;
+              
+            if(hayleyendaser){
+                var anio_buscar = $('#opciones_anio').val();
+                var posi = i;
+                var anioo = cadena;
+            }else{
+                var anio_buscar = $('#opciones_anio').val();
+                var posi = busqueda_anio(cadena);
+                var anioo = cadena.split('-')[0];
+            }
+        
             $('.infos').remove();
             $('.info2').remove();
 
-            for (var j = 1; j <= 40; j++) {
+            for (var j = 1; j <= arrray_anios.length; j++) {
                 $('#anio_' + j).removeClass('active_anio');
                 $('#anio_' + j).addClass('inactive_anio');
             }
@@ -2416,8 +2431,13 @@
                 jQuery.each(coor_estado, function(i, val) {
                     if (seleccionado == val.estado) {
                         map.setView([val.lat, val.long], val.zoom - 1);
-                        mun_mapa(seleccionado, anioo[0], posi,0);
-                        //aqui ya valio verga
+                        var datos_brutos =  datosBrutos(seleccionado);
+                        //mun_mapa(seleccionado, anioo[0], posi,datos_brutos);
+                        if(hayleyendaser){
+                          mun_mapa(seleccionado, leyendasser[posi ], posi,datos_brutos);
+                        }else {
+                          mun_mapa(seleccionado, arrray_anios[posi],posi,datos_brutos);
+                        }
                     }
                 });
             } //fin if
@@ -2440,7 +2460,7 @@
                     //console.log(busqueda_estado_posicion(props.nom_ent, posi));
                     if (props != undefined) {
                         var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
-                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo[0] + ')</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
+                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
 
                         gen(estados[busqueda_indice(props.nom_ent)]);
                         $(".crop").dotdotdot();
@@ -3089,9 +3109,16 @@
 
             //++sacar la clave del estado y sacar el indicador que se esta manejando
 
-            console.log(datos_brutos);
+            var cl = get_clave_estado(e);
+            var datos_brutos = datos_brutos;
+
+            
             put_tabla_municipal(datos_brutos);
             valorDato(datos_brutos);
+            console.log('----  analisis de datos para ver cual es -----');
+            console.log(municipio.features[0].properties.nom_mun);
+            console.log(posi);
+            console.log(datos_brutos);
 
             for (var i = 0; i < municipio.features.length; i++) {
                 if (e == municipio.features[i].properties.nom_ent) {
@@ -3417,37 +3444,7 @@
                 },
                 success: function(data, textStatus, jqxhr) {
                   console.log('aquí resultado - ooooooooooooo');
-                    //resultado = data;
-                    console.log(data);
-                    console.log(data.Series[0].Coberturas[0].ValorDato[0].Leyenda_ser);
-                    if(data.Series[0].Coberturas[0].ValorDato[0].Leyenda_ser != null){
-                      resultado = data;
-                      hayleyendaser = true;
-                      var temporal = [];
-                      for (var j = 0; j < data.Series[0].Coberturas[0].ValorDato.length; j++) {
-                        temporal.push(data.Series[0].Coberturas[0].ValorDato[j].Leyenda_ser);
-                      }
-
-                      console.log(temporal);
-                      leyendasser = temporal;
-
-                      // se reemplaza la barra de años dependiendo si tenemos leyendas o no
-                      var cadena = '';
-                      //se recorre el arreglo de las leyendas para armar el carrucel de etiquetas o años combinados
-                      for (var i = 0; i < leyendasser.length; i++) {
-                        console.log(leyendasser[i]);
-                          cadena = '<a id="anio_' + i + '" class="inactive_anio waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + leyendasser[i] + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + leyendasser[i] + '</a>' + cadena;
-                      }
-
-                      if (cadena != '') {
-                          cadena = '<div class="col s12"><a class="waves-effect waves-light btn color  black-text t_sm sin_sombra marg_top" style="border-style: none;cursor:none;float: left;padding-bottom: 0;padding-left: 8px;margin-top:6px;">Selecciona un periodo</a></div>' + '<div class="col s12 l12"><div class="owl-carousel owl-theme">' + cadena + '</div></div>';
-                          $('#anios').html(cadena);
-                      }
-
-                    }else{
-                      resultado = data;
-                      hayleyendaser = false;
-                    }
+                    resultado = data;
                 },
                 error: function() {
                     //alert('Error occured');

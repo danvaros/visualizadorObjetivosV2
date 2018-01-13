@@ -32,6 +32,8 @@ var tipoTabulado;
 var clasif;
 var ban_mun =  false;
 var datos_calculo = [];
+var hayleyendaser;
+var leyendasser = [];
 
 
 //llama los parametros del indicador
@@ -98,22 +100,12 @@ if(codigoDg == "NEM  "){
     url: PathAPI + "Valores/PorCobCla",
     data: {"PCveInd":PCveInd,"PAnoIni":"0","PAnoFin":"0","PCveSer":GloSerie[0],"PCveCob":"99","PCveAgrupaCla": "0","POrden":"DESC", "PIdioma":"ES"},
     success: function( data, textStatus, jqxhr ) {
-
-      // for (var i = 1; i < GloSerie.length; i++) {
-      //   $.ajax({
-      //     type: 'POST',
-      //     url: PathAPI + "Valores/PorCobCla",
-      //     data: {"PCveInd":PCveInd,"PAnoIni":"0","PAnoFin":"0","PCveSer":GloSerie[i],"PCveCob":"99","PCveAgrupaCla": "0","POrden":"DESC", "PIdioma":"ES"},
-      //     success: function( data1, textStatus, jqxhr ) {
-      //       data.Series[i] = data1.Series[0];
-      //     },
-      //     error: function() {
-      //             //alert('Error occured');
-      //         },
-      //     async:false
-      //   });
-      // }
-
+      if(data.Series[0].Coberturas[0].ValorDato[0].Leyenda_ser != null){
+        crearLeyendasSer(data);
+        hayleyendaser = true;
+      }else{
+        hayleyendaser = false;
+      }
       Codigo_ind  = data.Codigo_ind;
       Descrip_ind = data.Descrip_ind;
       colorObjetivo(obj);
@@ -156,7 +148,7 @@ if(codigoDg == "NEM  "){
       $('#loader').delay(2000).fadeOut("slow");
     },
     error: function() {
-      //alert('Error occured');
+      
     },
     async:false
   });
@@ -1968,4 +1960,13 @@ function mapa_333()
     $('#nueva_tabla_serie').html(tablaCoS(datos_brutos.Series[0]));
     $('#insumos_cont').hide();
     $('#este2').hide();
+  }
+
+  function crearLeyendasSer(data){
+      var temporal = [];
+      temporal.push('nada');
+      for (var j = 0; j < data.Series[0].Coberturas[0].ValorDato.length; j++) {
+        temporal.push(data.Series[0].Coberturas[0].ValorDato[j].Leyenda_ser);
+      }
+      leyendasser = temporal;
   }
