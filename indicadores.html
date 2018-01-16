@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="lib/owl.theme.default.min.css">
     <link type="text/css" href="css/tablescroller.css" rel="stylesheet" />
     <link rel="stylesheet" href="DataTables/datatables.css">
+    <link href="js/introjs.css" rel="stylesheet">
     <!-- Load c3.css -->
     <link href="lib/c3.css" rel="stylesheet" type="text/css">
 
@@ -742,8 +743,10 @@
                     <li class="divider"></li>
                     <p>1990-2015</p>
                 </div>
-                <div id="barras"></div>
-                <div class="pie_cuadro2">
+                <a class="btn btn-large btn-success" style="color:#1F77B4;" href="javascript:void(0);" onclick="javascript:introJs().start();">¿Cómo funciona la gráfica?</a>
+                <div id="barras" data-step="1" data-intro="La gráfica está dividida en 2 partes. La gráfica general y la selección de rangos."></div>
+
+                <div class="pie_cuadro2" data-step="2" data-intro="Selecciona el rango de la gráfica que quieras visualizar">
                     <div><strong>Nota:</strong> </div>
                     <div><strong>Fuente:</strong> </div>
                     <div><strong>Fecha de actualización:</strong> </div>
@@ -918,6 +921,8 @@
     <script src="app.js"></script>
 
     <script src="lib/excellentexport.js"></script>
+
+    <script src="js/intro.js"></script>
 
     <!-- Load d3.js and c3.js -->
     <script src="lib/d3.v3.min.js" charset="utf-8"></script>
@@ -2245,30 +2250,30 @@
             var cadena = '';
             anio_mas_actual = '';
 
-         
 
-            for (var i = 1; i < estados[0].length; i++) { 
+
+            for (var i = 1; i < estados[0].length; i++) {
                 var anioParametro = estados[0][i];
                 var anioParametroSplit = estados[0][i].split('-')[0];
 
                 if (i == 1) {
                     anio_mas_actual = 'anio_' + i;
-                } 
+                }
 
                 if(hayleyendaser){
                     anioParametro = leyendasser[i];
                     anioParametroSplit = leyendasser[i];
                 }
 
-                cadena = '<a id="anio_' + i + '"waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + anioParametro + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;">' + anioParametroSplit + '</a>' + cadena;
-                
+                cadena = '<a id="anio_' + i + '"waves-effect waves-light btn color  claro t_sm sin_sombra" onclick="cambio_anio(\'' + anioParametro + '\',' + i + ')" style ="margin-right: -1px; border-color: black; border-width: 1px; border-radius: 5px;padding: 10px 13px;">' + anioParametroSplit + '</a>' + cadena;
+
                 arrray_anios.push(estados[0][i].split('-')[0]);
             }
-            
+
             // if(hayleyendaser){
             //     arrray_anios = leyendasser;
             // }
-           
+
 
 
 
@@ -2401,7 +2406,7 @@
         //cosas por acomodar las deja aqui por el tiempo :)
 
         function cambio_anio(cadena, i) {
-              
+
             if(hayleyendaser){
                 var anio_buscar = $('#opciones_anio').val();
                 var posi = i;
@@ -2411,7 +2416,7 @@
                 var posi = busqueda_anio(cadena);
                 var anioo = cadena.split('-')[0];
             }
-        
+
             $('.infos').remove();
             $('.info2').remove();
 
@@ -2460,7 +2465,7 @@
                     //console.log(busqueda_estado_posicion(props.nom_ent, posi));
                     if (props != undefined) {
                         var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
-                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="position: relative; top:-31px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
+                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><div style="margin-top:-13px;overflow-wrap:break-word;width:60px;padding-left:20px;color:#999999;">(' + anioo + ')</div><p style="position: relative; top:-47px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
 
                         gen(estados[busqueda_indice(props.nom_ent)]);
                         $(".crop").dotdotdot();
@@ -2481,7 +2486,7 @@
 
                 function style(feature) {
                    var res = String(getColoR(busqueda_estado_posicion(feature.properties.nom_ent, posi))).split(",");
-                   
+
                     return {
                         weight: 0.5,
                         opacity: 1,
@@ -3112,7 +3117,7 @@
             var cl = get_clave_estado(e);
             var datos_brutos = datos_brutos;
 
-            
+
             put_tabla_municipal(datos_brutos);
             valorDato(datos_brutos);
             console.log('----  analisis de datos para ver cual es -----');
@@ -3177,7 +3182,7 @@
                 console.log(props);
                 if (props != undefined) {
                     var valnul = busqueda_municipio(props.nom_mun, posi).toFixed(1) == 0 ? 'ND' : busqueda_municipio(props.nom_mun, posi).toFixed(1);
-                      this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 30%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 195px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                      this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 6px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 32%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 168px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
 
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                     $(".crop").dotdotdot();

@@ -2278,6 +2278,7 @@ En México se ha decidido que la Oficina de la Presidencia de la República teng
     //se llama fuera del documento por que queremos que se ejecute antes de mostrar el docuemento
     var estados = [];
     var atributos;
+    var anioo;
     var numero = getRandomInt(0,9);
     var res = numero % 2;
     console.log('-------------------random --------------');
@@ -2287,7 +2288,7 @@ En México se ha decidido que la Oficina de la Presidencia de la República teng
       estados = getIndicadorSer(27,89);
       atributos = getAtributos(27);
     }else{
-      estados = getIndicadorSer(26,87);
+      estados = getIndicadorSer(26,793);
       atributos = getAtributos(26);
     }
 
@@ -2670,15 +2671,18 @@ En México se ha decidido que la Oficina de la Presidencia de la República teng
       return this._div;
     };
 
-
-
+console.log('........lll...');
+    var res = atributos.Serie[0].CobTemporal_ser;
+    console.log(res);
+    anioo = res.split('-');
+    console.log(anioo);
 
     info.update = function (props) {
       //this._div = L.DomUtil.create('div', 'infos');
       $('.infos').removeClass('hide');
       $('.info2').removeClass('hide');
       if (props != undefined) {
-        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado(props.nom_ent).toFixed(2)/*props.density*/ + '</b><p style="position: absolute; bottom: 57%; left: 35%; font-size: 15px;">'+titulo_des_graf+'</p></div></div><div class="info"></div>';
+        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + busqueda_estado(props.nom_ent).toFixed(2)/*props.density*/ + '</b><br/><b style="padding-left:28px;color:#999999;">(' + anioo[1] + ')</b><p style="position: absolute;bottom: 71%;left: 35%;font-size: 15px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 164px;">'+titulo_des_graf+'</p></div></div><div class="info"></div>';
         console.log("aca ---> ",estados[busqueda_indice(props.nom_ent)]);
         // gen(estados[props.cve]);
         gen(estados[busqueda_indice(props.nom_ent)]);
