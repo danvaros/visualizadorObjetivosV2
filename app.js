@@ -148,7 +148,7 @@ if(codigoDg == "NEM  "){
       $('#loader').delay(2000).fadeOut("slow");
     },
     error: function() {
-      
+
     },
     async:false
   });
@@ -1444,8 +1444,8 @@ function titulos(indicador){
     titulo   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
     '<li class="divider"></li> ' +
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
-    '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>' +
-    '<p id="no_va_serie"><strong>Esta vista presenta los datos totales del indicador. Para conocer más detalles visita la sección de serie histórica.<strong></p>';
+    '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>';
+    //'<p id="no_va_serie"><strong>Esta vista presenta los datos totales del indicador. Para conocer más detalles visita la sección de serie histórica.<strong></p>';
     tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
                              '<li class="divider"></li> ' +
                              '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>';
