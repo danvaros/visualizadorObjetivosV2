@@ -11,11 +11,11 @@ var indicador_sel = getParameterByName("indicador_sel");;
 
 if(indicador_sel == ""){
   console.log('vacio llamada normal');
-  getIndicador(26,87);
+  getIndicador(26,793);
 }else{
   console.log('la otra llamada');
   //getIndicador(indicador,serie);
-  getIndicador(26,87);
+  getIndicador(26,793);
   setTimeout(function(){ selects_aut(); }, 1000);
 }
 
@@ -151,7 +151,6 @@ function getIndicador(indicador,ser){
     			}
     			estados.push(temporal);
 
-
     			for (var i = 0; i < data.Series[0].Coberturas.length; i++) {
     				var temporal = [];
     				temporal.push(data.Series[0].Coberturas[i].Descrip_cg);
@@ -192,4 +191,24 @@ function arma_tabla(num_cobertura){
   }
 
   return cobertura_tabla;
+}
+
+function getAtributos(indicador){
+  var atributos = [];
+  $.ajax({
+      type: 'POST',
+      url: PathAPI + "AtrIndicador/PorDesglose",
+      data: {'PCveInd':indicador, 'PIdioma':'ES', 'POpcion':'Cl'},
+      success: function( data, textStatus, jqxhr )
+      {
+        atributos = data;
+      },
+      error:function( data, textStatus, responseJSON )
+      {
+        console.log(data);
+      },
+      async:false
+    });
+
+    return atributos;
 }
