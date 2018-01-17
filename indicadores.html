@@ -746,7 +746,7 @@
                 <a class="btn btn-large btn-success" style="color:#1F77B4;" href="javascript:void(0);" onclick="javascript:introJs().start();">¿Cómo funciona la gráfica?</a>
                 <div id="barras" data-step="1" data-intro="La gráfica está dividida en 2 partes. La gráfica general y la selección de rangos."></div>
 
-                <div class="pie_cuadro2" data-step="2" data-intro="Selecciona el rango de la gráfica que quieras visualizar">
+                <div class="pie_cuadro2">
                     <div><strong>Nota:</strong> </div>
                     <div><strong>Fuente:</strong> </div>
                     <div><strong>Fecha de actualización:</strong> </div>
@@ -986,6 +986,7 @@
             $('#serie').hide();
             $('.modal-trigger').leanModal();
             $(".button-collapse").sideNav();
+
             $('#share_grafica').attr('href', urlTwitterGrafica);
             $('#share_mapa').attr('href', urlTwitterMapa);
             $('#chart2btn').hide();
@@ -1040,23 +1041,12 @@
                     type: 'bar',
                     color: function(color, d) {
                         return d.index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
-
-                        // Descrip_ind : function (d) {
-                        //     return d.index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
-                        //     console.log('x-x-x-x-x--x-x-x-x-x-x-x-x-x-x-x-');
-                        //     console.log(d.index);
-                        //return (d.value >= 45) ? '#00ff00' : '#ff0000';
-                        //}
                     }
                 },
                 subchart: {
                   show: true
                 },
                 tooltip: {
-                    //format: {
-                    // title: function (d) { return d.name; },
-                    //title: function (d) { return '' + d.name; },
-                    //},
                     format:{
                       title: function (d) { return categories[d]; },
                     },
@@ -3715,6 +3705,9 @@
                 }
             }
         } //fin de la funcion munisipal_ind
+
+        $('#barras svg > g').attr('data-step',"2");
+        $('#barras svg > g').attr('data-intro', "Selecciona el rango de la gráfica que quieras visualizar");
     </script>
 </body>
 
