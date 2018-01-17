@@ -93,8 +93,8 @@ function getSerie(indicador)
   	  success: function( data, textStatus, jqxhr )
     {
       console.log("llamada",indicador);
-      console.log("Serie:::::",data.Serie[0].ClaveSer_ats);
-      getIndicador(indicador,data.Serie[0].ClaveSer_ats);
+      console.log("Serie:::::",data.Serie[0].Clave_ser);
+      getIndicador(indicador,data.Serie[0].Clave_ser);
     },
     error:function( data, textStatus, responseJSON )
     {

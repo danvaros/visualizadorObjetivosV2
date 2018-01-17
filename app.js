@@ -51,7 +51,7 @@ $.ajax({
 
     if(codigoDg == "NEM  "){
       for (var i = 0; i < data.Serie.length; i++) {
-        if(data.Serie[i].Tipo_ats == "I"){
+        if(data.Serie[i].Tipo_ser == "I"){
           datos_calculo.push(data.Serie[i]);
         }
       }
@@ -1078,7 +1078,7 @@ function valorDatoInsumos(data){
 
   if(codigoDg == "NEM  "){
     for (var i = 0; i < datos_calculo.length; i++) {
-      select += '<option value="'+datos_calculo[i].ClaveSer_ats+'">'+datos_calculo[i].DescripSer_des+'</option>';
+      select += '<option value="'+datos_calculo[i].Clave_ser+'">'+datos_calculo[i].Descrip_ser+'</option>';
     }
   }else{
     //console.log("comparacion1");

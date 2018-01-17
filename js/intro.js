@@ -35,7 +35,7 @@
       /* Previous button label in tooltip box */
       prevLabel: '&larr; Atrás',
       /* Skip button label in tooltip box */
-      skipLabel: 'Quitar',
+      skipLabel: 'Saltar',
       /* Done button label in tooltip box */
       doneLabel: 'Finalizar',
       /* Hide previous button in the first step? Otherwise, it will be disabled button. */
