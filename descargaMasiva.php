@@ -30,6 +30,7 @@ if($tipoFormato == 'xls'){
       $codigos .= 'xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
     }
   }
+
   if($metadatoDescarga == "2"){
     for ($i=0; $i < count($opo); $i++) {
       //var_dump($opo[$i]);
@@ -45,6 +46,7 @@ if($tipoFormato == 'xls'){
       $codigos .= 'xlscsv/Metadato_'.$nom3.'.xlsx,';
     }
   }
+
   if($calculoDescarga == "3"){
     for ($i=0; $i < count($opo); $i++) {
       for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
