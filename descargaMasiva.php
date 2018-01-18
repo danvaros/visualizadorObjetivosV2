@@ -6,6 +6,9 @@ require('lib/pclzip.lib.php');
 $datos = $_POST;
 
 $indicadores = $datos['indicadores'];
+$indicadorDescarga = $datos['indicadorDescarga'];
+$metadatoDescarga = $datos['metadatoDescarga'];
+$calculoDescarga = $datos['calculoDescarga'];
 $tipoSeleccion = $datos['tipoSeleccion'];
 $tipoFormato = $datos['tipoFormato'];
 
@@ -17,120 +20,40 @@ for ($i=1; $i < count($indicadores); $i++) {
    $opo[] = $foo[1];
 }
 
-if($tipoFormato == 'xls' && $tipoSeleccion == 01){
+if($tipoFormato == 'xls'){
+
   $codigos = '';
-  for ($i=0; $i < count($opo); $i++) {
-    //var_dump($opo[$i]);
-    //var_dump(codigoIndicador($opo[$i]));
-    $codigos .= 'xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
-  }
-  $resultado =  trim($codigos, ',');
-
-  $fecha = date('Y-m-d-His');
-  $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
-  $zip = new PclZip('zip/'.$nameFile);
-  //var_dump($codigos);
-  $zip->create($resultado);
-  echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
-}
-
-if($tipoFormato == 'csv' && $tipoSeleccion == 01){
-  $codigos = '';
-  for ($i=0; $i < count($opo); $i++) {
-    //var_dump($opo[$i]);
-    //var_dump(codigoIndicador($opo[$i]));
-    $codigos .= 'xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.csv,';
-  }
-  $resultado =  trim($codigos, ',');
-
-  $fecha = date('Y-m-d-His');
-  $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
-  $zip = new PclZip('zip/'.$nameFile);
-  //var_dump($codigos);
-  $zip->create($resultado);
-  echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
-}
-
-if($tipoFormato == 'xls' && $tipoSeleccion == 02){
-  $codigos = '';
-  for ($i=0; $i < count($opo); $i++) {
-    //var_dump($opo[$i]);
-    //var_dump(codigoIndicador($opo[$i]));
-    $nom1 = explode('.',codigoIndicador($opo[$i]));
-    $nom2 = '';
-    for ($j=0; $j < count($nom1); $j++) {
-      $nom2 .= $nom1[$j].'_';
-    }
-
-    $nom3 = trim($nom2,'_');
-
-    $codigos .= 'xlscsv/Metadato_'.$nom3.'.xlsx,';
-  }
-  $resultado =  trim($codigos, ',');
-
-  $fecha = date('Y-m-d-His');
-  $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
-  $zip = new PclZip('zip/'.$nameFile);
-  //var_dump($codigos);
-  $zip->create($resultado);
-  echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
-}
-
-if($tipoFormato == 'csv' && $tipoSeleccion == 02){
-  $codigos = '';
-  for ($i=0; $i < count($opo); $i++) {
-    //var_dump($opo[$i]);
-    //var_dump(codigoIndicador($opo[$i]));
-    $nom1 = explode('.',codigoIndicador($opo[$i]));
-    $nom2 = '';
-    for ($j=0; $j < count($nom1); $j++) {
-      $nom2 .= $nom1[$j].'_';
-    }
-
-    $nom3 = trim($nom2,'_');
-
-    $codigos .= 'xlscsv/Metadato_'.$nom3.'.csv,';
-  }
-  $resultado =  trim($codigos, ',');
-
-  $fecha = date('Y-m-d-His');
-  $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
-  $zip = new PclZip('zip/'.$nameFile);
-  //var_dump($codigos);
-  $zip->create($resultado);
-  echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
-}
-
-if($tipoFormato == 'xls' && $tipoSeleccion == 03){
-  $codigos = '';
-  for ($i=0; $i < count($opo); $i++) {
-    //var_dump($opo[$i]);
-    //var_dump(codigoIndicador($opo[$i]));
-    for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
-      $f = $j + 1;
-      $codigos .= 'xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
+  if($indicadorDescarga == "1"){
+    for ($i=0; $i < count($opo); $i++) {
+      //var_dump($opo[$i]);
+      //var_dump(codigoIndicador($opo[$i]));
+      $codigos .= 'xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
     }
   }
-  $resultado =  trim($codigos, ',');
+  if($metadatoDescarga == "2"){
+    for ($i=0; $i < count($opo); $i++) {
+      //var_dump($opo[$i]);
+      //var_dump(codigoIndicador($opo[$i]));
+      $nom1 = explode('.',codigoIndicador($opo[$i]));
+      $nom2 = '';
+      for ($j=0; $j < count($nom1); $j++) {
+        $nom2 .= $nom1[$j].'_';
+      }
 
-  $fecha = date('Y-m-d-His');
-  $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
-  $zip = new PclZip('zip/'.$nameFile);
-  //var_dump($codigos);
-  $zip->create($resultado);
-  echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
-}
+      $nom3 = trim($nom2,'_');
 
-if($tipoFormato == 'csv' && $tipoSeleccion == 03){
-  $codigos = '';
-  for ($i=0; $i < count($opo); $i++) {
-    //var_dump($opo[$i]);
-    //var_dump(codigoIndicador($opo[$i]));
-    for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
-      $f = $j + 1;
-      $codigos .= 'xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.csv,';
+      $codigos .= 'xlscsv/Metadato_'.$nom3.'.xlsx,';
     }
   }
+  if($calculoDescarga == "3"){
+    for ($i=0; $i < count($opo); $i++) {
+      for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
+        $f = $j + 1;
+        $codigos .= 'xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
+      }
+    }
+  }
+
   $resultado =  trim($codigos, ',');
 
   $fecha = date('Y-m-d-His');
@@ -140,6 +63,140 @@ if($tipoFormato == 'csv' && $tipoSeleccion == 03){
   $zip->create($resultado);
   echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
 }
+
+if($tipoFormato == 'csv'){
+
+  $codigos = '';
+  if($indicadorDescarga == "1"){
+    for ($i=0; $i < count($opo); $i++) {
+      //var_dump($opo[$i]);
+      //var_dump(codigoIndicador($opo[$i]));
+      $codigos .= 'xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
+    }
+  }
+  if($metadatoDescarga == "2"){
+    for ($i=0; $i < count($opo); $i++) {
+      //var_dump($opo[$i]);
+      //var_dump(codigoIndicador($opo[$i]));
+      $nom1 = explode('.',codigoIndicador($opo[$i]));
+      $nom2 = '';
+      for ($j=0; $j < count($nom1); $j++) {
+        $nom2 .= $nom1[$j].'_';
+      }
+
+      $nom3 = trim($nom2,'_');
+
+      $codigos .= 'xlscsv/Metadato_'.$nom3.'.xlsx,';
+    }
+  }
+  if($calculoDescarga == "3"){
+    for ($i=0; $i < count($opo); $i++) {
+      for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
+        $f = $j + 1;
+        $codigos .= 'xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
+      }
+    }
+  }
+
+  $resultado =  trim($codigos, ',');
+
+  $fecha = date('Y-m-d-His');
+  $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
+  $zip = new PclZip('zip/'.$nameFile);
+  //var_dump($codigos);
+  $zip->create($resultado);
+  echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
+}
+
+// if($tipoFormato == 'xls' && $tipoSeleccion == 02){
+//   $codigos = '';
+//   for ($i=0; $i < count($opo); $i++) {
+//     //var_dump($opo[$i]);
+//     //var_dump(codigoIndicador($opo[$i]));
+//     $nom1 = explode('.',codigoIndicador($opo[$i]));
+//     $nom2 = '';
+//     for ($j=0; $j < count($nom1); $j++) {
+//       $nom2 .= $nom1[$j].'_';
+//     }
+//
+//     $nom3 = trim($nom2,'_');
+//
+//     $codigos .= 'xlscsv/Metadato_'.$nom3.'.xlsx,';
+//   }
+//   $resultado =  trim($codigos, ',');
+//
+//   $fecha = date('Y-m-d-His');
+//   $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
+//   $zip = new PclZip('zip/'.$nameFile);
+//   //var_dump($codigos);
+//   $zip->create($resultado);
+//   echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
+// }
+//
+// if($tipoFormato == 'csv' && $tipoSeleccion == 02){
+//   $codigos = '';
+//   for ($i=0; $i < count($opo); $i++) {
+//     //var_dump($opo[$i]);
+//     //var_dump(codigoIndicador($opo[$i]));
+//     $nom1 = explode('.',codigoIndicador($opo[$i]));
+//     $nom2 = '';
+//     for ($j=0; $j < count($nom1); $j++) {
+//       $nom2 .= $nom1[$j].'_';
+//     }
+//
+//     $nom3 = trim($nom2,'_');
+//
+//     $codigos .= 'xlscsv/Metadato_'.$nom3.'.csv,';
+//   }
+//   $resultado =  trim($codigos, ',');
+//
+//   $fecha = date('Y-m-d-His');
+//   $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
+//   $zip = new PclZip('zip/'.$nameFile);
+//   //var_dump($codigos);
+//   $zip->create($resultado);
+//   echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
+// }
+//
+// if($tipoFormato == 'xls' && $tipoSeleccion == 03){
+//   $codigos = '';
+//   for ($i=0; $i < count($opo); $i++) {
+//     //var_dump($opo[$i]);
+//     //var_dump(codigoIndicador($opo[$i]));
+//     for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
+//       $f = $j + 1;
+//       $codigos .= 'xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
+//     }
+//   }
+//   $resultado =  trim($codigos, ',');
+//
+//   $fecha = date('Y-m-d-His');
+//   $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
+//   $zip = new PclZip('zip/'.$nameFile);
+//   //var_dump($codigos);
+//   $zip->create($resultado);
+//   echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
+// }
+//
+// if($tipoFormato == 'csv' && $tipoSeleccion == 03){
+//   $codigos = '';
+//   for ($i=0; $i < count($opo); $i++) {
+//     //var_dump($opo[$i]);
+//     //var_dump(codigoIndicador($opo[$i]));
+//     for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
+//       $f = $j + 1;
+//       $codigos .= 'xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.csv,';
+//     }
+//   }
+//   $resultado =  trim($codigos, ',');
+//
+//   $fecha = date('Y-m-d-His');
+//   $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
+//   $zip = new PclZip('zip/'.$nameFile);
+//   //var_dump($codigos);
+//   $zip->create($resultado);
+//   echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
+// }
 
 
 function codigoIndicador($indicador){
