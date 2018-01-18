@@ -30,6 +30,7 @@ if($tipoFormato == 'xls'){
       $codigos .= 'xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
     }
   }
+
   if($metadatoDescarga == "2"){
     for ($i=0; $i < count($opo); $i++) {
       //var_dump($opo[$i]);
@@ -42,9 +43,10 @@ if($tipoFormato == 'xls'){
 
       $nom3 = trim($nom2,'_');
 
-      $codigos .= 'xlscsv/Metadato_'.$nom3.'.xlsx,';
+      $codigos .= 'xlscsv/Metadato_'.codigoIndicador($opo[$i]).'.xlsx,';
     }
   }
+
   if($calculoDescarga == "3"){
     for ($i=0; $i < count($opo); $i++) {
       for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
@@ -55,6 +57,9 @@ if($tipoFormato == 'xls'){
   }
 
   $resultado =  trim($codigos, ',');
+
+// var_dump($resultado);
+// exit();
 
   $fecha = date('Y-m-d-His');
   $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
