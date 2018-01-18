@@ -43,7 +43,7 @@ if($tipoFormato == 'xls'){
 
       $nom3 = trim($nom2,'_');
 
-      $codigos .= 'xlscsv/Metadato_'.$nom3.'.xlsx,';
+      $codigos .= 'xlscsv/Metadato_'.codigoIndicador($opo[$i]).'.xlsx,';
     }
   }
 
@@ -57,6 +57,9 @@ if($tipoFormato == 'xls'){
   }
 
   $resultado =  trim($codigos, ',');
+
+// var_dump($resultado);
+// exit();
 
   $fecha = date('Y-m-d-His');
   $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
