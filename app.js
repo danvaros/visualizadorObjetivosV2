@@ -376,6 +376,8 @@ $(document).ready(function(){
       $('#nueva_tabla_serieDat').append(tituloDat);
       $('#nueva_tabla_serieDat').append(calculoD[$('#insumo_change').val()]);
       $('#nueva_tabla_serieDat').append(tabulado_series[($(this).val())]);
+      var opcion_seleccionada = $('#insumo_change option:selected').text();
+      $('.tituloDato').text(opcion_seleccionada);
       $('#insumos_cont').hide();
       $('#este2').hide();
     }
@@ -387,6 +389,8 @@ $(document).ready(function(){
     $('#nueva_tabla_serieDat').append(tituloDat);
     $('#nueva_tabla_serieDat').append(calculoD[$('#insumo_change_cob').val()]);
     $('#nueva_tabla_serieDat').append(tabulado_series[($(this).val())]);
+    var opcion_seleccionada = $('#insumo_change_cob option:selected').text();
+    $('.tituloDato').text(opcion_seleccionada);
     put_filtros_insumo_cob($(this).val());
     $('#insumos_cont').html('');
     $('#insumos_contDat').html('');
@@ -1421,6 +1425,9 @@ function titulos(indicador){
   atributos_general = getAtributos(indicador);
   atributos = atributos_general;
 
+  var serieDato = parseInt(serie_insumo) + 2;
+  console.log(serieDato);
+  serie_insumo++;
 
   if(PCveInd == 1 || PCveInd == 2 || PCveInd == 105 || PCveInd == 208 || PCveInd == 212 || PCveInd == 213 || PCveInd == 224 || PCveInd == 101){
     titulo   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
@@ -1430,8 +1437,8 @@ function titulos(indicador){
     '<p id="no_va_serie"><strong>Total<strong></p>';
     tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
                              '<li class="divider"></li> ' +
-                             '<p> '+ atributos.Serie[1].CobTemporal_ser +' </p>';
-    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[1].Descrip_ser +'</span>';
+                             '<p> '+ atributos.Serie[serieDato].CobTemporal_ser +' </p>';
+    tituloDat += '<span id="descrip_uni" class="tituloDato"> '+ atributos.Serie[serieDato].Descrip_ser +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota:</strong> ' + atributos.Descrip_not+
@@ -1448,8 +1455,8 @@ function titulos(indicador){
     //'<p id="no_va_serie"><strong>Esta vista presenta los datos totales del indicador. Para conocer más detalles visita la sección de serie histórica.<strong></p>';
     tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
                              '<li class="divider"></li> ' +
-                             '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>';
-    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_ser +'</span>';
+                             '<p> '+ atributos.Serie[serieDato].CobTemporal_ser +' </p>';
+    tituloDat += '<span id="descrip_uni"  class="tituloDato"> '+ atributos.Serie[serieDato].Descrip_ser +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota:</strong> ' + atributos.Descrip_not+
@@ -1464,8 +1471,8 @@ function titulos(indicador){
     '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>';
     tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
                              '<li class="divider"></li> ' +
-                             '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>';
-    tituloDat += '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_ser +'</span>';
+                             '<p> '+ atributos.Serie[serieDato].CobTemporal_ser +' </p>';
+    tituloDat += '<span id="descrip_uni"  class="tituloDato"> '+ atributos.Serie[serieDato].Descrip_ser +'</span>';
 
     pie  = ' <div> '+ ((atributos.Descrip_not == null || atributos.Descrip_not == "") ? ''  : '<strong>Nota: </strong>' + atributos.Descrip_not)+
     //pie  = ' <div> '+ '<strong>Nota: </strong> ' + atributos.Descrip_not+
