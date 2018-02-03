@@ -1029,60 +1029,111 @@
                 return text + "</table>";
             }
 
-            chartBarras = c3.generate({
-                legend: {
-                    show: false
-                },
-                bindto: '#barras',
-                size: {
-                    height: 500
-                },
-                data: {
-                    selection: {
-                      draggable: true
-                    },
-                    columns: [],
-                    type: 'bar',
-                    color: function(color, d) {
-                        return d.index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
-                    }
-                },
-                subchart: {
-                  show: true
-                },
-                tooltip: {
-                    format:{
-                      title: function (d) { return categories[d]; },
-                    },
-                    contents: function(d, defaultTitleFormat, defaultValueFormat, color) {
-                        color = function() {
-                            //return (d[0].value >= 45) ? '#00ff00' : '#ff0000';
-                            return d[0].index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
-                        };
+            // Aquí se pregunta si el indicador es de tipo municipal
+            // Sí es de tipo "NEM" pone una subgráfica en la parte inferior de
+            // la gráfica de barras para poder hacer zoom a la misma
 
-                        return chartBarras.internal.getTooltipContent.call(this, d, defaultTitleFormat, defaultValueFormat, color)
-                    }
-                },
-                axis: {
-                    rotated: false,
-                    x: {
-                        type: 'category',
-                        categories: ['Ags.', 'BC.', 'BCS.', 'Camp.', 'Coah.', 'Col.', 'Chis.', 'Chih.', 'CDMX.', 'Dgo.', 'Gto.', 'Gro.', 'Hgo.', 'Jal.', 'Mex.', 'Mich.',
-                            'Mor.', 'Nay.', 'NL.', 'Oax.', 'Pue.', 'Qro.', 'Q Roo.', 'SLP.', 'Sin.', 'Son.', 'Tab.', 'Tamps.', 'Tlax.', 'Ver.', 'Yuc.', 'Zac.', 'MX',
-                        ],
-                        height: 50,
-                        tick: {
-                            rotate: -90,
-                            multiline: false
-                        },
-                    },
-                    //  y : {
-                    //         tick: {
-                    //             format: d3.format(".2f")
-                    //         }
-                    //     }
-                },
-            }); //fin de grafica
+            if(codigoDg.replace(/\s/g, '') == 'NEM'){
+              chartBarras = c3.generate({
+                  legend: {
+                      show: false
+                  },
+                  bindto: '#barras',
+                  size: {
+                      height: 500
+                  },
+                  data: {
+                      selection: {
+                        draggable: true
+                      },
+                      columns: [],
+                      type: 'bar',
+                      color: function(color, d) {
+                          return d.index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
+                      }
+                  },
+                  subchart: {
+                    show: true
+                  },
+                  tooltip: {
+                      format:{
+                        title: function (d) { return categories[d]; },
+                      },
+                      contents: function(d, defaultTitleFormat, defaultValueFormat, color) {
+                          color = function() {
+                              //return (d[0].value >= 45) ? '#00ff00' : '#ff0000';
+                              return d[0].index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
+                          };
+
+                          return chartBarras.internal.getTooltipContent.call(this, d, defaultTitleFormat, defaultValueFormat, color)
+                      }
+                  },
+                  axis: {
+                      rotated: false,
+                      x: {
+                          type: 'category',
+                          categories: ['Ags.', 'BC.', 'BCS.', 'Camp.', 'Coah.', 'Col.', 'Chis.', 'Chih.', 'CDMX.', 'Dgo.', 'Gto.', 'Gro.', 'Hgo.', 'Jal.', 'Mex.', 'Mich.',
+                              'Mor.', 'Nay.', 'NL.', 'Oax.', 'Pue.', 'Qro.', 'Q Roo.', 'SLP.', 'Sin.', 'Son.', 'Tab.', 'Tamps.', 'Tlax.', 'Ver.', 'Yuc.', 'Zac.', 'MX',
+                          ],
+                          height: 50,
+                          tick: {
+                              rotate: -90,
+                              multiline: false
+                          },
+                      },
+                  },
+              }); //fin de grafica
+            }else{
+              chartBarras = c3.generate({
+                  legend: {
+                      show: false
+                  },
+                  bindto: '#barras',
+                  size: {
+                      height: 500
+                  },
+                  data: {
+                      selection: {
+                        draggable: true
+                      },
+                      columns: [],
+                      type: 'bar',
+                      color: function(color, d) {
+                          return d.index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
+                      }
+                  },
+                  subchart: {
+                    show: false
+                  },
+                  tooltip: {
+                      format:{
+                        title: function (d) { return categories[d]; },
+                      },
+                      contents: function(d, defaultTitleFormat, defaultValueFormat, color) {
+                          color = function() {
+                              //return (d[0].value >= 45) ? '#00ff00' : '#ff0000';
+                              return d[0].index === regresa_estados_unidos() ? "#e06666" : "#1f77b4";
+                          };
+
+                          return chartBarras.internal.getTooltipContent.call(this, d, defaultTitleFormat, defaultValueFormat, color)
+                      }
+                  },
+                  axis: {
+                      rotated: false,
+                      x: {
+                          type: 'category',
+                          categories: ['Ags.', 'BC.', 'BCS.', 'Camp.', 'Coah.', 'Col.', 'Chis.', 'Chih.', 'CDMX.', 'Dgo.', 'Gto.', 'Gro.', 'Hgo.', 'Jal.', 'Mex.', 'Mich.',
+                              'Mor.', 'Nay.', 'NL.', 'Oax.', 'Pue.', 'Qro.', 'Q Roo.', 'SLP.', 'Sin.', 'Son.', 'Tab.', 'Tamps.', 'Tlax.', 'Ver.', 'Yuc.', 'Zac.', 'MX',
+                          ],
+                          height: 50,
+                          tick: {
+                              rotate: -90,
+                              multiline: false
+                          },
+                      },
+                  },
+              }); //fin de grafica
+            }
 
             $('.liga').val(URLactual);
 
