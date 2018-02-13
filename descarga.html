@@ -628,14 +628,14 @@ $('#descargaZip').hide();
 </div>
 
 <a href="#" id="contact"> <img src="img/informacion.png" alt="" /> </a>
-<script src='config.js'></script>
-<script src="cobertura.js"></script>
+<script src='js/config.js'></script>
+<script src="js/cobertura.js"></script>
 
 <!-- <script type="text/javascript" src="entidad.json"></script> -->
-<script type="text/javascript" src="entidad2.json"></script>
-<script src="tablas.js"></script>
-<script src='funcionesApi.js'></script>
-<script src="appDescarga.js"></script>
+<script type="text/javascript" src="json/entidad2.json"></script>
+<script src="js/tablas.js"></script>
+<script src='js/funcionesApi.js'></script>
+<script src="js/appDescarga.js"></script>
 <!-- <script src="lib/excellentexport.js"></script> -->
 
     <script type="text/javascript">
@@ -680,7 +680,7 @@ $('#descargaZip').hide();
 
 
 
-        var url = "descargaMasiva.php";
+        var url = "descargaMasiva/descargaMasiva.php";
         $.ajax({
            type: "POST",
            url: url,
