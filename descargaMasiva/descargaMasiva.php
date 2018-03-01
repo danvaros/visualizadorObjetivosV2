@@ -76,7 +76,7 @@ if($tipoFormato == 'csv'){
     for ($i=0; $i < count($opo); $i++) {
       //var_dump($opo[$i]);
       //var_dump(codigoIndicador($opo[$i]));
-      $codigos .= '../xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
+      $codigos .= '../xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.csv,';
     }
   }
   if($metadatoDescarga == "2"){
@@ -91,14 +91,14 @@ if($tipoFormato == 'csv'){
 
       $nom3 = trim($nom2,'_');
 
-      $codigos .= '../xlscsv/Metadato_'.$nom3.'.xlsx,';
+      $codigos .= '../xlscsv/Metadato_'.$nom3.'.csv,';
     }
   }
   if($calculoDescarga == "3"){
     for ($i=0; $i < count($opo); $i++) {
       for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
         $f = $j + 1;
-        $codigos .= '../xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
+        $codigos .= '../xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.csv,';
       }
     }
   }
