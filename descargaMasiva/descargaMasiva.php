@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set('America/Mexico_City');
-require('lib/pclzip.lib.php');
+require('../lib/pclzip.lib.php');
 
 $datos = $_POST;
 
@@ -27,7 +27,7 @@ if($tipoFormato == 'xls'){
     for ($i=0; $i < count($opo); $i++) {
       //var_dump($opo[$i]);
       //var_dump(codigoIndicador($opo[$i]));
-      $codigos .= 'xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
+      $codigos .= '../xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
     }
   }
 
@@ -43,7 +43,7 @@ if($tipoFormato == 'xls'){
 
       $nom3 = trim($nom2,'_');
 
-      $codigos .= 'xlscsv/Metadato_'.codigoIndicador($opo[$i]).'.xlsx,';
+      $codigos .= '../xlscsv/Metadato_'.codigoIndicador($opo[$i]).'.xlsx,';
     }
   }
 
@@ -51,7 +51,7 @@ if($tipoFormato == 'xls'){
     for ($i=0; $i < count($opo); $i++) {
       for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
         $f = $j + 1;
-        $codigos .= 'xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
+        $codigos .= '../xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
       }
     }
   }
@@ -63,7 +63,7 @@ if($tipoFormato == 'xls'){
 
   $fecha = date('Y-m-d-His');
   $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
-  $zip = new PclZip('zip/'.$nameFile);
+  $zip = new PclZip('../zip/'.$nameFile);
   //var_dump($codigos);
   $zip->create($resultado);
   echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
@@ -76,7 +76,7 @@ if($tipoFormato == 'csv'){
     for ($i=0; $i < count($opo); $i++) {
       //var_dump($opo[$i]);
       //var_dump(codigoIndicador($opo[$i]));
-      $codigos .= 'xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
+      $codigos .= '../xlscsv/Indicador_'.codigoIndicador($opo[$i]).'.xlsx,';
     }
   }
   if($metadatoDescarga == "2"){
@@ -91,14 +91,14 @@ if($tipoFormato == 'csv'){
 
       $nom3 = trim($nom2,'_');
 
-      $codigos .= 'xlscsv/Metadato_'.$nom3.'.xlsx,';
+      $codigos .= '../xlscsv/Metadato_'.$nom3.'.xlsx,';
     }
   }
   if($calculoDescarga == "3"){
     for ($i=0; $i < count($opo); $i++) {
       for ($j=0; $j < count(datoscalculo($opo[$i])); $j++) {
         $f = $j + 1;
-        $codigos .= 'xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
+        $codigos .= '../xlscsv/DatosCalculo_T'.$f.'_'.codigoIndicador($opo[$i]).'.xlsx,';
       }
     }
   }
@@ -107,7 +107,7 @@ if($tipoFormato == 'csv'){
 
   $fecha = date('Y-m-d-His');
   $nameFile = 'Agenda2030_DescargaMasiva-'.$fecha.'.zip';
-  $zip = new PclZip('zip/'.$nameFile);
+  $zip = new PclZip('../zip/'.$nameFile);
   //var_dump($codigos);
   $zip->create($resultado);
   echo '<a style="font-size:18px;" href="zip/'.$nameFile.'">'.$nameFile.'</a>';
