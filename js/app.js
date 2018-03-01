@@ -1429,7 +1429,7 @@ function titulos(indicador){
   console.log(serieDato);
   serie_insumo++;
 
-  if(PCveInd == 1 || PCveInd == 2 || PCveInd == 105 || PCveInd == 208 || PCveInd == 212 || PCveInd == 213 || PCveInd == 224 || PCveInd == 101){
+  if(PCveInd == 1 || PCveInd == 2 || PCveInd == 105 || PCveInd == 208 || PCveInd == 212 || PCveInd == 213 || PCveInd == 224 || PCveInd == 101 || PCveInd == 343 ){
     titulo   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
     '<li class="divider"></li> ' +
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
