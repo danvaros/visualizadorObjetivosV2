@@ -1303,8 +1303,9 @@
                 $('#botonera_nacional').show();
                 $('#chart2').show();
 
-                if (codigoDg.replace(/\s/g, '') == 'N') {
-                    if (PCveInd == 236 || PCveInd == 311 || PCveInd == 312 || PCveInd == 48 || PCveInd == 333 || PCveInd == 304) {
+                if (codigoDg.replace(/\s/g, '') == 'SD') {
+                     if (atributos.VisualizaMapa_atr == "N"){
+//                    if (PCveInd == 236 || PCveInd == 311 || PCveInd == 312 || PCveInd == 48 || PCveInd == 333 || PCveInd == 304) {
                         $('#tabla_nacional').hide();
                         $('#indicador-panel').show();
                         $('#mapas_hide').hide();
@@ -1648,7 +1649,7 @@
         // Sólo muestra una gráfica de linea para los
         // valores Nacionales
         // ------------------------------------------ //
-        if (codigoDg.replace(/\s/g, '') == 'N') {
+        if (codigoDg.replace(/\s/g, '') == 'SD') {
             if (arreglo_cla.length > 0) {
                 poner_filtros_na();
             }
