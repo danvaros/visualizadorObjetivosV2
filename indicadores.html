@@ -746,7 +746,7 @@
                     <li class="divider"></li>
                     <p>1990-2015</p>
                 </div>
-                <a class="btn btn-large btn-success" style="color:#1F77B4;" href="javascript:void(0);" onclick="javascript:introJs().start();">¿Cómo funciona la gráfica?</a>
+                <a class="btn btn-large btn-success comoFunciona" style="color:#1F77B4;" href="javascript:void(0);" onclick="javascript:introJs().start();">¿Cómo funciona la gráfica?</a>
                 <div id="barras" data-step="1" data-intro="La gráfica está dividida en 2 partes. La gráfica general y la selección de rangos."></div>
 
                 <div class="pie_cuadro2">
@@ -1304,14 +1304,19 @@
                 $('#chart2').show();
 
                 if (codigoDg.replace(/\s/g, '') == 'SD') {
-                     if (atributos.VisualizaMapa_atr == "N"){
-//                    if (PCveInd == 236 || PCveInd == 311 || PCveInd == 312 || PCveInd == 48 || PCveInd == 333 || PCveInd == 304) {
+                     //if (atributos.VisualizaMapa_atr == "N"){
+                  if (PCveInd == 236 || PCveInd == 311 || PCveInd == 312 || PCveInd == 48 || PCveInd == 333 || PCveInd == 304) {
                         $('#tabla_nacional').hide();
                         $('#indicador-panel').show();
                         $('#mapas_hide').hide();
                         $('#botonera_nacional').hide();
                         $('#chart2').hide();
+                        $('.comoFunciona').hide();
                     }
+                }
+
+                if (codigoDg.replace(/\s/g, '') == 'NE') {
+                    $('.comoFunciona').hide();
                 }
 
                 // if(codigoDg.replace(/\s/g,'') == 'NEM' ){
@@ -2153,8 +2158,8 @@
                 '#eff3ff';
         }
 
-        
-        
+
+
         function getColoR(number) {
             return brew.getColorInRange(number);
         }
@@ -2445,7 +2450,7 @@
             $('#ver_tabla_nacional').removeClass('active_anio');
             $('#ver_tabla_nacional').addClass('inactive_anio');
 
-            
+
             $('#mapas_hide').show();
             $('#tabla_nacional').hide();
             $('#indicador-panel').hide();
@@ -2513,7 +2518,7 @@
                     //console.log(busqueda_estado_posicion(props.nom_ent, posi));
                     if (props != undefined) {
                         var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
-                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><div style="margin-top:-13px;overflow-wrap:break-word;width:60px;padding-left:20px;color:#999999;">(' + anioo + ')</div><p style="position: relative; top:-47px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
+                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><div style="margin-top:-13px;overflow-wrap:break-word;width:61px;padding-left:20px;color:#999999;">(' + anioo + ')</div><p style="position: relative; top:-47px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
 
                         gen(estados[busqueda_indice(props.nom_ent)]);
                         $(".crop").dotdotdot();
@@ -3230,7 +3235,7 @@
                 console.log(props);
                 if (props != undefined) {
                     var valnul = busqueda_municipio(props.nom_mun, posi).toFixed(1) == 0 ? 'ND' : busqueda_municipio(props.nom_mun, posi).toFixed(1);
-                      this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 6px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 32%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 168px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                      this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 16px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 32%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 168px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
 
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                     $(".crop").dotdotdot();
