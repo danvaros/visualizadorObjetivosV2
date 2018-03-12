@@ -746,7 +746,7 @@
                     <li class="divider"></li>
                     <p>1990-2015</p>
                 </div>
-                <a class="btn btn-large btn-success" style="color:#1F77B4;" href="javascript:void(0);" onclick="javascript:introJs().start();">¿Cómo funciona la gráfica?</a>
+                <a class="btn btn-large btn-success comoFunciona" style="color:#1F77B4;" href="javascript:void(0);" onclick="javascript:introJs().start();">¿Cómo funciona la gráfica?</a>
                 <div id="barras" data-step="1" data-intro="La gráfica está dividida en 2 partes. La gráfica general y la selección de rangos."></div>
 
                 <div class="pie_cuadro2">
@@ -1299,19 +1299,31 @@
 
                 $('#indicador-panel').hide();
                 $('#indicador-grafica').show();
-                $('#mapas_hide').show();
+                //$('#mapas_hide').show();
+                var attrs = getAtributos(PCveInd);
+                
+                console.log(attrs.VisualizaMapa_atr);
+                
+                if (attrs.VisualizaMapa_atr == "N"){
+                    $('#mapas_hide').hide();
+                }
                 $('#botonera_nacional').show();
                 $('#chart2').show();
 
                 if (codigoDg.replace(/\s/g, '') == 'SD') {
-                     if (atributos.VisualizaMapa_atr == "N"){
-//                    if (PCveInd == 236 || PCveInd == 311 || PCveInd == 312 || PCveInd == 48 || PCveInd == 333 || PCveInd == 304) {
+                     //if (atributos.VisualizaMapa_atr == "N"){
+                  if (PCveInd == 236 || PCveInd == 311 || PCveInd == 312 || PCveInd == 48 || PCveInd == 333 || PCveInd == 304) {
                         $('#tabla_nacional').hide();
                         $('#indicador-panel').show();
                         $('#mapas_hide').hide();
                         $('#botonera_nacional').hide();
                         $('#chart2').hide();
+                        $('.comoFunciona').hide();
                     }
+                }
+
+                if (codigoDg.replace(/\s/g, '') == 'NE') {
+                    $('.comoFunciona').hide();
                 }
 
                 // if(codigoDg.replace(/\s/g,'') == 'NEM' ){
@@ -1344,6 +1356,8 @@
                 $('#serie').removeClass('indicadores-taps-active');
                 $('#datos').removeClass('indicadores-taps-active');
                 $('#metadato').removeClass('indicadores-taps-active');
+                
+                
 
                 if (PCveInd == 333) {
                     $('#tabla_nacional').hide();
@@ -1441,7 +1455,7 @@
             });
 
             $('#metadato').click(function() {
-                if (PCveInd == 333)
+//                if (PCveInd == 333)
                     armaMetadatos();
 
                 $('#tabla_nacional').hide();
@@ -2153,8 +2167,8 @@
                 '#eff3ff';
         }
 
-        
-        
+
+
         function getColoR(number) {
             return brew.getColorInRange(number);
         }
@@ -2445,7 +2459,7 @@
             $('#ver_tabla_nacional').removeClass('active_anio');
             $('#ver_tabla_nacional').addClass('inactive_anio');
 
-            
+
             $('#mapas_hide').show();
             $('#tabla_nacional').hide();
             $('#indicador-panel').hide();
@@ -2513,7 +2527,7 @@
                     //console.log(busqueda_estado_posicion(props.nom_ent, posi));
                     if (props != undefined) {
                         var valnul = busqueda_estado_posicion(props.nom_ent, posi).toFixed(1) == 0 ? 'ND' : busqueda_estado_posicion(props.nom_ent, posi).toFixed(1);
-                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><div style="margin-top:-13px;overflow-wrap:break-word;width:60px;padding-left:20px;color:#999999;">(' + anioo + ')</div><p style="position: relative; top:-47px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
+                        this._div.innerHTML = '<div><h5 style="font-weight:bold">' + props.nom_ent + '</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 20px;color: #00aeef;">' + valnul + '</b><br/><div style="margin-top:-13px;overflow-wrap:break-word;width:61px;padding-left:20px;color:#999999;">(' + anioo + ')</div><p style="position: relative; top:-47px; left: 13%;" class="crop">' + titulo_des_graf + '</p></p></div><div class="info"></div>';
 
                         gen(estados[busqueda_indice(props.nom_ent)]);
                         $(".crop").dotdotdot();
@@ -2704,7 +2718,7 @@
 
         function armaMetadatos() {
             var tablaMeta = '';
-            var metadatosArr = getMetadatos(vars);
+            var metadatosArr = getMetadatos(PCveInd);
 
             tablaMeta = tablaMeta + ' <table class="bordered" id="metadatosInd"><tbody>' +
                 '<tr><th>Objetivo</th><td>' + metadatosArr.Descrip_obj + '</td></tr>' +
@@ -2758,6 +2772,63 @@
             $('#metadatosApi').html(tablaMeta);
             $('#metadatosApi2').html(tablaMeta);
         }
+        
+//        function armaMetadatos() {
+//            var tablaMeta = '';
+//            var metadatosArr = getMetadatos(PCveInd);
+//
+//            tablaMeta = tablaMeta + ' <table class="bordered" id="metadatosInd"><tbody>' +
+//                '<tr><th>Objetivo</th><td>' + metadatosArr.Descrip_obj + '</td></tr>' +
+//                '<tr><th>Meta</th><td>' + metadatosArr.Descrip_met + '</td></tr>' +
+//                '<tr><th>Nombre del Indicador</th><td>' + metadatosArr.Descrip_ind + '</td></tr>' +
+//                '<tr><th>Definición</th><td><p>' + metadatosArr.Definicion_ft + '</p></td></tr>' +
+//                '<tr><th>Tipo de Indicador</th><td>' + metadatosArr.DesTipoInd_ft + '</td></tr>' +
+//                '<tr><th>Algoritmo</th><td><div class="imgAlgoritmo"><img src="http://ods.org.mx/docs'+ metadatosArr.RutaAlgoritmo_ft + metadatosArr.Algoritmo_ft + metadatosArr.ExpAlgoritmo_ft +'" alt="Algoritmo ' + metadatosArr.Algoritmo_ft + '" /></div></td></tr>' +
+//                '<tr><th>Descripción narrativa del cálculo del indicador</th><td>' + metadatosArr.DescripCal_ft + '</td></tr>' +
+//                '<tr><th>Unidad de medida</th><td>' + metadatosArr.Descrip_uni + '</td></tr>' +
+//                '<tr><th>Cobertura geográfica</th><td>' + metadatosArr.Descrip_fdg + '</td></tr>' +
+//                '<tr><th>Referencia temporal</th><td>' + metadatosArr.CobTem_ft + '</td></tr>' +
+//                '<tr><th>Oportunidad</th><td>' + metadatosArr.Oportunidad_ft + '</td></tr>' +
+//                '<tr><th>Periodicidad del indicador</th><td>' + metadatosArr.Descrip_per + '</td></tr>' +
+//                '<tr><th>Fuente generadora de la información estadística utilizada para el cálculo del indicador</th><td>';
+//
+//            for (var i = 0; i < metadatosArr.Fuente.length; i++) {
+//                tablaMeta = tablaMeta + metadatosArr.Fuente[i].Descrip_fue + '<br>';
+//            }
+//
+//            tablaMeta = tablaMeta + '</td></tr>' +
+//                '<tr><th>Fecha de actualización del indicador</th><td>' + metadatosArr.FechaAct_atr + '</td></tr>' +
+//                '<tr><th>Fecha de próxima actualización del indicador</th><td>' + metadatosArr.FecProxAct_eic + '</td></tr>' +
+//                '<tr><th>Unidad del Estado (UE) responsable de calcular el indicador</th><td>';
+//
+//            for (var i = 0; i < metadatosArr.InsResp.length; i++) {
+//                tablaMeta = tablaMeta + metadatosArr.InsResp[i].Descrip_ins + '<br>';
+//            }
+//
+//
+//            tablaMeta = tablaMeta + '</td></tr>' +
+//                '<tr><th>Importancia y utilidad del indicador</th><td>' + metadatosArr.Importancia_ft + '</td></tr>' +
+//                '<tr><th>Referencia nacional y/o internacional</th><td>';
+//
+//            for (var i = 0; i < metadatosArr.RefInt.length; i++) {
+//                tablaMeta = tablaMeta + nl2br(metadatosArr.RefInt[i].Descrip_ri) + '<br>';
+//            }
+//
+//            tablaMeta = tablaMeta + '</td></tr>' +
+//                '<tr><th>Observaciones</th><td>' + nl2br(metadatosArr.Observacion_ft) + '</td></tr>' +
+//                '<tr><th>Contacto</th><td>';
+//
+//            for (var i = 0; i < metadatosArr.Contacto.length; i++) {
+//                tablaMeta = tablaMeta + metadatosArr.Contacto[i].Nombre_con + '<br>' + metadatosArr.Contacto[i].Puesto_con + '<br><b>Dirección:</b> ' + nl2br(metadatosArr.Contacto[i].Domicilio_con) + '<br>';
+//                tablaMeta += (metadatosArr.Contacto[i].Telefono_con == '' || metadatosArr.Contacto[i].Telefono_con == null) ? '' : '<b>Teléfono(s): </b>' + metadatosArr.Contacto[i].Telefono_con + '<br>';
+//                tablaMeta += (metadatosArr.Contacto[i].Correo_con == '' || metadatosArr.Contacto[i].Correo_con == null) ? '<br  /><br  />' : '<b>Correo: </b>' + metadatosArr.Contacto[i].Correo_con + '<br  /><br  />';
+//            }
+//
+//            tablaMeta = tablaMeta + '</td></tr></tbody></table></p>';
+//
+//            $('#metadatosApi').html(tablaMeta);
+//            $('#metadatosApi2').html(tablaMeta);
+//        }
 
         function nl2br(str, is_xhtml) {
             var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
@@ -3230,7 +3301,7 @@
                 console.log(props);
                 if (props != undefined) {
                     var valnul = busqueda_municipio(props.nom_mun, posi).toFixed(1) == 0 ? 'ND' : busqueda_municipio(props.nom_mun, posi).toFixed(1);
-                      this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 6px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 32%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 168px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
+                      this._div.innerHTML = '<div><h5 style="font-weight:bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' + props.nom_mun + '</h5><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size: 16px;color: #00aeef;">' + valnul /*props.density*/ + '</b><br/><b style="padding-left:20px;color:#999999;">(' + anioo + ')</b><p style="bottom: 71%;font-size: 15px;left: 32%;overflow: hidden;position: absolute;text-overflow: ellipsis;white-space: nowrap;width: 168px;" >' + titulo_des_graf + '</p></div></div><div class="info"></div>';
 
                     gen(municipios[busqueda_indice(props.nom_mun)]);
                     $(".crop").dotdotdot();
