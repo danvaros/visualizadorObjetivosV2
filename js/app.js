@@ -1433,8 +1433,8 @@ function titulos(indicador){
     titulo   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
     '<li class="divider"></li> ' +
     '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>' +
-    '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>' +
-    '<p id="no_va_serie"><strong>Total<strong></p>';
+    '<span id="descrip_uni"> '+ atributos.Serie[0].Descrip_uni +'</span>';
+    //'<p id="no_va_serie"><strong>Total<strong></p>';
     tituloDat   =  '<h4 id="titulo_cabezeras">'+ atributos.DescripInd_des  +'</h4>' +
                              '<li class="divider"></li> ' +
                              '<p> '+ atributos.Serie[0].CobTemporal_ser +' </p>';
